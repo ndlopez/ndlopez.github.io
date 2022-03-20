@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja" prefix="og: http://ogp.me/ns#">
   <head>
-    <title>Galileo Co.Ltd. - Working mother</title>
+    <title>.::Welcome to my static page::. </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../static/estilo2.css">
+    <link rel="stylesheet" type="text/css" href="static/estilo2.css">
+    <script src="static/d3.v4.js"></script>
+    <script src="static/digi_clock.js"></script>
   </head>
   <body>
     <div class="header">
@@ -13,9 +15,12 @@
     </div>
     <!--A lil' bout me-->
     <p style:"clear:right">A word from... </p>
-    <div class="clearfix">
-      <img class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg" alt="Figure">
-      Loren ipsum dolor sit amet,<br> consectetur adipiscing elit. Maecenas sit amet pretium urna. <br>Vivamus venenatis velit nec neque ultricies,eget elementum magna tristique. <br>Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros,<br> eget luctus quam orci in velit. blah blah blah
+    <div class="row">
+      <div class="column">
+	<time id="currtime"></time>
+      </div>
+      <div id="weather_bar" class="column">
+      <!--img class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg" alt="Figure"--></div>
     </div>
     <div style="padding:5px;">    <p>Loren ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. <br>Vivamus venenatis velit nec neque ultricies,eget elementum magna tristique.</p></div>
     <!--My thoughts-->
@@ -44,29 +49,18 @@
 	<tr><td style="text-align:right;">15:00</td><td>Nap time</td></tr>
 	<tr><td style="text-align:right;">18:00</td><td>CYA!</td></tr>
 	<tr><td style="text-align:right;">18:30</td><td>Head home</td></tr>
-      </table>
-    </div>
-    <script>
-      var acc=document.getElementsByClassName("accordion");
-      for(var i=0;i<acc.length;i++){
-		      acc[i].addEventListener("click",function(){
-		      this.classList.toggle("active");
-		      var panel=this.nextElementSibling;
-		      if(panel.style.display==="block"){
-		      panel.style.display="none";
-		      }else{
-		      panel.style.display="block";
-		      }
-		      });
-		      }
-    </script>
+</table>
+</div>
+<script src="static/accordion_table.js"></script>
+<script src="static/plt_weather_csv.js"></script>
+
   </body>
   <nav>
     <ul>
-      <li><a href="https://workingmother.com">link1 </a></li>
-      <li><a href="http://workingmonster.com">link2 </a></li>
-      <li><a href="http://workingmother.com">link3 </a></li>
-      <li><a href="http://workingmother.com">link4</a></li>
+      <li><a href="https://.com">link1 </a></li>
+      <li><a href="http://.com">link2 </a></li>
+      <li><a href="http://.com">link3 </a></li>
+      <li><a href="http://.com">link4</a></li>
     </ul>
   </nav>
   <footer>
