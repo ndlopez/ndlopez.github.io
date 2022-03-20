@@ -168,21 +168,15 @@ text-align:center;
   filter:FlipH;-ms-filter:"FlipH";
 }
 #currtime {
-  /*font-family: Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;*/
-  font-weight: 50;
-  /*display: block;*/
+  font-family: Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  /*font-weight: 50;*/
+  display: block;
   text-align: center;
-  font-size: 3vw;
+  /*font-size: 3vw;*/
   padding: 4rem 0;
   color:#cc274c;
 }
-#currtime span {
-  display: inline-block;
-  font-weight: 100;
-  /*font-size: 8vw;*/
-  position: relative;
-  /*top: -2vw;*/
-}
+
 /*Didnt work for D3JS and PHP
 .bar-old{fill:#98A2A9;}
 .bar-new{fill:#cc274c;}*/
@@ -191,6 +185,7 @@ text-align:center;
 */
 @media (max-width:800px){
     .menu, .column{width:100%;}
+    svg{width:100%}
     li{width:100%;}
     .dropdown-content{width:50%;}
 }
