@@ -89,7 +89,7 @@ li.dropdown{display:inline-block;}
   display:none;
   padding:0px;
   position:absolute;
-  background-color:#4caf50;
+  background-color:#2e4054;
   min-width:120px;
   width:25%;
   box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -112,7 +112,7 @@ li.dropdown{display:inline-block;}
 #myday td,#myday th{
   border:1px solid #ddd;
   padding:10px;
-  text-align:center;
+  text-align:left;
   background-color:#bed2e0;
   color:#2e4054;
 }
@@ -128,8 +128,8 @@ li.dropdown{display:inline-block;}
 }*/
 #pidd:hover{background-color:white;letter-spacing:3px;}
 .accordion{
-  background-color:#bed2e0;
-  color:#444;
+  /*background-color:#bed2e0;*/
+  color:#bed2e0;
   cursor:pointer;
   padding:18px;
   width:100%;
@@ -138,7 +138,10 @@ li.dropdown{display:inline-block;}
   font-size:18px;
   transition:0.4s;
 }
-.active, .accordion:hover{background-color:#cc274c;}
+.active, .accordion:hover{
+background-color:#cc274c;
+color:#bed2e0;
+}
 .accordion:after{
   content:'\02795';background-color: #bed2e0;
   font-size:15px;float:right;margin-left:5px;
@@ -150,8 +153,10 @@ li.dropdown{display:inline-block;}
   background-color:#e5e5e5;
   overflow:hidden;
 }
-button{/*background-color:white;#4caf50;*/
-  text-align:center;
+button{
+background-color:#2e4054;
+color:white;
+text-align:center;
 }
 .copy-left{
   display:inline-block;
