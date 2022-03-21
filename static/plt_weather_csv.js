@@ -19,7 +19,7 @@ var svg2=d3.select("#weather_bar")
 d3.csv("static/grep_tenki.csv",function(data){
   var xScale=d3.scaleBand().range([0,w])
   .domain(data.map(function(d){
-    /*console.log(d.hour);*/
+    console.log(d.hour);
     return d.hour;}))
   .padding(0.2);
 
@@ -30,10 +30,6 @@ svg2.append("g")
 .attr("transform","translate(-10,0)rotate(-45)")
 .style("text-anchor","end");
 
-let colorBar="";
-function getColor(value){
-  colorBar=value;
-}
 thisColor=[];
 myColor=["#98A2A9","#CC274C"];
 var yScale=d3.scaleLinear().domain([0,25]).range([h,0]);
