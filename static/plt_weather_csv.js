@@ -1,9 +1,11 @@
 /*Weather bars plot
-Pulling data from <ndlopez>'s Github*/
+Pulling data from <ndlopez>'s Github
+https://raw.githubusercontent.com/ndlopez/weather_app/main/data/
+*/
 var timeNow = new Date();
 let currHour = timeNow.getHours();
 
-var margin ={top:10,right:30,bottom:90,left:40},
+var margin ={top:10,right:30,bottom:90,left:20},
 w = 400 - margin.left - margin.right,
 h = 400 - margin.top - margin.bottom;
 
@@ -14,7 +16,6 @@ var svg2=d3.select("#weather_bar")
 .append("g")
 .attr("transform",`translate(${margin.left},${margin.top})`);
 
-//https://raw.githubusercontent.com/ndlopez/weather_app/main/data/
 d3.csv("static/grep_tenki.csv",function(data){
   var xScale=d3.scaleBand().range([0,w])
   .domain(data.map(function(d){
@@ -22,7 +23,6 @@ d3.csv("static/grep_tenki.csv",function(data){
     return d.hour;}))
   .padding(0.2);
 
-//console.log(d.hour);
 svg2.append("g")
 .attr("transform","translate(0,"+h+")")
 .call(d3.axisBottom(xScale))
