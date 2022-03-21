@@ -8,40 +8,44 @@
     <script src="static/d3.v4.js"></script>
     <script src="static/countdown.js"></script>
   </head>
-  <div class="sticky row">
-    <div class="half"><p>Next solar zenith @ 16.50S 68.26W</p></div>
-    <div class="counter">
-      <h2 id="zenith"></h2>
-      <!--p style="text-align: right;">DAYS HH MIN S</p--></div>
-  </div>
-  
-  <nav>
-    <ul>
-      <li><a href="https://github.com/ndlopez">My Github </a></li>
-      <li><a target="blank" href="https://www.swpc.noaa.gov/products/goes-x-ray-flux">GOES X-ray</a></li>
-      <li><a href="http://.com">?</a></li>
-      <li><a target="blank" href="https://fun.chicagotribune.com/game/tca-jumble-daily">Jumble daily</a></li>
-    </ul>
-  </nav>
   <body>
+    <header class="sticky row">
+      <div class="half"><p>Next solar zenith @ 16.50S 68.26W</p></div>
+      <div class="counter">
+        <h2 id="zenith"></h2>
+        <!--p style="text-align: right;">DAYS HH MIN S</p--></div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="https://github.com/ndlopez">My Github </a></li>
+        <li><a target="blank" href="https://www.swpc.noaa.gov/products/goes-x-ray-flux">GOES X-ray</a></li>
+        <li><a href="http://.com">?</a></li>
+        <li><a target="blank" href="https://fun.chicagotribune.com/game/tca-jumble-daily">Jumble daily</a></li>
+      </ul>
+    </nav>
+  
     <div class="header">
-      <h1 style="color:white;">My diary</h1><p>...balancing work and life</p>
+      <h1>My diary</h1><p>...balancing work and life</p>
     </div>
     <!--A lil' bout me-->
     <div class="row">
-      <div class="column">??</div>
+      <div class="column" style="text-align:center;">
+        <img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
+        <p>Data from wttr.in</p>
+      </div>
       <div id="weather_bar" class="column">
       <!--img class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg" alt="Figure"-->
       </div>
     </div>
     <div style="padding:5px;">    <p>Loren ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. <br>Vivamus venenatis velit nec neque ultricies,eget elementum magna tristique.</p></div>
     <!--My thoughts-->
-    <div class="row" style="padding:0px;">
-      <div class="column" style="border:0px;">
+    <div class="row">
+      <div class="column">
         <h2>How to render JP chars?</h2>
         <p>Some Loren ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies,eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
       </div>
-      <div class="column" style="border-bottom:0px;border-top:0px;">
+      <div class="column">
         <h2>Cannot render JP chars</h2>
         <p>Loren ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies,eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis. </p>
       </div>
