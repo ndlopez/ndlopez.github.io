@@ -150,8 +150,8 @@ li.dropdown{display:inline-block;}
   background-color:#bed2e0;
   color:#2e4054;
 }
-/*#myday tr:nth-child(even){background-color:#f2f2f2;}
-#myday tr:hover{background-color:#ddd;}*/
+#myday tr:nth-child(even){background-color:#f2f2f2;}
+#myday tr:hover{background-color:#ddd;}
 /*table cols title
 #myday th{
     padding-top:12px;
@@ -172,15 +172,24 @@ li.dropdown{display:inline-block;}
   font-size:18px;
   transition:0.4s;
 }
-.active, .accordion:hover{
-background-color:#cc274c;
-color:#bed2e0;
-}
+/*.active, .accordion:hover{
+  background-color:#cc274c;
+  color:#bed2e0;
+}*/
 .accordion:after{
-  content:'\02795';background-color: #bed2e0;
-  font-size:15px;float:right;margin-left:5px;
+  content:'\02193';/*Down*/
+  color:#bed2e0;
+  font-size: x-large;
+  /*'\02795';
+  background-color: #bed2e0;*/
+  float:right;margin-left:5px;
 }
-.active:after{content:"\02796";background-color: #bed2e0;}
+.active:after{
+  content:'\02191';/*Up*/
+  color:#bed2e0;
+  font-size: x-large;
+  /*content:"\02796";
+  background-color: #bed2e0;*/}
 .panel{
   padding:0 18px;
   display:none;
@@ -212,7 +221,10 @@ text-align:center;
       width:100%;
       text-align: center;
     }
-    svg{width: 100%;}
+    svg{
+      width: 100%;
+      padding: 0px;
+    }
     #zenith{font-size: large;}
     li{width:100%;}
     .dropdown-content{width:50%;}
