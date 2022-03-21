@@ -211,9 +211,7 @@ text-align:center;
   transform:scaleX(-1);
   filter:FlipH;-ms-filter:"FlipH";
 }
-/*Didnt work for D3JS and PHP
-.bar-old{fill:#98A2A9;}
-.bar-new{fill:#cc274c;}*/
+
 /*Responsive layout to stack cols on top of each other
 @media only screen and (max-width:620px){
 */

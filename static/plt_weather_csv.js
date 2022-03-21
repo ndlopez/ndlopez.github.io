@@ -4,8 +4,7 @@ https://raw.githubusercontent.com/ndlopez/weather_app/main/data/
 */
 var timeNow = new Date();
 let currHour = timeNow.getHours();
-var maxTemp = 20;
-var margin = {top:10,right:20,bottom:50,left:20},
+var margin = {top:10,right:20,bottom:50,left:30},
 w = 400 - margin.left - margin.right,
 h = 400 - margin.top - margin.bottom;
 
@@ -16,49 +15,56 @@ var svg2=d3.select("#weather_bar")
 .append("g")
 .attr("transform",`translate(${margin.left},${margin.top})`);
 
-d3.csv("static/grep_tenki.csv",function(data){
-  var xScale=d3.scaleBand().range([0,w])
-  .domain(data.map(function(d){
-    if(d.hour > currHour){
-    console.log(d.hour);
-    return d.hour;}}))
+// Initialize the X axis
+var x = d3.scaleBand()
+  .range([ 0, w ])
   .padding(0.2);
+var xAxis = svg2.append("g")
+  .attr("transform", "translate(0," + h + ")")
 
-svg2.append("g")
-.attr("transform","translate(0,"+h+")")
-.call(d3.axisBottom(xScale))
-.selectAll("text")
-.attr("transform","translate(-10,0)rotate(-45)")
-.style("text-anchor","end");
+// Initialize the Y axis
+var y = d3.scaleLinear()
+  .range([ h, 0]);
+var yAxis = svg2.append("g")
+  .attr("class", "myYaxis")
 
-thisColor=[];
-myColor=["#98A2A9","#CC274C"];
-var yScale=d3.scaleLinear().domain([0,maxTemp]).range([h,0]);
-svg2.append("g").call(d3.axisLeft(yScale));
-svg2.selectAll("bar")
-.data(data).enter()
-.append("rect")
-.attr("x",function(d){
-  if (d.hour > currHour) {
-    thisColor.push(myColor[0]);
-    return xScale(d.hour);
-  }
-  /*else {thisColor.push(myColor[1]);}*/
+function update(selectedVar){
+  //document.getElementsByClassName("selectBtn") = "#cc274c";
+  document.getElementById(selectedVar).style.backgroundColor = "#cc274c";
+  //document.getElementById("weather_bar").style.backgroundColor = "white";
+
+  d3.csv("https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/static/grep_tenki.csv",function(data){
+    // X axis
+    x.domain(data.map(function(d) { 
+      if(d.hour >= currHour){return d.hour;}
+    }))
+    xAxis.transition().duration(1000).call(d3.axisBottom(x))
+
+    // Add Y axis
+    y.domain([0, d3.max(data, function(d,i) { 
+      if(i >= currHour){return +d[selectedVar];} }) ]);
+    yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+    thisColor=[];
+    myColor=["#98A2A9","#CC274C"];
+
+    // variable u: map data to existing bars
+    var u = svg2.selectAll("rect")
+      .data(data)
+    // update bars
+    u
+      .enter()
+      .append("rect")
+      .merge(u)
+      .transition()
+      .duration(1000)
+        .attr("x", function(d) { if(d.hour >= currHour){return x(d.hour);} })
+        .attr("y", function(d,i) { 
+          if(i >= currHour){return y(d[selectedVar]);} })
+        .attr("width", x.bandwidth())
+        .attr("height", function(d,i) { 
+          if(i >= currHour){return h - y(d[selectedVar]);} })
+        .attr("fill", "#2e4054")
   })
-.attr("width",xScale.bandwidth())
-.attr("fill",myColor[1])
-.attr("height",function(d){return h-yScale(0);})
-.attr("y",function(d){return yScale(0);})
-
-console.log(thisColor);
-
-randIdx=Math.floor(Math.random()*thisColor.length);
-svg2.selectAll("rect")
-.transition()
-.duration(800)
-.attr("y",function(d,i){
-  if (i > currHour){
-  return yScale(d.temp);}})
-.attr("height",function(d){return h-yScale(d.temp);})
-.delay(function(d,i){return(i*100)})
-});
+}
+update('temp');

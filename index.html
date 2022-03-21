@@ -34,7 +34,11 @@
         <img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
         <p>Data from wttr.in</p>
       </div>
-      <div id="weather_bar" class="column">
+      <div class="column">
+        <button id="temp" onclick="update('temp')">Temperature<br>[C]</button>
+        <button id="humid" onclick="update('humid')">Humidity<br>[%]</button>
+        <button id="windSpeed" onclick="update('windSpeed')">Wind Speed<br>[m/s]</button>
+        <div id="weather_bar"></div>
       <!--img class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg" alt="Figure"-->
       </div>
     </div>
