@@ -95,7 +95,7 @@ panel2,.flip{
 div{
   /*opacity:0.8;filter:alpha(opacity=10);*/
   border:1px solid #bed2e0;
-  padding:15px;
+  padding:0px;
   text-align:left;/*justify;*/
 }
 .clearfix::after{

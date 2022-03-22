@@ -48,11 +48,11 @@ function update(selectedVar){
     thisColor=[];
     myColor=["#98A2A9","#CC274C"];
 
-    // variable u: map data to existing bars
-    var u = svg2.selectAll("rect")
+    // variable uMap data to existing bars
+    var uMap = svg2.selectAll("rect")
       .data(data)
     // update bars
-    u
+    uMap
       .enter()
       .append("rect")
       .merge(u)
