@@ -20,8 +20,8 @@
       <ul>
         <li><a href="https://github.com/ndlopez">My Github </a></li>
         <li><a target="blank" href="https://www.swpc.noaa.gov/products/goes-x-ray-flux">GOES X-ray</a></li>
-        <li><a href="http://.com">?</a></li>
-        <li><a target="blank" href="https://fun.chicagotribune.com/game/tca-jumble-daily">Jumble daily</a></li>
+        <li><a href="http://.com">Jumble this</a></li>
+        <li><a target="blank" href="https://fun.chicagotribune.com/game/tca-jumble-daily">Daily Game</a></li>
       </ul>
     </nav>
   
@@ -31,8 +31,11 @@
     <!--A lil' bout me-->
     <div class="row">
       <div class="column" style="text-align:center;">
-        <img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
-        <p>Data from wttr.in</p>
+        <h3>Current conditions</h3>
+        <div id="curr_weather">
+          <!--img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
+          <p>Data from wttr.in</p-->
+        </div>
       </div>
       <div class="column">
         <button id="temp" onclick="update('temp')">Temperature<br>[C]</button>
@@ -76,6 +79,7 @@
     </div>
     <script src="static/accordion_table.js"></script>
     <script src="static/plt_weather_csv.js"></script>
+    <script src="static/fetch_curr.js"></script>
   </body>
   <footer>
     <div class="row">
