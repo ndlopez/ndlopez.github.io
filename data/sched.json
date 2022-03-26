@@ -1,0 +1,17 @@
+{"one-day":[
+    {"time":"06:55","activity":"0655"},
+    {"time":"07:00","activity":"Breakfast"},
+    {"time":"07:35","activity":"Shower"},
+    {"time":"08:29","activity":"Train departs x Station"},
+    {"time":"08:53","activity":"Work Arrival"},
+    {"time":"09:30","activity":"Drink soy milk w banana"},
+    {"time":"12:30","activity":"Lunch"},
+    {"time":"15:00","activity":"Nap time (~15min)"},
+    {"time":"18:00","activity":"お先に失礼します"},
+    {"time":"18:17","activity":"Catch train"},
+    {"time":"20:45","activity":"Wash dinner dishes"},
+    {"time":"22:10","activity":"Read book"},
+    {"time":"22:25","activity":"Do some light exercises"},
+    {"time":"22:40","activity":"Go to bed"}
+]
+}

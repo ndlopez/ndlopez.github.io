@@ -1,6 +1,6 @@
 "use strict";
 
-const url="https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/static/grep_tenki.csv";
+const url="https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/grep_tenki.csv";
 
 var timeNow= new Date();
 let hh = timeNow.getHours();
@@ -16,8 +16,8 @@ display_info();
 //console.log(curr_weather);
 async function display_info(){
     await get_url_data(String(hh));
-    text += "<h1>" + curr_weather[0][0] + " " + hh +":"+ mm + "<br>";
-    text += " Now: " + curr_weather[0][2] + " " + curr_weather[0][3]+ "&#8451;</h1>";
+    text += "<h1>" + curr_weather[0][0] + "<br>";
+    text += hh +":"+ mm + " " + curr_weather[0][2] + " " + curr_weather[0][3]+ "&#8451;</h1>";
     text += "<p> Rain " + curr_weather[0][5] + "mm, Chance: "+curr_weather[0][4] + "%<br>";
     text += "Humidity: " + curr_weather[0][6] + "%<br>";
     text += "Wind: " + curr_weather[0][7] +"m/s "+ curr_weather[0][8]+"</p>";
