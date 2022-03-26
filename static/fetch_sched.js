@@ -14,9 +14,14 @@ disp_sched();
 async function disp_sched(){
     const key="one-day";
     const elem1 = "time",elem2="activity";
-    const myDay = await get_url_data(urlSched,key,elem1,elem2);
-    console.log(myDay);
+    const thisDay = await get_url_data(urlSched,key,elem1,elem2);
 
+    var text ="";
+    for (let idx=0; idx < thisDay["myTime"].length;idx++){        
+        text += "<tr><td style='text-align:right;'>" + thisDay["myTime"][idx] + "</td><td>" + thisDay["myAct"][idx]+"</td></tr>";
+    };
+    document.getElementById("myday").innerHTML = text;
+    //console.log(text);
 }
 
 async function disp_quote(){
@@ -41,8 +46,9 @@ async function get_url_data(url,jsonKey,keyElm1,keyElm2){
     }else{
         const table = data[jsonKey];
         table.forEach(row => {
-            myTime.push(table[keyElm1]);
-            myAct.push(table[keyElm2]);
+            //console.log(row[keyElm1]);
+            myTime.push(row[keyElm1]);
+            myAct.push(row[keyElm2]);
         });
         return {myTime,myAct};
     }

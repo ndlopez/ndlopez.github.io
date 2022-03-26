@@ -33,7 +33,7 @@ function update(selectedVar){
   document.getElementById(selectedVar).style.backgroundColor = "#cc274c";
   //document.getElementById("weather_bar").style.backgroundColor = "white";
 
-  d3.csv("https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/static/grep_tenki.csv",function(data){
+  d3.csv("https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/grep_tenki.csv",function(data){
     // X axis
     x.domain(data.map(function(d) { 
       if(d.hour >= currHour){return d.hour;}
