@@ -10,7 +10,7 @@ h = 400 - margin.top - margin.bottom;
 
 var svg2=d3.select("#weather_bar")
 .append("svg")
-.attr('width',w+margin.left+margin.right)
+/*.attr('width',w+margin.left+margin.right)*/
 .attr('height',h+margin.top+margin.bottom)
 .append("g")
 .attr("transform",`translate(${margin.left},${margin.top})`);
@@ -42,7 +42,7 @@ function update(selectedVar){
 
     // Add Y axis
     y.domain([0, d3.max(data, function(d,i) { 
-      if(i >= currHour){return +d[selectedVar];} }) ]);
+      if(i+1 >= currHour){return +d[selectedVar];} }) ]);
     yAxis.transition().duration(1000).call(d3.axisLeft(y));
 
     thisColor=[];
@@ -60,10 +60,10 @@ function update(selectedVar){
       .duration(1000)
         .attr("x", function(d) { if(d.hour >= currHour){return x(d.hour);} })
         .attr("y", function(d,i) { 
-          if(i >= currHour){return y(d[selectedVar]);} })
+          if(i+1 >= currHour){return y(d[selectedVar]);} })
         .attr("width", x.bandwidth())
         .attr("height", function(d,i) { 
-          if(i >= currHour){return h - y(d[selectedVar]);} })
+          if(i+1 >= currHour){return h - y(d[selectedVar]);} })
         .attr("fill", "#2e4054")
   })
 }

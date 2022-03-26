@@ -6,27 +6,34 @@ var timeNow= new Date();
 let hh = timeNow.getHours();
 let mm = timeNow.getMinutes();
 var text="";
+
+const curr_weather=[];
 //console.log(hh,mm);
 
-get_curr_data(String(hh));
+//get_curr_data(String(hh));
+display_info();
 
-async function get_curr_data(curr_hour){
+//console.log(curr_weather);
+async function display_info(){
+    await get_url_data(String(hh));
+    text += "<h1>" + curr_weather[0][0] + " " + hh +":"+ mm + "<br>";
+    text += " Now: " + curr_weather[0][2] + " " + curr_weather[0][3]+ "&#8451;</h1>";
+    text += "<p> Rain " + curr_weather[0][5] + "mm, Chance: "+curr_weather[0][4] + "%<br>";
+    text += "Humidity: " + curr_weather[0][6] + "%<br>";
+    text += "Wind: " + curr_weather[0][7] +"m/s "+ curr_weather[0][8]+"</p>";
+
+    document.getElementById("curr_weather").innerHTML = text;
+}
+
+async function get_url_data(curr_hour){
     const response = await fetch(url);
     const data = await response.text();
-    //console.log(data);
 
     const rows = data.split('\n').slice(1);
     rows.forEach(row => {
-        const curr_weather = row.split(',');
-        if (curr_weather[1] === curr_hour){
-            //console.log(curr_weather);
-            text += "<h3>" + curr_weather[0] + " " + hh +":"+ mm + "<br>";
-            text += " Now: " + curr_weather[2] + " " + curr_weather[3]+ "&#8451;</h3>";
-            text += "<p> Rain " + curr_weather[5] + "mm, Chance: "+curr_weather[4] + "%<br>";
-            text += "Humidity: " + curr_weather[6] + "%<br>";
-            text += "Wind: " + curr_weather[7] +"m/s "+ curr_weather[8]+"</p>";
-
-            document.getElementById("curr_weather").innerHTML = text;
+        const this_weather = row.split(',');
+        if (this_weather[1] === curr_hour){
+            curr_weather.push(this_weather);
         }
         
     });
