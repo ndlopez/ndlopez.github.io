@@ -20,62 +20,53 @@
       <ul>
         <li><a href="https://github.com/ndlopez">My Github </a></li>
         <li><a target="blank" href="https://www.swpc.noaa.gov/products/goes-x-ray-flux">GOES X-ray</a></li>
-        <li><a href="http://.com">?</a></li>
-        <li><a target="blank" href="https://fun.chicagotribune.com/game/tca-jumble-daily">Jumble daily</a></li>
+        <li><a href="http://.com">Jumble this</a></li>
+        <li><a target="blank" href="https://fun.chicagotribune.com/game/tca-jumble-daily">Daily Game</a></li>
       </ul>
     </nav>
   
     <div class="header">
-      <h1>My diary</h1><p>...balancing work and life</p>
+      <h1>My diary</h1><p id="randQuote"></p>
     </div>
     <!--A lil' bout me-->
     <div class="row">
       <div class="column" style="text-align:center;">
-        <img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
-        <p>Data from wttr.in</p>
+        <h3>Current conditions</h3>
+        <div id="curr_weather">
+          <!--img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
+          <p>Data from wttr.in</p-->
+        </div>
       </div>
       <div class="column">
         <button id="temp" onclick="update('temp')">Temperature<br>[C]</button>
         <button id="humid" onclick="update('humid')">Humidity<br>[%]</button>
         <button id="windSpeed" onclick="update('windSpeed')">Wind Speed<br>[m/s]</button>
         <div id="weather_bar"></div>
-      <!--img class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg" alt="Figure"-->
+      
       </div>
     </div>
-    <div style="padding:5px;">    <p>Loren ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. <br>Vivamus venenatis velit nec neque ultricies,eget elementum magna tristique.</p></div>
+    
     <!--My thoughts-->
     <div class="row">
       <div class="column">
         <h2>How to render JP chars?</h2>
-        <p>Some Loren ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies,eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
+        <p>Some Loren ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies,eget elementum magna tristique. Quisque vehicula, rllis.</p>
       </div>
       <div class="column">
         <h2>Cannot render JP chars</h2>
-        <p>Loren ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies,eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis. </p>
+        <img alt="Courtesy of tenki.jp" class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg" alt="Figure">
       </div>
     </div>
 
     <!--My schedule-->
-    <!--Changes the cursor type:p class="flip" onclick="myFunction()" style="cursor:help">One fine day</p-->
     <button class="accordion">one fine day</button>
     <div class="panel" style="padding:0px;">
-      <table id="myday"> <!--tr><th>...</th><th>...</th></tr-->
-        <tr><td style="text-align:right;">06:55</td><td>0655</td></tr>
-        <tr><td style="text-align:right;">07:00</td><td>Breakfast</td></tr>
-        <tr><td style="text-align:right;">07:35</td><td>Shower</td></tr>
-        <tr><td style="text-align:right;">08:29</td><td>Train commute</td></tr>
-        <tr><td style="text-align:right;">08:53</td><td>Work Arrival</td></tr>
-        <tr><td style="text-align:right;">09:30</td><td>Drink hot water</td></tr>
-        <tr><td style="text-align:right;">12:25</td><td>Lunch</td></tr>
-        <tr><td style="text-align:right;">15:00</td><td>Nap time (~15min)</td></tr>
-        <tr><td style="text-align:right;">18:00</td><td>CYA folks!</td></tr>
-        <tr><td style="text-align:right;">18:17</td><td>Run for train</td></tr>
-        <tr><td style="text-align:right;">20:45</td><td>Wash dinner dishes</td></tr>
-        <tr><td style="text-align:right;">22:35</td><td>Go to bed</td></tr>
-      </table>
+      <table id="myday"></table>
     </div>
     <script src="static/accordion_table.js"></script>
     <script src="static/plt_weather_csv.js"></script>
+    <script src="static/fetch_weather.js"></script>
+    <script src="static/fetch_sched.js"></script>
   </body>
   <footer>
     <div class="row">
