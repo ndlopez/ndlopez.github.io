@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="static/estilo2.css">
-    <script src="static/d3.v4.js"></script>
+    <!--script src="static/d3.v4.js"></script-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script src="static/countdown.js"></script>
   </head>
   <body>
@@ -38,10 +39,12 @@
         </div>
       </div>
       <div class="column">
-        <button id="temp" onclick="update('temp')">Temperature<br>[C]</button>
+        <button id="temp" onclick="update()">Temperature<br>[C]</button>
         <button id="humid" onclick="update('humid')">Humidity<br>[%]</button>
         <button id="windSpeed" onclick="update('windSpeed')">Wind Speed<br>[m/s]</button>
-        <div id="weather_bar"></div>
+        <div id="weather_bar">
+          <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
       
       </div>
     </div>
@@ -64,7 +67,7 @@
       <table id="myday"></table>
     </div>
     <script src="static/accordion_table.js"></script>
-    <script src="static/plt_weather_csv.js"></script>
+    <!--script src="static/plt_weather_csv.js"></script-->
     <script src="static/fetch_weather.js"></script>
     <script src="static/fetch_sched.js"></script>
   </body>
