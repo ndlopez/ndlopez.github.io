@@ -11,12 +11,11 @@ let mm = timeNow.getMinutes();
 var text="";
 
 const curr_weather=[];
-//console.log(hh,mm);
 
-display_info('temp');
+display_info();
 
 //console.log(curr_weather);
-async function display_info(selVar){
+async function display_info(){
     const myData = await get_url_data(String(hh));
     //console.log(myData.curr_weather);
     text += "<h1>" + myData.curr_weather[0][0] + "<br>";
@@ -48,10 +47,19 @@ async function display_info(selVar){
             }
         }
     });*/
-    console.log(myData.hour);
-    /* D3js plot */
+    
+    /* D3js plot 
+    Thanks to
+    https://www.tutorialsteacher.com/d3js/animated-bar-chart-d3
+    */
+    const data=[];
+    data.push(myData.hour,myData.temp);
+    /* this was the problem, the data was not transposed*/
+    const trData =data[0].map((_,colIdx)=> data.map(row => row[colIdx]));
+
+    //console.log(trData);
     // Set Dimensions
-    const xSize = 500; 
+    const xSize = 500;
     const ySize = 500;
     const margin = 40;
     const xMax = xSize - margin*2;
@@ -63,33 +71,91 @@ async function display_info(selVar){
     .attr("transform","translate(" + margin + "," + margin + ")");
 
     // X Axis
-    const x = d3.scaleLinear()
-    .domain([0,23])
-    .range([0, xMax]);
-
+    const x = d3.scaleBand()
+    .domain(data[0])
+    .range([0, xMax])
+    .padding(0.2);
+    
     svg.append("g")
     .attr("transform", "translate(0," + yMax + ")")
     .call(d3.axisBottom(x));
 
     // Y Axis
     const y = d3.scaleLinear()
-    .domain([0,d3.max(myData.temp)])
+    .domain([0,d3.max(data[1])])
     .range([ yMax, 0]);
 
     svg.append("g")
     .call(d3.axisLeft(y));
 
-    // Dots
-    svg.append('g')
+    // Dots. It finally worked!! 2022-03-28 21:40
+    /*svg.append('g')
     .selectAll("dot")
-    .data(myData).enter()
+    .data(trData).enter()
     .append("circle")
-    .attr("cx", function (d) { return d.hour[0]; } )
-    .attr("cy", function (d) { return d.temp[0]; } )
+    .attr("cx", function (d) { return x(d[0]); } )
+    .attr("cy", function (d) { return d[1]-40; } )
     .attr("r", 3)
-    .style("fill", "Red");
+    .style("fill", "#2e4054");*/
+    
+    //Bars. It finally worked!! 2022-03-28 22:00
+    svg.append("g")
+    .selectAll(".bar")
+    .data(trData).enter()
+    .append("rect")
+    .attr("class","bar")
+    .on("mouseover",function(d,i){
+        d3.select(this).attr("class","highlight");
+        d3.select(this)
+        .transition().duration(400)
+        .attr("width",x.bandwidth() + 5)
+        .attr("y",function(d){return y(d[1])-10;})
+        .attr("height",function(d){return yMax - y(d[1])+10;})
+        svg.append("text")
+        .attr("class","val")
+        .attr("x",(d)=>{return x(d[0]);})
+        .attr("y",(d)=>{return y(d[1])-10;})
+        .text((d)=>{return [ 'S'+ d[1] ];});
+    })
+    .on("mouseout",function(d,i){
+        d3.select(this).attr("class","bar");
+        d3.select(this).transition().duration(400)
+        .attr("width",x.bandwidth())
+        .attr("y",(d)=>{return y(d[1]);})
+        .attr("height",(d)=>{return yMax - y(d[1]);})
+        d3.selectAll(".val").remove();
+    })
+    .attr("x",(d)=>{return x(d[0]);})
+    .attr("y",(d)=>{return y(d[1]);})
+    .attr("width",x.bandwidth())
+    .transition().ease(d3.easeLinear)
+    .duration(500).delay((d,i)=>{return i*50;})
+    .attr("height",(d)=>{return yMax -y(d[1]);})
+    .attr("fill", "#2e4054");
 
+}
 
+function onMouseOver(d,i){
+    d3.select(this).attr("class","highlight");
+    d3.select(this)
+    .transition().duration(400)
+    .attr("width",x.bandwidth() + 5)
+    .attr("y",function(d){return y(d[1])-10;})
+    .attr("height",function(d){return yMax - y(d[1])+10;})
+    svg.append("text")
+    .attr("class","val")
+    .attr("x",(d)=>{return x(d[0]);})
+    .attr("y",(d)=>{return y(d[1])-15;})
+    .text((d)=>{return [ 'S'+ d[1] ];});
+}
+
+function onMouseOut(d,i){
+    d3.select(this).attr("class","bar");
+    d3.select(this).transition().duration(400)
+    .attr("width",x.bandwidth())
+    .attr("y",(d)=>{return y(d[1]);})
+    .attr("height",(d)=>{return yMax - y(d[1]);})
+    d3.selectAll(".val").remove();
 }
 /*Using chart.js do this https://www.chartjs.org/docs/latest/samples/area/radar.html */
 async function get_url_data(curr_hour){
@@ -106,10 +172,10 @@ async function get_url_data(curr_hour){
         }
         hour.push(parseInt(this_weather[1]));
         temp.push(parseFloat(this_weather[3]));
-        //humid.push(parseInt(this_weather[6]));
-        //wind.push(parseInt(this_weather[7]));
+        humid.push(parseInt(this_weather[6]));
+        wind.push(parseInt(this_weather[7]));
     });
-    return {curr_weather,hour, temp};
+    return {curr_weather,hour,temp,humid,wind};
 }
 function update(selVar){
     alert("Sorry couldnt display "+selVar + " at this moment");
