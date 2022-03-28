@@ -40,7 +40,7 @@ function update(selectedVar){
     }))
     xAxis.transition().duration(1000).call(d3.axisBottom(x))
 
-    // Add Y axis
+    // Y axis
     y.domain([0, d3.max(data, function(d,i) { 
       if(i+1 >= currHour){return +d[selectedVar];} }) ]);
     yAxis.transition().duration(1000).call(d3.axisLeft(y));

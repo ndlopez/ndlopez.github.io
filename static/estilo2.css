@@ -26,11 +26,6 @@ h1{color:#2e4054;}
   top: 0;
   background-color: #2e4054;
 }
-#currtime {
-  text-align: right;
-  padding: 0px;
-  color:#cc274c;
-}
 .half{
   color: #bed2e0;
   float:left;
@@ -49,13 +44,6 @@ h1{color:#2e4054;}
   text-align: right;
   font-size: x-large;
 }
-/*.topnav{overflow:hidden;background-color:#333;}
-.topnav a{
-    float:left;display:block; color:#f2f2f2;text-align:center;
-    padding:14px 16px; text-decoration:none;
-}
-.topnav a:hover{background-color:lightgray;color:blue;}*/
-/*p::first-letter{color:#ff0000;font-size:xx-large;}*/
 /*2 columns*/
 .column{
   float:left;
@@ -81,6 +69,7 @@ h1{color:#2e4054;}
   border:0px;
   position:relative;
   color:#cc274c;
+  width: 100%;
 }
 panel2,.flip{
   font-size:16px;
@@ -103,7 +92,6 @@ div{
   clear:both;
   display:table;
 }
-svg{width: 400px;}
 /*menu dropdown*/
 ul{
   list-style-type:none;
