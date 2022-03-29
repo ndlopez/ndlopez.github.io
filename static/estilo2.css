@@ -46,7 +46,7 @@ h1,h2{color:#2e4054;}
   color:#2e4054;
 }
 #curr_weather h3{color:#cc274c;}
-.column3 p{font-size: medium;color:#cc274c;}
+.column3 p, #curr_weather p{font-size: medium;color:#cc274c;}
 /*2 columns*/
 .column{
   float:left;

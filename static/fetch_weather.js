@@ -18,7 +18,7 @@ display_info();
 async function display_info(){
     const myData = await get_url_data(String(hh));
     //console.log(myData.curr_weather);
-    text += "<h3>" + myData.curr_weather[0][0] + " " + hh +":"+ mm + "</h3>";
+    text += "<p>" + myData.curr_weather[0][0] + " " + hh +":"+ mm + "</p>";
     text += "<h1>" + myData.curr_weather[0][2] + " " + myData.curr_weather[0][3]+ "&#8451;</h1>";
     document.getElementById("curr_weather").innerHTML = text;
 
