@@ -13,8 +13,9 @@
     <header class="sticky row">
       <div class="half"><p>Next solar zenith @ 16.50S 68.26W</p></div>
       <div class="counter">
-        <h2 id="zenith"></h2>
-        <!--p style="text-align: right;">DAYS HH MIN S</p--></div>
+        <h3 id="zenith"></h3>
+        <p class="top-text" style="text-align: right;">DAYS&emsp;HRS&ensp;MINS&ensp;SEC</p>
+      </div>
     </header>
 
     <nav>
@@ -32,8 +33,11 @@
     <!--A lil' bout me-->
     <div class="row">
       <div class="column" style="text-align:center;">
-        <h3>Current conditions</h3>
-        <div id="curr_weather">
+        <div class="clearfix" id="curr_weather"></div>
+        <div class="row">
+          <div class="column3" id="curr_weather_rain"></div>
+          <div class="column3" id="curr_weather_humid"></div>
+          <div class="column3" id="curr_weather_wind"></div>
           <!--img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
           <p>Data from wttr.in</p-->
         </div>
@@ -69,7 +73,7 @@
     <!--script src="static/plt_weather_csv.js"></script>
     <script src="static/d3_bars.js"></script-->
     <script src="static/fetch_weather.js"></script>
-    <!--script src="static/fetch_sched.js"></script-->
+    <script src="static/fetch_sched.js"></script>
   </body>
   <footer>
     <div class="row">
@@ -82,8 +86,7 @@
       </div>
     </div>
     <div class="clearfix">
-      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-03-20 </span></p>
+      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-03-29 </span></p>
     </div>
   </footer>
 </html>
-<!--div style="background-color#e5e5e5;text-align:center;padding:10px;margin-top:7px;">CopyLeft 2018/02/06 </div-->

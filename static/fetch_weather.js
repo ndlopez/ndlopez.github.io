@@ -18,13 +18,18 @@ display_info();
 async function display_info(){
     const myData = await get_url_data(String(hh));
     //console.log(myData.curr_weather);
-    text += "<h1>" + myData.curr_weather[0][0] + "<br>";
-    text += hh +":"+ mm + " " + myData.curr_weather[0][2] + " " + myData.curr_weather[0][3]+ "&#8451;</h1>";
-    text += "<p> Rain " + myData.curr_weather[0][5] + "mm, Chance: "+myData.curr_weather[0][4] + "%<br>";
-    text += "Humidity: " + myData.curr_weather[0][6] + "%<br>";
-    text += "Wind: " + myData.curr_weather[0][7] +"m/s "+ myData.curr_weather[0][8]+"</p>";
-
+    text += "<h3>" + myData.curr_weather[0][0] + " " + hh +":"+ mm + "</h3>";
+    text += "<h1>" + myData.curr_weather[0][2] + " " + myData.curr_weather[0][3]+ "&#8451;</h1>";
     document.getElementById("curr_weather").innerHTML = text;
+
+    text = "<p>RAIN</p><h2>" + myData.curr_weather[0][4] + "%<br>"+myData.curr_weather[0][5] + " mm</h2>";
+    document.getElementById("curr_weather_rain").innerHTML = text;
+
+    text = "<p>HUMIDITY</p><h2>" + myData.curr_weather[0][6] + "%</h2>";
+    document.getElementById("curr_weather_humid").innerHTML = text;
+
+    text = "<p>WIND</p><h2>" + myData.curr_weather[0][7] +"m/s<br>"+ myData.curr_weather[0][8] + "</h2>";
+    document.getElementById("curr_weather_wind").innerHTML = text;
 
     /* chart.js plot */
     /*const ctx = document.getElementById('myChart').getContext('2d');
@@ -59,7 +64,7 @@ async function display_info(){
 
     //console.log(trData);
     // Set Dimensions
-    const xSize = 500;
+    const xSize = 500;//390;
     const ySize = 500;
     const margin = 40;
     const xMax = xSize - margin*2;
@@ -82,7 +87,7 @@ async function display_info(){
 
     // Y Axis
     const y = d3.scaleLinear()
-    .domain([0,d3.max(data[1])])
+    .domain([d3.min(data[1])-1,d3.max(data[1])])
     .range([ yMax, 0]);
 
     svg.append("g")
@@ -104,7 +109,7 @@ async function display_info(){
     .data(trData).enter()
     .append("rect")
     .attr("class","bar")
-    .on("mouseover",function(d,i){
+    /*.on("mouseover",function(d,i){
         d3.select(this).attr("class","highlight");
         d3.select(this)
         .transition().duration(400)
@@ -115,7 +120,7 @@ async function display_info(){
         .attr("class","val")
         .attr("x",(d)=>{return x(d[0]);})
         .attr("y",(d)=>{return y(d[1])-10;})
-        .text((d)=>{return [ 'S'+ d[1] ];});
+        .text(d[1][3]);
     })
     .on("mouseout",function(d,i){
         d3.select(this).attr("class","bar");
@@ -124,7 +129,7 @@ async function display_info(){
         .attr("y",(d)=>{return y(d[1]);})
         .attr("height",(d)=>{return yMax - y(d[1]);})
         d3.selectAll(".val").remove();
-    })
+    })*/
     .attr("x",(d)=>{return x(d[0]);})
     .attr("y",(d)=>{return y(d[1]);})
     .attr("width",x.bandwidth())

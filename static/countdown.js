@@ -35,8 +35,8 @@ var x = setInterval(function() {
   if (seconds < 10){
       seconds = `0${seconds}`;
   }
-  document.getElementById("zenith").innerHTML = days + "d " + hours + "H "
-  + minutes + "M " + seconds + "S";
+  document.getElementById("zenith").innerHTML = days + " : " + hours + " : "
+  + minutes + " : " + seconds;
     
   // If the count down is over, should go to next counter
   if (distance < 0) {
