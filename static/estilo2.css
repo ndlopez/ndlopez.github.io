@@ -32,6 +32,7 @@ h1,h2{color:#2e4054;}
 #zenith{
   text-align: right;
   font-size: large;
+font-weight:normal;
 }
 .top-text{
   font-size: small;
@@ -46,7 +47,7 @@ h1,h2{color:#2e4054;}
   color:#2e4054;
 }
 #curr_weather h3{color:#cc274c;}
-.column3 p, #curr_weather p{font-size: medium;color:#cc274c;}
+.column3 p{font-size: medium;color:#cc274c;}
 /*2 columns*/
 .column{
   float:left;
@@ -54,7 +55,7 @@ h1,h2{color:#2e4054;}
   padding:10px;
   border:0px;
 }
-.row{padding: 0px;}
+.row{padding: 0px;text-align:center;}
 .row:after{
   content:"";
   display:table;

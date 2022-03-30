@@ -32,7 +32,6 @@ async function disp_quote(){
     document.getElementById("randQuote").innerHTML = text;
 }
 async function get_url_data(url,jsonKey,keyElm1,keyElm2){
-    
     const response = await fetch(url);
     const data = await response.json();
     const myTime=[];

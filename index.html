@@ -34,18 +34,20 @@
     <div class="row">
       <div class="column" style="text-align:center;">
         <div class="clearfix" id="curr_weather"></div>
-        <div class="row">
-          <div class="column3" id="curr_weather_rain"></div>
-          <div class="column3" id="curr_weather_humid"></div>
-          <div class="column3" id="curr_weather_wind"></div>
+	<div class="row">
+        <img alt="Courtesy of tenki.jp" class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg">
           <!--img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
           <p>Data from wttr.in</p-->
         </div>
-      </div>
+        <div class="row">
+          <div class="column3" id="curr_weather_rain"></div>
+          <div class="column3" id="curr_weather_humid"></div>
+          <div class="column3" id="curr_weather_wind"></div></div>
+     </div>
       <div class="column">
-        <button id="temp" onclick="update('temp')">Temperature<br>[C]</button>
+        <!--button id="temp" onclick="update('temp')">Temperature<br>[C]</button>
         <button id="humid" onclick="update('humid')">Humidity<br>[%]</button>
-        <button id="windSpeed" onclick="update('wind')">Wind Speed<br>[m/s]</button>
+        <button id="windSpeed" onclick="update('wind')">Wind Speed<br>[m/s]</button-->
         <div id="weather_bar">
           <!--canvas id="myChart" width="400" height="400"></canvas-->
         </div>
@@ -60,7 +62,6 @@
       </div>
       <div class="column">
         <h2>Cannot render JP chars</h2>
-        <!--img alt="Courtesy of tenki.jp" class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg"-->
       </div>
     </div>
 

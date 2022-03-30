@@ -9,16 +9,19 @@ var timeNow= new Date();
 let hh = timeNow.getHours();
 let mm = timeNow.getMinutes();
 var text="";
-
 const curr_weather=[];
 
+var newHour = String(hh);
+if( hh < 10){
+    newHour = "0" + String(hh);
+}
 display_info();
 
 //console.log(curr_weather);
 async function display_info(){
-    const myData = await get_url_data(String(hh));
-    //console.log(myData.curr_weather);
-    text += "<p>" + myData.curr_weather[0][0] + " " + hh +":"+ mm + "</p>";
+    const myData = await get_url_data(newHour);
+    console.log(myData.curr_weather);
+    text += "<h2>" + myData.curr_weather[0][0] + " " + hh +":"+ mm + "</h2>";
     text += "<h1>" + myData.curr_weather[0][2] + " " + myData.curr_weather[0][3]+ "&#8451;</h1>";
     document.getElementById("curr_weather").innerHTML = text;
 
@@ -183,5 +186,5 @@ async function get_url_data(curr_hour){
     return {curr_weather,hour,temp,humid,wind};
 }
 function update(selVar){
-    alert("Sorry couldnt display "+selVar + " at this moment");
+    alert("Error","This is not the "+ selVar + " you r looking for.");
 }
