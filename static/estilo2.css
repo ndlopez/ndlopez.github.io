@@ -1,11 +1,10 @@
 *{box-sizing:border-box;}
 body{
   font-family:Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
-  background-color:#bed2e0;
+  background-color:#2e4054;
+  color: #bed2e0;
 }
-.header{
-  padding:20px;text-align:center;}
-h1,h2{color:#2e4054;}
+.header{padding:20px;text-align:center;}
 .sticky{
   display: block;
   width: auto;
@@ -13,17 +12,15 @@ h1,h2{color:#2e4054;}
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #2e4054;
+  background-color: #cc274c;
 }
 .half{
-  color: #bed2e0;
   float:left;
   width: 40%;
   padding: 0px 0px 0px 10px;
   border: 0px;  
 }
 .counter{
-  color: #bed2e0;
   float:left;
   width: 60%;
   padding: 0px 10px 0px 0px;
@@ -32,11 +29,38 @@ h1,h2{color:#2e4054;}
 #zenith{
   text-align: right;
   font-size: large;
-font-weight:normal;
+  font-weight:normal;
 }
 .top-text{
   font-size: small;
   margin-top: -15px;
+}
+
+nav{
+  display: block;
+  width: 100%;
+  box-sizing: inherit;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+a{
+  text-decoration: none;
+  color: #bed2e0;
+}
+.navlink{
+  position:relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+}
+.navlink-off,.navlink-on{position:relative}
+.navlink-off:after,.navlink-on:after{content:" ";display:block;margin:.125rem auto 0;width:0;height:.125rem;border-radius:.125rem;background:rgba(255,255,255,0);pointer-events:none;transition:all .4s ease}
+.navlink-off:hover:after{width:100%;background:#bed2e0;}
+.navlink-on:after{width:100%;background:#bed2e0;}
+.inline-block{
+  display: inline-block;
+  vertical-align: top;
 }
 .column3{
   float:left;
@@ -44,10 +68,17 @@ font-weight:normal;
   padding:10px;
   border:0px;
   text-align: center;
-  color:#2e4054;
 }
-#curr_weather h3{color:#cc274c;}
-.column3 p{font-size: medium;color:#cc274c;}
+.rounded{
+  border:1px dashed;
+  border-radius: 50%;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.column3 p{font-size: medium;}
 /*2 columns*/
 .column{
   float:left;
@@ -62,7 +93,8 @@ font-weight:normal;
   clear:both;
   padding:0px;
 }
-
+.align-left{text-align: left;}
+.align-right{text-align: right;}
 .bottom-left{
   border:0px;
   position:absolute;
@@ -86,7 +118,7 @@ panel2,.flip{
 }
 #panel2{display:none;}
 div{
-  border:1px solid #bed2e0;
+  border:1px solid #2e4054;
   padding:0px;
   text-align:left;
 }
@@ -96,37 +128,13 @@ div{
   display:table;
 }
 .clearfix{text-align: center;}
-/*menu dropdown*/
-ul{
-  list-style-type:none;
-  margin:0;padding:0px;
-  overflow:hidden;/*border:1px solid #e7e7e7;*/
-  background-color:#2e405480;/*#f3f3f3;*/
-}
-li{float:left;width:25%;}
-li a, .dropbtn{
-  display:block;/*inline-block*/
-  color:#bed2e0;/*#665;*/
-  text-align:center;
-  padding:14px 16px;
-  text-decoration:none;
-}
-li a:hover, .dropdown:hover .dropbtn{background-color:#2e4054;}
-li.dropdown{display:inline-block;}
-.dropdown-content{
-  display:none;
-  padding:0px;
-  position:absolute;
-  background-color:#2e4054;
-  min-width:120px;
-  width:25%;
-  box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index:1;
-}
 /*SVG*/
 .highlight{fill: #cc274c;}
-.bar{fill:#2e4054}
+.bar{fill:#bed2e0}
 .val{color:whitesmoke;}
+svg g{color:#bed2e0;}
+.domain, svg line{stroke: #bed2e0;}
+svg text{fill:#bed2e0;}
 /*Table schedule*/
 #myday{
   border-collapse:collapse;
@@ -189,6 +197,7 @@ background-color:#2e4054;
 color:white;
 text-align:center;
 }
+.mySNS{padding:5px;}
 .copy-left{
   display:inline-block;
   text-align:right;margin:0px;
@@ -214,6 +223,5 @@ text-align:center;
     }
     #weather_bar{padding: 0px;}
     #zenith{font-size: large;}
-    li{width:100%;}
-    .dropdown-content{width:50%;}
+    .align-left,.align-right{text-align: center;}
 }

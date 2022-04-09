@@ -12,26 +12,26 @@ var text="";
 const curr_weather=[];
 
 var newHour = String(hh);
-if( hh < 10){
-    newHour = "0" + String(hh);
-}
+var newMin = String(mm);
+if(hh > 0 && hh < 10){newHour = "0" + String(hh);}
+if(mm < 10){newMin = "0" + String(mm);}
 display_info();
 
 //console.log(curr_weather);
 async function display_info(){
     const myData = await get_url_data(newHour);
-    console.log(myData.curr_weather);
-    text += "<h2>" + myData.curr_weather[0][0] + " " + hh +":"+ mm + "</h2>";
-    text += "<h1>" + myData.curr_weather[0][2] + " " + myData.curr_weather[0][3]+ "&#8451;</h1>";
+    //console.log(myData.curr_weather);
+    text += "<h2>" + myData.curr_weather[0][0] +" "+ newHour +":"+ newMin + "</h2>";
+    text += "<h1>" + myData.curr_weather[0][2].replace(/"/g,"") + " " + myData.curr_weather[0][3]+ "&#8451;</h1>";
     document.getElementById("curr_weather").innerHTML = text;
 
-    text = "<p>RAIN</p><h2>" + myData.curr_weather[0][4] + "%<br>"+myData.curr_weather[0][5] + " mm</h2>";
+    text = "<p>RAIN</p><div class='rounded'><h2>" + myData.curr_weather[0][4] + "%<br>"+myData.curr_weather[0][5] + " mm</h2></div>";
     document.getElementById("curr_weather_rain").innerHTML = text;
 
-    text = "<p>HUMIDITY</p><h2>" + myData.curr_weather[0][6] + "%</h2>";
+    text = "<p>HUMIDITY</p><div class='rounded'><h2><br>" + myData.curr_weather[0][6] + "%</h2></div>";
     document.getElementById("curr_weather_humid").innerHTML = text;
 
-    text = "<p>WIND</p><h2>" + myData.curr_weather[0][7] +"m/s<br>"+ myData.curr_weather[0][8] + "</h2>";
+    text = "<p>WIND</p><div class='rounded'><h2>" + myData.curr_weather[0][7] +"m/s<br>"+ myData.curr_weather[0][8].replace(/"/g,"") + "</h2></div>";
     document.getElementById("curr_weather_wind").innerHTML = text;
 
     /* chart.js plot */
@@ -57,9 +57,7 @@ async function display_info(){
     });*/
     
     /* D3js plot 
-    Thanks to
-    https://www.tutorialsteacher.com/d3js/animated-bar-chart-d3
-    */
+    Thanks to  https://www.tutorialsteacher.com/d3js/animated-bar-chart-d3    */
     const data=[];
     data.push(myData.hour,myData.temp);
     /* this was the problem, the data was not transposed*/
@@ -138,8 +136,8 @@ async function display_info(){
     .attr("width",x.bandwidth())
     .transition().ease(d3.easeLinear)
     .duration(500).delay((d,i)=>{return i*50;})
-    .attr("height",(d)=>{return yMax -y(d[1]);})
-    .attr("fill", "#2e4054");
+    .attr("height",(d)=>{return yMax -y(d[1]);});
+    //.attr("fill", "#fff");
 
 }
 
@@ -175,6 +173,7 @@ async function get_url_data(curr_hour){
     const rows = data.split('\n').slice(1);
     rows.forEach(row => {
         const this_weather = row.split(',');
+        //console.log(this_weather);
         if (this_weather[1] === curr_hour){
             curr_weather.push(this_weather);
         }

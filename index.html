@@ -10,31 +10,32 @@
     <script src="static/countdown.js"></script>
   </head>
   <body>
-    <header class="sticky row">
+    <div class="sticky row">
       <div class="half"><p>Next solar zenith @ 16.50S 68.26W</p></div>
       <div class="counter">
         <h3 id="zenith"></h3>
         <p class="top-text" style="text-align: right;">DAYS&emsp;HRS&ensp;MINS&ensp;SEC</p>
       </div>
-    </header>
+    </div>
 
     <nav>
-      <ul>
-        <li><a href="https://github.com/ndlopez">My Github </a></li>
-        <li><a target="blank" href="https://www.swpc.noaa.gov/products/goes-x-ray-flux">GOES X-ray</a></li>
-        <li><a href="/jumble_game/index.html">Jumble this</a></li>
-        <li><a target="blank" href="https://fun.chicagotribune.com/game/tca-jumble-daily">Daily Game</a></li>
-      </ul>
+      <div class="navlink inline-block">
+        <a title="Home" href="/" class="navlink-on">home</a></div>
+      <div class="navlink inline-block"><a target="blank" title="Research" href="https://www.swpc.noaa.gov/products/goes-x-ray-flux" class="navlink-off">goes-X-ray</a></div>
+      <div class="navlink inline-block"><a title="Projects" href="/jumble_game" class="navlink-off">jumble game</a></div>
+      <div class="navlink inline-block"><a target="blank" title="Articles" href="https://ndzerglink.wordpress.com" class="navlink-off">articles</a></div>
+      <div class="navlink inline-block"><a title="About" href="/pages" class="navlink-off">about</a></div>
+
     </nav>
-  
+
     <div class="header">
-      <h1>My diary</h1><p id="randQuote"></p>
+      <h1>My web portfolio</h1><p id="randQuote"></p>
     </div>
     <!--A lil' bout me-->
     <div class="row">
       <div class="column" style="text-align:center;">
         <div class="clearfix" id="curr_weather"></div>
-	<div class="row">
+  	  <div class="row">
         <img alt="Courtesy of tenki.jp" class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg">
           <!--img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
           <p>Data from wttr.in</p-->
@@ -55,16 +56,6 @@
       </div>
     </div>
     
-    <!--My thoughts-->
-    <div class="clearfix" id="container"></div>
-    <div class="row">
-      <div class="column">
-      </div>
-      <div class="column">
-        <h2>Cannot render JP chars</h2>
-      </div>
-    </div>
-
     <!--My schedule-->
     <button class="accordion">one fine day</button>
     <div class="panel" style="padding:0px;">
@@ -77,17 +68,20 @@
     <script src="static/fetch_sched.js"></script>
   </body>
   <footer>
-    <div class="row">
-      <div class="column">
+    <div class="row"><hr>
+      <div class="column align-left">
         <p>Data from <em>tenki.jp</em> scraped using <i>Shell, curl, SED and </i>&#9749;</p>
-      </div>
-      <div class="column">
         <p>Hello from
           <a target="blank" href="https://www.openstreetmap.org/search?whereami=1&query=34.7022%2C135.1940#map=14/34.7021/135.1940">34°41'24"N 135°11'44"E</a></p>
       </div>
+      <div class="column align-right">
+        <a class="mySNS" href="https://twitter.com/ndzerglink" target="_blank"><img src="assets/twitter-logo.svg"/></a>
+        <a class="mySNS" href="https://github.com/ndlopez"><img src="assets/github-logo.svg"/></a>
+        <a class="mySNS" target="blank" href="https://jp.linkedin.com/in/diego-lopez-58a033147"><img src="assets/linkein-logo.svg" /></a>
+      </div>
     </div>
     <div class="clearfix">
-      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-03-29 </span></p>
+      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-04-09 ndzerglink </span></p>
     </div>
   </footer>
 </html>
