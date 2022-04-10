@@ -129,12 +129,13 @@ div{
 }
 .clearfix{text-align: center;}
 /*SVG*/
-.highlight{fill: #cc274c;}
+/*.highlight{fill: #cc274c;}*/
 .bar{fill:#bed2e0}
-.val{color:whitesmoke;}
 svg g{color:#bed2e0;}
 .domain, svg line{stroke: #bed2e0;}
 svg text{fill:#bed2e0;}
+.txtHumid{fill:#cc274c;}
+.txtWind{fill:#bed2e0;}
 /*Table schedule*/
 #myday{
   border-collapse:collapse;
