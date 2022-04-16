@@ -62,10 +62,17 @@ a{
   display: inline-block;
   vertical-align: top;
 }
+.column4{
+  float:left;
+  width: 25%;
+  padding:0px;
+  border:0px;
+  text-align: center;
+}
 .column3{
   float:left;
   width: 33.3%;
-  padding:10px;
+  padding:5px;
   border:0px;
   text-align: center;
 }
@@ -104,9 +111,18 @@ a{
 .container{
   border:0px;
   position:relative;
-  color:#cc274c;
   width: 100%;
+  padding:0px 5px;
+  text-align: center;
 }
+.card{
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(250,250,250,0.2);
+  transition: 0.3s;
+}
+.card img{width: 300px;height: 300px;}
+.container span{font-size: small;}
+.card:hover{box-shadow: 0 8px 16px 0 rgba(250,250,250,0.2);}
 panel2,.flip{
   font-size:16px;
   padding:10px;
@@ -136,6 +152,20 @@ svg g{color:#bed2e0;}
 svg text{fill:#bed2e0;}
 .txtHumid{fill:#cc274c;}
 .txtWind{fill:#bed2e0;}
+
+.progress-ring-circle {
+  /*transition: 0.35s stroke-dashoffset;*/
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+.value {
+  position: relative;
+  bottom: 150px;
+  left: -35px;
+  color: #bed2e0;
+  text-align: center;
+  border: 0px;
+}
 /*Table schedule*/
 #myday{
   border-collapse:collapse;
@@ -150,16 +180,8 @@ svg text{fill:#bed2e0;}
 }
 #myday tr:nth-child(even){background-color:#f2f2f2;}
 #myday tr:hover{background-color:#ddd;}
-/*table cols title
-#myday th{
-    padding-top:12px;
-    padding-bottom:12px;
-    text-align:left;
-    background-color:#4caf50;
-    color:white;
-}*/
+/*table cols title*/
 .accordion{
-  /*background-color:#bed2e0;*/
   color:#bed2e0;
   cursor:pointer;
   padding:18px;
@@ -169,24 +191,18 @@ svg text{fill:#bed2e0;}
   font-size:18px;
   transition:0.4s;
 }
-/*.active, .accordion:hover{
-  background-color:#cc274c;
-  color:#bed2e0;
-}*/
 .accordion:after{
   content:'\02193';/*Down*/
   color:#bed2e0;
   font-size: x-large;
-  /*'\02795';
-  background-color: #bed2e0;*/
+  /*'\02795'; background-color: #bed2e0;*/
   float:right;margin-left:5px;
 }
 .active:after{
   content:'\02191';/*Up*/
   color:#bed2e0;
   font-size: x-large;
-  /*content:"\02796";
-  background-color: #bed2e0;*/}
+  /*content:"\02796";background-color: #bed2e0;*/}
 .panel{
   padding:0 18px;
   display:none;
@@ -222,6 +238,8 @@ text-align:center;
       padding: 0px;
       margin: 0px -20px 0px -20px;
     }
+    .column3{width: 50%;}
+    .column3 img{width:100%;}
     #weather_bar{padding: 0px;}
     #zenith{font-size: large;}
     .align-left,.align-right{text-align: center;}

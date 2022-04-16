@@ -12,8 +12,7 @@
   <body>
     <div class="sticky row">
       <div class="half"><p>Next solar zenith @ 16.50S 68.26W</p></div>
-      <div class="counter">
-        <h3 id="zenith"></h3>
+      <div class="counter"><h3 id="zenith"></h3>
         <p class="top-text" style="text-align: right;">DAYS&emsp;HRS&ensp;MINS&ensp;SEC</p>
       </div>
     </div>
@@ -28,46 +27,32 @@
 
     </nav>
 
-    <div class="header">
-      <h1>My web portfolio</h1><p id="randQuote"></p>
-    </div>
+    <div class="header"><h1>My web portfolio</h1><p id="randQuote"></p></div>
     <!--A lil' bout me-->
     <div class="row">
       <div class="column" style="text-align:center;">
         <div class="clearfix" id="curr_weather"></div>
-  	  <div class="row">
-        <img alt="Courtesy of tenki.jp" class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg">
+  	    <div class="clearfix">
+          <!--img alt="Courtesy of tenki.jp" class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg"-->
           <!--img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
           <p>Data from wttr.in</p-->
         </div>
-        <div class="row">
-          <div class="column3" id="curr_weather_rain"></div>
-          <div class="column3" id="curr_weather_humid"></div>
-          <div class="column3" id="curr_weather_wind"></div></div>
-     </div>
+        <div class="row" id="weather_details"></div>
+      </div>
       <div class="column">
-        <!--button id="temp" onclick="update('temp')">Temperature<br>[C]</button>
-        <button id="humid" onclick="update('humid')">Humidity<br>[%]</button>
-        <button id="windSpeed" onclick="update('wind')">Wind Speed<br>[m/s]</button-->
-        <div id="weather_bar">
-          <!--canvas id="myChart" width="400" height="400"></canvas-->
-        </div>
-        <div>
-        <h3>Temperature [&#8451;] vs Time</h3> 
-        <p>Note: Numbers inside the bars represent the humidity. The numbers at the bottom represent wind speed</p></div>
+        <div id="weather_bar"><!--canvas id="myChart" width="400" height="400"></canvas--></div>
+        <div><h3>Temperature [&#8451;] vs Time</h3> 
+          <p>Note: Numbers inside the bars represent the humidity. 
+            The numbers at the bottom represent wind speed</p></div>
       </div>
     </div>
     
     <!--My schedule-->
     <button class="accordion">one fine day</button>
-    <div class="panel" style="padding:0px;">
-      <table id="myday"></table>
-    </div>
-    <script src="static/accordion_table.js"></script>
-    <!--script src="static/plt_weather_csv.js"></script>
-    <script src="static/d3_bars.js"></script-->
+    <div class="panel" style="padding:0px;"><table id="myday"></table></div>
     <script src="static/fetch_weather.js"></script>
-    <script src="static/fetch_sched.js"></script>
+    <!--script src="static/accordion_table.js"></script>
+    <script src="static/fetch_sched.js"></script-->
   </body>
   <footer>
     <div class="row"><hr>
@@ -83,7 +68,7 @@
       </div>
     </div>
     <div class="clearfix">
-      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-04-09 ndzerglink </span></p>
+      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-04-16 ndzerglink </span></p>
     </div>
   </footer>
 </html>

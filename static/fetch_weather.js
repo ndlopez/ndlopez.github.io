@@ -1,5 +1,9 @@
 /* Fetch data from url
 Use such data to make a d3js plot.
+
+Progress ring is based on:
+https://codepen.io/jeremenichelli/pen/vegymB and
+https://dev.to/vaibhavkhulbe/let-s-make-and-wear-those-css-3-progress-rings-2ngf
 */
 "use strict";
 
@@ -15,6 +19,41 @@ var newHour = String(hh);
 var newMin = String(mm);
 if(hh > 0 && hh < 10){newHour = "0" + String(hh);}
 if(mm < 10){newMin = "0" + String(mm);}
+
+function setProgress(percent) {
+    const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    const svgBkgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    svgGroup.setAttribute("width","120");
+    svgGroup.setAttribute("height","180");
+    svgCircle.setAttribute("class","progress-ring-circle");
+    svgCircle.setAttribute("id","frontCircle");
+    svgCircle.setAttribute("stroke","#cc274c");
+    svgCircle.setAttribute("stroke-width","4");
+    svgCircle.setAttribute("fill","transparent");
+    svgCircle.setAttribute("r","52");
+    svgCircle.setAttribute("cx","60");
+    svgCircle.setAttribute("cy","60");
+    svgBkgCircle.setAttribute("class","progress-ring-circle");
+    svgBkgCircle.setAttribute("stroke","#bed2e0");
+    svgBkgCircle.setAttribute("stroke-width","4");
+    svgBkgCircle.setAttribute("fill","transparent");
+    svgBkgCircle.setAttribute("r","52");
+    svgBkgCircle.setAttribute("cx","60");
+    svgBkgCircle.setAttribute("cy","60");
+    svgGroup.appendChild(svgBkgCircle);
+    svgGroup.appendChild(svgCircle);
+
+    var radius = 52;
+    var circumference = radius * 2 * Math.PI;
+
+    svgCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+    svgCircle.style.strokeDashoffset = `${circumference}`;
+
+    const offset = circumference - percent / 100 * circumference;
+    svgCircle.style.strokeDashoffset = offset;
+}
+
 display_info();
 
 //console.log(curr_weather);
@@ -25,14 +64,42 @@ async function display_info(){
     text += "<h1>" + myData.curr_weather[0][2].replace(/"/g,"") + " " + myData.curr_weather[0][3]+ "&#8451;</h1>";
     document.getElementById("curr_weather").innerHTML = text;
 
-    text = "<p>RAIN</p><div class='rounded'><h2>" + myData.curr_weather[0][4] + "%<br>"+myData.curr_weather[0][5] + " mm</h2></div>";
-    document.getElementById("curr_weather_rain").innerHTML = text;
+    var detailsDiv = document.getElementById("weather_details")
 
-    text = "<p>HUMIDITY</p><div class='rounded'><h2><br>" + myData.curr_weather[0][6] + "%</h2></div>";
-    document.getElementById("curr_weather_humid").innerHTML = text;
+    const pTitle = document.createElement("p");
+    pTitle.innerText = "RAIN";
+    text = "<h2>" + myData.curr_weather[0][4] + "%<br>"+myData.curr_weather[0][5] + " mm</h2>";
+    //document.getElementById("curr_weather_rain").innerHTML = text;
+    var rainDiv = document.createElement("div");
+    rainDiv.setAttribute("class","column3");
+    rainDiv.appendChild(pTitle);
+    rainDiv.appendChild(svgGroup);
+    var rainDivVal = document.createElement("div");
+    rainDivVal.setAttribute("class","value");
+    rainDivVal.innerHTML = text;
+    rainDiv.appendChild(rainDivVal);
+    detailsDiv.appendChild(rainDiv);
+    setProgress(myData.curr_weather[0][4]);
+
+    var humidDiv = document.createElement("div");
+    humidDiv.setAttribute("class","column3");
+    const pHTitle = document.createElement("p")
+    pHTitle.innerText = "HUMIDITY";
+    humidDiv.appendChild(pHTitle);
+    humidDiv.appendChild(svgGroup);
+    var humDivVal = document.createElement("div");
+    humDivVal.setAttribute("class","value");
+    text = "<h2>" + myData.curr_weather[0][6] + "%</h2>";
+    humDivVal.innerHTML = text;
+    humidDiv.appendChild(humDivVal);
+    detailsDiv.appendChild(humidDiv);
+    setProgress(myData.curr_weather[0][6]);
 
     text = "<p>WIND</p><div class='rounded'><h2>" + myData.curr_weather[0][7] +"m/s<br>"+ myData.curr_weather[0][8].replace(/"/g,"") + "</h2></div>";
-    document.getElementById("curr_weather_wind").innerHTML = text;
+    //document.getElementById("curr_weather_wind").innerHTML = text;
+    var windDiv = document.createElement("div");
+    windDiv.setAttribute("class","column3");
+    detailsDiv.appendChild(windDiv).innerHTML = text;
 
     /* chart.js plot */
     /*const ctx = document.getElementById('myChart').getContext('2d');
@@ -57,7 +124,7 @@ async function display_info(){
     });*/
     
     
-    console.log(myData.hour[4],myData.temp[4],myData.humid[4]);
+    //console.log(myData.hour[4],myData.temp[4],myData.humid[4]);
     /* D3js plot 
     Thanks to  https://www.tutorialsteacher.com/d3js/animated-bar-chart-d3    */
     const data=[];
