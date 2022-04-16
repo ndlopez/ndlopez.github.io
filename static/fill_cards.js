@@ -90,7 +90,7 @@ const projects=[
 
 function createCards(jdx){
     var divCol = document.createElement("div");
-    divCol.setAttribute("class","column3");
+    divCol.setAttribute("class","column4");
     var divCard = document.createElement("div");
     divCard.setAttribute("class","card");
     var txt = "<img src = '"+projects[jdx].image;

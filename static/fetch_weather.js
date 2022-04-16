@@ -20,7 +20,12 @@ var newMin = String(mm);
 if(hh > 0 && hh < 10){newHour = "0" + String(hh);}
 if(mm < 10){newMin = "0" + String(mm);}
 
-function setProgress(percent) {
+function setProgress(percent,title,texty) {
+    const pTitle = document.createElement("p");
+    pTitle.innerText = title;
+    const subDiv = document.createElement("div");
+    subDiv.setAttribute("class","column3");
+    subDiv.appendChild(pTitle);
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
     const svgBkgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
@@ -29,29 +34,35 @@ function setProgress(percent) {
     svgCircle.setAttribute("class","progress-ring-circle");
     svgCircle.setAttribute("id","frontCircle");
     svgCircle.setAttribute("stroke","#cc274c");
-    svgCircle.setAttribute("stroke-width","4");
+    svgCircle.setAttribute("stroke-width","5");
     svgCircle.setAttribute("fill","transparent");
     svgCircle.setAttribute("r","52");
     svgCircle.setAttribute("cx","60");
-    svgCircle.setAttribute("cy","60");
+    svgCircle.setAttribute("cy","90");
     svgBkgCircle.setAttribute("class","progress-ring-circle");
     svgBkgCircle.setAttribute("stroke","#bed2e0");
     svgBkgCircle.setAttribute("stroke-width","4");
+    svgBkgCircle.setAttribute("stroke-dasharray","10,10");
     svgBkgCircle.setAttribute("fill","transparent");
     svgBkgCircle.setAttribute("r","52");
     svgBkgCircle.setAttribute("cx","60");
-    svgBkgCircle.setAttribute("cy","60");
+    svgBkgCircle.setAttribute("cy","90");
     svgGroup.appendChild(svgBkgCircle);
     svgGroup.appendChild(svgCircle);
 
     var radius = 52;
     var circumference = radius * 2 * Math.PI;
-
     svgCircle.style.strokeDasharray = `${circumference} ${circumference}`;
     svgCircle.style.strokeDashoffset = `${circumference}`;
-
     const offset = circumference - percent / 100 * circumference;
     svgCircle.style.strokeDashoffset = offset;
+    subDiv.appendChild(svgGroup);
+    var subDivVal = document.createElement("div");
+    subDivVal.setAttribute("class","value");
+    subDivVal.innerHTML = text;
+    subDiv.appendChild(subDivVal);
+
+    return subDiv;
 }
 
 display_info();
@@ -64,42 +75,19 @@ async function display_info(){
     text += "<h1>" + myData.curr_weather[0][2].replace(/"/g,"") + " " + myData.curr_weather[0][3]+ "&#8451;</h1>";
     document.getElementById("curr_weather").innerHTML = text;
 
-    var detailsDiv = document.getElementById("weather_details")
+    var detailsDiv = document.getElementById("weather_details");
 
-    const pTitle = document.createElement("p");
-    pTitle.innerText = "RAIN";
     text = "<h2>" + myData.curr_weather[0][4] + "%<br>"+myData.curr_weather[0][5] + " mm</h2>";
-    //document.getElementById("curr_weather_rain").innerHTML = text;
-    var rainDiv = document.createElement("div");
-    rainDiv.setAttribute("class","column3");
-    rainDiv.appendChild(pTitle);
-    rainDiv.appendChild(svgGroup);
-    var rainDivVal = document.createElement("div");
-    rainDivVal.setAttribute("class","value");
-    rainDivVal.innerHTML = text;
-    rainDiv.appendChild(rainDivVal);
+    var rainDiv = setProgress(myData.curr_weather[0][4],"RAIN",text);
     detailsDiv.appendChild(rainDiv);
-    setProgress(myData.curr_weather[0][4]);
 
-    var humidDiv = document.createElement("div");
-    humidDiv.setAttribute("class","column3");
-    const pHTitle = document.createElement("p")
-    pHTitle.innerText = "HUMIDITY";
-    humidDiv.appendChild(pHTitle);
-    humidDiv.appendChild(svgGroup);
-    var humDivVal = document.createElement("div");
-    humDivVal.setAttribute("class","value");
     text = "<h2>" + myData.curr_weather[0][6] + "%</h2>";
-    humDivVal.innerHTML = text;
-    humidDiv.appendChild(humDivVal);
+    var humidDiv = setProgress(myData.curr_weather[0][6],"HUMIDITY",text);
     detailsDiv.appendChild(humidDiv);
-    setProgress(myData.curr_weather[0][6]);
 
-    text = "<p>WIND</p><div class='rounded'><h2>" + myData.curr_weather[0][7] +"m/s<br>"+ myData.curr_weather[0][8].replace(/"/g,"") + "</h2></div>";
-    //document.getElementById("curr_weather_wind").innerHTML = text;
-    var windDiv = document.createElement("div");
-    windDiv.setAttribute("class","column3");
-    detailsDiv.appendChild(windDiv).innerHTML = text;
+    text = "<h2>" + myData.curr_weather[0][7] +"m/s<br>"+ myData.curr_weather[0][8].replace(/"/g,"") + "</h2>";
+    var windDiv = setProgress(0,"WIND",text);
+    detailsDiv.appendChild(windDiv);
 
     /* chart.js plot */
     /*const ctx = document.getElementById('myChart').getContext('2d');
@@ -129,7 +117,7 @@ async function display_info(){
     Thanks to  https://www.tutorialsteacher.com/d3js/animated-bar-chart-d3    */
     const data=[];
     data.push(myData.hour,myData.temp,myData.humid,myData.wind,myData.windDir);
-    /* this was the problem, the data was not transposed*/
+    /* this was the issue, the data was not transposed*/
     const trData =data[0].map((_,colIdx)=> data.map(row => row[colIdx]));
 
     //console.log(trData);
@@ -150,7 +138,7 @@ async function display_info(){
     const x = d3.scaleBand()
     .domain(data[0])
     .range([0, xMax])
-    .padding(0.2);
+    .padding(0.1);
     
     svg.append("g")
     .attr("transform", "translate(0," + newVal + ")")
@@ -218,7 +206,7 @@ async function display_info(){
     .attr("text-anchor","middle")
     .attr("x",function(d){
         return x(d[0])+13;/*+13 */})
-    .attr("y",function(d){return y(d[1])+20;})
+    .attr("y",function(d){return y(d[1])+15;})
     .attr("font-family","sans-serif")
 	.attr("font-size","11px");
 
@@ -231,10 +219,11 @@ async function display_info(){
     .attr("text-anchor","middle")
     .attr("x",function(d){
         return x(d[0])+13;})
-    .attr("y",function(d){return yMax + 10;})
+    .attr("y",function(d){return yMax -1;})
     .attr("font-family","sans-serif")
 	.attr("font-size","11px");
 
+    var adjHeight = 0;
     svg.append("g")
     .selectAll(".txtWindDir")
     .data(trData).enter()
@@ -244,7 +233,10 @@ async function display_info(){
     .attr("text-anchor","middle")
     .attr("x",function(d){
         return x(d[0])+13;})
-    .attr("y",function(d){return yMax + 30;})
+    .attr("y",(d,i)=>{
+        if((i % 2) === 0){adjHeight=23;
+        }else{adjHeight =38;}
+        return yMax + adjHeight;})
     .attr("font-family","sans-serif")
 	.attr("font-size","11px");
 }
@@ -286,11 +278,10 @@ async function get_url_data(curr_hour){
         if (this_weather[1] === curr_hour){
             curr_weather.push(this_weather);
         }
-        if (this_weather[1] >= curr_hour){
+        if (this_weather[1] >= 6 && this_weather[1] <= 18 ){
             hour.push(parseInt(this_weather[1]));
-            /*weather.push(this_weather[2]);*/
             temp.push(parseFloat(this_weather[3]));
-            /*rainProb.push(parseInt(this_weather[4]));
+            /*weather.push(this_weather[2]);rainProb.push(parseInt(this_weather[4]));
             rainMM.push(parseInt(this_weather[5]));*/
             humid.push(parseInt(this_weather[6]));
             wind.push(parseInt(this_weather[7]));
@@ -298,7 +289,4 @@ async function get_url_data(curr_hour){
         }
     });
     return {curr_weather,hour,temp,humid,wind,windDir};
-}
-function update(selVar){
-    alert("Error","This is not the "+ selVar + " you r looking for.");
 }
