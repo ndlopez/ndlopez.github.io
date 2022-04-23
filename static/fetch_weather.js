@@ -1,9 +1,15 @@
-/* Fetch data from url
-Use such data to make a d3js plot.
+/*  Display on web weather conditions.
+
+Fetch data from url and make a d3js plot.
+Should probably add a 2nd axis like this:
+http://www.d3noob.org/2013/01/using-multiple-axes-for-d3js-graph.html
 
 Progress ring is based on:
 https://codepen.io/jeremenichelli/pen/vegymB and
 https://dev.to/vaibhavkhulbe/let-s-make-and-wear-those-css-3-progress-rings-2ngf
+
+Weather icons are from:
+https://www.foreca.com/public/images/symbols/n440.svg
 */
 "use strict";
 
@@ -59,20 +65,52 @@ function setProgress(percent,title,texty) {
     subDiv.appendChild(svgGroup);
     var subDivVal = document.createElement("div");
     subDivVal.setAttribute("class","value");
-    subDivVal.innerHTML = text;
+    subDivVal.innerHTML = texty;
     subDiv.appendChild(subDivVal);
 
     return subDiv;
 }
 
+const iconArray = ["sunny","sunny_cloudy","cloudy","overcast","rainy","thunderstorm","sleet","snow","clear"];
 display_info();
 
 //console.log(curr_weather);
 async function display_info(){
     const myData = await get_url_data(newHour);
     //console.log(myData.curr_weather);
-    text += "<h2>" + myData.curr_weather[0][0] +" "+ newHour +":"+ newMin + "</h2>";
-    text += "<h1>" + myData.curr_weather[0][2].replace(/"/g,"") + " " + myData.curr_weather[0][3]+ "&#8451;</h1>";
+
+    var currCond = myData.curr_weather[0][2].replace(/"/g,"");
+    //var textImg = "<img src='assets/";
+    switch(currCond){
+        case "晴れ":
+            currCond = "<img src='assets/sunny.svg' alt='" + currCond + "'/>";
+            break;
+        case "曇り":
+            currCond = "<img src='assets/cloudy.svg' alt='" + currCond + "'/>";
+            break;
+        case "小雨":
+        case "弱雨":
+            currCond = "<img src='assets/overcast.svg' alt='" + currCond + "'/>";
+            break;
+        case "雨":
+            currCond = "<img src='assets/rainy.svg' alt='" + currCond + "'/>";
+            break;
+        case "強雨":
+            currCond = "<img src='assets/thunderstorm.svg' alt='" + currCond + "'/>";
+            break;
+        default:
+            currCond = "<img src='assets/sunny_cloudy.svg' alt='" + currCond + "'/>";
+            /* Not considered yet, sleet and snow */
+    }
+    //currCond = textImg + "alt='" + currCond + "'/>"
+    /* Special case when it's sunny and over 19hrs */
+    if(currCond === "<img src='assets/sunny.svg' alt='晴れ'/>" && hh > 19){
+        currCond = "<img src='assets/clear.svg' alt='晴れ'/>";
+    }
+
+    text += "<span class='large'>" + myData.curr_weather[0][0] +"&emsp;"+ newHour +":"+ newMin + "</span>";
+    text += "<div class='clearfix'>" + currCond + "<span class='large'>&emsp;" + myData.curr_weather[0][3] + 
+    "&#8451;</span></div>";
     document.getElementById("curr_weather").innerHTML = text;
 
     var detailsDiv = document.getElementById("weather_details");
@@ -278,7 +316,7 @@ async function get_url_data(curr_hour){
         if (this_weather[1] === curr_hour){
             curr_weather.push(this_weather);
         }
-        if (this_weather[1] >= 6 && this_weather[1] <= 18 ){
+        if (this_weather[1] >= 6 && this_weather[1] <= 20 ){
             hour.push(parseInt(this_weather[1]));
             temp.push(parseFloat(this_weather[3]));
             /*weather.push(this_weather[2]);rainProb.push(parseInt(this_weather[4]));
