@@ -103,12 +103,13 @@ async function display_info(){
             /* Not considered yet, sleet and snow */
     }
     //currCond = textImg + "alt='" + currCond + "'/>"
-    /* Special case when it's sunny and over 19hrs */
-    if(currCond === "<img src='assets/sunny.svg' alt='晴れ'/>" && hh > 19){
+    /* Special case when it's sunny and less 6hrs and over 19hrs */
+    if(currCond === "<img src='assets/sunny.svg' alt='晴れ'/>" && hh > 19 && hh < 6){
         currCond = "<img src='assets/clear.svg' alt='晴れ'/>";
     }
 
-    text += "<span class='large'>" + myData.curr_weather[0][0] +"&emsp;"+ newHour +":"+ newMin + "</span>";
+    text += "<h2>Nagoya Weather<br>";
+    text += "<span>" + myData.curr_weather[0][0] +"&emsp;"+ newHour +":"+ newMin + "</span></h2>";
     text += "<div class='clearfix'>" + currCond + "<span class='large'>&emsp;" + myData.curr_weather[0][3] + 
     "&#8451;</span></div>";
     document.getElementById("curr_weather").innerHTML = text;
@@ -160,7 +161,7 @@ async function display_info(){
 
     //console.log(trData);
     // Set Dimensions
-    const xSize = 500;//390;
+    const xSize = 750;//390;
     const ySize = 500;
     const margin = 40;
     const xMax = xSize - margin*2;
@@ -180,7 +181,7 @@ async function display_info(){
     
     svg.append("g")
     .attr("transform", "translate(0," + newVal + ")")
-    .call(d3.axisTop(x));
+    .call(d3.axisTop(x));//to display the X axis on top
 
     // Y Axis
     const y = d3.scaleLinear()
@@ -202,6 +203,7 @@ async function display_info(){
     
     //Bars. It finally worked!! 2022-03-28 22:00
     svg.append("g")
+    .attr("class","inner_plot")
     .selectAll(".bar")
     .data(trData).enter()
     .append("rect")
@@ -316,15 +318,15 @@ async function get_url_data(curr_hour){
         if (this_weather[1] === curr_hour){
             curr_weather.push(this_weather);
         }
-        if (this_weather[1] >= 6 && this_weather[1] <= 20 ){
-            hour.push(parseInt(this_weather[1]));
-            temp.push(parseFloat(this_weather[3]));
-            /*weather.push(this_weather[2]);rainProb.push(parseInt(this_weather[4]));
-            rainMM.push(parseInt(this_weather[5]));*/
-            humid.push(parseInt(this_weather[6]));
-            wind.push(parseInt(this_weather[7]));
-            windDir.push(this_weather[8].replace(/"/g,""));
-        }
+        //if (this_weather[1] >= 6 && this_weather[1] <= 20 ){
+        hour.push(parseInt(this_weather[1]));
+        temp.push(parseFloat(this_weather[3]));
+        /*weather.push(this_weather[2]);rainProb.push(parseInt(this_weather[4]));
+        rainMM.push(parseInt(this_weather[5]));*/
+        humid.push(parseInt(this_weather[6]));
+        wind.push(parseInt(this_weather[7]));
+        windDir.push(this_weather[8].replace(/"/g,""));
+        //}
     });
     return {curr_weather,hour,temp,humid,wind,windDir};
 }
