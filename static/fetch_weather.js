@@ -104,7 +104,7 @@ async function display_info(){
     }
     //currCond = textImg + "alt='" + currCond + "'/>"
     /* Special case when it's sunny and less 6hrs and over 19hrs */
-    if(currCond === "<img src='assets/sunny.svg' alt='晴れ'/>" && hh > 19 && hh < 6){
+    if(currCond === "<img src='assets/sunny.svg' alt='晴れ'/>" && (hh > 19 || hh < 6)){
         currCond = "<img src='assets/clear.svg' alt='晴れ'/>";
     }
 
@@ -154,6 +154,32 @@ async function display_info(){
     //console.log(myData.hour[4],myData.temp[4],myData.humid[4]);
     /* D3js plot 
     Thanks to  https://www.tutorialsteacher.com/d3js/animated-bar-chart-d3    */
+    const containDiv = document.getElementById("weather_bar");
+    const leftDiv = document.createElement("div");
+    leftDiv.setAttribute("id","leftAxis");
+    leftDiv.setAttribute("class","column-left");
+    const rightDiv = document.createElement("div");
+    rightDiv.setAttribute("id","rightAxis");
+    rightDiv.setAttribute("class","column-third");
+
+
+    const centerDiv = document.createElement("div");
+    centerDiv.setAttribute("class","column-right");
+    const outerDiv = document.createElement("div");
+    outerDiv.setAttribute("class","outer");
+
+    const innerDiv = document.createElement("div");
+    innerDiv.setAttribute("class","inner");
+
+    const mainDiv = document.createElement("div");
+    mainDiv.setAttribute("id","mainPlot");
+
+    innerDiv.appendChild(mainDiv);
+    outerDiv.appendChild(innerDiv);
+    centerDiv.appendChild(outerDiv);
+    containDiv.appendChild(leftDiv);
+    containDiv.appendChild(centerDiv);
+
     const data=[];
     data.push(myData.hour,myData.temp,myData.humid,myData.wind,myData.windDir);
     /* this was the issue, the data was not transposed*/
@@ -162,16 +188,35 @@ async function display_info(){
     //console.log(trData);
     // Set Dimensions
     const xSize = 750;//390;
-    const ySize = 500;
+    const ySize = 550;
     const margin = 40;
-    const xMax = xSize - margin*2;
+    const xMax = xSize - margin;
     const yMax = ySize - margin*2;
     const newVal = 0;
-    // Append SVG Object to the Page
-    const svg = d3.select("#weather_bar")
+    // Append SVG axis to LeftDiv temperature
+    const svgLeft = d3.select("#leftAxis")
+    .append("svg").attr("width",45).attr("height",ySize)
+    .append("g")
+    .attr("transform","translate(" + margin + "," + margin + ")");    
+    // Y Axis for humidity
+    const yAxis = d3.scaleLinear()
+    .domain([d3.min(data[2])-10,d3.max(data[2])])
+    .range([ yMax, 0]);
+    svgLeft.append("g")
+    .call(d3.axisLeft(yAxis));
+
+    //yAxis for temperature
+    /*const yTemp = d3.scaleLinear()
+    .domain([d3.min(data[1])-1,d3.max(data[1])])
+    .range([ yMax, 0]);
+    svgLeft.append("g")
+    .call(d3.axisLeft(yTemp));*/
+
+    // Append MainSVG Object to the Page
+    const svg = d3.select("#mainPlot")
     .append("svg").attr("width",xSize).attr("height",ySize)
     .append("g")
-    .attr("transform","translate(" + margin + "," + margin + ")");
+    .attr("transform","translate(" + 22 + "," + margin + ")");
 
     // X Axis
     const x = d3.scaleBand()
@@ -182,38 +227,39 @@ async function display_info(){
     svg.append("g")
     .attr("transform", "translate(0," + newVal + ")")
     .call(d3.axisTop(x));//to display the X axis on top
-
+    
     // Y Axis
     const y = d3.scaleLinear()
     .domain([d3.min(data[1])-1,d3.max(data[1])])
     .range([ yMax, 0]);
 
-    svg.append("g")
-    .call(d3.axisLeft(y));
+    const yHumid = d3.scaleLinear()
+    .domain([d3.min(data[2])-10,d3.max(data[2])])
+    .range([ yMax, 0]);
+    //svg.append("g").call(d3.axisLeft(y));
 
     // Dots. It finally worked!! 2022-03-28 21:40
-    /*svg.append('g')+"&#176;"
+    svg.append('g') //+"&#176;"
     .selectAll("dot")
     .data(trData).enter()
     .append("circle")
-    .attr("cx", function (d) { return x(d[0]); } )
-    .attr("cy", function (d) { return d[1]-40; } )
+    .attr("cx", function (d) { return x(d[0])+13; } )
+    .attr("cy", function (d) { return y(d[1]); } )
     .attr("r", 3)
-    .style("fill", "#2e4054");*/
+    .style("fill", "#cc274c");
     
     //Bars. It finally worked!! 2022-03-28 22:00
-    svg.append("g")
-    .attr("class","inner_plot")
+    svg.append("g") /*.attr("class","inner_plot")*/
     .selectAll(".bar")
     .data(trData).enter()
     .append("rect")
     .attr("class","bar")
     .attr("x",(d)=>{return x(d[0]);})
-    .attr("y",(d)=>{return y(d[1]);})
+    .attr("y",(d)=>{return yHumid(d[2]);})
     .attr("width",x.bandwidth())
     .transition().ease(d3.easeLinear)
     .duration(1500).delay((d,i)=>{return i*100;})
-    .attr("height",(d)=>{return yMax -y(d[1]);});
+    .attr("height",(d)=>{return yMax -yHumid(d[2]);});
     /*is pointless on mobile
     .on("mouseover",function(d,i){
         d3.select(this).attr("class","highlight");
@@ -242,7 +288,7 @@ async function display_info(){
     .data(trData).enter()
     .append("text")
     .attr("class","txtHumid")
-    .text(function(d){return d[2]+"%";})
+    .text(function(d){return d[1]+"C";})   //d[2]+"%" //&#176;
     .attr("text-anchor","middle")
     .attr("x",function(d){
         return x(d[0])+13;/*+13 */})
@@ -255,7 +301,7 @@ async function display_info(){
     .data(trData).enter()
     .append("text")
     .attr("class","txtWind")
-    .text(function(d){return d[3]+"m/s";})
+    .text(function(d){return d[3]+"m";})
     .attr("text-anchor","middle")
     .attr("x",function(d){
         return x(d[0])+13;})

@@ -5,36 +5,6 @@ body{
   color: #bed2e0;
 }
 .header{padding:20px;text-align:center;}
-.sticky{
-  display: block;
-  width: auto;
-  padding: 0px;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  background-color: #cc274c;
-}
-.half{
-  float:left;
-  width: 40%;
-  padding: 0px 0px 0px 10px;
-  border: 0px;  
-}
-.counter{
-  float:left;
-  width: 60%;
-  padding: 0px 10px 0px 0px;
-  border: 0px;
-}
-#zenith{
-  text-align: right;
-  font-size: large;
-  font-weight:300;
-}
-.top-text{
-  font-size: small;
-  margin-top: -18px;
-}
 
 nav{
   display: block;
@@ -80,30 +50,10 @@ a{text-decoration: none;color: #bed2e0;}
 .column{
   float:left;
   width: 50%;
-  padding:0px;
+  padding:10px;
   border:0px;
 }
 
-.column-left{
-  float: left;
-  width: 5%;
-  padding: 0px;
-}
-.column-right{
-  float: left;
-  width: 95%;
-  padding: 0px;
-}
-.outer{
-  width: 480px;
-  height: 580px;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-.inner{width: 480px;height: 580px;}
-#mainPlot{
-  display:block;
-  width: 100%;height: 100%;}
 .row{padding: 0px;text-align:center;}
 .row:after{
   content:"";
@@ -113,12 +63,53 @@ a{text-decoration: none;color: #bed2e0;}
 }
 .align-left{text-align: left;}
 .align-right{text-align: right;}
-.bottom-left{
+
+.container{
   border:0px;
-  position:absolute;
-  top:50%;/*8px;*/
-  left:50%;/*16px;*/
-  transform:translate(-50%,-50%);}
+  position:relative;
+  width: 100%;
+  padding:0px 5px;
+  text-align: center;
+  height: 150px;
+}
+.container p{text-align: justify;}
+.card{
+  border-radius: 3%;
+  border:1px #bed2e0 solid;
+  background-color: #bed2e0;
+  color:#2e4054;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(250,250,250,0.2);
+  transition: 0.3s;
+  padding: 10px;
+}
+.small{
+  font-size: small;color:#898989;
+  /*display: flex;margin-top: 60px;*/
+}
+/*.card:hover{box-shadow: 0 8px 16px 0 rgba(250,250,250,0.2);}*/
+.proj_stats{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding: 20px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow:auto; /* Enable scroll if needed */
+  background-color: #2e4054; /* rgba(250,250,250,0.9); Black w/ opacity */
+}
+#projects{padding: 20px;}
+ul{
+  list-style-type: none;
+  padding: 0;margin: 0;
+}
+.mod-content{
+  color: #bed2e0;
+  padding: 20px;
+}
+.closeBtn{float: right;font-size: 40px;}
 
 panel2,.flip{
   font-size:16px;
@@ -137,73 +128,7 @@ panel2,.flip{
   display:table;
 }
 .clearfix{text-align: center;padding: 10px;}
-/*SVG*//*.highlight{fill: #cc274c;}*/
-.bar{fill:#bed2e070}
-svg g{color:#bed2e0;}
-.domain, svg line{stroke: #bed2e0;}
-svg text{fill:#bed2e0;font-size: 12px;}
-.txtHumid,.txtWind{fill:#cc274c;}
 
-.progress-ring-circle {
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-}
-.value {
-  position: relative;
-  bottom: 150px;
-  left: 0px;
-  color: #bed2e0;
-  text-align: center;
-  border: 0px;
-}
-/*Table schedule*/
-#myday{
-  border-collapse:collapse;
-  width:100%;
-}
-#myday td,#myday th{
-  border:1px solid #ddd;
-  padding:10px;
-  text-align:left;
-  background-color:#bed2e0;
-  color:#2e4054;
-}
-#myday tr:nth-child(even){background-color:#f2f2f2;}
-#myday tr:hover{background-color:#ddd;}
-/*table cols title*/
-.accordion{
-  color:#bed2e0;
-  cursor:pointer;
-  padding:18px;
-  width:100%;
-  border:none;
-  outline:none;
-  font-size:18px;
-  transition:0.4s;
-}
-.accordion:after{
-  content:'\02193';/*Down*/
-  color:#bed2e0;
-  font-size: x-large;
-  /*'\02795'; background-color: #bed2e0;*/
-  float:right;margin-left:5px;
-}
-.active:after{
-  content:'\02191';/*Up*/
-  color:#bed2e0;
-  font-size: x-large;
-  /*content:"\02796";background-color: #bed2e0;*/}
-.panel{
-  padding:0 18px;
-  display:none;
-  background-color:#e5e5e5;
-  overflow:hidden;
-}
-button{
-background-color:#2e4054;
-color:white;
-text-align:center;
-}
 .mySNS{padding:5px;}
 .copy-left{
   display:inline-block;
@@ -223,10 +148,7 @@ text-align:center;
     text-align: justify;
     padding: 0px;
   }
-  .outer{width: 350px;}
   .column3{padding: 0px;}
   .column4{width: 50%;}
-  .column4 img{width:100%;}
-  #zenith{font-size: large;}
   .align-left,.align-right{text-align: center;}
 }
