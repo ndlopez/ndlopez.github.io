@@ -148,6 +148,8 @@ panel2,.flip{
     text-align: justify;
     padding: 0px;
   }
+  .column3{width: 100%;margin-bottom: 20px;}
+  .proj_stats img{width:70%;}
   .column3{padding: 0px;}
   .column4{width: 50%;}
   .align-left,.align-right{text-align: center;}

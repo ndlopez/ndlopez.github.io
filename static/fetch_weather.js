@@ -10,6 +10,15 @@ https://dev.to/vaibhavkhulbe/let-s-make-and-wear-those-css-3-progress-rings-2ngf
 
 Weather icons are from:
 https://www.foreca.com/public/images/symbols/n440.svg
+
+Refer to the following to make a line plot
+https://datawanderings.com/2019/10/28/tutorial-making-a-line-chart-in-d3-js-v-5/
+
+<div class="clearfix">
+    <img alt="Current radar image over Tokai region. Courtesy of tenki.jp" class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg">
+    <--img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
+    <p>Data from wttr.in</p->
+</div>
 */
 "use strict";
 
@@ -108,10 +117,10 @@ async function display_info(){
         currCond = "<img src='assets/clear.svg' alt='晴れ'/>";
     }
 
-    text += "<h2>Nagoya Weather<br>";
-    text += "<span>" + myData.curr_weather[0][0] +"&emsp;"+ newHour +":"+ newMin + "</span></h2>";
-    text += "<div class='clearfix'>" + currCond + "<span class='large'>&emsp;" + myData.curr_weather[0][3] + 
-    "&#8451;</span></div>";
+    text += "<h2 class='align-left'>Nagoya Weather<br><br>";
+    text += "<span class='align-left'>" + myData.curr_weather[0][0] +"&emsp;"+ newHour +":"+ newMin + "</span></h2>";
+    text += "<div class='clearfix'><span class='large'>" + myData.curr_weather[0][3] + 
+    "&#8451;&emsp;"+myData.curr_weather[0][2].replace(/"/g,"")+"&emsp;</span>"+ currCond + "</div>";
     document.getElementById("curr_weather").innerHTML = text;
 
     var detailsDiv = document.getElementById("weather_details");
@@ -135,18 +144,13 @@ async function display_info(){
         data: {
             labels: myData.hour,
             datasets: [{
-                label: 'Local temperature',
-                data: myData.temp,
+                label: 'Local temperature',data: myData.temp,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
+                borderColor: 'rgba(255, 99, 132, 1)',borderWidth: 1
             }]
         },
         options: {
-            fill:false,
-            scales: {
-                y: {beginAtZero: true}
-            }
+            fill:false,scales: {y: {beginAtZero: true}}
         }
     });*/
     
@@ -167,7 +171,6 @@ async function display_info(){
     centerDiv.setAttribute("class","column-right");
     const outerDiv = document.createElement("div");
     outerDiv.setAttribute("class","outer");
-
     const innerDiv = document.createElement("div");
     innerDiv.setAttribute("class","inner");
 
@@ -179,6 +182,7 @@ async function display_info(){
     centerDiv.appendChild(outerDiv);
     containDiv.appendChild(leftDiv);
     containDiv.appendChild(centerDiv);
+    containDiv.appendChild(rightDiv);
 
     const data=[];
     data.push(myData.hour,myData.temp,myData.humid,myData.wind,myData.windDir);
@@ -193,24 +197,29 @@ async function display_info(){
     const xMax = xSize - margin;
     const yMax = ySize - margin*2;
     const newVal = 0;
-    // Append SVG axis to LeftDiv temperature
-    const svgLeft = d3.select("#leftAxis")
-    .append("svg").attr("width",45).attr("height",ySize)
+    // Append SVG axis to LeftDiv humidity
+    const svgRight = d3.select("#rightAxis")
+    .append("svg").attr("width",35).attr("height",ySize)
     .append("g")
-    .attr("transform","translate(" + margin + "," + margin + ")");    
+    .attr("transform","translate(" + 0 + "," + margin + ")");    
     // Y Axis for humidity
-    const yAxis = d3.scaleLinear()
+    const yHumid = d3.scaleLinear()
     .domain([d3.min(data[2])-10,d3.max(data[2])])
     .range([ yMax, 0]);
-    svgLeft.append("g")
-    .call(d3.axisLeft(yAxis));
+    
+    svgRight.append("g")
+    .call(d3.axisRight(yHumid));
 
     //yAxis for temperature
-    /*const yTemp = d3.scaleLinear()
-    .domain([d3.min(data[1])-1,d3.max(data[1])])
+    const svgLeft = d3.select("#leftAxis")
+    .append("svg").attr("width",42).attr("height",ySize)
+    .append("g")
+    .attr("transform","translate(" + margin + "," + margin + ")");
+    const yTemp = d3.scaleLinear()
+    .domain([d3.min(data[1])-1,d3.max(data[1])+1])
     .range([ yMax, 0]);
-    svgLeft.append("g")
-    .call(d3.axisLeft(yTemp));*/
+    svgLeft.append("g").attr("class","tempAxis")
+    .call(d3.axisLeft(yTemp));
 
     // Append MainSVG Object to the Page
     const svg = d3.select("#mainPlot")
@@ -218,7 +227,12 @@ async function display_info(){
     .append("g")
     .attr("transform","translate(" + 22 + "," + margin + ")");
 
-    // X Axis
+    //X axis linear
+    const xLinear = d3.scaleTime()
+    .domain(d3.extent(data,(d)=>{return d[0];}))
+    .range([0, xMax]);
+
+    // X Axis band
     const x = d3.scaleBand()
     .domain(data[0])
     .range([0, xMax])
@@ -229,13 +243,10 @@ async function display_info(){
     .call(d3.axisTop(x));//to display the X axis on top
     
     // Y Axis
-    const y = d3.scaleLinear()
+    /*const y = d3.scaleLinear()
     .domain([d3.min(data[1])-1,d3.max(data[1])])
-    .range([ yMax, 0]);
+    .range([ yMax, 0]);*/
 
-    const yHumid = d3.scaleLinear()
-    .domain([d3.min(data[2])-10,d3.max(data[2])])
-    .range([ yMax, 0]);
     //svg.append("g").call(d3.axisLeft(y));
 
     // Dots. It finally worked!! 2022-03-28 21:40
@@ -244,8 +255,8 @@ async function display_info(){
     .data(trData).enter()
     .append("circle")
     .attr("cx", function (d) { return x(d[0])+13; } )
-    .attr("cy", function (d) { return y(d[1]); } )
-    .attr("r", 3)
+    .attr("cy", function (d) { return yTemp(d[1]); } )
+    .attr("r", 5)
     .style("fill", "#cc274c");
     
     //Bars. It finally worked!! 2022-03-28 22:00
@@ -260,39 +271,21 @@ async function display_info(){
     .transition().ease(d3.easeLinear)
     .duration(1500).delay((d,i)=>{return i*100;})
     .attr("height",(d)=>{return yMax -yHumid(d[2]);});
-    /*is pointless on mobile
-    .on("mouseover",function(d,i){
-        d3.select(this).attr("class","highlight");
-        d3.select(this)
-        .transition().duration(400)
-        .attr("width",x.bandwidth() + 5)
-        .attr("y",function(d){return y(d[1])-10;})
-        .attr("height",function(d){return yMax - y(d[1])+10;})
-        svg.append("text")
-        .attr("class","val")
-        .attr("x",(d)=>{return x(d[0]);})
-        .attr("y",(d)=>{return y(d[1])-10;})
-        .text(d[1][3]);
-    })
-    .on("mouseout",function(d,i){
-        d3.select(this).attr("class","bar");
-        d3.select(this).transition().duration(400)
-        .attr("width",x.bandwidth())
-        .attr("y",(d)=>{return y(d[1]);})
-        .attr("height",(d)=>{return yMax - y(d[1]);})
-        d3.selectAll(".val").remove();
-    })*/
-    //.attr("fill", "#fff");
+ 
+    var adjHeight=0;
     svg.append("g")
-    .selectAll(".txtHumid")
+    .selectAll(".txtTemp")
     .data(trData).enter()
     .append("text")
-    .attr("class","txtHumid")
-    .text(function(d){return d[1]+"C";})   //d[2]+"%" //&#176;
+    .attr("class","txtTemp")
+    .text(function(d){return d[1]+"\u2103";})   //d[2]+"%" //&#176;
     .attr("text-anchor","middle")
     .attr("x",function(d){
-        return x(d[0])+13;/*+13 */})
-    .attr("y",function(d){return y(d[1])+15;})
+        return x(d[0])+13;})
+    .attr("y",function(d,i){
+        if((i%2) === 0){adjHeight=-11;}
+        else{adjHeight=18;}
+        return yTemp(d[1])+adjHeight;})
     .attr("font-family","sans-serif")
 	.attr("font-size","11px");
 
@@ -309,7 +302,7 @@ async function display_info(){
     .attr("font-family","sans-serif")
 	.attr("font-size","11px");
 
-    var adjHeight = 0;
+    adjHeight = 0;
     svg.append("g")
     .selectAll(".txtWindDir")
     .data(trData).enter()

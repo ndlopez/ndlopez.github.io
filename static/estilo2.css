@@ -13,6 +13,7 @@ body{
   position: sticky;
   top: 0;
   background-color: #cc274c;
+  color: whitesmoke;
 }
 .half{
   float:left;
@@ -86,12 +87,17 @@ a{text-decoration: none;color: #bed2e0;}
 
 .column-left{
   float: left;
-  width: 5%;
+  width: 8%;
   padding: 0px;
 }
 .column-right{
   float: left;
-  width: 95%;
+  width: 84%;
+  padding: 0px;
+}
+.column-third{
+  float: left;
+  width: 8%;
   padding: 0px;
 }
 .outer{
@@ -142,7 +148,8 @@ panel2,.flip{
 svg g{color:#bed2e0;}
 .domain, svg line{stroke: #bed2e0;}
 svg text{fill:#bed2e0;font-size: 12px;}
-.txtHumid,.txtWind{fill:#cc274c;}
+.txtTemp,.txtWind{fill:whitesmoke;}
+.tempAxis text{fill:#cc274c;}
 
 .progress-ring-circle {
   transform: rotate(-90deg);
@@ -162,11 +169,11 @@ svg text{fill:#bed2e0;font-size: 12px;}
   width:100%;
 }
 #myday td,#myday th{
-  border:1px solid #ddd;
+  border:1px dashed #98a2a9;
   padding:10px;
   text-align:left;
-  background-color:#bed2e0;
-  color:#2e4054;
+  background-color:#2e4054;
+  color:#bed2e0;
 }
 #myday tr:nth-child(even){background-color:#f2f2f2;}
 #myday tr:hover{background-color:#ddd;}
@@ -223,7 +230,10 @@ text-align:center;
     text-align: justify;
     padding: 0px;
   }
-  .outer{width: 350px;}
+  .outer{width: 320px;}
+  .large{font-size: 30px;}
+  .column-left{margin: 0px 0px 0px -5px;}
+  .column-third{margin: 0px -35px 0px 0px;}
   .column3{padding: 0px;}
   .column4{width: 50%;}
   .column4 img{width:100%;}
