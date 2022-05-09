@@ -11,28 +11,26 @@
   </head>
   <body>
     <div class="sticky row">
-      <div class="half"><p>Next solar zenith @ 16.50S 68.26W</p></div>
+      <div class="half align-left"><p>Next solar zenith @ 16.50S 68.26W</p></div>
       <div class="counter"><h3 id="zenith"></h3>
         <p class="top-text" style="text-align: right;">DAYS&ensp;HRS&ensp;MINS&ensp;SEC</p>
       </div>
     </div>
 
-    <nav>
+    <nav class="top-menu">
       <div class="navlink inline-block">
         <a title="Home" href="/" class="navlink-on">home</a></div>
       <div class="navlink inline-block"><a target="blank" title="Research" href="/pages/research.html" class="navlink-off">research</a></div>
       <div class="navlink inline-block"><a title="Projects" href="/pages/projects.html" class="navlink-off">projects</a></div>
       <div class="navlink inline-block"><a target="blank" title="Articles" href="https://ndzerglink.wordpress.com" class="navlink-off">articles</a></div>
       <div class="navlink inline-block"><a title="About" href="/pages/todo_list.html" class="navlink-off">to do</a></div>
-
     </nav>
 
     <div class="header"><h1>My web portfolio</h1><p id="randQuote"></p></div>
     <!--Weather conditions-->
     <div class="row" id="weather_info">
       <div class="column" style="text-align:center;">
-        <div class="clearfix" id="curr_weather"></div>
-  	    
+        <div class="clearfix" id="curr_weather"></div>  	    
         <div class="row" id="weather_details"></div>
       </div>
       <div class="column">
@@ -43,6 +41,7 @@
     <!--My schedule-->
     <button class="accordion">one fine day</button>
     <div class="panel" style="padding:0px;"><table id="myday"></table></div>
+
     <script src="static/fetch_weather.js"></script>
     <script src="static/fetch_sched.js"></script>
   </body>
@@ -60,7 +59,15 @@
       </div>
     </div>
     <div class="clearfix">
-      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-05-01 ndzerglink </span></p>
+      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-05-09 ndzerglink </span></p>
     </div>
   </footer>
+  <nav class="menu">  
+    <ul>
+      <li><a class="link-on" href="/"><img src="assets/home.svg"/> home</a></li>
+      <li><a class="link-off" href="/pages/research.html"><img src="assets/telescope.svg"/> research</a></li>
+      <li><a class="link-off" href="/pages/projects.html"><img src="assets/code.svg"/> projects</a></li>
+      <li><a class="link-off" href="https://ndzerglink.wordpress.com"><img src="assets/article.svg"/> articles</a></li>
+      <li><a class="link-off" href="/pages/todo_list.html"><img src="assets/todo.svg"/> todo</a></li>
+    </ul></nav>
 </html>

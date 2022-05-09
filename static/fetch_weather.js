@@ -117,8 +117,8 @@ async function display_info(){
         currCond = "<img src='assets/clear.svg' alt='晴れ'/>";
     }
 
-    text += "<h2 class='align-left'>Nagoya Weather<br><br>";
-    text += "<span class='align-left'>" + myData.curr_weather[0][0] +"&emsp;"+ newHour +":"+ newMin + "</span></h2>";
+    //text += "<h2 class='align-left'>Kobe Weather<br><br>";
+    text += "<h2 class='align-left'>" + myData.curr_weather[0][0] +"&emsp;"+ newHour +":"+ newMin + "</h2>";
     text += "<div class='clearfix'><span class='large'>" + myData.curr_weather[0][3] + 
     "&#8451;&emsp;"+myData.curr_weather[0][2].replace(/"/g,"")+"&emsp;</span>"+ currCond + "</div>";
     document.getElementById("curr_weather").innerHTML = text;
@@ -192,7 +192,7 @@ async function display_info(){
     //console.log(trData);
     // Set Dimensions
     const xSize = 750;//390;
-    const ySize = 550;
+    const ySize = 450;
     const margin = 40;
     const xMax = xSize - margin;
     const yMax = ySize - margin*2;

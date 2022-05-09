@@ -6,7 +6,7 @@ body{
 }
 .header{padding:20px;text-align:center;}
 
-nav{
+nav.top-menu{
   display: block;
   width: 100%;
   box-sizing: inherit;
@@ -153,4 +153,31 @@ panel2,.flip{
   .column3{padding: 0px;}
   .column4{width: 50%;}
   .align-left,.align-right{text-align: center;}
+  nav.menu{
+    bottom:0;
+    position: -webkit-sticky;
+    position: sticky;
+    height: 56px;
+    z-index: 2000;
+    background-color: #bed2e0;
+  }
+  nav.menu ul{  
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  nav.menu ul li a{
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    font-size: .8rem;
+  }
+  .link-on{color: #cc274c;}
+  .link-off{color: #2e4054;}
+  nav.menu ul li{flex: 1;}
+  nav.menu ul li a img{width: 1.15rem;height: 1.15rem;}
 }

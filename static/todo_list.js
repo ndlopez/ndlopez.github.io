@@ -1,8 +1,8 @@
 initData = [
     {
-        id:1,activity:"06:35 Cook and Eat breakfast",
+        id:1,activity:"Cook and Eat breakfast",
     },{
-        id:2,activity:"08:55 Organize office",
+        id:2,activity:"Fix JS code on NowPlaying Gnome-extension",
     },{
         id:3,activity:"16:30 Vacuum clean apartment",
     },{
