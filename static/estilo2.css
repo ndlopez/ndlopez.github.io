@@ -4,11 +4,11 @@ body{
   background-color:#2e4054;
   color: #bed2e0;
 }
+.no-padding{padding: 0px;}
 .header{padding:20px;text-align:center;}
 .sticky{
   display: block;
   width: auto;
-  padding: 0px;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -16,13 +16,11 @@ body{
   color: whitesmoke;
 }
 .half{
-  float:left;
   width: 40%;
   padding: 0px 0px 0px 10px;
   border: 0px;  
 }
 .counter{
-  float:left;
   width: 60%;
   padding: 0px 10px 0px 0px;
   border: 0px;
@@ -64,18 +62,16 @@ a{text-decoration: none;color: #bed2e0;}
 nav.menu ul li a{display: none;}
 nav.menu ul li a img{display: none;}*/
 ul{list-style-type: none;}
-ul, li{margin: 0;padding: 0;}
+ul, li{margin: 0px;padding:0px}
 .large{font-size: 40px;font-weight: 200;}
-/*#curr_weather{background-image: url('assets/cloud-heavy.svg');}*/
-.column4{
-  float:left;
-  width: 25%;
-  padding:0px;
-  border:0px;
-  text-align: center;
+/*#curr_weather{background-image: url('assets/cloud-heavy.svg');}
+.column4{float:left;width: 25%;
+  padding:0px; border:0px;
+  text-align: center;}*/
+#weather_details, #curr_weather{
+  background-color:#bed2e030;
 }
 .column3{
-  float:left;
   width: 33.3%;
   height: 280px;
   padding:25px;
@@ -85,43 +81,29 @@ ul, li{margin: 0;padding: 0;}
 .column3 p{font-size: medium;}
 /*2 columns*/
 .column{
-  float:left;
   width: 50%;
-  padding:0px;
   border:0px;
 }
-
-.column-left{
-  float: left;
-  width: 8%;
-  padding: 0px;
-}
-.column-right{
-  float: left;
-  width: 84%;
-  padding: 0px;
-}
-.column-third{
-  float: left;
-  width: 8%;
-  padding: 0px;
-}
+.column80{width:79%;}
+.column20{width:21%;}
+.column-left{width: 8%;}
+.column-right{width: 84%;}
+.column-third{width: 8%;}
+.float-left{float: left;}
 .outer{
-  width: 480px;
+  width: 100%;
   height: 480px;
-  overflow-x: auto;
   overflow-y: hidden;
 }
-.inner{width: 480px;height: 480px;}
+.inner{width: 100%;height: 480px;}
 #mainPlot{
-  display:block;
+  display:block;padding: 0px;
   width: 100%;height: 100%;}
-.row{padding: 0px;text-align:center;}
+.row{text-align:center;}
 .row:after{
   content:"";
   display:table;
   clear:both;
-  padding:0px;
 }
 .align-left{text-align: left;}
 .align-right{text-align: right;}
@@ -137,7 +119,7 @@ panel2,.flip{
   padding:10px;
   text-align:center;
   background-color:#2e4054;
-  color:white;
+  color:whitesmoke;
   border:solid 1px #cc274c;
   margin:auto;
 }
@@ -150,7 +132,7 @@ panel2,.flip{
 }
 .clearfix{padding: 10px;}
 /*SVG*//*.highlight{fill: #cc274c;}*/
-.bar{fill:#bed2e070}
+.bar{fill:#bed2e030}
 svg g{color:#bed2e0;}
 .domain, svg line{stroke: #bed2e0;}
 svg text{fill:#bed2e0;font-size: 12px;}
@@ -232,10 +214,9 @@ text-align:center;
 @media only screen and (max-width:620px){*/
 @media (max-width:800px){
   .sticky{position: inherit;}
-  .column{
+  .column,.column80,.column20{
     width:100%;
     text-align: justify;
-    padding: 0px;
   }
   nav.menu{
     bottom:0;
@@ -265,13 +246,12 @@ text-align:center;
   nav.menu ul li{flex: 1;}
   nav.menu ul li a img{width: 1.15rem;height: 1.15rem;}
 
-  .outer{width: 320px;}
+  .outer{width: 320px;  overflow-x: auto;  }
   .large{font-size: 30px;}
   .column-left{margin: 0px 0px 0px -5px;}
   .column-third{margin: 0px -35px 0px 0px;}
   .column3{padding: 0px;}
   .column4{width: 50%;}
-  .column4 img{width:100%;}
   #zenith{font-size: large;}
   .align-left,.align-right{text-align: center;}
   .hidden{display: none;}

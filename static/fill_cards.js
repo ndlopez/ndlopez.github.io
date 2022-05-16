@@ -12,9 +12,9 @@ const projects=[
         builtOn:2018
     },{
         name:"Quotes, a CLI Application",
-        title:"Display on the Terminal quotes from famous people.<br>Click for more...",
-        description:"Similar to <fortune> CLI app \
-        this application displays a quote every time a Terminal windows is open. \
+        title:"Display on the Terminal quotes from famous people.",
+        description:"Similar to the <fortune> CLI app available on most linux repositiories, \
+        this application displays a quote every time a Terminal window is open. \
         Data was scrapped using Python\'s module Scrapy from the website goodreads.com.",
         language:"Python, JavaScript",
         image:"../assets/cloud-heavy.svg",
@@ -26,7 +26,8 @@ const projects=[
         title:"Notification app to display current song playing on FM La Paz",
         description:"Gnome extension and Windows TaskBar Application. It displays \
         the current song playing on FM La Paz (an internet radio). The application makes a request to \
-        the host site to check for updates every four minutes. No data is stored on device.",
+        the host site to check for updates every four minutes. No data is stored on device. The repository also \
+        also includes a Notification App for MacOS, it requires cron scheduler to get updates.",
         language:"JavaScript, C#",
         image:"https://raw.githubusercontent.com/ndlopez/NowPlaying/master/assets/now_playing.png",
         repo:"https://github.com/ndlopez/fmLaPazNow",
@@ -34,13 +35,13 @@ const projects=[
         builtOn:2020
     },{
         name:"PassAdm",
-        title:"Password Administrator Desktop and Android Application",
+        title:"Desktop and Android App to Generate and Manage Passwords",
         description:"Desktop and Android Application. The first purpose of this application is to solve\
          the daunting task of generating a strong password on the fly. At the touch of a button \
         the user can generate random passwords, passphrases and pins. Both applications allow the user \
-        to store their accounts on device protected by a user main password. The desktop app was \
-        developed using Python\'s Tkinter module and the user data is recorded in a JSON file. The \
-        Android app developed in Java using Android Studio, the user data is stored on device using \
+        to store their accounts on device protected by a main password and perform CRUD operations. The desktop app \
+        was developed in Python using the Tkinter module. The user data is recorded in a JSON file. Whereas, the \
+        Android app was developed in Java using Android Studio. The user data is stored on device using \
         a SQLite database.",
         language:"Python, Java",
         image:"../assets/cloud-heavy.svg",
@@ -54,19 +55,28 @@ const projects=[
         The Gnome extension is a notification app that displays the current \
         and the next hour conditions. Data was scrapped from tenki.jp using a Shell script. A cron \
         script can be implemented to download and scrap data every day. Back-end is developed in \
-        PHP, Python, and MySQL",
+        PHP, Python, and MySQL. A Windows 10 widget is in development in C#.",
         language:"Shell, JavaScript",
         image:"../assets/cloud-heavy.svg",
         repo:"https://github.com/ndlopez/weather_app",
         demo:"https://ndlopez.github.io/",
-        builtOn:2020
+        builtOn: 2021
+    },{
+        name: "Linux/UNIX info tools",
+        title: "Gnome Extension to display OS information.",
+        description: "Display on the top panel information about SDD/HDD temperature, uptime, battery status,headphone-jack status and Wifi/LAN download status",
+        language: "JavaScript, Shell",
+        image: "../assets/cloud-heavy.svg",
+        repo: "https://github.com/ndlopez/weather_app",
+        demo: "",
+        builtOn: 2021
     },{
         name:"NagoyaBus",
         title:"Android application to search for the next departing bus",
         description:"Android Application developed in Java using Android Studio. The application \
         allows the user to input the departure time and bus stop and arrival bus stop in Japanese \
         and displays based on that info the next departing buses. At the moment, it is not possible \
-        to make transfers between bus lines, that work is still under construction. Data is from the \
+        to make transfers between bus lines, that work is still under development. Data is from the \
         Nagoya City Transportation Bureau.",
         language:"Java",
         image:"../assets/cloud-heavy.svg",
@@ -77,7 +87,7 @@ const projects=[
         name:"Paiza Tests",
         title:"Test for programming skills",
         description:"The site paiza.jp offers different levels to test programming skills. Given my \
-        level, I tried some of the C and B level. The repository also includes code to solve 'Wordle' \
+        level, I tried some of the C and B level. The repository also includes code to solve the 'Wordle' \
         game",
         image:"https://img001.prntscr.com/file/img001/U6hzfAXXR7aoLUBHf2mgww.png",
         language:"Python, Ruby",
@@ -85,28 +95,30 @@ const projects=[
         demo:"",
         builtOn:2022
     },{
-        name:"Jumble Game",
-        title:"Unscramble the words.",
-        description:"Web Application developed in JavaScript. Inspired by NewsRadio - Arcade \
+        name: "Jumble Game",
+        title: "Unscramble the words.",
+        description: "Web Application developed in JavaScript. Inspired by NewsRadio - Arcade \
         Episode (S03EP04). The displayed words are the ones whose meaning I did not know from \
         the books: Pride and Prejudice by Jane Austen, Zealot by Reza Aslan and Flowers for Algernon \
-        by Daniel Keyes.",
-        language:"JavaScript",
-        image:"https://raw.githubusercontent.com/ndlopez/jumble_game/main/data/Jumble_Game_2022-04-02_2152.png",
-        repo:"htpps://github.com/ndlopez/jumble_game",
-        demo:"https://ndlopez.github.io/jumble_game",
-        builtOn:2022
-    },{
-        name:"NagoyaBus",
-        title:"Display the next departing bus",
-        description:"Web Application currently in development.",
-        language:"JavaScript",
-        image:"../assets/cloud-heavy.svg",
-        repo:"https://github.com/ndlopez/busApp",
-        demo:"htpps://ndlopez.github.io/",
-        builtOn:2022
+        by Daniel Keyes. It is a little hard to guess the correct word, but the app helps the user by coloring the \
+        RIGHT letter.",
+        language: "JavaScript",
+        image: "https://raw.githubusercontent.com/ndlopez/jumble_game/main/data/Jumble_Game_2022-04-02_2152.png",
+        repo: "htpps://github.com/ndlopez/jumble_game",
+        demo: "https://ndlopez.github.io/jumble_game",
+        builtOn: 2022
     }
 ];
+/*,{
+    name: "NagoyaBus",
+    title: "Display the next departing bus",
+    description: "Web Application currently in development.",
+    language: "JavaScript",
+    image: "../assets/cloud-heavy.svg",
+    repo: "https://github.com/ndlopez/busApp",
+    demo: "htpps://ndlopez.github.io/",
+    builtOn: 2022
+}*/
 //console.log(projects[0].name,projects.length);
 //Refer to this girl's site https://danajanoskova.sk/
 function createCards(jdx){

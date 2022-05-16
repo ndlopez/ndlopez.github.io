@@ -39,7 +39,7 @@ function setProgress(percent,title,texty) {
     const pTitle = document.createElement("p");
     pTitle.innerText = title;
     const subDiv = document.createElement("div");
-    subDiv.setAttribute("class","column3");
+    subDiv.setAttribute("class","column3 float-left");
     subDiv.appendChild(pTitle);
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
@@ -113,10 +113,12 @@ async function display_info(){
     }
     //currCond = textImg + "alt='" + currCond + "'/>"
     /* Special case when it's sunny and less 6hrs and over 19hrs */
-    if(currCond === "<img src='assets/sunny.svg' alt='晴れ'/>" && (hh > 19 || hh < 6)){
+    if(currCond === "<img src='assets/sunny.svg' alt='晴れ'/>" && (hh > 18 || hh < 6)){
         currCond = "<img src='assets/clear.svg' alt='晴れ'/>";
     }
-
+    if(currCond === "<img src='assets/cloudy.svg' alt='曇り'/>" && (hh > 18 || hh < 6)){
+        currCond = "<img src='assets/cloudy_night.svg' alt='Cloudy'/>";
+    }
     //text += "<h2 class='align-left'>Kobe Weather<br><br>";
     text += "<h2 class='align-left'>" + myData.curr_weather[0][0] +"&emsp;"+ newHour +":"+ newMin + "</h2>";
     text += "<div class='clearfix'><span class='large'>" + myData.curr_weather[0][3] + 
@@ -161,14 +163,14 @@ async function display_info(){
     const containDiv = document.getElementById("weather_bar");
     const leftDiv = document.createElement("div");
     leftDiv.setAttribute("id","leftAxis");
-    leftDiv.setAttribute("class","column-left");
+    leftDiv.setAttribute("class","column-left float-left");
     const rightDiv = document.createElement("div");
     rightDiv.setAttribute("id","rightAxis");
-    rightDiv.setAttribute("class","column-third");
+    rightDiv.setAttribute("class","column-third float-left");
 
 
     const centerDiv = document.createElement("div");
-    centerDiv.setAttribute("class","column-right");
+    centerDiv.setAttribute("class","column-right float-left");
     const outerDiv = document.createElement("div");
     outerDiv.setAttribute("class","outer");
     const innerDiv = document.createElement("div");
@@ -194,14 +196,14 @@ async function display_info(){
     const xSize = 750;//390;
     const ySize = 450;
     const margin = 40;
-    const xMax = xSize - margin;
+    const xMax = xSize - 0;//margin
     const yMax = ySize - margin*2;
     const newVal = 0;
     // Append SVG axis to LeftDiv humidity
     const svgRight = d3.select("#rightAxis")
     .append("svg").attr("width",35).attr("height",ySize)
     .append("g")
-    .attr("transform","translate(" + 0 + "," + margin + ")");    
+    .attr("transform","translate(" + 10 + "," + margin + ")");    
     // Y Axis for humidity
     const yHumid = d3.scaleLinear()
     .domain([d3.min(data[2])-10,d3.max(data[2])])
@@ -210,23 +212,37 @@ async function display_info(){
     svgRight.append("g")
     .call(d3.axisRight(yHumid));
 
+    svgRight.append("g")
+    .append("text")
+    .text("%")
+    .attr("x",10)
+    .attr("y",-5);
+
     //yAxis for temperature
     const svgLeft = d3.select("#leftAxis")
     .append("svg").attr("width",42).attr("height",ySize)
     .append("g")
-    .attr("transform","translate(" + margin + "," + margin + ")");
+    .attr("transform","translate(" + 30 + "," + margin + ")");//margin,margin
+
     const yTemp = d3.scaleLinear()
     .domain([d3.min(data[1])-1,d3.max(data[1])+1])
     .range([ yMax, 0]);
     svgLeft.append("g").attr("class","tempAxis")
     .call(d3.axisLeft(yTemp));
 
+    svgLeft.append("g")
+    .attr("class","tempAxis")
+    .append("text")
+    .text("\u2103")
+    .attr("x",-22)
+    .attr("y",-5); //@bottom yMax +15
+
     // Append MainSVG Object to the Page
     const svg = d3.select("#mainPlot")
     .append("svg").attr("width",xSize).attr("height",ySize)
     .append("g")
-    .attr("transform","translate(" + 22 + "," + margin + ")");
-
+    .attr("transform","translate(" + 0 + "," + margin + ")");
+    //22
     //X axis linear
     const xLinear = d3.scaleTime()
     .domain(d3.extent(data,(d)=>{return d[0];}))
@@ -272,22 +288,28 @@ async function display_info(){
     .duration(1500).delay((d,i)=>{return i*100;})
     .attr("height",(d)=>{return yMax -yHumid(d[2]);});
  
-    var adjHeight=0;
+    var adjHeight=-11;
     svg.append("g")
     .selectAll(".txtTemp")
     .data(trData).enter()
     .append("text")
     .attr("class","txtTemp")
-    .text(function(d){return d[1]+"\u2103";})   //d[2]+"%" //&#176;
+    .text(function(d,i){
+        if((i%2)===0){
+        return d[1]+"\u2103";}})   //d[2]+"%" //&#176;
     .attr("text-anchor","middle")
     .attr("x",function(d){
         return x(d[0])+13;})
     .attr("y",function(d,i){
+        return yTemp(d[1]) +adjHeight;})
+    .attr("font-family","sans-serif")
+	.attr("font-size","11px");
+    /* Different heights for each Temp
+    .attr("y",function(d,i){
         if((i%2) === 0){adjHeight=-11;}
         else{adjHeight=18;}
         return yTemp(d[1])+adjHeight;})
-    .attr("font-family","sans-serif")
-	.attr("font-size","11px");
+    */
 
     svg.append("g")
     .selectAll(".txtWind")
