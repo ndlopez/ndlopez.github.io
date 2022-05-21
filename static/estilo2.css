@@ -189,7 +189,6 @@ svg text{fill:#bed2e0;font-size: 12px;}
   font-size: x-large;
   /*content:"\02796";background-color: #bed2e0;*/}
 .panel{
-  padding:0 18px;
   display:none;
   background-color:#e5e5e5;
   overflow:hidden;
@@ -209,7 +208,7 @@ text-align:center;
   transform:scaleX(-1);
   filter:FlipH;-ms-filter:"FlipH";
 }
-
+#nav-menu{display: none;}
 /*Responsive layout to stack cols on top of each other
 @media only screen and (max-width:620px){*/
 @media (max-width:800px){
@@ -218,6 +217,7 @@ text-align:center;
     width:100%;
     text-align: justify;
   }
+  #nav-menu{display: block;}
   nav.menu{
     bottom:0;
     position: -webkit-sticky;

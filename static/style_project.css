@@ -138,7 +138,7 @@ panel2,.flip{
   filter:FlipH;-ms-filter:"FlipH";
 }
 .proj_stats img{width:70%;}
-
+#nav-menu{display: none;}
 /*Responsive layout to stack cols on top of each other
 @media only screen and (max-width:620px){*/
 @media (max-width:800px){
@@ -147,6 +147,7 @@ panel2,.flip{
     text-align: justify;
     padding: 0px;
   }
+  #nav-menu{display: block;}
   .column3{width: 100%;margin-bottom: 20px;}
   .column3{padding: 0px;}
   .column4{width: 50%;}

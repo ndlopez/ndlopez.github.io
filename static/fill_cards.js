@@ -142,11 +142,13 @@ function openNav(myOBj) {
     //document.getElementById(myOBj).style.width = "100%";
     document.getElementById(myOBj).style.display = "block";
     document.body.style.overflow = "hidden";
+    document.getElementById("nav-menu").style.display = "none";
     //document.getElementById("go2Top").style.display="none";
 }
 function closeNav(myOBj) {
     document.getElementById(myOBj).style.display = "none";
     document.body.style.overflow = "auto";
+    document.getElementById("nav-menu").style.display = "block";
     //document.getElementById("go2Top").style.display="";
 }
 function addDivs(_val){
