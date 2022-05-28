@@ -143,6 +143,7 @@ input {
     transform:scaleX(-1);
     filter:FlipH;-ms-filter:"FlipH";
 }
+#nav-menu{display: none;}
 @media (max-width:800px){
     .column{
       width:100%;
@@ -152,6 +153,7 @@ input {
     .column ul li{padding: 28px 25px 15px 40px;}
     .close{padding: 1px 10px 25px 10px;font-size: 25px;}
     .align-left,.align-right{text-align: center;}
+    #nav-menu{display: block;}
     nav.menu{
         bottom:0;
         position: -webkit-sticky;

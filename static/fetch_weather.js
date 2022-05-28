@@ -222,7 +222,7 @@ async function display_info(){
     const svgLeft = d3.select("#leftAxis")
     .append("svg").attr("width",42).attr("height",ySize)
     .append("g")
-    .attr("transform","translate(" + 30 + "," + margin + ")");//margin,margin
+    .attr("transform","translate(" + 40 + "," + margin + ")");//margin,margin
 
     const yTemp = d3.scaleLinear()
     .domain([d3.min(data[1])-1,d3.max(data[1])+1])
@@ -230,18 +230,19 @@ async function display_info(){
     svgLeft.append("g").attr("class","tempAxis")
     .call(d3.axisLeft(yTemp));
 
+    //Append "C" to Y axis
     svgLeft.append("g")
     .attr("class","tempAxis")
     .append("text")
     .text("\u2103")
-    .attr("x",-22)
-    .attr("y",-5); //@bottom yMax +15
+    .attr("x",-27)
+    .attr("y",yMax+10); //@bottom yMax +15 //top -10
 
     // Append MainSVG Object to the Page
     const svg = d3.select("#mainPlot")
     .append("svg").attr("width",xSize).attr("height",ySize)
     .append("g")
-    .attr("transform","translate(" + 0 + "," + margin + ")");
+    .attr("transform","translate(" + 10 + "," + margin + ")");
     //22
     //X axis linear
     const xLinear = d3.scaleTime()

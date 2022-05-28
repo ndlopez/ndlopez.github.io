@@ -1,7 +1,7 @@
 const projects=[
     {
         name:"Unpublished website of Galileo Inc.",
-        title:"Employee's daily routine webpage and Internship schedule webpage.<br>Click for more...",
+        title:"Employee's daily routine webpage and Internship schedule webpage.",
         description:"It includes a home page, 3 pages for different types of employees at the company:\
         new graduates, foreigners, and working moms and one page to display the schedule of internship. \
         The Bootstrap CSS library is used to display better the HTML elements.",

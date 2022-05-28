@@ -58,16 +58,11 @@ a{text-decoration: none;color: #bed2e0;}
   display: inline-block;
   vertical-align: top;
 }
-/*app-like bottom menu
-nav.menu ul li a{display: none;}
-nav.menu ul li a img{display: none;}*/
+
 ul{list-style-type: none;}
 ul, li{margin: 0px;padding:0px}
 .large{font-size: 40px;font-weight: 200;}
-/*#curr_weather{background-image: url('assets/cloud-heavy.svg');}
-.column4{float:left;width: 25%;
-  padding:0px; border:0px;
-  text-align: center;}*/
+/*#curr_weather{background-image: url('assets/cloud-heavy.svg');}*/
 #weather_details, #curr_weather{
   background-color:#bed2e030;
 }
@@ -81,8 +76,7 @@ ul, li{margin: 0px;padding:0px}
 .column3 p{font-size: medium;}
 /*2 columns*/
 .column{
-  width: 50%;
-  border:0px;
+  width: 50%;border:0px;
 }
 .column80{width:79%;}
 .column20{width:21%;}
