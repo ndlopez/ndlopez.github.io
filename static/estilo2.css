@@ -126,7 +126,7 @@ panel2,.flip{
 }
 .clearfix{padding: 10px;}
 /*SVG*//*.highlight{fill: #cc274c;}*/
-.bar{fill:#bed2e030}
+/*.bar{fill:#bed2e030}*/
 svg g{color:#bed2e0;}
 .domain, svg line{stroke: #bed2e0;}
 svg text{fill:#bed2e0;font-size: 12px;}
@@ -205,7 +205,7 @@ text-align:center;
 #nav-menu{display: none;}
 /*Responsive layout to stack cols on top of each other
 @media only screen and (max-width:620px){*/
-@media (max-width:800px){
+@media (max-width:620px){
   .sticky{position: inherit;}
   .column,.column80,.column20{
     width:100%;
@@ -249,4 +249,7 @@ text-align:center;
   #zenith{font-size: large;}
   .align-left,.align-right{text-align: center;}
   .hidden{display: none;}
+}
+@media (max-width:360px){
+  .outer{width: 290px;  overflow-x: auto;  }
 }

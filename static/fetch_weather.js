@@ -35,6 +35,24 @@ var newMin = String(mm);
 if(hh > 0 && hh < 10){newHour = "0" + String(hh);}
 if(mm < 10){newMin = "0" + String(mm);}
 
+function getMaxMin(dataArray){
+    let max = 0;
+    let min = 50;
+    var outArr = [];
+
+    dataArray.forEach(el => {
+        if (el > max){
+            max = el;
+        }
+        if (el < min){
+            min = el;
+        }
+    });
+    outArr.push(max);
+    outArr.push(min);
+    return outArr;
+}
+
 function setProgress(percent,title,texty) {
     const pTitle = document.createElement("p");
     pTitle.innerText = title;
@@ -87,6 +105,10 @@ display_info();
 async function display_info(){
     const myData = await get_url_data(newHour);
     //console.log(myData.curr_weather);
+    const data=[];
+    data.push(myData.hour,myData.temp,myData.humid,myData.wind,myData.windDir);
+    /* this was the issue, the data was not transposed*/
+    const trData =data[0].map((_,colIdx)=> data.map(row => row[colIdx]));
 
     var currCond = myData.curr_weather[0][2].replace(/"/g,"");
     //var textImg = "<img src='assets/";
@@ -120,9 +142,11 @@ async function display_info(){
         currCond = "<img src='assets/cloudy_night.svg' alt='Cloudy'/>";
     }
     //text += "<h2 class='align-left'>Kobe Weather<br><br>";
+    let maxmin = getMaxMin(data[1]);
     text += "<h2 class='align-left'>" + myData.curr_weather[0][0] +"&emsp;"+ newHour +":"+ newMin + "</h2>";
     text += "<div class='clearfix'><span class='large'>" + myData.curr_weather[0][3] + 
-    "&#8451;&emsp;"+myData.curr_weather[0][2].replace(/"/g,"")+"&emsp;</span>"+ currCond + "</div>";
+    "&#8451;&emsp;"+myData.curr_weather[0][2].replace(/"/g,"")+"&emsp;</span>"+ currCond + 
+    "<h3>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h3></div>";
     document.getElementById("curr_weather").innerHTML = text;
 
     var detailsDiv = document.getElementById("weather_details");
@@ -186,11 +210,8 @@ async function display_info(){
     containDiv.appendChild(centerDiv);
     containDiv.appendChild(rightDiv);
 
-    const data=[];
-    data.push(myData.hour,myData.temp,myData.humid,myData.wind,myData.windDir);
-    /* this was the issue, the data was not transposed*/
-    const trData =data[0].map((_,colIdx)=> data.map(row => row[colIdx]));
 
+    //Build D3Js plot
     //console.log(trData);
     // Set Dimensions
     const xSize = 750;//390;
@@ -220,9 +241,9 @@ async function display_info(){
 
     //yAxis for temperature
     const svgLeft = d3.select("#leftAxis")
-    .append("svg").attr("width",42).attr("height",ySize)
+    .append("svg").attr("width",36).attr("height",ySize)
     .append("g")
-    .attr("transform","translate(" + 40 + "," + margin + ")");//margin,margin
+    .attr("transform","translate(" + 35 + "," + margin + ")");//margin,margin
 
     const yTemp = d3.scaleLinear()
     .domain([d3.min(data[1])-1,d3.max(data[1])+1])
@@ -236,7 +257,7 @@ async function display_info(){
     .append("text")
     .text("\u2103")
     .attr("x",-27)
-    .attr("y",yMax+10); //@bottom yMax +15 //top -10
+    .attr("y",yMax+25); //@bottom yMax +15 //top -10
 
     // Append MainSVG Object to the Page
     const svg = d3.select("#mainPlot")
@@ -274,7 +295,8 @@ async function display_info(){
     .attr("cx", function (d) { return x(d[0])+13; } )
     .attr("cy", function (d) { return yTemp(d[1]); } )
     .attr("r", 5)
-    .style("fill", "#cc274c");
+    .style("fill", function(d,i){
+        if(i>=hh){return "#cc274c";}else{return "#bed2e0";}});
     
     //Bars. It finally worked!! 2022-03-28 22:00
     svg.append("g") /*.attr("class","inner_plot")*/
@@ -285,6 +307,8 @@ async function display_info(){
     .attr("x",(d)=>{return x(d[0]);})
     .attr("y",(d)=>{return yHumid(d[2]);})
     .attr("width",x.bandwidth())
+    .attr("fill",function(d,i){
+        if(i< hh){return "#bed2e030";}else{return "#cc274c40";}})
     .transition().ease(d3.easeLinear)
     .duration(1500).delay((d,i)=>{return i*100;})
     .attr("height",(d)=>{return yMax -yHumid(d[2]);});
