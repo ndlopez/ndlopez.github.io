@@ -14,6 +14,9 @@ https://www.foreca.com/public/images/symbols/n440.svg
 Refer to the following to make a line plot
 https://datawanderings.com/2019/10/28/tutorial-making-a-line-chart-in-d3-js-v-5/
 
+Refer to :
+Search how to make a gauge meter and a drop in svg
+
 <div class="clearfix">
     <img alt="Current radar image over Tokai region. Courtesy of tenki.jp" class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg">
     <--img id="weather-img" src="https://wttr.in/Nagoya_0pq_transparency=200_lang=en.png" alt="Wetter in Nagoya" />
@@ -53,7 +56,7 @@ function getMaxMin(dataArray){
     return outArr;
 }
 
-function setProgress(percent,title,texty) {
+function buildProgressCircle(percent,title,texty) {
     const pTitle = document.createElement("p");
     pTitle.innerText = title;
     const subDiv = document.createElement("div");
@@ -68,6 +71,7 @@ function setProgress(percent,title,texty) {
     svgCircle.setAttribute("id","frontCircle");
     svgCircle.setAttribute("stroke","#cc274c");
     svgCircle.setAttribute("stroke-width","5");
+    svgCircle.setAttribute("stroke-linecap","round");
     svgCircle.setAttribute("fill","transparent");
     svgCircle.setAttribute("r","52");
     svgCircle.setAttribute("cx","60");
@@ -93,6 +97,47 @@ function setProgress(percent,title,texty) {
     var subDivVal = document.createElement("div");
     subDivVal.setAttribute("class","value");
     subDivVal.innerHTML = texty;
+    subDiv.appendChild(subDivVal);
+
+    return subDiv;
+}
+
+function buildGaugeMeter(value,title,htmlTxt){
+    //Path - Text - Path
+    const pTitle = document.createElement("p");
+    pTitle.innerText = title;
+    const subDiv = document.createElement("div");
+    subDiv.setAttribute("class","column3 float-left");
+    subDiv.appendChild(pTitle);
+    const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const svgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+    const svgBkgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+    svgGroup.setAttribute("width","120");
+    svgGroup.setAttribute("height","180");
+    svgPath.setAttribute("class","gauge-value");
+    svgPath.setAttribute("id","frontCircle");
+    svgPath.setAttribute("stroke","#cc274c");
+    svgPath.setAttribute("stroke-width","5");
+    svgPath.setAttribute("stroke-linecap","round");
+    svgPath.setAttribute("fill","none");
+    //Fix this part, consider an analog watch
+    //here value should be added
+    svgPath.setAttribute("d","M 15 90 A 50 50 0 0 1 60 18");
+    
+    svgBkgPath.setAttribute("class","gauge-dial");
+    svgBkgPath.setAttribute("stroke","#bed2e0");
+    svgBkgPath.setAttribute("stroke-width","4");
+    svgBkgPath.setAttribute("stroke-linecap","round");
+    svgBkgPath.setAttribute("fill","none");
+    svgBkgPath.setAttribute("d","M 15 90 A 50 50 0 1 1 105 90");
+
+    svgGroup.appendChild(svgBkgPath);
+    svgGroup.appendChild(svgPath);
+
+    subDiv.appendChild(svgGroup);
+    var subDivVal = document.createElement("div");
+    subDivVal.setAttribute("class","value");
+    subDivVal.innerHTML = htmlTxt;
     subDiv.appendChild(subDivVal);
 
     return subDiv;
@@ -152,34 +197,18 @@ async function display_info(){
     var detailsDiv = document.getElementById("weather_details");
 
     text = "<h2>" + myData.curr_weather[0][4] + "%<br>"+myData.curr_weather[0][5] + " mm</h2>";
-    var rainDiv = setProgress(myData.curr_weather[0][4],"RAIN",text);
+    var rainDiv = buildProgressCircle(myData.curr_weather[0][4],"RAIN",text);
     detailsDiv.appendChild(rainDiv);
 
     text = "<h2>" + myData.curr_weather[0][6] + "%</h2>";
-    var humidDiv = setProgress(myData.curr_weather[0][6],"HUMIDITY",text);
+    var humidDiv = buildProgressCircle(myData.curr_weather[0][6],"HUMIDITY",text);
     detailsDiv.appendChild(humidDiv);
 
     text = "<h2>" + myData.curr_weather[0][7] +"m/s<br>"+ myData.curr_weather[0][8].replace(/"/g,"") + "</h2>";
-    var windDiv = setProgress(0,"WIND",text);
+    var windDiv = buildGaugeMeter(0,"WIND",text);
     detailsDiv.appendChild(windDiv);
 
-    /* chart.js plot */
-    /*const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: myData.hour,
-            datasets: [{
-                label: 'Local temperature',data: myData.temp,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',borderWidth: 1
-            }]
-        },
-        options: {
-            fill:false,scales: {y: {beginAtZero: true}}
-        }
-    });*/
-    
+    /* there used 2be a chart.js plot, code moved @EOF*/    
     
     //console.log(myData.hour[4],myData.temp[4],myData.humid[4]);
     /* D3js plot 
@@ -227,17 +256,17 @@ async function display_info(){
     .attr("transform","translate(" + 10 + "," + margin + ")");    
     // Y Axis for humidity
     const yHumid = d3.scaleLinear()
-    .domain([d3.min(data[2])-10,d3.max(data[2])])
+    .domain([d3.min(data[2])-10,d3.max(data[2])+2])
     .range([ yMax, 0]);
     
     svgRight.append("g")
     .call(d3.axisRight(yHumid));
-
+    //add "%" to right axis
     svgRight.append("g")
     .append("text")
     .text("%")
     .attr("x",10)
-    .attr("y",-5);
+    .attr("y",-10);//-5
 
     //yAxis for temperature
     const svgLeft = d3.select("#leftAxis")
@@ -256,8 +285,8 @@ async function display_info(){
     .attr("class","tempAxis")
     .append("text")
     .text("\u2103")
-    .attr("x",-27)
-    .attr("y",yMax+25); //@bottom yMax +15 //top -10
+    .attr("x",-24)
+    .attr("y",yMax+20); //@bottom yMax +15 //top -10
 
     // Append MainSVG Object to the Page
     const svg = d3.select("#mainPlot")
@@ -274,7 +303,7 @@ async function display_info(){
     const x = d3.scaleBand()
     .domain(data[0])
     .range([0, xMax])
-    .padding(0.1);
+    .padding(0.3);//band width 0.1
     
     svg.append("g")
     .attr("transform", "translate(0," + newVal + ")")
@@ -284,7 +313,6 @@ async function display_info(){
     /*const y = d3.scaleLinear()
     .domain([d3.min(data[1])-1,d3.max(data[1])])
     .range([ yMax, 0]);*/
-
     //svg.append("g").call(d3.axisLeft(y));
 
     // Dots. It finally worked!! 2022-03-28 21:40
@@ -296,7 +324,7 @@ async function display_info(){
     .attr("cy", function (d) { return yTemp(d[1]); } )
     .attr("r", 5)
     .style("fill", function(d,i){
-        if(i>=hh){return "#cc274c";}else{return "#bed2e0";}});
+        if(i > hh){return "#bed2e0";}else{return "#cc274c";}});
     
     //Bars. It finally worked!! 2022-03-28 22:00
     svg.append("g") /*.attr("class","inner_plot")*/
@@ -308,7 +336,8 @@ async function display_info(){
     .attr("y",(d)=>{return yHumid(d[2]);})
     .attr("width",x.bandwidth())
     .attr("fill",function(d,i){
-        if(i< hh){return "#bed2e030";}else{return "#cc274c40";}})
+        if(i < hh){return "#cc274c40";}else{return "#bed2e030";}})
+    .attr("rx",8)
     .transition().ease(d3.easeLinear)
     .duration(1500).delay((d,i)=>{return i*100;})
     .attr("height",(d)=>{return yMax -yHumid(d[2]);});
@@ -329,13 +358,13 @@ async function display_info(){
         return yTemp(d[1]) +adjHeight;})
     .attr("font-family","sans-serif")
 	.attr("font-size","11px");
-    /* Different heights for each Temp
+    /* Diff heights for each Temp
     .attr("y",function(d,i){
         if((i%2) === 0){adjHeight=-11;}
         else{adjHeight=18;}
         return yTemp(d[1])+adjHeight;})
     */
-
+    //offset = x()+13,yMax -1
     svg.append("g")
     .selectAll(".txtWind")
     .data(trData).enter()
@@ -344,8 +373,8 @@ async function display_info(){
     .text(function(d){return d[3]+"m";})
     .attr("text-anchor","middle")
     .attr("x",function(d){
-        return x(d[0])+13;})
-    .attr("y",function(d){return yMax -1;})
+        return x(d[0])+11;})
+    .attr("y",function(d){return yMax -2;})
     .attr("font-family","sans-serif")
 	.attr("font-size","11px");
 
@@ -416,3 +445,19 @@ async function get_url_data(curr_hour){
     });
     return {curr_weather,hour,temp,humid,wind,windDir};
 }
+
+/*const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: myData.hour,
+            datasets: [{
+                label: 'Local temperature',data: myData.temp,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',borderWidth: 1
+            }]
+        },
+        options: {
+            fill:false,scales: {y: {beginAtZero: true}}
+        }
+    });*/

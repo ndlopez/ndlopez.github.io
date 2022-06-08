@@ -1,20 +1,20 @@
 {"one-day":[
-    {"time":"06:10","activity":"Drink cup #0 of water"},
-    {"time":"06:07","activity":"Shower"},
+    {"time":"06:05","activity":"Drink cup #0 of water"},
+    {"time":"06:10","activity":"Shower"},
     {"time":"06:35","activity":"Breakfast"},
     {"time":"06:55","activity":"0655 and lunch-box prep"},
     {"time":"07:20","activity":"行って来ます"},
     {"time":"07:29","activity":"Local train departs Sannomiya Station"},
     {"time":"08:16","activity":"Local train departs nearby station"},
     {"time":"08:32","activity":"Local train arrives work station"},
-    {"time":"08:55","activity":"Work Arrival"},
+    {"time":"08:50","activity":"Work Arrival"},
     {"time":"09:00","activity":"Check email and Slack"},
     {"time":"09:30","activity":"Drink soy milk w/banana"},
     {"time":"10:30","activity":"Walk around factory, get some sun-light (5min)"},
     {"time":"11:30","activity":"Drink cup #2 of water"},
     {"time":"12:00","activity":"Nap time (~15min)"},
     {"time":"12:15","activity":"Lunch"},
-    {"time":"12:50","activity":"Walk around factory, get some sun-light (5min)"},
+    {"time":"12:50","activity":"Must walk around factory, get some sun-light (5min)"},
     {"time":"13:30","activity":"Drink cup #3 of water"},
     {"time":"15:30","activity":"Drink cup #4 of water"},
     {"time":"16:00","activity":"Walk around factory, get some sun-light (5min)"},
@@ -26,6 +26,6 @@
     {"time":"20:50","activity":"Drink cup #6 of water"},
     {"time":"21:00","activity":"Must read a book"},
     {"time":"21:35","activity":"Brush teeth"},
-    {"time":"22:10","activity":"Must go to bed"}
+    {"time":"22:00","activity":"Must go to bed"}
 ]
 }
