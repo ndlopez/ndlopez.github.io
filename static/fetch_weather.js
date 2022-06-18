@@ -1,5 +1,6 @@
-/*  Display on web weather conditions.
+/*  Display weather conditions.
 
+Written by DLopez (CopyLeft 2022-06-18)
 Fetch data from url and make a d3js plot.
 Should probably add a 2nd axis like this:
 http://www.d3noob.org/2013/01/using-multiple-axes-for-d3js-graph.html
@@ -16,6 +17,7 @@ https://datawanderings.com/2019/10/28/tutorial-making-a-line-chart-in-d3-js-v-5/
 
 Refer to :
 Search how to make a gauge meter and a drop in svg
+https://hongkiat.github.io/svg-meter-gauge/
 
 <div class="clearfix">
     <img alt="Current radar image over Tokai region. Courtesy of tenki.jp" class="img2" src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg">
@@ -37,6 +39,7 @@ var newHour = String(hh);
 var newMin = String(mm);
 if(hh > 0 && hh < 10){newHour = "0" + String(hh);}
 if(mm < 10){newMin = "0" + String(mm);}
+let toRadians = Math.PI/180.0;
 
 function getMaxMin(dataArray){
     let max = 0;
@@ -57,6 +60,7 @@ function getMaxMin(dataArray){
 }
 
 function buildProgressCircle(percent,title,texty) {
+    let radius = 52;
     const pTitle = document.createElement("p");
     pTitle.innerText = title;
     const subDiv = document.createElement("div");
@@ -66,28 +70,27 @@ function buildProgressCircle(percent,title,texty) {
     const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
     const svgBkgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
     svgGroup.setAttribute("width","120");
-    svgGroup.setAttribute("height","180");
+    svgGroup.setAttribute("height","120");//180
     svgCircle.setAttribute("class","progress-ring-circle");
     svgCircle.setAttribute("id","frontCircle");
     svgCircle.setAttribute("stroke","#cc274c");
     svgCircle.setAttribute("stroke-width","5");
     svgCircle.setAttribute("stroke-linecap","round");
     svgCircle.setAttribute("fill","transparent");
-    svgCircle.setAttribute("r","52");
+    svgCircle.setAttribute("r",radius);
     svgCircle.setAttribute("cx","60");
-    svgCircle.setAttribute("cy","90");
+    svgCircle.setAttribute("cy","60");//90
     svgBkgCircle.setAttribute("class","progress-ring-circle");
     svgBkgCircle.setAttribute("stroke","#bed2e0");
     svgBkgCircle.setAttribute("stroke-width","4");
     svgBkgCircle.setAttribute("stroke-dasharray","10,10");
     svgBkgCircle.setAttribute("fill","transparent");
-    svgBkgCircle.setAttribute("r","52");
+    svgBkgCircle.setAttribute("r",radius);
     svgBkgCircle.setAttribute("cx","60");
-    svgBkgCircle.setAttribute("cy","90");
+    svgBkgCircle.setAttribute("cy","60");//90
     svgGroup.appendChild(svgBkgCircle);
     svgGroup.appendChild(svgCircle);
-
-    var radius = 52;
+    
     var circumference = radius * 2 * Math.PI;
     svgCircle.style.strokeDasharray = `${circumference} ${circumference}`;
     svgCircle.style.strokeDashoffset = `${circumference}`;
@@ -104,6 +107,7 @@ function buildProgressCircle(percent,title,texty) {
 
 function buildGaugeMeter(value,title,htmlTxt){
     //Path - Text - Path
+    const maxValue = 6; //m/s when 10 too many scales, should display half
     const pTitle = document.createElement("p");
     pTitle.innerText = title;
     const subDiv = document.createElement("div");
@@ -112,6 +116,7 @@ function buildGaugeMeter(value,title,htmlTxt){
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     const svgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
     const svgBkgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+    
     svgGroup.setAttribute("width","120");
     svgGroup.setAttribute("height","180");
     svgPath.setAttribute("class","gauge-value");
@@ -120,19 +125,67 @@ function buildGaugeMeter(value,title,htmlTxt){
     svgPath.setAttribute("stroke-width","5");
     svgPath.setAttribute("stroke-linecap","round");
     svgPath.setAttribute("fill","none");
-    //Fix this part, consider an analog watch
-    //here value should be added
-    svgPath.setAttribute("d","M 15 90 A 50 50 0 0 1 60 18");
+
+    //calc circ_path based on MaxValue = 6m/s
+    var myPath = "";
+    let radius = 50;
     
+    var angle = (value/maxValue)*180;//231.566;
+    
+    var dx = 0;
+    if (value < (maxValue/2)){
+        dx = 10 + radius*(1 - Math.cos(angle*toRadians));
+    }else{
+        angle = 180 - angle;//231.566
+        dx = 60 + radius*Math.cos(angle*toRadians);
+    }
+    var dy = 68 - radius*Math.sin(angle*toRadians); //68
+
+    myPath = "M 10 68 A 50 50 0 0 1 " + String(dx) + " "+ String(dy);
+    
+    svgPath.setAttribute("d",myPath);//60 18
+    //console.log(value,angle,dx,dy,myPath);//"M 15 90 A 50 50 0 0 1 95.35 32.64"
+
     svgBkgPath.setAttribute("class","gauge-dial");
     svgBkgPath.setAttribute("stroke","#bed2e0");
     svgBkgPath.setAttribute("stroke-width","4");
     svgBkgPath.setAttribute("stroke-linecap","round");
     svgBkgPath.setAttribute("fill","none");
-    svgBkgPath.setAttribute("d","M 15 90 A 50 50 0 1 1 105 90");
+    svgBkgPath.setAttribute("d","M 10 68 A 50 50 0 0 1 110 68");//105 90
 
+    //Adding text to SVG
+    for (let index = 0; index <= maxValue; index++) {
+        var thisAng = index/maxValue*180;
+        var rr = 30;
+        /*switch(index){
+            3 scales only
+            case 0:
+                yy = 68;myOff = 15;break;
+            case 1:
+                yy = 32;myOff = 10;break;
+            case 2:
+                yy = 68;myOff = -5;break;
+            default:
+                yy= 70;
+        }*/
+
+        var xx = 0;
+        if(index < (maxValue/2)){
+            xx = 20 + rr*(1-Math.cos(thisAng*toRadians));
+        }else{
+            thisAng = 180 - thisAng;
+            xx = 60 + rr*Math.cos(thisAng*toRadians);
+        }
+        if (index == maxValue/2){
+            xx = 55;
+        }
+        var yy = 68 - rr*Math.sin(thisAng*toRadians);
+        var myText = buildSVGtext(xx,yy,index);
+        svgGroup.appendChild(myText);
+    }
+    
     svgGroup.appendChild(svgBkgPath);
-    svgGroup.appendChild(svgPath);
+    svgGroup.appendChild(svgPath);    
 
     subDiv.appendChild(svgGroup);
     var subDivVal = document.createElement("div");
@@ -141,6 +194,17 @@ function buildGaugeMeter(value,title,htmlTxt){
     subDiv.appendChild(subDivVal);
 
     return subDiv;
+}
+
+function buildSVGtext(dx,dy,text){
+    const svgText = document.createElementNS('http://www.w3.org/2000/svg','text');
+    svgText.setAttribute("x",dx);
+    svgText.setAttribute("y",dy);
+    svgText.setAttribute("fill","#bed2e0");
+    svgText.setAttribute("font-family","Verdana");
+    svgText.setAttribute("font-size","large");
+    svgText.textContent = String(text);
+    return svgText
 }
 
 const iconArray = ["sunny","sunny_cloudy","cloudy","overcast","rainy","thunderstorm","sleet","snow","clear"];
@@ -187,8 +251,8 @@ async function display_info(){
         currCond = "<img src='assets/cloudy_night.svg' alt='Cloudy'/>";
     }
     //text += "<h2 class='align-left'>Kobe Weather<br><br>";
-    let maxmin = getMaxMin(data[1]);
-    text += "<h2 class='align-left'>" + myData.curr_weather[0][0] +"&emsp;"+ newHour +":"+ newMin + "</h2>";
+    let maxmin = getMaxMin(data[1]);//the date: myData.curr_weather[0][0]
+    text += "<h2 class='align-left'>&emsp;"+ newHour +":"+ newMin + "</h2>";
     text += "<div class='clearfix'><span class='large'>" + myData.curr_weather[0][3] + 
     "&#8451;&emsp;"+myData.curr_weather[0][2].replace(/"/g,"")+"&emsp;</span>"+ currCond + 
     "<h3>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h3></div>";
@@ -196,16 +260,17 @@ async function display_info(){
 
     var detailsDiv = document.getElementById("weather_details");
 
-    text = "<h2>" + myData.curr_weather[0][4] + "%<br>"+myData.curr_weather[0][5] + " mm</h2>";
+    text = "<h2><br>" + myData.curr_weather[0][4] + "%<br>"+myData.curr_weather[0][5] + " mm</h2>";
     var rainDiv = buildProgressCircle(myData.curr_weather[0][4],"RAIN",text);
     detailsDiv.appendChild(rainDiv);
 
-    text = "<h2>" + myData.curr_weather[0][6] + "%</h2>";
+    text = "<h2><br><br>" + myData.curr_weather[0][6] + "%</h2>";
     var humidDiv = buildProgressCircle(myData.curr_weather[0][6],"HUMIDITY",text);
     detailsDiv.appendChild(humidDiv);
 
-    text = "<h2>" + myData.curr_weather[0][7] +"m/s<br>"+ myData.curr_weather[0][8].replace(/"/g,"") + "</h2>";
-    var windDiv = buildGaugeMeter(0,"WIND",text);
+    text = "<h3>m/s</h3><h2>"+ myData.curr_weather[0][8].replace(/"/g,"") + "</h2>";
+    //text = "<h2>" + myData.curr_weather[0][7] +"m/s<br>"+ myData.curr_weather[0][8].replace(/"/g,"") + "</h2>";
+    var windDiv = buildGaugeMeter(myData.curr_weather[0][7],"WIND",text);
     detailsDiv.appendChild(windDiv);
 
     /* there used 2be a chart.js plot, code moved @EOF*/    
@@ -310,7 +375,7 @@ async function display_info(){
     .call(d3.axisTop(x));//to display the X axis on top
     
     // Y Axis
-    /*const y = d3.scaleLinear()
+    /*const y = d3.scaleLinear()//doesnt work
     .domain([d3.min(data[1])-1,d3.max(data[1])])
     .range([ yMax, 0]);*/
     //svg.append("g").call(d3.axisLeft(y));
@@ -397,6 +462,7 @@ async function display_info(){
 }
 
 function onMouseOver(d,i){
+    //not useful on mobile
     d3.select(this).attr("class","highlight");
     d3.select(this)
     .transition().duration(400)
@@ -411,6 +477,7 @@ function onMouseOver(d,i){
 }
 
 function onMouseOut(d,i){
+    //not useful on mobile
     d3.select(this).attr("class","bar");
     d3.select(this).transition().duration(400)
     .attr("width",x.bandwidth())
@@ -418,7 +485,7 @@ function onMouseOut(d,i){
     .attr("height",(d)=>{return yMax - y(d[1]);})
     d3.selectAll(".val").remove();
 }
-/*Using chart.js do this https://www.chartjs.org/docs/latest/samples/area/radar.html */
+
 async function get_url_data(curr_hour){
     const hour=[], temp=[], humid=[], wind=[], windDir = [];
     //const weather=[], rainProb=[], rainMM=[];
@@ -446,7 +513,9 @@ async function get_url_data(curr_hour){
     return {curr_weather,hour,temp,humid,wind,windDir};
 }
 
-/*const ctx = document.getElementById('myChart').getContext('2d');
+/*Using chart.js do this https://www.chartjs.org/docs/latest/samples/area/radar.html */
+/* Build a chart using Chart.js 
+    const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -460,4 +529,5 @@ async function get_url_data(curr_hour){
         options: {
             fill:false,scales: {y: {beginAtZero: true}}
         }
-    });*/
+    });
+*/
