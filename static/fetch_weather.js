@@ -321,7 +321,7 @@ async function display_info(){
     .attr("transform","translate(" + 10 + "," + margin + ")");    
     // Y Axis for humidity
     const yHumid = d3.scaleLinear()
-    .domain([d3.min(data[2])-10,d3.max(data[2])+2])
+    .domain([d3.min(data[2])-10,d3.max(data[2])])//100 displayed as 10
     .range([ yMax, 0]);
     
     svgRight.append("g")
