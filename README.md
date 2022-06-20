@@ -2,13 +2,29 @@
 
 [Live Demo](https://ndlopez.github.io)
 
-With the help of this site I hope I can get a position as Data Engineer or Data Scientist.
+Display on Web weather conditions by scraping data from tenki.jp and famous quotes scrapped from goodreads.com
 
-Some links are still broken. I will try to fill with content later on.
+Some links are still broken, sorry about that. 
 
 Some of the SVGs are from [here](https://github.com/danklammer/bytesize-icons)
 
-I used D3JS library to plot weather data.
+To plot weather data I used the D3JS library.
+
+Data is not updated daily, either I set up an AWS or Azure account so the Shell Script could get data and CRON update it.
+
+## Wrangling CSV data in VIM
+
+To replace " " with commas:
+
+	:1,$s/ /,/g
+
+Replace comma with "cr" char for the last line:
+	
+	:$s/,//g
+
+Search and DEL words that start with capital A,B,C,...Z:
+
+	:g/[A~Z]/d
 
 ## Running Environment
 
@@ -16,4 +32,4 @@ Browser: Firefox, obviously.
 
 Editor: VIM and VSCode
 
-MacBook Pro, MacOS 15.5
+Debian Buster, Sony Vaio J21
