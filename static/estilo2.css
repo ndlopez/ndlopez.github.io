@@ -3,6 +3,7 @@ body{
   font-family:Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   background-color:#2e4054;
   color: #bed2e0;
+  margin:0;
 }
 .no-padding{padding: 0px;}
 .header{padding:20px;text-align:center;}
@@ -78,8 +79,8 @@ ul, li{margin: 0px;padding:0px}
 .column{
   width: 50%;border:0px;
 }
-.column80{width:79%;}
-.column20{width:21%;}
+.column80{width:80%;}
+.column20{width:20%;}
 .column-left{width: 8%;}
 .column-right{width: 84%;}
 .column-third{width: 8%;}
@@ -195,7 +196,7 @@ text-align:center;
 .mySNS{padding:5px;}
 .copy-left{
   display:inline-block;
-  text-align:right;margin:0px;
+  text-align:right;
   -moz-transform:scaleX(-1);
   -o-transform:scaleX(-1);
   -webkit-transform:scaleX(-1);
