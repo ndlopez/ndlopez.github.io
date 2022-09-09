@@ -5,7 +5,7 @@
 
 const urlSched="https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/sched.json";
 
-const urlQuote="https://raw.githubusercontent.com/ndlopez/quotes/main/data/goodreads_quotes.json";
+const urlQuote="https://raw.githubusercontent.com/ndlopez/quotes/main/quotes/data/goodreads_quotes.json";
 
 disp_quote();
 
