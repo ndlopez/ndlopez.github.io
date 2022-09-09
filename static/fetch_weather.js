@@ -607,7 +607,7 @@ async function get_url_data(curr_hour){
         rainMM.push(parseInt(this_weather[5]));*/
         humid.push(parseInt(this_weather[6]));
         wind.push(parseInt(this_weather[7]));
-        windDir.push(this_weather[8].replace(/"/g,""));
+        windDir.push(this_weather[8]);//.replace(/"/g,""));
         //}
     });
     return {curr_weather,hour,temp,humid,wind,windDir};
