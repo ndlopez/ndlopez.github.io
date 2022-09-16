@@ -1,16 +1,14 @@
 initData = [
     {
-        id:1,activity:"Cook and Eat breakfast",
+        id:1,activity:"Cook dinner",
     },{
-        id:2,activity:"Fix JS code on NowPlaying Gnome-extension",
+        id:2,activity:"Learn Geant4 and C++",
     },{
-        id:3,activity:"16:30 Vacuum clean apartment",
+        id:3,activity:"Vacuum clean apartment",
     },{
-        id:4,activity:"21:35 Read a book",
+        id:4,activity:"Read a book",
     },{
-        id:5,activity:"Should I update Dell Vostro to Windows 11?"
-    },{
-        id:6,activity:"Re-write resume and submit to マイナビ転職",
+        id:5,activity:"Re-write resume and submit to マイナビ転職"
     },
 ];
 

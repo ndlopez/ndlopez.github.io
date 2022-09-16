@@ -73,7 +73,7 @@ a{text-decoration: none;color: #bed2e0;}
 }
 
 ul{list-style-type: none;}
-ul, li{margin: 0px;padding:0px}
+ul, li{margin: 0px;padding:5px}
 .large{font-size: 40px;font-weight: 200;}
 /*#curr_weather{background-image: url('assets/cloud-heavy.svg');}*/
 #weather_details, #curr_weather{
