@@ -7,16 +7,8 @@
     <link rel="stylesheet" type="text/css" href="static/estilo2.css">
     <script src="static/d3.v4.js"></script>
     <!--script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script-->
-    <script src="static/countdown.js"></script>
   </head>
   <body>
-    <div class="sticky row no-padding">
-      <div class="half align-left float-left"><p>Next solar zenith @ 16.50S 68.26W</p></div>
-      <div class="counter float-left"><h3 id="zenith"></h3>
-        <p class="top-text" style="text-align: right;">DAYS&ensp;HRS&ensp;MINS&ensp;SEC</p>
-      </div>
-    </div>
-
     <nav class="top-menu">
       <div class="navlink inline-block">
         <a title="Home" href="/" class="navlink-on">home</a></div>
@@ -26,27 +18,22 @@
       <div class="navlink inline-block"><a title="Todo" href="/pages/todo_list.html" class="navlink-off">to do</a></div>
     </nav>
 
-    <div class="header"><h1>My web portfolio</h1><p id="randQuote"></p></div>
-    <div class="row">
-        <div class="column clearfix align-left float-left">
-            <h2>Hello, I am Diego</h2> 
-            <p>I am a Physicist working in Aichi, Japan. 
-                I currently work as a Python/Javascript programmer. Although I hate bugs (is one of my pet-peeves) on weekends I like going for hiking.</p>
-            <p>Please check out <a href="/pages/projects.html">my projects</a> and a few 
-            <a href="https://ndzerglink.wordpress.com">articles I've written</a> on subjects 
-            like particle physics and programming</p>
-        </div>
+    <div class="header"><h1>Weather Report for Aichi, Japan</h1></div>
+    <!--Weather conditions-->
+    <div class="row" id="weather_info">
+      <div class="clearfix" id="curr_weather"></div>  	    
+      <div class="row" id="weather_details"></div>
+      <div class="row">
+        <div id="weather_bar" class="column80 float-left"></div>
+        <div class="column20 float-left"><!--canvas id="myChart" width="400" height="400"></canvas--></div></div>
     </div>
-    <!--My schedule-->
-    <button class="accordion">one fine day</button>
-    
-    <div class="panel no-padding"><table id="myday"></table></div>
 
-    <script src="static/fetch_sched.js"></script>
+    <script src="static/fetch_weather.js"></script>
   </body>
   <footer>
     <div class="row"><hr>
       <div class="column clearfix align-left float-left">
+        <p>Data from <em>tenki.jp</em> scraped using <i>Shell, curl, SED and </i>&#9749;</p>
         <p>Hello from
           <a target="blank" href="https://www.openstreetmap.org/search?whereami=1&query=34.7022%2C135.1940#map=14/34.7021/135.1940">34°41'24"N 135°11'44"E</a></p>
       </div>
@@ -62,7 +49,7 @@
   </footer>
   <nav class="menu" id="nav-menu">  
     <ul>
-      <li><a class="link-off" href="/pages/weather.html"><img src="assets/cloudy.svg"/> weather</a></li>
+      <li><a class="link-on" href="/"><img src="assets/home.svg"/> home</a></li>
       <li><a class="link-off" href="/pages/research.html"><img src="assets/telescope.svg"/> research</a></li>
       <li><a class="link-off" href="/pages/projects.html"><img src="assets/code.svg"/> projects</a></li>
       <li><a class="link-off" href="https://ndzerglink.wordpress.com"><img src="assets/article.svg"/> articles</a></li>

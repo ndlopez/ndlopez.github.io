@@ -5,6 +5,16 @@ body{
   color: #bed2e0;
   margin:0;
 }
+h3{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  padding-top: 10px;
+}
+.width70 ul{
+  padding-left: 25px;
+  list-style-type:square;
+  line-height: 1.5;
+}
+p{line-height: 1.5;}
 .no-padding{padding: 0px;}
 .header{padding:20px;text-align:center;}
 .sticky{
@@ -30,12 +40,14 @@ body{
   text-align: right;
   font-size: large;
   font-weight:300;
+  padding: 0px;
+  font-family: Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
 }
 .top-text{
   font-size: small;
   margin-top: -18px;
 }
-
+.width70{width:70%;}
 nav.top-menu{
   display: block;
   width: 100%;
