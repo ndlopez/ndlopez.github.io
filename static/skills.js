@@ -1,5 +1,5 @@
 /* Resume contents */
-const titles = ["Education","Work Experience","Skills","Presentations and Workshops"]
+const titles = ["Education","Work Experience","Invited Researcher","Skills"]
 
 const content = [
     {about:"Hello, I am Diego, a physicist living in Kobe, Japan.<br> What it started as a \
@@ -72,14 +72,14 @@ const content = [
             position: "Programmer",
             place: "Toyota Motors Corporation Kamigo Plant",
             location: "Kamigo, Toyota, Japan",
-            period: "2022-04 - 2022-08",
+            period: "April 2022 - August 2022",
             job : ["Operational Research: Implemented a tool to improve suppliers routing in Python.",
             "Build mobile version of Flask/React autonomous robot control tool."] 
         },{
             position: "Python and MySQL Mentor",
             place: "Galileo Co. Ltd.",
             location: "Nagoya, Japan",
-            period: "2022-01 - 2022-03",
+            period: "January 2022 - March 2022",
             job : ["Mentored one employee in Python and MySQL.",
             "Set up a local server and a DB to access data within the network.",
             "Implemented a REST-api in PHP to perform CRUD operations."]
@@ -87,7 +87,7 @@ const content = [
             position: "Lead Programmer",
             place: "CFKobo LLC",
             location: "Nagoya, Japan",
-            period: "2021-05 - 2021-12",
+            period: "May 2021 - December 2021",
             job: ["Using a GigE camera SDK implemented in C# new functions to control hardware and record video and images.",
             "Lead and Mentored a team of 3 novice developers to develop a monitoring system to acquire data from sensors and upload them to a remote server provided by the client.",
             "Sensor calibration to send/receive data using BLE communication device."]
@@ -95,13 +95,13 @@ const content = [
             position: "Python Programmer",
             place: "Toyota Motors Corporation Kamigo Plant",
             location: "Remote",
-            period:"2020-10 - 2021-03",
+            period:"October 2020 - March 2021",
             job: ["Aided in designing and implementing new tools for a GUI Python application."]
         },{
             position: "Jr. Data Analyst",
             place:"IVIS Inc.(Intelligent Vision and Imaging Systems)",
             location: "Toyota Motors Corporation, Toyota, Japan",
-            period:"2018-07 - 2020-06",
+            period:"July 2018 - June 2020",
             job: ["CAE software operator (Fluid Dynamics Analysis)", 
             "Implemented new tools (scripts) to connect pipelines to a cluster of computers.",
             "Implemented a simulation written in C-like code to test a new tool to improve driving conditions."]
@@ -109,22 +109,22 @@ const content = [
             position: "Jr. Physicist",
             place:"IBTEN (Bolivia Nuclear Regulatory Commission)",
             location: "La Paz, Bolivia",
-            period:"2009-01 - 2009-09",
+            period:"January 2009 - September 2009",
             job: ["Calibrated radionucleid instruments using Gamma-ray sources.",
             "Performed Gamma-ray spectroscopy of several samples (metal scraps)."]
         }],
     invited:[
         {
             place: "Geophysics Department, Universidad Nacional Autonoma de Mexico, Mexico",
-            period: "2010-10-2010-11",
+            period: "October 2010 - November 2010",
             job: ["Set up protoype experiment atop Mt.Sierra Negra (4600 masl)","Set data acquisition software to perform cosmic-ray measurements and monitor environment."]
         },{
-            place: "Fermi National Laboratory, Illinois, USA — ",
-            period: "2011-02-2011-03",
+            place: "Fermi National Laboratory, Illinois, USA",
+            period: "February 2011 - March 2011",
             job: ["Dismantle a high-energy physics detector (MiniBooNE experiment).","Set up data-acquisition equipment to be packed and sent to Mexico"]
         },{
-            place: "Astrophysics Department, INAOE, Puebla, Mexico — ",
-            period: "2012-03-2012-05",
+            place: "Astrophysics Department, INAOE, Puebla, Mexico",
+            period: "March 2012 - May 2012",
             job:["Dismantle experimental setup of high-energy physics detector (SciBar)","Set atop Mt. Sierra Negra (4600m a.s.l.) SciBar and make first cosmic-ray measurements.","Monitor environment and electronic equipment at high-altitude."]
         } 
     ],
@@ -133,11 +133,12 @@ const content = [
 
 console.log(content[0].education[1].title);
 
-function createTitle(jdx){
-    var h2Title = document.createElement("h2");
-    h2Title.innerHTML = titles[jdx];
-    return h2Title;
+function createH2Title(jdx){
+    var h2Text = document.createElement("h2");
+    h2Text.innerText = titles[jdx];
+    return h2Text;
 }
+//Education
 function createList(jdx){
     var thisElm = document.createElement("li");
     const initData = content[0].education[jdx];
@@ -151,13 +152,14 @@ function createList(jdx){
 var thisSection = document.createElement("section");
 thisSection.setAttribute("class","clearfix");
 
-thisSection.appendChild(createTitle(0));
+thisSection.appendChild(createH2Title(0));
 var eduList = document.createElement("ul");
 for(let idx=0; idx < content[0].education.length; idx++){
     eduList.appendChild(createList(idx));
 }
 thisSection.appendChild(eduList);
 
+//Work exp
 function workList(jdx){
     var thisElm = document.createElement("li");
     var olElm ="";
@@ -171,10 +173,29 @@ function workList(jdx){
     thisElm.innerHTML = texty;
     return thisElm;
 }
-thisSection.appendChild(createTitle(1));
+thisSection.appendChild(createH2Title(1));
 var wList = document.createElement("ul");
 for (let idx=0;idx < content[0].work.length;idx++){
     wList.appendChild(workList(idx));
 }
 thisSection.appendChild(wList);
+
+// invited
+function inviteList(jdx){
+    const initData = content[0].invited[jdx];
+    var olElm = "";
+    var thisElm = document.createElement("li");
+    var texty = "<h3>" + initData.place + "</h3>";
+    texty += "<p>" + initData.period + "</p>";
+    for(let idx=0; idx < initData.job.length; idx++)
+        olElm += "<li>" + initData.job[idx]+"</li>";
+    texty += "<ol>"+olElm+ "</ol>";
+    thisElm.innerHTML = texty;
+    return thisElm;
+
+}
+thisSection.appendChild(createH2Title(2));
+var vList = document.createElement("ul");
+vList.appendChild(inviteList(0));
+thisSection.appendChild(vList);
 document.body.appendChild(thisSection);
