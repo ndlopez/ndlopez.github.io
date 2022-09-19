@@ -25,29 +25,40 @@ const interests = [{
 const public = [{
     paper:[{
         title:"A faster and more reliable data acquisition system for the full performance of the SciCRT",
-        authors:"Y.Sasai, ..., D.Lopez",
+        authors:"Y.Sasai, Y.Matsubara, Y. Itow, D.Lopez, et.al.",
         journal: "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment",
         date: "2017-06-11",
+        doi: "https://doi.org/10.1016/j.nima.2016.12.060"
     },{
         title: "Search for solar neutrons during the maximum activity of solar cycle 24",
-        authors:"D.Lopez, Y.Matsubara, ...",
+        authors:"D.Lopez, Y.Matsubara, Y.Muraki, T.Sako",
         journal:"Proceedings of the 34th Int. Cosmic Ray Conf. in The Hague, The Netherlands",
-        date:"2016-08-18"
+        date:"2016-08-18",
+        doi: "https://pos.sissa.it/archive/conferences/236/115/ICRC2015_115.pdf"
     },{
         title: "Simultaneous observation of solar neutrons from the ISS and High mountain observatories in association with a flare on July 8, 2014",
-        authors:"Y.Muraki, D.Lopez, ...",
+        authors:"Y.Muraki, D.Lopez, K.Koga, et.al.",
         journal:"Solar Physics",
-        date:"2016-04-21"
+        date:"2016-04-21",
+        doi: "DOI 10.1007/s11207-016-0887-0"
     },{
         title: "Estimates of the neutron emission during large solar flares in the rising and maximum period of solar cycle 24",
         authors:"D.Lopez, Y.Matsubara, Y.Muraki, T.Sako, J.F. Valdes",
         journal:"Astroparticle Physics",
-        date:"2016-03-01"
+        date:"2016-03-01",
+        doi: "https://doi.org/10.1016/j.astropartphys.2015.12.004"
     },{
         title: "Search for solar neutrons at Mount Chacaltaya associated with M- and X-class flares during the rising period of solar cycle 24",
         authors:"D.Lopez and Y.Matsubara",
         journal:"Earth, Planets and Space",
-        date:"2015-12-03"
+        date:"2015-12-03",
+        doi:"DOI 10.1186/s40623-015-0222-2"
+    },{
+        title: "Observaci\'on simult\'anea de neutrones solares en asociacion con una fulguracion solar del 7 de septiembre de 2005",
+        authors: "Y. Ricaldi, P. Miranda, D. Lopez, R. Bustos",
+        journal: "Revista Boliviana de Fisica 13, 29-32, 2007",
+        date: "2007-10",
+        doi: "http://www.fiumsa.edu.bo/rbf/numero13.pdf"
     }],
     poster:[{
         title: "Solar-neutron monitoring using Chacaltaya Neutron Monitor during the maximum of solar cycle 24",
@@ -69,25 +80,25 @@ const public = [{
         date:"2016-02",
         link:"https://www.nagoya-u/nul"
     },{
-        title: "Particle Identification using a prototype detector",
+        title: "Particle Identification by using mini-SciCR detector at Mount Sierra Negra in Mexico",
         authors:"D.Lopez",
         journal:"Thesis submitted for M.Sc. in Astrophysics, Nagoya University",
         date:"2012-03",
         link: "Available as a compendium of MSc theses from the Solar-Terrestrial Environment Laboratory, Nagoya University, Jun 2012"
     },{
-        title: "Analisis de Eventos asociados con una fulguracion solar",
+        title: "Analisis de Eventos producidos por neutrones solares detectados en Monte Chacaltaya",
         authors:"D.Lopez",
         journal:"Bachelor thesis submitted for BSc in Physics, San Andres University",
-        date: "2008-06",
+        date: "2007-10",
         link: "Available at the Central Library of San Andres University (in Spanish)"
     }],
     awards:[{
         title: "Monbukagakusho Scholarship awarded by the Japanese Gov. MEXT",
         period: "2009-10~2015-03",
-        amount: "150000 JPY",
+        amount: "150000 JPY /month",
         comment: "Full scholarship for pursuing a higher degree at Nagoya University"
     },{
-        title: "Honour Diploma for outstanding performance during 2003 Autumn term",
+        title: "Honour Diploma for outstanding performance during 2003 Spring and 2004 Fall terms",
         period: "2004",
         amount :"",
         comment: "Physics Department, Science Faculty, San Andres University"
@@ -97,49 +108,4 @@ const public = [{
         amount: "",
         comment: "Physics Department, Science Faculty, San Andres University"
     }]
-}];
-const work_exp = [{
-    position: "Programmer",
-    place: "TMC Kamigo Plant, Toyota, Japan",
-    period: "2022-04 - 2022-08",
-    job : ["Operational Research: Implemented a tool to improve suppliers routing in Python.","Build mobile version of Flask/React autonomous robot control tool."] 
-},{
-    position: "Programming Mentor",
-    place: "Galileo Inc., Nagoya, Japan",
-    period: "2021-12-2022-03",
-    job : ["Mentored one employee in Python and MySQL.","Set up a local server and a DB to access data within the network.","Implemented a REST-api in PHP to perform CRUD operations."]
-},{
-    position: "Lead Programmer",
-    place: "CF Kobo, Nagoya, Japan",
-    period: "2021-05-2021-12",
-    job: ["Using a GigE camera SDK implemented in C# new functions to control hardware and record video and images.","Lead and Mentored a team of 3 novice developers to develop a monitoring system to acquire data from sensors and upload them to a remote server provided by the client.","Sensor calibration to send/receive data using small communication device."]
-},{
-    position: "Programmer",
-    place: "TMC Kamigo Plant, Toyota, Japan",
-    period: "2020-10-2021-03",
-    job:["Aided in designing and implementing new tools for a GUI Python application. Tests were made on site."]
-},{
-    position: "Jr. Data Analyst",
-    place: "IVIS (Intelligent Vision and Imaging Systems), Toyota, Japan",
-    period: "2018-07-2020-06",
-    job: ["CAE software operator (Fluid Dynamics Analysis)", "Implemented new tools (scripts) to connect pipelines to a cluster of computers.","Implemented a simulation written in C-like code to test a new tool to improve driving conditions."]
-},{
-    position: "Jr. Physicist",
-    place: "IBTEN (National Nuclear Regulatory Institution), Bolivia",
-    period: "2009-01-2009-09",
-    job: ["Calibrated radionucleid instruments using Gamma-ray sources.","Performed Gamma-ray spectroscopy of several samples (metal scraps)."]
-}];
-
-const invite = [{
-    place: "Geophysics Department, Universidad Nacional Autonoma de Mexico, Mexico",
-    period: "2010-10-2010-11",
-    job: ["Set up protoype experiment atop Mt.Sierra Negra (4600 masl)","Set data acquisition software to perform cosmic-ray measurements and monitor environment."]
-},{
-    place: "Fermi National Laboratory, Illinois, USA — ",
-    period: "2011-02-2011-03",
-    job: ["Dismantle a high-energy physics detector (MiniBooNE experiment).","Set up data-acquisition equipment to be packed and sent to Mexico"]
-},{
-    place: "Astrophysics Department, INAOE, Puebla, Mexico — ",
-    period: "2012-03-2012-05",
-    job:["Dismantle experimental setup of high-energy physics detector (SciBar)","Set atop Mt. Sierra Negra (4600m a.s.l.) SciBar and make first cosmic-ray measurements.","Monitor environment and electronic equipment at high-altitude."]
 }];
