@@ -72,14 +72,14 @@ const content = {
             position: "Programmer",
             place: "Toyota Motors Corporation Kamigo Plant",
             location: "Kamigo, Toyota, Japan",
-            period: "April 2022 - August 2022",
+            period: "Apr 2022 - Aug 2022",
             job : ["Operational Research: Implemented a tool to improve suppliers routing in Python.",
             "Build mobile version of Flask/React autonomous robot control tool."] 
         },{
             position: "Python and MySQL Mentor",
             place: "Galileo Co. Ltd.",
             location: "Nagoya, Japan",
-            period: "January 2022 - March 2022",
+            period: "Jan 2022 - Mar 2022",
             job : ["Mentored one employee in Python and MySQL.",
             "Set up a local server and a DB to access data within the network.",
             "Implemented a REST-api in PHP to perform CRUD operations."]
@@ -87,7 +87,7 @@ const content = {
             position: "Lead Programmer",
             place: "CFKobo LLC",
             location: "Nagoya, Japan",
-            period: "May 2021 - December 2021",
+            period: "May 2021 - Dec 2021",
             job: ["Using a GigE camera SDK implemented in C# new functions to control hardware and record video and images.",
             "Lead and Mentored a team of 3 novice developers to develop a monitoring system to acquire data from sensors and upload them to a remote server provided by the client.",
             "Sensor calibration to send/receive data using BLE communication device."]
@@ -95,13 +95,13 @@ const content = {
             position: "Python Programmer",
             place: "Toyota Motors Corporation Kamigo Plant",
             location: "Remote",
-            period:"October 2020 - March 2021",
+            period:"Oct 2020 - Mar 2021",
             job: ["Aided in designing and implementing new tools for a GUI Python application."]
         },{
             position: "Jr. Data Analyst",
             place:"IVIS Inc.(Intelligent Vision and Imaging Systems)",
             location: "Toyota Motors Corporation, Toyota, Japan",
-            period:"July 2018 - June 2020",
+            period:"Jul 2018 - Jun 2020",
             job: ["CAE software operator (Fluid Dynamics Analysis)", 
             "Implemented new tools (scripts) to connect pipelines to a cluster of computers.",
             "Implemented a simulation written in C-like code to test a new tool to improve driving conditions."]
@@ -109,22 +109,22 @@ const content = {
             position: "Jr. Physicist",
             place:"IBTEN (Bolivia Nuclear Regulatory Commission)",
             location: "La Paz, Bolivia",
-            period:"January 2009 - September 2009",
+            period:"Jan 2009 - Sep 2009",
             job: ["Calibrated radionucleid instruments using Gamma-ray sources.",
             "Performed Gamma-ray spectroscopy of several samples (metal scraps)."]
         }],
     invited:[
         {
             place: "Geophysics Department, Universidad Nacional Autonoma de Mexico, Mexico",
-            period: "October 2010 - November 2010",
+            period: "Oct 2010 - Nov 2010",
             job: ["Set up protoype experiment atop Mt.Sierra Negra (4600 masl)","Set data acquisition software to perform cosmic-ray measurements and monitor environment."]
         },{
             place: "Fermi National Laboratory, Illinois, USA",
-            period: "February 2011 - March 2011",
+            period: "Feb 2011 - Mar 2011",
             job: ["Dismantle a high-energy physics detector (MiniBooNE experiment).","Set up data-acquisition equipment to be packed and sent to Mexico"]
         },{
             place: "Astrophysics Department, INAOE, Puebla, Mexico",
-            period: "March 2012 - May 2012",
+            period: "Mar 2012 - May 2012",
             job:["Dismantle experimental setup of high-energy physics detector (SciBar)","Set atop Mt. Sierra Negra (4600m a.s.l.) SciBar and make first cosmic-ray measurements.","Monitor environment and electronic equipment at high-altitude."]
         } 
     ],

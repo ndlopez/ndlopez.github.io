@@ -1,28 +1,28 @@
+const titles = ["Tools","Interests","Publications","Awards and Honours","Music"];
+const subTitles = ["Software","Hardware","Papers","Posters","Theses"]
 const tools = [
-{software:[{
-    os: "Debian or Fedora",
-    browser:"Firefox",
-    search : "DuckDuckGo",
-    coding: "Mostly Emacs and VI, sometimes VSCodium",
-    note: "Simplenote",
-    music: "VLC (streaming ThirdRock Radio and sometimes FM La Paz)"
-}],
-hardware: [{
-    personal: "Panasonic Let'sNote CF-QV 12\" w/Linux Fedora 36",
-    work: "Dell Vostro 13\" w/Windows 11 Pro",
-    spare: "MacBook Pro 15\" w/MacOS 10.15",
-    display: "hp Z23n 1080p",
-    keyboard: "Sony vaio VGP-UKB3JP, silver, full-size",
-    headphones: "Bose AE2 w/remote",
-}]
-}];
+    {
+        item0: "OS: Debian or Fedora",
+        item1: "Browser: Firefox",
+        item2: "Search Engine: DuckDuckGo",
+        item3: "IDE: Mostly Emacs and VI, sometimes VSCodium",
+        item4: "Notes: Simplenote",
+        item5: "Music: VLC (streaming ThirdRock Radio and sometimes FM La Paz)"
+    },{
+        item0: "Personal: Panasonic Let'sNote CF-QV 12\" w/Linux Fedora 36",
+        item1: "Work: Dell Vostro 13\" w/Windows 11 Pro",
+        item2: "MacBook Pro 15\" w/MacOS 10.15",
+        item3: "Display: hp Z23n 1080p",
+        item4: "Keyboard: Sony vaio VGP-UKB3JP, silver, full-size",
+        item5: "Headphones: Bose AE2 w/remote",
+    }
+];
 
-const interests = [{
-    pro:["High-energy physics","Astronomy","electronics"],
-    personal:["Web design","cycling","hiking","reading"],
-}];
-
-const public = [{
+const public = {
+    interests:{
+        pro:["High-energy physics","Astronomy","electronics"],
+        personal:["Web design","cycling","hiking","reading"],
+    },
     paper:[{
         title:"A faster and more reliable data acquisition system for the full performance of the SciCRT",
         authors:"Y.Sasai, Y.Matsubara, Y. Itow, D.Lopez, et.al.",
@@ -108,4 +108,30 @@ const public = [{
         amount: "",
         comment: "Physics Department, Science Faculty, San Andres University"
     }]
-}];
+};
+//console.log(tools[0]["item0"]);
+const mainDiv = document.createElement("section");
+mainDiv.setAttribute("class","clearfix");
+function createTitle(elm,text){
+    var h2Title = document.createElement(elm);
+    h2Title.innerText = text;
+    return h2Title;
+}
+
+function buildList(jdx){
+    var ulElm = document.createElement("ul");
+    for (item in tools[jdx]){
+        var liElm = document.createElement("li");
+        //console.log("thisData",tools[jdx][item]);
+        liElm.innerText = tools[jdx][item];
+        ulElm.appendChild(liElm);
+    }
+    return ulElm;
+}
+
+mainDiv.appendChild(createTitle("h2",titles[0]));
+for (let idx=0;idx<tools.length;idx++){
+    mainDiv.appendChild(createTitle("h3",subTitles[idx]))
+    mainDiv.appendChild(buildList(idx));
+}
+document.body.appendChild(mainDiv);
