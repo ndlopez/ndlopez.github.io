@@ -133,24 +133,48 @@ const content = [
 
 console.log(content[0].education[1].title);
 
+function createTitle(jdx){
+    var h2Title = document.createElement("h2");
+    h2Title.innerHTML = titles[jdx];
+    return h2Title;
+}
 function createList(jdx){
-    var thisDiv = document.createElement("li");
+    var thisElm = document.createElement("li");
     const initData = content[0].education[jdx];
     var texty = "<h3>" + initData.title+"</h3>"
     texty += "<p>" + initData.year+"</p><p>"+
     initData.university+"</p>Research Area: "+
     initData.area+"</p><p>Advisor: "+initData.advisor+"</p>";
-    thisDiv.innerHTML = texty;
-    return thisDiv;
+    thisElm.innerHTML = texty;
+    return thisElm;
 }
 var thisSection = document.createElement("section");
 thisSection.setAttribute("class","clearfix");
-var h2Title = document.createElement("h2");
-h2Title.innerHTML = titles[0]
-thisSection.appendChild(h2Title);
-var myList = document.createElement("ul");
+
+thisSection.appendChild(createTitle(0));
+var eduList = document.createElement("ul");
 for(let idx=0; idx < content[0].education.length; idx++){
-    myList.appendChild(createList(idx));
+    eduList.appendChild(createList(idx));
 }
-thisSection.appendChild(myList);
+thisSection.appendChild(eduList);
+
+function workList(jdx){
+    var thisElm = document.createElement("li");
+    var olElm ="";
+    const initData = content[0].work[jdx];
+    for (let idx= 0; idx < initData.job.length; idx++){
+        olElm += "<li>"+initData.job[idx]+"</li>";
+    }
+    var texty = "<h3>" + initData.position + "</h3>";
+    texty += "<p><strong>"+ initData.place + "</strong> — <em>" +
+    initData.period+"</em></p><ol>" + olElm + "</ol>";
+    thisElm.innerHTML = texty;
+    return thisElm;
+}
+thisSection.appendChild(createTitle(1));
+var wList = document.createElement("ul");
+for (let idx=0;idx < content[0].work.length;idx++){
+    wList.appendChild(workList(idx));
+}
+thisSection.appendChild(wList);
 document.body.appendChild(thisSection);
