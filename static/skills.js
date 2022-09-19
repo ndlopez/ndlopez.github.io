@@ -1,8 +1,8 @@
 /* Resume contents */
 const titles = ["Education","Work Experience","Invited Researcher","Skills"]
 
-const content = [
-    {about:"Hello, I am Diego, a physicist living in Kobe, Japan.<br> What it started as a \
+const content = {
+    about:"Hello, I am Diego, a physicist living in Kobe, Japan.<br> What it started as a \
     hobby back in undegraduate school became a profession (programmer).<br> I do mostly \
     back-end (Python, some PHP) and most recently front-end (JavaScript). <br>I am passionate about \
     cosmic-rays, nuclear physics and electronics.<br> Since April 2022 I started an internship as a programmer for TMC at the Kamigo Plant.",
@@ -31,41 +31,41 @@ const content = [
         }],
     programming:[
         {
-            lang: "C/C++",
-            skill: "Can code with reference",
+            lang: "C",
+            skill: "can code without reference",
             level: "Intermediate",
         },{
             lang: "Python",
-            skill: "Can code with reference",
+            skill: "can code without reference",
             level: "Intermediate",
         },{
             lang: "JavaScript",
-            skill: "Can code with reference",
+            skill: "can code without reference",
             level: "Intermediate",
         },{
-            lang: "Java",
-            skill: "Can code with reference",
+            lang: "Java, PHP, C++",
+            skill: "can code with reference",
             level: "Beginner"
         }
     ],
     language:[
         {
             lang: "Spanish",
+            skill: "Can read, write and listen.",
             level: "Native",
-            info: "Can read, write and listen."
         },{
             lang: "English",
+            skill: "Can read, write and listen.",
             level: "Fluent",
-            info: "Can read, write and listen."
         },{
             lang: "Japanese",
-            level: "Business",
-            info: "Can read and understand 80%, can listen and understand 90%, \
+            skill: "Can read and understand 80%, can listen and understand 90%, \
             can write simple paragraphs",
+            level: "Business Level",
         },{
             lang: "German",
+            skill: "Basic greetings and asking for directions",
             level: "Beginner",
-            info: "Basic greetings and asking for directions",
         }],
     work:[
         {
@@ -128,10 +128,9 @@ const content = [
             job:["Dismantle experimental setup of high-energy physics detector (SciBar)","Set atop Mt. Sierra Negra (4600m a.s.l.) SciBar and make first cosmic-ray measurements.","Monitor environment and electronic equipment at high-altitude."]
         } 
     ],
-}
-];
+};
 
-console.log(content[0].education[1].title);
+//console.log(content.education[1].title);
 
 function createH2Title(jdx){
     var h2Text = document.createElement("h2");
@@ -141,7 +140,7 @@ function createH2Title(jdx){
 //Education
 function createList(jdx){
     var thisElm = document.createElement("li");
-    const initData = content[0].education[jdx];
+    const initData = content.education[jdx];
     var texty = "<h3>" + initData.title+"</h3>"
     texty += "<p>" + initData.year+"</p><p>"+
     initData.university+"</p>Research Area: "+
@@ -154,7 +153,7 @@ thisSection.setAttribute("class","clearfix");
 
 thisSection.appendChild(createH2Title(0));
 var eduList = document.createElement("ul");
-for(let idx=0; idx < content[0].education.length; idx++){
+for(let idx=0; idx < content.education.length; idx++){
     eduList.appendChild(createList(idx));
 }
 thisSection.appendChild(eduList);
@@ -163,7 +162,7 @@ thisSection.appendChild(eduList);
 function workList(jdx){
     var thisElm = document.createElement("li");
     var olElm ="";
-    const initData = content[0].work[jdx];
+    const initData = content.work[jdx];
     for (let idx= 0; idx < initData.job.length; idx++){
         olElm += "<li>"+initData.job[idx]+"</li>";
     }
@@ -175,14 +174,14 @@ function workList(jdx){
 }
 thisSection.appendChild(createH2Title(1));
 var wList = document.createElement("ul");
-for (let idx=0;idx < content[0].work.length;idx++){
+for (let idx=0;idx < content.work.length;idx++){
     wList.appendChild(workList(idx));
 }
 thisSection.appendChild(wList);
 
 // invited
 function inviteList(jdx){
-    const initData = content[0].invited[jdx];
+    const initData = content.invited[jdx];
     var olElm = "";
     var thisElm = document.createElement("li");
     var texty = "<h3>" + initData.place + "</h3>";
@@ -196,6 +195,20 @@ function inviteList(jdx){
 }
 thisSection.appendChild(createH2Title(2));
 var vList = document.createElement("ul");
-vList.appendChild(inviteList(0));
+for (let idx=0; idx < content.invited.length;idx++)
+    vList.appendChild(inviteList(idx));
 thisSection.appendChild(vList);
+
+// skills
+thisSection.appendChild(createH2Title(3));
+function skillList(skillText){
+    var thisElm = document.createElement("li");
+    var texty = "<li>" + skillText.lang + ", " + skillText.skill +"</li>";
+    thisElm.innerHTML = texty;
+    return thisElm;
+}
+var skList = document.createElement("ul");
+for(let idx=0;idx<content.programming.length;idx++)
+    skList.appendChild(skillList(content.programming[idx]));
+thisSection.appendChild(skList);
 document.body.appendChild(thisSection);
