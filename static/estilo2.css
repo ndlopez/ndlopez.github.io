@@ -18,6 +18,9 @@ section h2{
   border-bottom: #cc274c 1px solid;
 }
 p{line-height: 1.5;}
+div a{
+  font-weight: bold;
+}
 .no-padding{padding: 0px;}
 .header{padding:20px;text-align:center;}
 .sticky{

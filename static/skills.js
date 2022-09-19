@@ -32,40 +32,44 @@ const content = {
         }],
     programming:[
         {
-            lang: "C",
+            lang: "C, Python, JavaScript",
             skill: "can code without reference",
             level: "Intermediate",
         },{
-            lang: "Python",
+            lang: "Bash, HTML, CSS",
             skill: "can code without reference",
-            level: "Intermediate",
-        },{
-            lang: "JavaScript",
-            skill: "can code without reference",
-            level: "Intermediate",
+            level: "Advanced",
         },{
             lang: "Java, PHP, C++",
             skill: "can code with reference",
             level: "Beginner"
+        },{
+            lang: "Linux/Unix Administration",
+            level: "Intermediate",
+            skill: ""
+        },{
+            lang: "Databases (MySQL)",
+            level: "Intermediate",
+            skill: ""
         }
     ],
     language:[
         {
             lang: "Spanish",
-            skill: "Native",
-            level: "can read, write and listen.",
+            level: "Native",
+            skill: "can read, write and listen.",
         },{
             lang: "English",
-            skill: "Fluent",
-            level: "can read, write and listen.",
+            level: "Fluent",
+            skill: "can read, write and listen.",
         },{
             lang: "Japanese",
-            skill: "Business Level",
-            level: "can read and listen, and can write simple paragraphs",
+            level: "Business Level",
+            skill: "can read and listen, and can write simple paragraphs",
         },{
             lang: "German",
-            skill: "Beginner",
-            level: "basic greetings and asking for directions",
+            level: "Beginner",
+            skill: "basic greetings and asking for directions",
         }],
     work:[
         {
@@ -291,7 +295,7 @@ thisSection.appendChild(vList);
 thisSection.appendChild(createTitle("h2",titles[3]));
 function skillList(skillText){
     var thisElm = document.createElement("li");
-    var texty = skillText.lang + ", " + skillText.skill;
+    var texty = skillText.level + ": " + skillText.lang;
     thisElm.innerText = texty;
     return thisElm;
 }
@@ -306,6 +310,30 @@ const skillData = [content.programming,content.language];
 for(let jdx=0;jdx<2;jdx++){
     thisSection.appendChild(createTitle("h3",subTitles[jdx]));
     thisSection.appendChild(getSkill(skillData[jdx]));
+}
+
+//publications
+thisSection.appendChild(createTitle("h2",titles[4]));
+function buildPublic(jdx){
+    var pList = document.createElement("div");
+    const initData = public.paper[jdx];
+    var texty = "";
+    for(item in initData){
+        if(item == "doi"){
+            texty +="";
+        }else{
+            if(item == "title"){
+            texty += "<a href='" + initData["doi"] +"'>"+initData[item]+"</a>";
+            }else{
+                texty += "<p>" + initData[item] +"</p>";
+            }
+        }        
+    }
+    pList.innerHTML = texty;
+    return pList;
+}
+for(let idx =0; idx < public.paper.length; idx++){
+    thisSection.appendChild(buildPublic(idx));
 }
 
 document.body.appendChild(thisSection);
