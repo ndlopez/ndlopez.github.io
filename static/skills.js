@@ -1,5 +1,6 @@
 /* Resume contents */
-const titles = ["Education","Work Experience","Invited Researcher","Skills"]
+const titles = ["Education","Work Experience","Invited Researcher","Skills"];
+const subTitles = ["Programming","Spoken Languages"];
 
 const content = {
     about:"Hello, I am Diego, a physicist living in Kobe, Japan.<br> What it started as a \
@@ -51,21 +52,20 @@ const content = {
     language:[
         {
             lang: "Spanish",
-            skill: "Can read, write and listen.",
-            level: "Native",
+            skill: "Native",
+            level: "can read, write and listen.",
         },{
             lang: "English",
-            skill: "Can read, write and listen.",
-            level: "Fluent",
+            skill: "Fluent",
+            level: "can read, write and listen.",
         },{
             lang: "Japanese",
-            skill: "Can read and understand 80%, can listen and understand 90%, \
-            can write simple paragraphs",
-            level: "Business Level",
+            skill: "Business Level",
+            level: "can read and listen, and can write simple paragraphs",
         },{
             lang: "German",
-            skill: "Basic greetings and asking for directions",
-            level: "Beginner",
+            skill: "Beginner",
+            level: "basic greetings and asking for directions",
         }],
     work:[
         {
@@ -132,12 +132,12 @@ const content = {
 
 //console.log(content.education[1].title);
 
-function createH2Title(jdx){
-    var h2Text = document.createElement("h2");
-    h2Text.innerText = titles[jdx];
+function createTitle(elm,thisText){
+    var h2Text = document.createElement(elm);
+    h2Text.innerText = thisText;
     return h2Text;
 }
-//Education
+//Education researchGate color #40ba9b
 function createList(jdx){
     var thisElm = document.createElement("li");
     const initData = content.education[jdx];
@@ -151,7 +151,7 @@ function createList(jdx){
 var thisSection = document.createElement("section");
 thisSection.setAttribute("class","clearfix");
 
-thisSection.appendChild(createH2Title(0));
+thisSection.appendChild(createTitle("h2",titles[0]));
 var eduList = document.createElement("ul");
 for(let idx=0; idx < content.education.length; idx++){
     eduList.appendChild(createList(idx));
@@ -172,7 +172,7 @@ function workList(jdx){
     thisElm.innerHTML = texty;
     return thisElm;
 }
-thisSection.appendChild(createH2Title(1));
+thisSection.appendChild(createTitle("h2",titles[1]));
 var wList = document.createElement("ul");
 for (let idx=0;idx < content.work.length;idx++){
     wList.appendChild(workList(idx));
@@ -193,22 +193,31 @@ function inviteList(jdx){
     return thisElm;
 
 }
-thisSection.appendChild(createH2Title(2));
+thisSection.appendChild(createTitle("h2",titles[2]));
 var vList = document.createElement("ul");
 for (let idx=0; idx < content.invited.length;idx++)
     vList.appendChild(inviteList(idx));
 thisSection.appendChild(vList);
 
 // skills
-thisSection.appendChild(createH2Title(3));
+thisSection.appendChild(createTitle("h2",titles[3]));
 function skillList(skillText){
     var thisElm = document.createElement("li");
-    var texty = "<li>" + skillText.lang + ", " + skillText.skill +"</li>";
-    thisElm.innerHTML = texty;
+    var texty = skillText.lang + ", " + skillText.skill;
+    thisElm.innerText = texty;
     return thisElm;
 }
-var skList = document.createElement("ul");
-for(let idx=0;idx<content.programming.length;idx++)
-    skList.appendChild(skillList(content.programming[idx]));
-thisSection.appendChild(skList);
+
+function getSkill(mySkill){
+    var skList = document.createElement("ul");
+    for(let idx=0;idx<mySkill.length;idx++)
+        skList.appendChild(skillList(mySkill[idx]));
+    return skList;
+}
+const skillData = [content.programming,content.language];
+for(let jdx=0;jdx<2;jdx++){
+    thisSection.appendChild(createTitle("h3",subTitles[jdx]));
+    thisSection.appendChild(getSkill(skillData[jdx]));
+}
+
 document.body.appendChild(thisSection);
