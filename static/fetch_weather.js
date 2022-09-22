@@ -320,41 +320,43 @@ async function display_info(){
     const trData =data[0].map((_,colIdx)=> data.map(row => row[colIdx]));
 
     var currCond = myData.curr_weather[0][2].replace(/"/g,"");
-    //var textImg = "<img src='assets/";
+    var textImg = "<img src='../assets/";
     switch(currCond){
         case "晴れ":
-            currCond = "<img src='assets/sunny.svg' alt='" + currCond + "'/>";
+            currCond = "sunny.svg' alt='" + currCond + "'/>";
             break;
         case "曇り":
-            currCond = "<img src='assets/cloudy.svg' alt='" + currCond + "'/>";
+            currCond = "cloudy.svg' alt='" + currCond + "'/>";
             break;
         case "小雨":
         case "弱雨":
-            currCond = "<img src='assets/overcast.svg' alt='" + currCond + "'/>";
+            currCond = "overcast.svg' alt='" + currCond + "'/>";
             break;
         case "雨":
-            currCond = "<img src='assets/rainy.svg' alt='" + currCond + "'/>";
+            currCond = "rainy.svg' alt='" + currCond + "'/>";
             break;
         case "強雨":
-            currCond = "<img src='assets/thunderstorm.svg' alt='" + currCond + "'/>";
+            currCond = "thunderstorm.svg' alt='" + currCond + "'/>";
             break;
         default:
-            currCond = "<img src='assets/sunny_cloudy.svg' alt='" + currCond + "'/>";
+            currCond = "sunny_cloudy.svg' alt='" + currCond + "'/>";
             /* Not considered yet, sleet and snow */
     }
+    textImg += currCond;
+    //console.log(textImg);
     //currCond = textImg + "alt='" + currCond + "'/>"
     /* Special case when it's sunny and less 6hrs and over 19hrs */
-    if(currCond === "<img src='assets/sunny.svg' alt='晴れ'/>" && (hh > 18 || hh < 6)){
-        currCond = "<img src='assets/clear.svg' alt='晴れ'/>";
+    if(textImg === "<img src='../assets/sunny.svg' alt='晴れ'/>" && (hh > 18 || hh < 6)){
+        textImg = "<img src='../assets/clear.svg' alt='晴れ'/>";
     }
-    if(currCond === "<img src='assets/cloudy.svg' alt='曇り'/>" && (hh > 18 || hh < 6)){
-        currCond = "<img src='assets/cloudy_night.svg' alt='Cloudy'/>";
+    if(textImg=== "<img src='../assets/cloudy.svg' alt='曇り'/>" && (hh > 18 || hh < 6)){
+        textImg = "<img src='../assets/cloudy_night.svg' alt='Cloudy'/>";
     }
     //text += "<h2 class='align-left'>Kobe Weather<br><br>";
     let maxmin = getMaxMin(data[1]);//the date: myData.curr_weather[0][0]
-    text += "<h2 class='align-left'>&emsp;"+ newHour +":"+ newMin + "</h2>";
+    text += "<h2 class='align-left'>Nagoya, JP&emsp;"+ newHour +":"+ newMin + "</h2>";
     text += "<div class='clearfix'><span class='large'>" + myData.curr_weather[0][3] + 
-    "&#8451;&emsp;"+myData.curr_weather[0][2].replace(/"/g,"")+"&emsp;</span>"+ currCond + 
+    "&#8451;&emsp;"+myData.curr_weather[0][2].replace(/"/g,"")+"&emsp;</span>"+ textImg + 
     "<h3>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h3></div>";
     document.getElementById("curr_weather").innerHTML = text;
 
@@ -371,9 +373,7 @@ async function display_info(){
     text = "<h3>m/s</h3><h2>"+ myData.curr_weather[0][8].replace(/"/g,"") + "</h2>";
     //text = "<h2>" + myData.curr_weather[0][7] +"m/s<br>"+ myData.curr_weather[0][8].replace(/"/g,"") + "</h2>";
     var windDiv = buildGaugeMeter(myData.curr_weather[0][7],"WIND",text);
-    detailsDiv.appendChild(windDiv);
-
-    /* there used 2be a chart.js plot, code moved @EOF*/    
+    detailsDiv.appendChild(windDiv);   
     
     //console.log(myData.hour[4],myData.temp[4],myData.humid[4]);
     /* D3js plot 
