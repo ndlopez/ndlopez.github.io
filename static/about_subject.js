@@ -23,7 +23,7 @@ const interests = {
     hobby:["Programming","Cycling","Hiking","Reading"]};
 
 //console.log(tools[0]["item0"]);
-const mainDiv = document.createElement("section");
+const mainDiv = document.getElementById("aboutMe"); // createElement("section");
 mainDiv.setAttribute("class","clearfix");
 function createTitle(elm,text){
     var h2Title = document.createElement(elm);
@@ -60,4 +60,4 @@ function getList(){
     return ulElm;
 }
 mainDiv.appendChild(getList());
-document.body.appendChild(mainDiv);
+//document.body.appendChild(mainDiv);
