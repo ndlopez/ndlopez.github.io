@@ -81,9 +81,10 @@ ul{list-style-type: none;}
 ul, li{margin: 0px;padding:5px}
 .large{font-size: 40px;font-weight: 200;}
 /*#curr_weather{background-image: url('assets/cloud-heavy.svg');}*/
-#weather_details, #curr_weather{
+#weather_details, #curr_weather, #currDate{
   background-color:#bed2e030;
 }
+#currDate h3{margin-top: 0px;}
 .column3{
   width: 33.3%;
   height: 280px;

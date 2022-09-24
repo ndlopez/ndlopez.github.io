@@ -354,7 +354,7 @@ async function display_info(){
     }
     //text += "<h2 class='align-left'>Kobe Weather<br><br>";
     let maxmin = getMaxMin(data[1]);//the date: myData.curr_weather[0][0]
-    text += "<h2 class='align-left'>Nagoya, JP&emsp;"+ newHour +":"+ newMin + "</h2>";
+    text += "<h2 class='align-left'>Nagoya, JP</h2>";
     text += "<div class='clearfix'><span class='large'>" + myData.curr_weather[0][3] + 
     "&#8451;&emsp;"+myData.curr_weather[0][2].replace(/"/g,"")+"&emsp;</span>"+ textImg + 
     "<h3>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h3></div>";
@@ -375,6 +375,8 @@ async function display_info(){
     var windDiv = buildGaugeMeter(myData.curr_weather[0][7],"WIND",text);
     detailsDiv.appendChild(windDiv);   
     
+    const currDiv = document.getElementById("currDate");
+    currDiv.innerHTML = "<h3>"+myData.curr_weather[0][0] + " " + newHour+":"+newMin+"&emsp;</h3>";
     //console.log(myData.hour[4],myData.temp[4],myData.humid[4]);
     /* D3js plot 
     Thanks to  https://www.tutorialsteacher.com/d3js/animated-bar-chart-d3    */

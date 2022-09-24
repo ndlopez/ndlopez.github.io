@@ -6,7 +6,7 @@ const tools = [
         item1: "Browser: Firefox",
         item2: "Search Engine: DuckDuckGo",
         item3: "IDE: Mostly Emacs and VI, sometimes VSCodium",
-        item4: "Notes: Simplenote",
+        item4: "Notes: Joplin",
         item5: "Music: VLC (streaming ThirdRock Radio and sometimes FM La Paz)"
     },{
         item0: "Personal: Panasonic Let'sNote CF-QV 12\" w/Linux Fedora 36",
