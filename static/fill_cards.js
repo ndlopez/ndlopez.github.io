@@ -7,8 +7,8 @@ const projects=[
         The Bootstrap CSS library is used to display better the HTML elements.",
         language:"JavaScript, CSS, HTML",
         image:"../assets/cloud-heavy.svg",
-        repo:"https://github.com/ndlopez/galileo",
-        demo:"https://ndlopez.github.io/pages/galileo/index.html",
+        repo:"https://github.com/ndlopez/galileo_web",
+        demo:"https://ndlopez.github.io/pages/galileo_web",
         builtOn:2018
     },{
         name:"Quotes, a CLI Application",
@@ -16,7 +16,7 @@ const projects=[
         description:"Similar to the <fortune> CLI app available on most linux repositiories, \
         this application displays a quote every time a Terminal window is open. \
         Data was scrapped using Python\'s module Scrapy from the website goodreads.com.",
-        language:"Python, JavaScript",
+        language:"Python",
         image:"../assets/cloud-heavy.svg",
         repo:"https://github.com/ndlopez/quotes",
         demo:"https://ndlopez.github.io/",
@@ -25,13 +25,13 @@ const projects=[
         name:"NowPlaying",
         title:"Notification app to display current song playing on FM La Paz",
         description:"Gnome extension and Windows TaskBar Application. It displays \
-        the current song playing on FM La Paz (an internet radio). The application makes a request to \
-        the host site to check for updates every four minutes. No data is stored on device. The repository also \
-        also includes a Notification App for MacOS, it requires cron scheduler to get updates.",
+        the current song playing on FM La Paz (internet radio). The application makes a request to \
+        the host site to check for updates every four minutes. No data is stored on device. The repository \
+        also includes a Notification App and an xbar-plugin for MacOS, it requires cron scheduler to get updates and xbar to install the plugin.",
         language:"JavaScript, C#",
         image:"https://raw.githubusercontent.com/ndlopez/NowPlaying/master/assets/now_playing.png",
         repo:"https://github.com/ndlopez/fmLaPazNow",
-        demo:"",
+        demo:"https://ndlopez.github.io/fmLaPazNow",
         builtOn:2020
     },{
         name:"PassAdm",
@@ -45,21 +45,21 @@ const projects=[
         a SQLite database.",
         language:"Python, Java",
         image:"../assets/cloud-heavy.svg",
-        repo:"https://github.com/ndlopez/passAdm",
-        demo:"",
+        repo:"https://github.com/ndlopez/",
+        demo:"Not available",
         builtOn:2021
     },{
         name:"WeatherApp",
-        title:"Website and Gnome Extension to display current weather conditions.",
+        title:"REST-api and Gnome Extension to display current weather conditions.",
         description:"The website displays current conditions plus a bar-plot done using D3JS library. \
         The Gnome extension is a notification app that displays the current \
         and the next hour conditions. Data was scrapped from tenki.jp using a Shell script. A cron \
         script can be implemented to download and scrap data every day. Back-end is developed in \
-        PHP, Python, and MySQL. A Windows 10 widget is in development in C#.",
-        language:"Shell, JavaScript",
+        PHP, and MySQL. A Windows 10 widget is in development in C#.",
+        language:"PHP, Shell, JavaScript",
         image:"../assets/cloud-heavy.svg",
         repo:"https://github.com/ndlopez/weather_app",
-        demo:"https://ndlopez.github.io/",
+        demo:"https://ndlopez.github.io/pages/weather.html",
         builtOn: 2021
     },{
         name: "Linux/UNIX info tools",
@@ -104,7 +104,7 @@ const projects=[
         RIGHT letter.",
         language: "JavaScript",
         image: "https://raw.githubusercontent.com/ndlopez/jumble_game/main/data/Jumble_Game_2022-04-02_2152.png",
-        repo: "htpps://github.com/ndlopez/jumble_game",
+        repo: "https://github.com/ndlopez/jumble_game",
         demo: "https://ndlopez.github.io/jumble_game",
         builtOn: 2022
     }
@@ -158,11 +158,11 @@ function addDivs(_val){
     secDiv.innerHTML=`<a href='javascript:void(0)' class='closeBtn' onclick="closeNav('myNav${_val}')">&times;</a>`;
 	secDiv.innerHTML += "<div><h2 class='header'>" + projects[_val].name + "</h2></div>";
     secDiv.innerHTML += "<div><div class='column'><img src='" +
-    projects[_val].image + "'><p>Screenshot of main window</p></div><div class='column mod-content'><h3>"+ 
-    projects[_val].title + "</h3><p>" + projects[_val].description + "</p><ul><li>Project Repository</li><li><a href='"+
-    projects[_val].repo + "'>Available here.</a></li><li>Live Demo: <a href='" + 
-    projects[_val].demo + "'>please click here</a></li>" +
-    "<li> Language: " + projects[_val].language + 
+    projects[_val].image + "' alt='Screenshot of main window'><p>Main window</p></div><div class='column mod-content'><h3>"+ 
+    projects[_val].title + "</h3><p>" + projects[_val].description + "</p><ul><li>Project Repository: <a href='"+
+    projects[_val].repo + "'>Available here.</a></li><li><a href='" + 
+    projects[_val].demo + "'>Live Demo</a></li>" +
+    "<li> Written in: " + projects[_val].language + 
     "</li><li>Built on: "+ projects[_val].builtOn+ "</li></ul></div></div>";
     return secDiv;
 }

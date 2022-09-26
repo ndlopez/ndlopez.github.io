@@ -225,6 +225,8 @@ text-align:center;
 /*Responsive layout to stack cols on top of each other
 @media only screen and (max-width:620px){*/
 @media (max-width:620px){
+  .header{padding: 0px;}
+  .header img{margin:0;width: 40vh;/*src: url("https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_0171.jpg");*/}
   .sticky{position: inherit;}
   .column,.column80,.column20{
     width:100%;
