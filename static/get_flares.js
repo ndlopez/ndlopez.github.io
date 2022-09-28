@@ -10,7 +10,7 @@ async function latest_xrays(){
 
     myList.setAttribute("id","myday");
 
-    var texty = "<tr><th></th><th>time</th><th>class</th></tr>";
+    var texty = "<tr><th></th><th>time [UTC]</th><th>class</th></tr>";
     texty += "<tr><td>current</td><td>"+data["time_tag"]+"</td><td>"+data["current_class"]+"</td></tr>";
     texty += "<tr><td>start</td><td>"+data["begin_time"]+"</td><td>"+data["begin_class"]+"</td></tr>";
     texty += "<tr><td>maximum</td><td>"+data["max_time"]+"</td><td>"+data["max_class"]+"</td></tr>";
