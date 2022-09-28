@@ -11,10 +11,16 @@ async function latest_xrays(){
     myList.setAttribute("id","myday");
 
     var texty = "<tr><th></th><th>time [UTC]</th><th>class</th></tr>";
-    texty += "<tr><td>current</td><td>"+data["time_tag"]+"</td><td>"+data["current_class"]+"</td></tr>";
-    texty += "<tr><td>start</td><td>"+data["begin_time"]+"</td><td>"+data["begin_class"]+"</td></tr>";
-    texty += "<tr><td>maximum</td><td>"+data["max_time"]+"</td><td>"+data["max_class"]+"</td></tr>";
-    texty += "<tr><td>end</td><td>"+data["end_time"]+"</td><td>"+data["end_class"]+"</td></tr>";
+    for(let idx =0;idx<4;idx++){
+        var myStr = titles[idx] + "_time";
+        if(idx == 0){
+            myStr = "time_tag";
+        }
+        //console.log(myStr);
+        texty += "<tr><td>"+titles[idx]+"</td><td>"+data[myStr]+"</td><td>"+
+        data[titles[idx]+'_class']+"</td></tr>";
+    }
+    //console.log(texty);
     myList.innerHTML = texty;
     mainDiv.appendChild(myList);
 }
