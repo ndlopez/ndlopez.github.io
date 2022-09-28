@@ -595,10 +595,15 @@ async function get_url_data(curr_hour){
     const response = await fetch(url);
     const data = await response.text();
 
-    const rows = data.split('\n').slice(1);
+    const rows = data.split('\n').slice(1);//skip first line
     rows.forEach(row => {
         const this_weather = row.split(',');
+        // 0:date,1:hour,2:weather,3:temp,4:rainProb,
+        // 5:rainMM,6:humid,7:windSp,8:windD
         //console.log(this_weather);
+        if (this_weather[4] === "---"){
+            this_weather[4] = 0;
+        }
         if (this_weather[1] === curr_hour){
             curr_weather.push(this_weather);
         }
