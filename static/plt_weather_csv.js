@@ -28,9 +28,11 @@ var y = d3.scaleLinear()
 var yAxis = svg2.append("g")
   .attr("class", "myYaxis")
 
+
 function update(selectedVar){
+  selectedVar = "temp";
   //document.getElementsByClassName("selectBtn") = "#cc274c";
-  document.getElementById(selectedVar).style.backgroundColor = "#cc274c";
+  //document.getElementById(selectedVar).style.backgroundColor = "#cc274c";
   //document.getElementById("weather_bar").style.backgroundColor = "white";
 
   d3.csv("https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/grep_tenki.csv",function(data){
