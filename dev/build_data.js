@@ -2,8 +2,8 @@ const jma_url = "https://www.jma.go.jp/bosai/amedas/data/point/51106/2022";
 /*current date and time*/
 let myDate = new Date();
 var monty = myDate.getMonth() + 1;
-var tag = myDate.getDate() -1;
-var hh = 23;//myDate.getHours();
+var tag = myDate.getDate();
+var hh = myDate.getHours();
 var hours = [],dataHours = [],ondo=[];
 /* build array of hours: 0 ~ hh */
 for (let idx=0;idx < hh;idx++){
@@ -23,13 +23,16 @@ function build_path_attr(jdx,tim){
 }
 
 async function get_data(){
-    var myTime = hh;
+    var myTime = 11;//hh;// hh-1, hh-2
     //Must validate if myTime is within fetched data: if myTime > dataHours[7]
-    var gotThis = build_path_attr(7,myTime);
-    console.log(gotThis.Path);
+    var gotThis = build_path_attr(dataHours.length -2,myTime);
     const response = await fetch(gotThis.Path);
     const data = await response.json();
-    console.log(myTime,data[gotThis.Atrib].temp[0]);
+    console.log(myTime,data[gotThis.Atrib].temp[0]);// currhour
+    var aux = gotThis.Atrib.replace(myTime,myTime-1);
+    console.log(aux,myTime-1,data[aux].temp[0]);
+    aux = gotThis.Atrib.replace(myTime,zeroPad(myTime-2));
+    console.log(aux,myTime-2,data[aux].temp[0]);
 }
 get_data();
-//console.log(hours,dataHours,build_path_attr(0,0));
+console.log(hours,dataHours,build_path_attr(0,12));
