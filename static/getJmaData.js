@@ -63,17 +63,17 @@ async function disp_info(){
 
         var aux = getDateHour(gotData.forecast[0][idx]);
         var tempMin = gotData.forecast[2][idx], tempMax = gotData.forecast[3][idx];
-        texty = "<div class='col3' style='margin:0;border-radius:inherit;'><div class='row'>" + 
-        "<h2 class='column'>"+ aux.tag + "</h2><div class='column' style='text-align:left;padding-left:0;'><p>"+theseDays[aux.day] + 
+        texty = "<div class='column3 float-left' style='margin:0;border-radius:inherit;'><div class='row'>" + 
+        "<h2 class='column float-left'>"+ aux.tag + "</h2><div class='column float-left' style='text-align:left;padding-left:0;'><p>"+theseDays[aux.day] + 
         "</p><p><small>"+theseMonths[aux.monty-1]+"</small></p></div></div></div>";
 
-        texty += "<div class='col3' style='text-align:right;'><img src='"+ico_url+ gotData.forecast[1][idx]+".svg'/></div>";
+        texty += "<div class='column3 float-left' style='text-align:right;'><img src='"+ico_url+ gotData.forecast[1][idx]+".svg'/></div>";
 
         if(idx==0){
             tempMin = myMin;
             tempMax = myMax;
         }
-        texty += "<div class='col3'><h4>"+tempMin+"&#8451; | "+tempMax+"&#8451;</h4></div>";
+        texty += "<div class='column3 float-left'><h4>"+tempMin+"&#8451; | "+tempMax+"&#8451;</h4></div>";
         groupDiv.innerHTML = texty;
         colDiv.appendChild(groupDiv);
     }
@@ -81,14 +81,14 @@ async function disp_info(){
     /* 2moro forecast + rain Prob */
     const myDiv = document.getElementById("foreDiv");
     const iconElm = document.createElement("div");
-    iconElm.setAttribute("class","column");
+    iconElm.setAttribute("class","column float-left");
     texty = "<br/><p>"+gotData.weather[1] +"</p>";
     
     texty += "<span>Min "+ myMin +"&#8451; | Max "+ myMax+"&#8451;</span>";
     iconElm.innerHTML = "<img src='"+ico_url+gotData.icon[1]+".svg'/>"+texty;
     
     const tempElm = document.createElement("div");//tomorrow temp
-    tempElm.setAttribute("class","column");
+    tempElm.setAttribute("class","column float-left");
     texty = "";
     let jdx = gotData.rain[0].length-1;
     let kdx = 0;

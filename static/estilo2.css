@@ -85,10 +85,14 @@ ul, li{margin: 0px;padding:5px}
   background-color:#bed2e030;
 }
 #currDate h3{margin-top: 0px;}
+.col4{
+  width:25%;
+  float: left;
+  text-align: center;
+}
+#weather_details .column3{height: 280px;padding:25px;}
 .column3{
   width: 33.3%;
-  height: 280px;
-  padding:25px;
   border:0;
   text-align: center;
 }
@@ -125,7 +129,14 @@ ul, li{margin: 0px;padding:5px}
   position:absolute;
   top:50%;/*8px;*/
   left:50%;/*16px;*/
-  transform:translate(-50%,-50%);}
+  transform:translate(-50%,-50%);
+}
+#forecaster .row{
+  background-color: #bed2e040;
+  margin-bottom: 8px;
+}
+#forecaster .col3 .row{margin: 0;background: none;}
+#forecaster .row p, #forecaster .row h2{margin: 0;}
 
 panel2,.flip{
   font-size:16px;

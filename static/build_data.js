@@ -56,7 +56,7 @@ function buildProgressCircle(percent,title,texty) {
     const pTitle = document.createElement("p");
     pTitle.innerText = title;
     const subDiv = document.createElement("div");
-    subDiv.setAttribute("class","col3 float-left");
+    subDiv.setAttribute("class","column3 float-left");
     subDiv.appendChild(pTitle);
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
@@ -103,7 +103,7 @@ function buildGaugeMeter(value,title,htmlTxt){
     const pTitle = document.createElement("p");
     pTitle.innerText = title;
     const subDiv = document.createElement("div");
-    subDiv.setAttribute("class","col3 float-left");
+    subDiv.setAttribute("class","column3 float-left");
     subDiv.appendChild(pTitle);
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     const svgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
@@ -223,7 +223,7 @@ function buildSVGtext(dx,dy,text){
     //var img_url = "";
     //let temp_max_min = maxmin[0];//the date: myData.curr_weather[0][0]
     const lastElm = curr_weather.length-1;
-    var text = "<h2 class='align-left'>&emsp;Nagoya, JP<br>&emsp;"+ months[monty-1] + tag +
+    var text = "<h2 class='align-left'>&emsp;Nagoya, JP<br>&emsp;"+ months[monty-1] + " " + tag +
     " "+curr_weather[lastElm].hour_min+"</h2>";
     text += "<div class='clearfix'><span class='large'>" + 
     "&emsp;"+curr_weather[lastElm].temp + "&#8451;&emsp;</span><span id='now_weather' class='large'></span>" + 
