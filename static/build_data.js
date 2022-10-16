@@ -225,12 +225,12 @@ function buildSVGtext(dx,dy,text){
     const lastElm = curr_weather.length-1;
     var text = "<h2 class='align-left'>&emsp;Nagoya, JP</h2><h3>&emsp;"+ months[monty-1] + " " + tag + " "+curr_weather[lastElm].hour_min+"</h3>";
     text += "<div class='clearfix'><span class='large'>" + 
-    "&emsp;"+curr_weather[lastElm].temp + "&#8451;&emsp;</span><span id='now_weather' class='large'></span>" + 
+    "&emsp;"+curr_weather[lastElm].temp + "&#8451;</span><span id='now_weather' class='large'></span>" + 
     "<h4>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h4></div>";
     document.getElementById("curr_weather").innerHTML = text;
 
     var detailsDiv = document.getElementById("weather_details");
-    text = "<h2><br><br>" + curr_weather[lastElm].rain + " mm</h2>";
+    text = "<br><h2 id='rainProb'></h2><h2>" + curr_weather[lastElm].rain + " mm</h2>";
     var rainDiv = buildProgressCircle(curr_weather[lastElm].rain,"RAIN",text);
     detailsDiv.appendChild(rainDiv);
 

@@ -18,6 +18,9 @@ const theseMonths = ["January","February","March","April","May","June","July",
 // const theseDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
+async function sleepy(msec){
+    return new Promise(resolve =>setTimeout(resolve,msec));
+}
 disp_info(); //should delay at least 1s
 
 function getDateHour(isoStr){
@@ -27,8 +30,9 @@ function getDateHour(isoStr){
 }
 
 async function disp_info(){
+    await sleepy(2000);
     const gotData = await get_data();
-    const gotTime = await getTimes();
+    //const gotTime = await getTimes();//fetch sun rise/set
     var myMin = gotData.temp[1][2];
     var myMax = gotData.temp[1][3];
     if(myMax === undefined){
@@ -49,7 +53,7 @@ async function disp_info(){
     var texty = "";
     const nowTenki = document.getElementById("now_weather");
     if(nowTenki !== null){
-        nowTenki.innerHTML = gotData.weather[0] + "&emsp;<img src='"+ico_url+gotData.icon[0]+".svg'/>";
+        nowTenki.innerHTML = "<img src='"+ico_url+gotData.icon[0]+".svg'/>"+gotData.weather[0];
     } //var currWeather = gotData.weather[1].split("　");
     /*for(let idx=0;idx<gotData.weather.length;idx++){
         var currWeather = gotData.weather[idx].split("　");
@@ -65,8 +69,8 @@ async function disp_info(){
         var aux = getDateHour(gotData.forecast[0][idx]);
         var tempMin = gotData.forecast[2][idx], tempMax = gotData.forecast[3][idx];
         texty = "<div class='column3 float-left' style='margin:0;border-radius:inherit;'><div class='row-date'>" + 
-        "<h2 class='col-date float-left'>"+ aux.tag + "</h2><div class='col-date float-left' style='text-align:left;padding-left:0;'><p><em>"+theseDays[aux.day] + 
-        "</em></p><p><small>"+theseMonths[aux.monty-1]+"</small></p></div></div></div>";
+        "<h2 class='col-date float-left'>"+ aux.tag + "</h2><div class='col-date float-left' style='text-align:left;padding-left:0;'><p><strong>"+theseDays[aux.day] + 
+        "</strong></p><p><small>"+theseMonths[aux.monty-1]+"</small></p></div></div></div>";
 
         texty += "<div class='column3 float-left' style='text-align:right;'><img src='"+ico_url+ gotData.forecast[1][idx]+".svg'/></div>";
 
@@ -79,6 +83,12 @@ async function disp_info(){
         colDiv.appendChild(groupDiv);
     }
 
+    /* today rain Prob*/
+    const rainP = document.getElementById("rainProb");
+    if(rainP !== null){
+        rainP.innerText = gotData.rain[1][0] + "%";
+        //console.log(gotData.rain[1][0]+);
+    }
     /* 2moro forecast + rain Prob */
     const myDiv = document.getElementById("foreDiv");
     const iconElm = document.createElement("div");
