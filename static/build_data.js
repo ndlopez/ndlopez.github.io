@@ -223,8 +223,7 @@ function buildSVGtext(dx,dy,text){
     //var img_url = "";
     //let temp_max_min = maxmin[0];//the date: myData.curr_weather[0][0]
     const lastElm = curr_weather.length-1;
-    var text = "<h2 class='align-left'>&emsp;Nagoya, JP<br>&emsp;"+ months[monty-1] + " " + tag +
-    " "+curr_weather[lastElm].hour_min+"</h2>";
+    var text = "<h2 class='align-left'>&emsp;Nagoya, JP</h2><h3>&emsp;"+ months[monty-1] + " " + tag + " "+curr_weather[lastElm].hour_min+"</h3>";
     text += "<div class='clearfix'><span class='large'>" + 
     "&emsp;"+curr_weather[lastElm].temp + "&#8451;&emsp;</span><span id='now_weather' class='large'></span>" + 
     "<h4>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h4></div>";
@@ -273,12 +272,66 @@ function build_array(hour,gotData){
 
 function build_plot(json_array){
     /*d3js bar plot-> https://jsfiddle.net/matehu/w7h81xz2/38/*/
+    const containDiv = document.getElementById("weather_bar");
+    const leftDiv = document.createElement("div");
+    leftDiv.setAttribute("id","leftAxis");
+    leftDiv.setAttribute("class","column-left float-left");
+    const rightDiv = document.createElement("div");
+    rightDiv.setAttribute("id","rightAxis");
+    rightDiv.setAttribute("class","column-third float-left");
+
+    const centerDiv = document.createElement("div");
+    centerDiv.setAttribute("class","column-right float-left");
+    const outerDiv = document.createElement("div");
+    outerDiv.setAttribute("class","outer");
+    const innerDiv = document.createElement("div");
+    innerDiv.setAttribute("class","inner");
+
+    const mainDiv = document.createElement("div");
+    mainDiv.setAttribute("id","mainPlot");
+
+    innerDiv.appendChild(mainDiv);
+    outerDiv.appendChild(innerDiv);
+    centerDiv.appendChild(outerDiv);
+    containDiv.appendChild(leftDiv);
+    containDiv.appendChild(centerDiv);
+    containDiv.appendChild(rightDiv);
+
     const xSize = 750,ySize=500;
     var margin = {top:40,right:20,bottom:50,left:40},
     w = xSize - margin.left - margin.right,
     h = ySize - margin.top - margin.bottom;
+    
+    /* Y temp: left axis*/
+    const tMin = d3.min(json_array,(d)=>{return d.temp;});
+    const tMax = d3.max(json_array,(d)=>{return d.temp;});
+    maxmin.push(tMax);
+    maxmin.push(tMin);
+    //console.log(tMin,tMax);
+    const svgLeft = d3.select("#leftAxis")
+    .append("svg").attr("width",36).attr("height",ySize)
+    .append("g")
+    .attr("transform","translate(" + 35 + "," + margin.top + ")");
+    const yScale = d3.scaleLinear()
+    .domain([~~tMin-1,~~tMax+1]).range([h,0]);
+    svgLeft.append("g").call(d3.axisLeft(yScale)).attr("font-size","12");
+    svgLeft.append("g").append("text").text("\u2103").attr("x",-24).attr("y",-10);
 
-    var svg2 = d3.select("#weather_bar")
+    /* Y2 humid: right axis */
+    const humidMin = d3.min(json_array,(d)=>{return d.humid;});
+    const humidMax = d3.max(json_array,(d)=>{return d.humid;});
+    
+    const svgRight = d3.select("#rightAxis")
+    .append("svg").attr("width",35).attr("height",ySize)
+    .append("g")
+    .attr("transform","translate(" + 10 + "," + margin.top + ")");
+    const yHumid = d3.scaleLinear()
+    .domain([humidMin-5,humidMax+5])
+    .range([h,0]);
+    svgRight.append("g").call(d3.axisRight(yHumid));//.attr("transform","translate("+w+",0)");
+    svgRight.append("g").append("text").text("%").attr("x",10).attr("y",-10);
+
+    var svg2 = d3.select("#mainPlot")
     .append("svg")
     .attr('width',w+margin.left+margin.right)
     .attr('height',h+margin.top+margin.bottom)
@@ -286,7 +339,7 @@ function build_plot(json_array){
     .attr("transform",`translate(${margin.left},${margin.top})`);
     var xScale=d3.scaleBand().range([0,w])
     .domain(json_array.map(function(d){return d.hour;}))
-    .padding(0.2);
+    .padding(0.3);
     svg2.append("g")
     .attr("transform","translate(0,"+0+")")
     .call(d3.axisTop(xScale))
@@ -294,25 +347,7 @@ function build_plot(json_array){
     .attr("transform","translate(0,0)")
     .attr("font-size","12");
     //.style("text-anchor","middle");
-    
-    /* Y temp axis*/
-    const tMin = d3.min(json_array,(d)=>{return d.temp;});
-    const tMax = d3.max(json_array,(d)=>{return d.temp;});
-    maxmin.push(tMax);
-    maxmin.push(tMin);
-    //console.log(tMin,tMax);
-    const yScale = d3.scaleLinear()
-    .domain([~~tMin-1,~~tMax+1]).range([h,0]);
-    svg2.append("g").call(d3.axisLeft(yScale)).attr("font-size","12");
-    svg2.append("g").append("text").text("\u2103").attr("x",-24).attr("y",-10);
-    /* Y2 humid axis */
-    const humidMin = d3.min(json_array,(d)=>{return d.humid;});
-    const humidMax = d3.max(json_array,(d)=>{return d.humid;});
-    const yHumid = d3.scaleLinear()
-    .domain([humidMin-5,humidMax+5])
-    .range([h,0]);
-    svg2.append("g").call(d3.axisRight(yHumid)).attr("transform","translate("+w+",0)");
-    svg2.append("g").append("text").text("%").attr("x",w+2).attr("y",-10);
+
     /* Humidity: bar plot */
     svg2.selectAll("bar")
     .data(json_array).enter()

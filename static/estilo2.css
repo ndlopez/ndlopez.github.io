@@ -98,7 +98,7 @@ ul, li{margin: 0px;padding:5px}
 }
 .column3 p{font-size: medium;}
 /*2 columns*/
-.column, .col-date{
+.column{
   width: 50%;border:0px;
 }
 .column80{width:80%;}
@@ -134,8 +134,12 @@ ul, li{margin: 0px;padding:5px}
 #forecaster .row{
   background-color: #bed2e040;
   margin-bottom: 8px;
+  border-radius: 8px;
 }
-#forecaster .row .col-date{margin: 0;background: none;}
+.row-date{
+  /*margin: 0;*/
+  background: none;
+}
 #forecaster .row p, #forecaster .row h2{margin: 0;}
 
 panel2,.flip{
