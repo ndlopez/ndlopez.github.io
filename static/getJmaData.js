@@ -15,9 +15,10 @@ const hh = [5,11,17,23];
 
 const theseMonths = ["January","February","March","April","May","June","July",
 "August","September","October","November","December"];
-const theseDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+// const theseDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-disp_info();
+disp_info(); //should delay at least 1s
 
 function getDateHour(isoStr){
     // inStr: ISO format
@@ -64,8 +65,8 @@ async function disp_info(){
         var aux = getDateHour(gotData.forecast[0][idx]);
         var tempMin = gotData.forecast[2][idx], tempMax = gotData.forecast[3][idx];
         texty = "<div class='column3 float-left' style='margin:0;border-radius:inherit;'><div class='row-date'>" + 
-        "<h2 class='column float-left'>"+ aux.tag + "</h2><div class='column float-left' style='text-align:left;padding-left:0;'><p>"+theseDays[aux.day] + 
-        "</p><p><small>"+theseMonths[aux.monty-1]+"</small></p></div></div></div>";
+        "<h2 class='col-date float-left'>"+ aux.tag + "</h2><div class='col-date float-left' style='text-align:left;padding-left:0;'><p><em>"+theseDays[aux.day] + 
+        "</em></p><p><small>"+theseMonths[aux.monty-1]+"</small></p></div></div></div>";
 
         texty += "<div class='column3 float-left' style='text-align:right;'><img src='"+ico_url+ gotData.forecast[1][idx]+".svg'/></div>";
 

@@ -297,8 +297,8 @@ function build_plot(json_array){
     containDiv.appendChild(centerDiv);
     containDiv.appendChild(rightDiv);
 
-    const xSize = 750,ySize=500;
-    var margin = {top:40,right:20,bottom:50,left:40},
+    const xSize = 735,ySize=450;
+    var margin = {top:40,right:20,bottom:50,left:0},
     w = xSize - margin.left - margin.right,
     h = ySize - margin.top - margin.bottom;
     
@@ -324,7 +324,7 @@ function build_plot(json_array){
     const svgRight = d3.select("#rightAxis")
     .append("svg").attr("width",35).attr("height",ySize)
     .append("g")
-    .attr("transform","translate(" + 10 + "," + margin.top + ")");
+    .attr("transform","translate(" + 5 + "," + margin.top + ")");
     const yHumid = d3.scaleLinear()
     .domain([humidMin-5,humidMax+5])
     .range([h,0]);
