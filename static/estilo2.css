@@ -132,7 +132,8 @@ ul, li{margin: 0px;padding:5px}
   transform:translate(-50%,-50%);
 }
 #forecaster .row{
-  border-bottom: 1px dashed #bed2e0;
+  /*border-bottom: 1px dashed #bed2e0;*/
+  background-color: #bed2e040;
   margin-bottom: 8px;
   border-radius: 8px;
 }

@@ -230,8 +230,8 @@ function buildSVGtext(dx,dy,text){
     document.getElementById("curr_weather").innerHTML = text;
 
     var detailsDiv = document.getElementById("weather_details");
-    text = "<br><h2 id='rainProb'></h2><h2>" + curr_weather[lastElm].rain + " mm</h2>";
-    var rainDiv = buildProgressCircle(curr_weather[lastElm].rain,"RAIN",text);
+    text = "<h4>mm</h4><h2 id='rainProb'></h2>";
+    var rainDiv = buildGaugeMeter(Math.round(curr_weather[lastElm].rain),"RAIN",text);
     detailsDiv.appendChild(rainDiv);
 
     text = "<h2><br><br>" + curr_weather[lastElm].humid + "%</h2>";

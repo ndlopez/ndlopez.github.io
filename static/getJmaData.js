@@ -30,7 +30,7 @@ function getDateHour(isoStr){
 }
 
 async function disp_info(){
-    await sleepy(100);
+    await sleepy(1000);
     const gotData = await get_data();
     var myMin = gotData.temp[1][2];
     var myMax = gotData.temp[1][3];
