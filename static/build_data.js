@@ -25,7 +25,7 @@ for (let idx=0;idx < currHH;idx++){
 function zeroPad(tit){return (tit<10)?"0"+tit:tit;}
 
 /* wind Direction -> JPchar */
-const allDirs = {1:"北北東",2:"北東",3:"東北東",4:"東",5:"東南東",6:"南東",7:"南南東",8:"南",
+const allDirs = {0:"静穏",1:"北北東",2:"北東",3:"東北東",4:"東",5:"東南東",6:"南東",7:"南南東",8:"南",
 9:"南南西",10:"南西",11:"西南西",12:"西",13:"西北西",14:"北西",15:"北北西",16:"北"};
 function windChar(number){    
     for (let dat in allDirs){

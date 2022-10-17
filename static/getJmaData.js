@@ -30,7 +30,7 @@ function getDateHour(isoStr){
 }
 
 async function disp_info(){
-    await sleepy(2000);
+    await sleepy(100);
     const gotData = await get_data();
     var myMin = gotData.temp[1][2];
     var myMax = gotData.temp[1][3];
@@ -91,7 +91,6 @@ async function disp_info(){
     const rainP = document.getElementById("rainProb");
     if(rainP !== null){
         rainP.innerText = gotData.rain[1][0] + "%";
-        //console.log(gotData.rain[1][0]+);
     }
     /* 2moro forecast + rain Prob */
     const myDiv = document.getElementById("foreDiv");
