@@ -7,7 +7,8 @@ const jma_data = "https://www.jma.go.jp/bosai/forecast/data/forecast/230000.json
 // also https://www.jma.go.jp/bosai/amedas/#area_type=offices&area_code=230000&amdno=51106&format=table1h&elems=53414
 
 const ico_url = "https://www.jma.go.jp/bosai/forecast/img/";
-
+const radar_url = ["https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg",
+"https://www.jma.go.jp/bosai/nowc/m_index.html#zoom:11/lat:35.211116/lon:136.901665/colordepth:normal/elements:hrpns&slmcs"];
 const sun_time = ["https://dayspedia.com/api/widget/city/11369/?lang=en",
 "https://dayspedia.com/api/widget/city/4311/?lang=en"];
 
@@ -60,8 +61,10 @@ async function disp_info(){
     const radarImg = document.getElementById("radar_img");
     if(gotData.rain[1][0] > 0){
         // put a radar img from tenki.jp
-        radarImg.innerHTML = '<img src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg">';
+        radarImg.innerHTML = '<p>Click on the img for 1hour forecast</p><a href="' + 
+        radar_url[1] + '"><img src="' + radar_url[0] + '"></a>';
     }
+    //
     //var currWeather = gotData.weather[1].split("　");
     /*for(let idx=0;idx<gotData.weather.length;idx++){
         var currWeather = gotData.weather[idx].split("　");
@@ -70,7 +73,7 @@ async function disp_info(){
     /* Weekly forecast Max/Min*/
     const colDiv = document.getElementById("forecaster");
     //create as many group div as forecast are available
-    for(let idx=0;idx<gotData.forecast[0].length;idx++){
+    for(let idx=1;idx<gotData.forecast[0].length;idx++){
         const groupDiv = document.createElement("div");
         groupDiv.setAttribute("class","row");
 
@@ -84,10 +87,10 @@ async function disp_info(){
         ico_url+ gotData.forecast[1][idx]+
         ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/></div>";
 
-        if(idx==0){
+        /*if(idx==0){
             tempMin = myMin;
             tempMax = myMax;
-        }
+        }*/
         texty += "<div class='column3 float-left'><h4>"+tempMin+"&#8451; | "+tempMax+"&#8451;</h4></div>";
         groupDiv.innerHTML = texty;
         colDiv.appendChild(groupDiv);

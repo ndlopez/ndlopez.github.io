@@ -90,7 +90,7 @@ ul, li{margin: 0px;padding:5px}
   float: left;
   text-align: center;
 }
-#weather_details .column3{height: 280px;padding:25px;}
+#weather_details .column3{height: 220px;padding:25px;}
 .column3{
   width: 33.3%;
   border:0;
