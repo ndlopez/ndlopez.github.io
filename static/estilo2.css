@@ -138,8 +138,13 @@ ul, li{margin: 0px;padding:5px}
   border-radius: 8px;
 }
 .row-date{
-  /*margin: 0;*/
+  /*margin: 0;
+  does NOT center items
+  display: flex;
+  align-items: center;
+  justify-content: center;*/
   background: none;
+  margin-top: 10px;
 }
 #forecaster .row p, #forecaster .row h2{margin: 0;}
 

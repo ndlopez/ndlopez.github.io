@@ -106,7 +106,7 @@ async function disp_info(){
     const headTitle = document.createElement("h2");
     var sofy = getDateHour(gotData.forecast[0][0]);
     headTitle.innerText = theseDays[sofy.day] + ", " + theseMonths[sofy.monty-1] +
-    " " + sofy.tag+" weather";
+    " " + sofy.tag;
     myDiv.appendChild(headTitle);
 
     const iconElm = document.createElement("div");
