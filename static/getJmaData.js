@@ -56,7 +56,13 @@ async function disp_info(){
         nowTenki.innerHTML = "<img src='" + ico_url+gotData.icon[0] +
         ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/><br/>"+
         gotData.weather[0];
-    } //var currWeather = gotData.weather[1].split("　");
+    }
+    const radarImg = document.getElementById("radar_img");
+    if(gotData.rain[1][0] > 0){
+        // put a radar img from tenki.jp
+        radarImg.innerHTML = '<img src="https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg">';
+    }
+    //var currWeather = gotData.weather[1].split("　");
     /*for(let idx=0;idx<gotData.weather.length;idx++){
         var currWeather = gotData.weather[idx].split("　");
         texty += "<h2>"+gotData.time[idx].slice(0,10)+" "+currWeather[0]+"<img src='"+ico_url+gotData.icon[idx]+".svg'/></h2>";
