@@ -62,7 +62,7 @@ async function disp_info(){
     if(gotData.rain[1][0] > 0){
         // put a radar img from tenki.jp
         radarImg.innerHTML = '<p>Click on the img for 1hour forecast</p><a href="' + 
-        radar_url[1] + '"><img src="' + radar_url[0] + '"></a>';
+        radar_url[1] + '" title="Redirects to JMA.go.jp"><img src="' + radar_url[0] + '"></a>';
     }
     //
     //var currWeather = gotData.weather[1].split("　");
