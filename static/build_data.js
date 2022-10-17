@@ -225,7 +225,7 @@ function buildSVGtext(dx,dy,text){
     const lastElm = curr_weather.length-1;
     var text = "<h2 class='align-left'>&emsp;Nagoya, JP</h2><h3>&emsp;"+ months[monty-1] + " " + tag + " "+curr_weather[lastElm].hour_min+"</h3>";
     text += "<div class='clearfix'><span class='large'>" + 
-    "&emsp;"+curr_weather[lastElm].temp + "&#8451;</span><span id='now_weather' class='large'></span>" + 
+    "&emsp;"+curr_weather[lastElm].temp + "&#8451;</span><span id='now_weather'></span>" + 
     "<h4>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h4></div>";
     document.getElementById("curr_weather").innerHTML = text;
 
@@ -258,13 +258,12 @@ function build_array(hour,gotData){
     //get last data of each JSON object
     var lena = Object.keys(gotData)[Object.keys(gotData).length-1];
     //console.log(hour,lena,gotData[lena].temp[0]);
-    /*if(currMin < 20){
-        currMin = 60;currHH = currHH -1;
-    }*/
+    /*if(currMin < 20){currMin = 60;currHH = currHH -1;}*/
     //console.log(lena.slice(-6,-4),lena.slice(-4,-2));
+    // zoey: last elm of each json array, data/10min
     const zoey = {"hour_min":lena.slice(-6,-4)+":"+lena.slice(-4,-2),"temp":gotData[lena].temp[0],
     "humid":gotData[lena].humidity[0],"wind":gotData[lena].wind[0],"windDir":gotData[lena].windDirection[0],
-    "rain":gotData[lena].precipitation1h[0]};
+    "rain":gotData[lena].precipitation10m[0]};
     curr_weather.push(zoey);
     //var lena = get_min_attr(idx);
     //return result;

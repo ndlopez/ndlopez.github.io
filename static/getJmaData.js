@@ -32,14 +32,14 @@ function getDateHour(isoStr){
 async function disp_info(){
     await sleepy(2000);
     const gotData = await get_data();
-    //const gotTime = await getTimes();//fetch sun rise/set
     var myMin = gotData.temp[1][2];
     var myMax = gotData.temp[1][3];
     if(myMax === undefined){
         myMax = gotData.temp[1][1];
         myMin = gotData.temp[1][0];
     }
-        
+
+    //const gotTime = await getTimes();//fetch sun rise/set    
     /*const currDiv = document.getElementById("thisWeather");
     const pElem = document.createElement("p");
     pElem.setAttribute("class","column");
@@ -53,7 +53,9 @@ async function disp_info(){
     var texty = "";
     const nowTenki = document.getElementById("now_weather");
     if(nowTenki !== null){
-        nowTenki.innerHTML = "<img src='"+ico_url+gotData.icon[0]+".svg'/>"+gotData.weather[0];
+        nowTenki.innerHTML = "<img src='" + ico_url+gotData.icon[0] +
+        ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/><br/>"+
+        gotData.weather[0];
     } //var currWeather = gotData.weather[1].split("　");
     /*for(let idx=0;idx<gotData.weather.length;idx++){
         var currWeather = gotData.weather[idx].split("　");
@@ -72,7 +74,9 @@ async function disp_info(){
         "<h2 class='col-date float-left'>"+ aux.tag + "</h2><div class='col-date float-left' style='text-align:left;padding-left:0;'><p><strong>"+theseDays[aux.day] + 
         "</strong></p><p><small>"+theseMonths[aux.monty-1]+"</small></p></div></div></div>";
 
-        texty += "<div class='column3 float-left' style='text-align:right;'><img src='"+ico_url+ gotData.forecast[1][idx]+".svg'/></div>";
+        texty += "<div class='column3 float-left' style='text-align:right;'><img src='"+
+        ico_url+ gotData.forecast[1][idx]+
+        ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/></div>";
 
         if(idx==0){
             tempMin = myMin;
@@ -96,7 +100,9 @@ async function disp_info(){
     texty = "<br/><p>"+gotData.weather[1] +"</p>";
     
     texty += "<span>Min "+ myMin +"&#8451; | Max "+ myMax+"&#8451;</span>";
-    iconElm.innerHTML = "<img src='"+ico_url+gotData.icon[1]+".svg'/>"+texty;
+    iconElm.innerHTML = "<img src='"+ico_url+gotData.icon[1]+
+    ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/>"+
+    texty;
     
     const tempElm = document.createElement("div");//tomorrow temp
     tempElm.setAttribute("class","column float-left");
