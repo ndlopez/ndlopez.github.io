@@ -103,6 +103,12 @@ async function disp_info(){
     }
     /* 2moro forecast + rain Prob */
     const myDiv = document.getElementById("foreDiv");
+    const headTitle = document.createElement("h2");
+    var sofy = getDateHour(gotData.forecast[0][0]);
+    headTitle.innerText = theseDays[sofy.day] + ", " + theseMonths[sofy.monty-1] +
+    " " + sofy.tag+" weather";
+    myDiv.appendChild(headTitle);
+
     const iconElm = document.createElement("div");
     iconElm.setAttribute("class","column float-left");
     texty = "<br/><p>"+gotData.weather[1] +"</p>";

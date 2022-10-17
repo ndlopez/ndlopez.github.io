@@ -15,6 +15,7 @@ let maxmin = []; // Max/Min temp from obs data
 var dataHours = [];
 const toRadians = Math.PI/180.0;
 const maxValue = 6; //m/s when 10m/s too many scales, should display half
+
 /* build array of hours: 0 ~ hh */
 for (let idx=0;idx < currHH;idx++){
     //hours.push(idx);
