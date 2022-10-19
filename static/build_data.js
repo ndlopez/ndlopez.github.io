@@ -16,9 +16,10 @@ var dataHours = [];
 const toRadians = Math.PI/180.0;
 const maxValue = 6; //m/s when 10m/s too many scales, should display half
 
+var hours = [];
+for (let idx = 0; idx < 24; idx++) hours.push(idx);
 /* build array of hours: 0 ~ hh */
 for (let idx=0;idx < currHH;idx++){
-    //hours.push(idx);
     if(idx % 3 == 0){
         dataHours.push(idx);
     }
@@ -34,6 +35,23 @@ function windChar(number){
             return allDirs[number];
         }
     }
+}
+// wind description according to Beaufort scale up to 6 in m/s
+const desc_wind = [{"speed":0.28,"en_desc":"calm","jp_desc":"静穏"},
+{"speed":1.38,"en_desc":"Light Air","jp_desc":"至軽風"},{"speed":3.05,"en_desc":"Light Breeze","jp_desc":"軽風"},
+{"speed":5.28,"en_desc":"Gentle Breeze","jp_desc":"軟風"},{"speed":7.78,"en_desc":"Moderate Breeze","jp_desc":"和風"},
+{"speed":10.56,"en_desc":"Fresh Breeze","jp_desc":"疾風"},{"speed":13.6,"en_desc":"Strong Breeze","jp_desc":"雄風"}];
+//more at https://www.i-kahaku.jp/friend/kagaku/0306/kaze/index.html
+function get_wind_desc(wspeed){
+    // wspeed is float
+    var thisWind = "";
+    for (let item in desc_wind) {
+        if(wspeed <= desc_wind[item].speed){
+            thisWind = desc_wind[item].en_desc;
+            break;
+        }
+    }
+    return thisWind;
 }
 
 function build_path(jdx){
