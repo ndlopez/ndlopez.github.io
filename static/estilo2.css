@@ -22,6 +22,7 @@ div a{
   font-weight: bold;
 }
 .no-padding{padding: 0px;}
+.no-border{border:0px;}
 .header{padding:20px;text-align:center;}
 .sticky{
   display: block;
@@ -285,6 +286,7 @@ text-align:center;
 
   .outer{width: 320px;  overflow-x: auto;  }
   .large{font-size: 40px;}
+  .middle{font-size: 20px;}
   .column-left{margin: 0px 0px 0px -5px;}
   .column-third{margin: 0px -35px 0px 0px;}
   #weather_details .column3{padding: 0px;}

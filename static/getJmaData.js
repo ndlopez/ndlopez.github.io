@@ -31,7 +31,7 @@ function getDateHour(isoStr){
 }
 
 async function disp_info(){
-    await sleepy(1000);
+    await sleepy(1500);
     const gotData = await get_data();
     var myMin = gotData.temp[1][2];
     var myMax = gotData.temp[1][3];
@@ -87,10 +87,7 @@ async function disp_info(){
         ico_url+ gotData.forecast[1][idx]+
         ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/></div>";
 
-        /*if(idx==0){
-            tempMin = myMin;
-            tempMax = myMax;
-        }*/
+        /*if(idx==0){ tempMin = myMin;tempMax = myMax; }*/
         texty += "<div class='column3 float-left'><h4>"+tempMin+"&#8451; | "+tempMax+"&#8451;</h4></div>";
         groupDiv.innerHTML = texty;
         colDiv.appendChild(groupDiv);
@@ -105,7 +102,7 @@ async function disp_info(){
     const myDiv = document.getElementById("foreDiv");
     const headTitle = document.createElement("h2");
     var sofy = getDateHour(gotData.forecast[0][0]);
-    headTitle.innerText = theseDays[sofy.day] + ", " + theseMonths[sofy.monty-1] +
+    headTitle.innerText = "Tomorrow: " + theseDays[sofy.day] + ", " + theseMonths[sofy.monty-1] +
     " " + sofy.tag;
     myDiv.appendChild(headTitle);
 

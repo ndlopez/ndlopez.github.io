@@ -245,10 +245,10 @@ function buildSVGtext(dx,dy,text){
     //var img_url = "";
     //let temp_max_min = maxmin[0];//the date: myData.curr_weather[0][0]
     const lastElm = curr_weather.length-1;
-    var text = "<h2 class='align-left'>&emsp;Nagoya, JP</h2><h3>&emsp;"+ months[monty-1] + " " + tag + " "+curr_weather[lastElm].hour_min+"</h3>";
+    var text = "<h2 class='align-left'>Nagoya, JP</h2><h3 class='no-padding'>"+ months[monty-1] + " " + tag + " "+curr_weather[lastElm].hour_min+"</h3>";
     text += "<div class='clearfix'><span class='large'>" + 
-    "&emsp;"+curr_weather[lastElm].temp + "&#8451;</span><span id='now_weather'></span>" + 
-    "<span>, " + get_wind_desc(curr_weather[lastElm].wind) + "</span>" +
+    "&emsp;"+curr_weather[lastElm].temp + "&#8451;</span><span id='now_weather' class='middle'></span>" + 
+    "<span class='middle'>, " + get_wind_desc(curr_weather[lastElm].wind) + "</span>" +
     "<h4>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h4></div>";
     document.getElementById("curr_weather").innerHTML = text;
 
@@ -390,14 +390,26 @@ function build_plot(json_array){
     .attr("height",function(d){return h-yHumid(d.humid);})
     .delay(function(d,i){return(i*100)})
     /* Temperature: dot plot */
-    svg2.append("g")
+    /*svg2.append("g")
     .selectAll("dot")
     .data(json_array).enter()
     .append("circle")
     .attr("cx",function(d){return xScale(d.hour)+13;})
     .attr("cy",function(d){return yScale(d.temp);})
     .attr("r",5)
-    .style("fill","#cc274c");
+    .style("fill","#cc274c");*/
+
+    // add curve: https://d3-graph-gallery.com/graph/shape.html
+    var fillLine = d3.line()
+    .x((d)=>{return xScale(d.hour);})
+    .y((d)=>{return yScale(d.temp);})
+    .curve(d3.curveBasis);
+    svg2.append("path")
+    .attr("d",fillLine(json_array))
+    .attr("stroke","#cc274c")
+    .attr("stroke-width","4px")
+    .attr("fill","none");
+
     // add text to dots
     let adjHeight = -11;
     svg2.append("g").selectAll(".txtTemp").data(json_array).enter()
@@ -408,15 +420,6 @@ function build_plot(json_array){
     .attr("y",(d)=>{return yScale(d.temp)+adjHeight;})
     .attr("font-size","11px");
 
-    // add curve: https://d3-graph-gallery.com/graph/shape.html
-    var fillLine = d3.line()
-    .x((d)=>{return xScale(d.hour);})
-    .y((d)=>{return yScale(d.temp);})
-    .curve(d3.curveBasis);
-    svg2.append("path")
-    .attr("d",fillLine(json_array))
-    .attr("stroke","white")
-    .attr("fill","none");
     /* windSpeed: text */
     svg2.append("g").selectAll(".txtWind").data(json_array).enter()
     .append("text").attr("class","txtWind").text(function(d){return d.wind+"m";})
