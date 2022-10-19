@@ -408,12 +408,15 @@ function build_plot(json_array){
     .attr("y",(d)=>{return yScale(d.temp)+adjHeight;})
     .attr("font-size","11px");
 
-    // add curve     
+    // add curve: https://d3-graph-gallery.com/graph/shape.html
     var fillLine = d3.line()
     .x((d)=>{return xScale(d.hour);})
-    .y((d)=>{return yScale(d.temp);});
-    //.curve(d3.curveCardinal);
-    renderLine(svg2, fillLine.curve(d3.curveNatural));
+    .y((d)=>{return yScale(d.temp);})
+    .curve(d3.curveBasis);
+    svg2.append("path")
+    .attr("d",fillLine(json_array))
+    .attr("stroke","white")
+    .attr("fill","none");
     /* windSpeed: text */
     svg2.append("g").selectAll(".txtWind").data(json_array).enter()
     .append("text").attr("class","txtWind").text(function(d){return d.wind+"m";})
