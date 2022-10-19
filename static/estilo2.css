@@ -23,6 +23,7 @@ div a{
 }
 .no-padding{padding: 0px;}
 .no-border{border:0px;}
+.centered{text-align: center;}
 .header{padding:20px;text-align:center;}
 .sticky{
   display: block;
