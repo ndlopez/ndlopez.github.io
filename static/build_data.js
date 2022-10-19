@@ -47,7 +47,7 @@ function get_wind_desc(wspeed){
     var thisWind = "";
     for (let item in desc_wind) {
         if(wspeed <= desc_wind[item].speed){
-            thisWind = desc_wind[item].en_desc;
+            thisWind = desc_wind[item].jp_desc;
             break;
         }
     }
@@ -117,7 +117,10 @@ function buildProgressCircle(percent,title,texty) {
 }
 function buildGaugeMeter(value,title,htmlTxt){
     //Path - Text - Path
-    //const val = ~~value;
+    if(value > maxValue){
+        // Should re-scale but seems not so easy, probably change maxValue?
+        value = 6;
+    }
     const radius = 50;
     const pTitle = document.createElement("p");
     pTitle.innerText = title;
@@ -245,6 +248,7 @@ function buildSVGtext(dx,dy,text){
     var text = "<h2 class='align-left'>&emsp;Nagoya, JP</h2><h3>&emsp;"+ months[monty-1] + " " + tag + " "+curr_weather[lastElm].hour_min+"</h3>";
     text += "<div class='clearfix'><span class='large'>" + 
     "&emsp;"+curr_weather[lastElm].temp + "&#8451;</span><span id='now_weather'></span>" + 
+    "<span>, " + get_wind_desc(curr_weather[lastElm].wind) + "</span>" +
     "<h4>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h4></div>";
     document.getElementById("curr_weather").innerHTML = text;
 
@@ -265,8 +269,9 @@ function buildSVGtext(dx,dy,text){
 })();
 
 function build_array(hour,gotData){
+    // void function, 
+    // fills "result" array with data/hour, and "zoey" Obj with currentData
     const limit = 2;
-    //let result = [];
     for(let idx = hour; idx <= hour + limit; idx++){
         var aux = build_attrib(idx);
         if (gotData[aux] === undefined){break;}
@@ -356,7 +361,8 @@ function build_plot(json_array){
     .append("g")
     .attr("transform",`translate(${margin.left},${margin.top})`);
     var xScale=d3.scaleBand().range([0,w])
-    .domain(json_array.map(function(d){return d.hour;}))
+    .domain(hours)
+    /*.domain(json_array.map(function(d){return d.hour;})) //scale up to currHour*/
     .padding(0.3);
     svg2.append("g")
     .attr("transform","translate(0,"+0+")")
@@ -402,6 +408,12 @@ function build_plot(json_array){
     .attr("y",(d)=>{return yScale(d.temp)+adjHeight;})
     .attr("font-size","11px");
 
+    // add curve     
+    var fillLine = d3.line()
+    .x((d)=>{return xScale(d.hour);})
+    .y((d)=>{return yScale(d.temp);});
+    //.curve(d3.curveCardinal);
+    renderLine(svg2, fillLine.curve(d3.curveNatural));
     /* windSpeed: text */
     svg2.append("g").selectAll(".txtWind").data(json_array).enter()
     .append("text").attr("class","txtWind").text(function(d){return d.wind+"m";})
