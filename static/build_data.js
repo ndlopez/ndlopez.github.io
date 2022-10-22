@@ -15,7 +15,7 @@ let maxmin = []; // Max/Min temp from obs data
 var dataHours = [];
 const toRadians = Math.PI/180.0;
 const maxValue = 6; //m/s when 10m/s too many scales, should display half
-
+const prediction_data = [{xp:0,yp:17.0},{xp:6,yp:15},{xp:15,yp:24},{xp:23,yp:15}];
 var hours = [];
 for (let idx = 0; idx < 24; idx++) hours.push(idx);
 /* build array of hours: 0 ~ hh */
@@ -389,18 +389,23 @@ function build_plot(json_array){
     .attr("y",function(d){return yHumid(d.humid);})
     .attr("height",function(d){return h-yHumid(d.humid);})
     .delay(function(d,i){return(i*100)})
-    /* Temperature: dot plot */
-    /*svg2.append("g")
-    .selectAll("dot")
+    /* Temperature: square plot */
+    svg2.append("g")
+    .selectAll("squares")
     .data(json_array).enter()
-    .append("circle")
+    .append("rect")
+    .attr("x",(d)=>{return xScale(d.hour);})
+    .attr("y",(d)=>{return yScale(d.temp);})
+    .attr("width","10")
+    .attr("height","10")
+    /*.append("circle")
     .attr("cx",function(d){return xScale(d.hour)+13;})
     .attr("cy",function(d){return yScale(d.temp);})
-    .attr("r",5)
-    .style("fill","#cc274c");*/
+    .attr("r",5)*/
+    .style("fill","#cc274c");
 
     // add curve: https://d3-graph-gallery.com/graph/shape.html
-    var fillLine = d3.line()
+    /*var fillLine = d3.line()
     .x((d)=>{return xScale(d.hour);})
     .y((d)=>{return yScale(d.temp);})
     .curve(d3.curveBasis);
@@ -408,9 +413,9 @@ function build_plot(json_array){
     .attr("d",fillLine(json_array))
     .attr("stroke","#cc274c")
     .attr("stroke-width","4px")
-    .attr("fill","none");
+    .attr("fill","none");*/
 
-    // add text to dots
+    // add text to dots/squares
     let adjHeight = -11;
     svg2.append("g").selectAll(".txtTemp").data(json_array).enter()
     .append("text").attr("class","txtTemp")
@@ -440,6 +445,18 @@ function build_plot(json_array){
         return h + adjHeight;
     })
     .attr("font-size","11px");
+    //prediction curve
+    var thisCurve = d3.line()
+    .x((d)=> xScale(d.xp))
+    .y((d)=> yScale(d.yp))
+    .curve(d3.curveCardinal);
+
+    svg2.append("path")
+    .attr("d",thisCurve(prediction_data))
+    .attr("fill","none")
+    .attr("stroke","#6a7285")
+    .attr("stroke-width","3px")
+    .attr("stroke-dasharray","5,5");
 }
 /** might be helpful
 async function convToUpper(data){
