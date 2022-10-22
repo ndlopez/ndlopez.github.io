@@ -58,6 +58,16 @@ async function disp_info(){
         ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/><br/>"+
         gotData.weather[0];
     }
+    /* today rain Prob*/
+    const rainP = document.getElementById("rainProb");
+    if(rainP !== null){
+        rainP.innerText = gotData.rain[1][0] + "%";
+    }
+    /* today wind info */
+    const winds = document.getElementById("wind_info");
+    if(winds !== null){
+        winds.innerHTML = gotData.wind[0];
+    }    
     const radarImg = document.getElementById("radar_img");
     if(gotData.rain[1][0] > 0){
         // put a radar img from tenki.jp
@@ -89,15 +99,14 @@ async function disp_info(){
 
         /*if(idx==0){ tempMin = myMin;tempMax = myMax; }*/
         texty += "<div class='column3 float-left'><h4>"+tempMin+"&#8451; | "+tempMax+"&#8451;</h4></div>";
+        if((idx == 1) && (gotData.wind[2] != undefined)){
+            //should apply after 11AM
+            texty += "<p style='text-align:center;'>"+gotData.weather[2]+"、"+gotData.wind[2]+"</p>";
+        }
         groupDiv.innerHTML = texty;
         colDiv.appendChild(groupDiv);
     }
 
-    /* today rain Prob*/
-    const rainP = document.getElementById("rainProb");
-    if(rainP !== null){
-        rainP.innerText = gotData.rain[1][0] + "%";
-    }
     /* 2moro forecast + rain Prob */
     const myDiv = document.getElementById("foreDiv");
     const headTitle = document.createElement("h2");
@@ -108,7 +117,7 @@ async function disp_info(){
 
     const iconElm = document.createElement("div");
     iconElm.setAttribute("class","column float-left");
-    texty = "<br/><p>"+gotData.weather[1] +"</p>";
+    texty = "<br/><p>"+gotData.weather[1] +"</p><p>"+gotData.wind[1]+"</p>";
     
     texty += "<span>Min "+ myMin +"&#8451; | Max "+ myMax+"&#8451;</span>";
     iconElm.innerHTML = "<img src='"+ico_url+gotData.icon[1]+

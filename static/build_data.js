@@ -247,7 +247,7 @@ function buildSVGtext(dx,dy,text){
     const lastElm = curr_weather.length-1;
     var text = "<h2 class='align-left'>Nagoya, JP</h2><h3 class='no-padding'>"+ months[monty-1] + " " + tag + " "+curr_weather[lastElm].hour_min+"</h3>";
     text += "<div class='clearfix'><span class='large'>" + 
-    "&emsp;"+curr_weather[lastElm].temp + "&#8451;</span><span id='now_weather' class='middle'></span>" + 
+    "&emsp;"+curr_weather[lastElm].temp + "&#8451;</span><span id='now_weather' class='middle'></span><p id='wind_info'></p>" + 
     "<h4>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h4></div>";
     document.getElementById("curr_weather").innerHTML = text;
 
@@ -261,7 +261,7 @@ function buildSVGtext(dx,dy,text){
     detailsDiv.appendChild(humidDiv);
 
     text = "<h4>m/s</h4><h2>"+ windChar(curr_weather[lastElm].windDir) + 
-    "<br/>" + get_wind_desc(curr_weather[lastElm].wind) + "</h2>";
+    "</h2><span>" + get_wind_desc(curr_weather[lastElm].wind) + "</span>";
     var kelly = ~~curr_weather[lastElm].wind;
     var windDiv = buildGaugeMeter(kelly,"WIND",text);
     detailsDiv.appendChild(windDiv);
@@ -454,7 +454,7 @@ function build_plot(json_array){
     svg2.append("path")
     .attr("d",thisCurve(prediction_data))
     .attr("fill","none")
-    .attr("stroke","#6a7285")
+    .attr("stroke","#ffeea6")
     .attr("stroke-width","3px")
     .attr("stroke-dasharray","5,5");
 }
