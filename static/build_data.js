@@ -262,7 +262,7 @@ function buildSVGtext(dx,dy,text){
 
     text = "<h4>m/s</h4><h2>"+ windChar(curr_weather[lastElm].windDir) + 
     "</h2><span>" + get_wind_desc(curr_weather[lastElm].wind) + "</span>";
-    var kelly = ~~curr_weather[lastElm].wind;
+    var kelly = Math.round(curr_weather[lastElm].wind);
     var windDiv = buildGaugeMeter(kelly,"WIND",text);
     detailsDiv.appendChild(windDiv);
     

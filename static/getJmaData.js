@@ -42,7 +42,7 @@ async function disp_info(){
     var texty = "";
     const gotTime = await getTimes();//fetch sun rise/set
     //sunrise/sunset + wind info
-    const weathernfo = document.getElementById("weather_info");
+    const weathernfo = document.getElementById("curr_weather");
     var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");
     jennaDiv.style.background = "url(../assets/daylen.svg) no-repeat";
