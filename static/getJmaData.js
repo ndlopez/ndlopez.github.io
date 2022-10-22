@@ -39,19 +39,22 @@ async function disp_info(){
         myMax = gotData.temp[1][1];
         myMin = gotData.temp[1][0];
     }
-
-    //const gotTime = await getTimes();//fetch sun rise/set    
-    /*const currDiv = document.getElementById("thisWeather");
-    const pElem = document.createElement("p");
-    pElem.setAttribute("class","column");
-    pElem.style.textAlign = "right";
-    var texty = "<img src='../svg/sunrise.svg' width=32/>" + gotTime.sunrise[0] + ":" + 
-    gotTime.sunrise[1] + "&emsp;&emsp;<img src='../svg/sunset.svg' width=32/>"+
-    gotTime.sunset[0]+":"+gotTime.sunset[1];
-    pElem.innerHTML = texty;
-    currDiv.appendChild(pElem);*/
-
     var texty = "";
+    const gotTime = await getTimes();//fetch sun rise/set
+    //sunrise/sunset + wind info
+    const weathernfo = document.getElementById("weather_info");
+    var jennaDiv = document.createElement("div");
+    jennaDiv.setAttribute("class","clearfix");
+    jennaDiv.style.background = "url(../assets/daylen.svg) no-repeat";
+    jennaDiv.style.backgroundPosition = "50% 0%";
+    jennaDiv.setAttribute("id","sunRiseSet");
+    texty = "<div class='column3 float-left'><img src='../assets/sunrise.svg' width=32/><p class='no-margin'>"+gotTime.sunrise[0]+":"+gotTime.sunrise[1]+
+    "</p></div><div class='column3 float-left'><h3>"+ gotData.wind[0] +
+    "</h3></div><div class='column3 float-left'><img src='../assets/sunset.svg' width=32/><p class='no-margin'>" + 
+    gotTime.sunset[0]+":"+gotTime.sunset[1] + "</p></div>";
+    jennaDiv.innerHTML = texty;
+    weathernfo.appendChild(jennaDiv);
+    
     const nowTenki = document.getElementById("now_weather");
     if(nowTenki !== null){
         nowTenki.innerHTML = "<img src='" + ico_url+gotData.icon[0] +
@@ -64,10 +67,10 @@ async function disp_info(){
         rainP.innerText = gotData.rain[1][0] + "%";
     }
     /* today wind info */
-    const winds = document.getElementById("wind_info");
+    /*const winds = document.getElementById("wind_info");
     if(winds !== null){
         winds.innerHTML = gotData.wind[0];
-    }    
+    }*/    
     const radarImg = document.getElementById("radar_img");
     if(gotData.rain[1][0] > 0){
         // put a radar img from tenki.jp

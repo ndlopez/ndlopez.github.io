@@ -394,7 +394,7 @@ function build_plot(json_array){
     .selectAll("squares")
     .data(json_array).enter()
     .append("rect")
-    .attr("x",(d)=>{return xScale(d.hour);})
+    .attr("x",(d)=>{return xScale(d.hour)+7;})
     .attr("y",(d)=>{return yScale(d.temp);})
     .attr("width","10")
     .attr("height","10")
@@ -429,7 +429,7 @@ function build_plot(json_array){
     svg2.append("g").selectAll(".txtWind").data(json_array).enter()
     .append("text").attr("class","txtWind").text(function(d){return d.wind+"m";})
     .attr("text-anchor","middle")
-    .attr("x",(d)=>{return xScale(d.hour)+13;})
+    .attr("x",(d)=>{return xScale(d.hour)+9;})
     .attr("y",(d)=>{return h-5;})
     .attr("font-size","11px");
 
