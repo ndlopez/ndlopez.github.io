@@ -150,7 +150,7 @@ ul, li{margin: 0px;padding:5px}
   margin-top: 10px;
 }
 #forecaster .row p, #forecaster .row h2{margin: 0;}
-#foreDiv div{border-bottom: 1px dashed #bed2e040;}
+
 panel2,.flip{
   font-size:16px;
   padding:10px;
@@ -302,6 +302,7 @@ text-align:center;
   }
   .top-menu{display: none;}
   #forecaster img{height: 48px;}
+  #foreDiv div{border-bottom: 1px dashed #bed2e040;}
 }
 /*@media (max-width:360px){
   .outer{width: 280px;  overflow-x: auto;  }
