@@ -15,7 +15,7 @@ let maxmin = []; // Max/Min temp from obs data
 var dataHours = [];
 const toRadians = Math.PI/180.0;
 const maxValue = 6; //m/s when 10m/s too many scales, should display half
-const prediction_data = [{xp:0,yp:13.0},{xp:6,yp:12},{xp:13,yp:22},{xp:23,yp:10}];
+const prediction_data = [{xp:0,yp:12.0},{xp:6,yp:10},{xp:13,yp:21},{xp:23,yp:10}];
 var hours = [];
 for (let idx = 0; idx < 24; idx++) hours.push(idx);
 /* build array of hours: 0 ~ hh */
@@ -327,7 +327,7 @@ function build_plot(json_array){
     
     /* Y temp: left axis*/
     const tMin = d3.min(json_array,(d)=>{return d.temp;});
-    const tMax = d3.max(json_array,(d)=>{return d.temp;});
+    const tMax = 23;//d3.max(json_array,(d)=>{return d.temp;});
     maxmin.push(tMax);
     maxmin.push(tMin);
     //console.log(tMin,tMax);
@@ -336,7 +336,7 @@ function build_plot(json_array){
     .append("g")
     .attr("transform","translate(" + 35 + "," + margin.top + ")");
     const yScale = d3.scaleLinear()
-    .domain([~~tMin-1,~~tMax+1]).range([h,0]);
+    .domain([Math.round(tMin)-1,tMax+1]).range([h,0]);
     svgLeft.append("g").call(d3.axisLeft(yScale)).attr("font-size","12");
     svgLeft.append("g").append("text").text("\u2103").attr("x",-24).attr("y",-10);
 
