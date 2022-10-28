@@ -19,7 +19,7 @@ const theseMonths = ["January","February","March","April","May","June","July",
 // const theseDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-const currHH = new Date().getHours();
+var thisHour = new Date().getHours();
 
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
@@ -60,7 +60,7 @@ async function disp_info(){
     const nowTenki = document.getElementById("now_weather");
     if(nowTenki !== null){
         var kaisa="";
-        if(currHH <= parseInt(gotTime.sunset[0])){
+        if(thisHour <= parseInt(gotTime.sunset[0])){
             kaisa = "<img src='" + ico_url+gotData.icon[0] +
             ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/><br/>";
         }else{
