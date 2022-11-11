@@ -327,7 +327,7 @@ function build_plot(json_array){
     
     /* Y temp: left axis*/
     const tMin = d3.min(json_array,(d)=>{return d.temp;});
-    const tMax = 23;//d3.max(json_array,(d)=>{return d.temp;});
+    const tMax = 22;//d3.max(json_array,(d)=>{return d.temp;});
     maxmin.push(tMax);
     maxmin.push(tMin);
     //console.log(tMin,tMax);
@@ -336,7 +336,7 @@ function build_plot(json_array){
     .append("g")
     .attr("transform","translate(" + 35 + "," + margin.top + ")");
     const yScale = d3.scaleLinear()
-    .domain([Math.round(tMin)-1,tMax+1]).range([h,0]);
+    .domain([Math.round(tMin)-2,tMax]).range([h,0]);
     svgLeft.append("g").call(d3.axisLeft(yScale)).attr("font-size","12");
     svgLeft.append("g").append("text").text("\u2103").attr("x",-24).attr("y",-10);
 
