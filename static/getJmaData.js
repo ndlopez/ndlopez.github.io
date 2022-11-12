@@ -21,18 +21,60 @@ const theseMonths = ["January","February","March","April","May","June","July",
 // const theseDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-var thisHour = new Date().getHours();
+let my_date = new Date();
+const thisHour = my_date.getHours(), thisMins = my_date.getMinutes();
 
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
 }
 
 disp_info(0);
-
+build_sun_pos();
 function getDateHour(isoStr){
     // inStr: ISO format
     const gotDate = new Date(isoStr);
     return {"monty":gotDate.getMonth() + 1,"tag":gotDate.getDate(),"day":gotDate.getDay(),"heure":gotDate.getHours()};
+}
+
+async function build_sun_pos() {
+    let radius = 30;
+    const sunSetRise = await getTimes();
+    const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
+    const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
+    const width = 60, height = 40;//px
+    const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
+    const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);
+    const theta = Math.acos(1 - x0/rr);//radians
+    const posX0Y0 = [x0*width/rr,0.5*width*Math.sin(theta)];//px
+    console.log("thisPos", sunset, sunrise, rr,x0,theta,posX0Y0);
+    const pTitle = document.createElement("p");
+    pTitle.innerText = "";
+    const subDiv = document.createElement("div");
+    //subDiv.setAttribute("class","column3 float-left");
+    subDiv.appendChild(pTitle);
+    const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    svgGroup.setAttribute("width",width);
+    svgGroup.setAttribute("height",height);
+    svgCircle.setAttribute("id","semicirc");
+    svgCircle.setAttribute("stroke","#cc274c");
+    svgCircle.setAttribute("stroke-width","5");
+    svgCircle.setAttribute("stroke-linecap","round");
+    svgCircle.setAttribute("fill","transparent");
+    svgCircle.setAttribute("r",radius);
+    svgCircle.setAttribute("cx","30");
+    svgCircle.setAttribute("cy","40");
+    svgGroup.appendChild(svgCircle);
+    
+    var circumference = radius * Math.PI;
+    svgCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+    subDiv.appendChild(svgGroup);
+    var subDivVal = document.createElement("div");
+    subDivVal.setAttribute("class","value");
+    subDivVal.innerHTML = "";
+    subDiv.appendChild(subDivVal);
+
+    return subDiv;
 }
 
 async function disp_info(kat){
@@ -68,7 +110,7 @@ async function disp_info(kat){
     const nowTenki = document.getElementById("now_weather");
     if(nowTenki !== null){
         var kaisa="";
-        if(thisHour <= parseInt(gotTime.sunset[0])){
+        if((thisHour <= parseInt(gotTime.sunset[0])) || (thisHour <= parseInt(gotTime.sunrise[0]))){
             kaisa = "<img src='" + ico_url+gotData.icon[0] +
             ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/><br/>";
         }else{
