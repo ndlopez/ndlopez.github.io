@@ -2,7 +2,7 @@
 /* Fetching data from JMA.go.jp */
 const jmaURL = "https://www.jma.go.jp/bosai/forecast/data/forecast/";
 const city_code = [{name:"Nagoya",code:230000},{name:"Takayama",code:210000}];
-const city_idx = 0; // 0:Nagoya, 1:Takayama
+const city_idx = 1; // 0:Nagoya, 1:Takayama
 // data per hour for current day here:
 // https://www.jma.go.jp/bosai/amedas/data/point/51106/20221007_09.json
 // format seems to be yyyymmdd_hh.json, hh< currHour, hh=0,3,6,9,...
@@ -44,6 +44,10 @@ async function disp_info(){
         myMin = gotData.temp[1][0];
     }
     var texty = "";
+    const city_name = document.getElementById("this_place");
+    if (city_name !== null){
+        city_name.innerText = gotData.location;
+    }
     const gotTime = await getTimes();//fetch sun rise/set
     //sunrise/sunset + wind info
     const weathernfo = document.getElementById("curr_weather");
