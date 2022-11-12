@@ -29,31 +29,30 @@ async function sleepy(msec){
 }
 
 disp_info(0);
-build_sun_pos();
+
 function getDateHour(isoStr){
     // inStr: ISO format
     const gotDate = new Date(isoStr);
     return {"monty":gotDate.getMonth() + 1,"tag":gotDate.getDate(),"day":gotDate.getDay(),"heure":gotDate.getHours()};
 }
 
-async function build_sun_pos() {
+function build_sun_pos(sunSetRise) {
     let radius = 30;
-    const sunSetRise = await getTimes();
     const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
-    const width = 60, height = 40;//px
+    const width = 300, height = 120;//px
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
-    const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);
+    const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
     const theta = Math.acos(1 - x0/rr);//radians
-    const posX0Y0 = [x0*width/rr,0.5*width*Math.sin(theta)];//px
+    const posX0Y0 = [x0*width/rr,0.5*width*Math.sin(theta)-height];//px
     console.log("thisPos", sunset, sunrise, rr,x0,theta,posX0Y0);
     const pTitle = document.createElement("p");
-    pTitle.innerText = "";
-    const subDiv = document.createElement("div");
+    pTitle.innerText = "Sun position";
+    //const subDiv = document.createElement("div");
     //subDiv.setAttribute("class","column3 float-left");
-    subDiv.appendChild(pTitle);
+    //subDiv.appendChild(pTitle);
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','path');
     svgGroup.setAttribute("width",width);
     svgGroup.setAttribute("height",height);
     svgCircle.setAttribute("id","semicirc");
@@ -61,20 +60,18 @@ async function build_sun_pos() {
     svgCircle.setAttribute("stroke-width","5");
     svgCircle.setAttribute("stroke-linecap","round");
     svgCircle.setAttribute("fill","transparent");
-    svgCircle.setAttribute("r",radius);
-    svgCircle.setAttribute("cx","30");
-    svgCircle.setAttribute("cy","40");
-    svgGroup.appendChild(svgCircle);
+    var myPath = "M240 100 A40 40 40 10 90 100 0";
+    svgCircle.setAttribute("d",myPath);
     
-    var circumference = radius * Math.PI;
-    svgCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-    subDiv.appendChild(svgGroup);
-    var subDivVal = document.createElement("div");
-    subDivVal.setAttribute("class","value");
-    subDivVal.innerHTML = "";
-    subDiv.appendChild(subDivVal);
-
-    return subDiv;
+    const svgSun = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    svgSun.setAttribute("fill","#ffeea6");
+    svgSun.setAttribute("r",5);
+    svgSun.setAttribute("cx",posX0Y0[0]);
+    svgSun.setAttribute("cy",posX0Y0[1]);
+    svgGroup.appendChild(svgCircle);
+    svgGroup.appendChild(svgSun);
+    //subDiv.appendChild(svgGroup);
+    return svgGroup;
 }
 
 async function disp_info(kat){
@@ -95,14 +92,16 @@ async function disp_info(kat){
     const gotTime = await getTimes();//fetch sun rise/set
     //sunrise/sunset + wind info
     const weathernfo = document.getElementById("curr_weather");
+    //weathernfo.appendChild();
     var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");
-    jennaDiv.style.background = "url(../assets/daylen.svg) no-repeat";
-    jennaDiv.style.backgroundPosition = "50% 0%";
+    //jennaDiv.style.background = "url(../assets/daylen.svg) no-repeat";
+    //jennaDiv.style.backgroundPosition = "50% 0%";
     jennaDiv.setAttribute("id","sunRiseSet");
     texty = "<div class='column3 float-left'><img src='../assets/sunrise.svg' width=32/><p class='no-margin'>"+gotTime.sunrise[0]+":"+gotTime.sunrise[1]+
-    "</p></div><div class='column3 float-left'><h3>"+ gotData.wind[0] +
-    "</h3></div><div class='column3 float-left'><img src='../assets/sunset.svg' width=32/><p class='no-margin'>" + 
+    "</p></div><div class='column3 float-left'>"+ build_sun_pos(gotTime) +
+    /*"<div class='column3 float-left'><h3>"+ gotData.wind[0] +*/
+    "</div><div class='column3 float-left'><img src='../assets/sunset.svg' width=32/><p class='no-margin'>" + 
     gotTime.sunset[0]+":"+gotTime.sunset[1] + "</p></div>";
     jennaDiv.innerHTML = texty;
     weathernfo.appendChild(jennaDiv);
