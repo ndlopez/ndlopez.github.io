@@ -1,6 +1,8 @@
 //import { theseMonths } from "./build_data.js"; SyntaxError!
 /* Fetching data from JMA.go.jp */
-const jma_data = "https://www.jma.go.jp/bosai/forecast/data/forecast/230000.json";
+const jmaURL = "https://www.jma.go.jp/bosai/forecast/data/forecast/";
+const city_code = [{name:"Nagoya",code:230000},{name:"Takayama",code:210000}];
+const city_idx = 0; // 0:Nagoya, 1:Takayama
 // data per hour for current day here:
 // https://www.jma.go.jp/bosai/amedas/data/point/51106/20221007_09.json
 // format seems to be yyyymmdd_hh.json, hh< currHour, hh=0,3,6,9,...
@@ -12,7 +14,7 @@ const radar_url = ["https://static.tenki.jp/static-images/radar/recent/pref-26-m
 const sun_time = ["https://dayspedia.com/api/widget/city/11369/?lang=en",
 "https://dayspedia.com/api/widget/city/4311/?lang=en"];
 
-const hh = [5,11,17,23];
+const hh = [6,12,18,23];
 
 const theseMonths = ["January","February","March","April","May","June","July",
 "August","September","October","November","December"];
@@ -24,7 +26,7 @@ var thisHour = new Date().getHours();
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
 }
-disp_info(); //should delay at least 1s
+disp_info();
 
 function getDateHour(isoStr){
     // inStr: ISO format
@@ -75,21 +77,17 @@ async function disp_info(){
     }
     /* today wind info */
     /*const winds = document.getElementById("wind_info");
-    if(winds !== null){
-        winds.innerHTML = gotData.wind[0];
-    }*/    
+    if(winds !== null){winds.innerHTML = gotData.wind[0];}*/
     const radarImg = document.getElementById("radar_img");
     if(gotData.rain[1][0] > 0){
         // put a radar img from tenki.jp
         radarImg.innerHTML = '<p>Click on the img for 1hour forecast</p><a href="' + 
         radar_url[1] + '" title="Redirects to JMA.go.jp" target="_blank"><img src="' + radar_url[0] + '"></a>';
     }
-    //
-    //var currWeather = gotData.weather[1].split("　");
+    //when parsing currCond only: var currWeather = gotData.weather[1].split("　");
     /*for(let idx=0;idx<gotData.weather.length;idx++){
         var currWeather = gotData.weather[idx].split("　");
-        texty += "<h2>"+gotData.time[idx].slice(0,10)+" "+currWeather[0]+"<img src='"+ico_url+gotData.icon[idx]+".svg'/></h2>";
-    }*/
+        texty += "<h2>"+gotData.time[idx].slice(0,10)+" "+currWeather[0]+"<img src='"+ico_url+gotData.icon[idx]+".svg'/></h2>";}*/
     /* Weekly forecast Max/Min*/
     const colDiv = document.getElementById("forecaster");
     //create as many group div as forecast are available
@@ -153,25 +151,27 @@ async function disp_info(){
     //console.log("forecast:",gotData.forecast);
 }
 async function get_data(){
-    const response = await fetch(jma_data);
+    var my_url = jmaURL+city_code[city_idx].code+".json";
+    const response = await fetch(my_url);
     const data = await response.json();
     //0: currDay, 1: nextDay, 2:dayAfter2moro
+    const place = data[1].timeSeries[1].areas[city_idx].area.name;
     var upTime = data[0].timeSeries[0].timeDefines;
-    var thisWeather = data[0].timeSeries[0].areas[0].weathers;
-    var weatherIcon = data[0].timeSeries[0].areas[0].weatherCodes;
-    var winds = data[0].timeSeries[0].areas[0].winds;
+    var thisWeather = data[0].timeSeries[0].areas[city_idx].weathers;
+    var weatherIcon = data[0].timeSeries[0].areas[city_idx].weatherCodes;
+    var winds = data[0].timeSeries[0].areas[city_idx].winds;
     var rainTimes = data[0].timeSeries[1].timeDefines;//6:every 6hrs
-    var rainProb = data[0].timeSeries[1].areas[0].pops;//6 data
+    var rainProb = data[0].timeSeries[1].areas[city_idx].pops;//6 data
     var tempTimes = data[0].timeSeries[2].timeDefines;//max/min only
-    var temp = data[0].timeSeries[2].areas[0].temps;//currDay:0,1; nextDay:2,3
+    var temp = data[0].timeSeries[2].areas[city_idx].temps;//currDay:0,1; nextDay:2,3
     //weekly forecast
     var weekDates = data[1].timeSeries[0].timeDefines;// 7dates
-    var weekIcons = data[1].timeSeries[0].areas[0].weatherCodes; // 7 code Icons
+    var weekIcons = data[1].timeSeries[0].areas[city_idx].weatherCodes; // 7 code Icons
     //var weekTempDates = data[1].timeSeries[1].timeDefines; //7dates
-    var weekTempMin = data[1].timeSeries[1].areas[0].tempsMin;
-    var weekTempMax = data[1].timeSeries[1].areas[0].tempsMax;
+    var weekTempMin = data[1].timeSeries[1].areas[city_idx].tempsMin;
+    var weekTempMax = data[1].timeSeries[1].areas[city_idx].tempsMax;
     //console.log(currWeather[0],weatherIcon);
-    return {"time":upTime,"weather":thisWeather,"icon":weatherIcon,
+    return {"location":place,"time":upTime,"weather":thisWeather,"icon":weatherIcon,
     "wind":winds,"rain":[rainTimes,rainProb],"temp":[tempTimes,temp],
     "forecast":[weekDates,weekIcons,weekTempMin,weekTempMax]};
 }

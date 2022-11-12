@@ -1,9 +1,11 @@
 let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 /* Fetch observation data from jma site and plot */
-const jma_url = "https://www.jma.go.jp/bosai/amedas/data/point/51106/2022";
+const jma_url = "https://www.jma.go.jp/bosai/amedas/data/point/";//51106/2022
 const cities = [{name:"Nagoya",code:51106},{name:"Takayama",code:52146}];
+const cdx = 0; // 0:Nagoya, 1:Takayama
 /*current date and time*/
 let myDate = new Date();
+const jahre = myDate.getFullYear();
 const monty = myDate.getMonth() + 1;
 const tag = myDate.getDate();
 var currHH = myDate.getHours();
@@ -57,15 +59,15 @@ function get_wind_desc(wspeed){
 
 function build_path(jdx){
     //0 < jdx < 8:
-    var path = jma_url + zeroPad(monty) + zeroPad(tag) + "_"+zeroPad(dataHours[jdx]) + ".json";
+    var path = jma_url + cities[cdx].code + "/" + jahre + zeroPad(monty) + zeroPad(tag) + "_"+zeroPad(dataHours[jdx]) + ".json";
     return path;
 }
 function build_attrib(tit){
-    return "2022"+zeroPad(monty)+zeroPad(tag)+zeroPad(tit)+"0000";
+    return String(jahre) + zeroPad(monty) + zeroPad(tag) + zeroPad(tit) + "0000";
 }
 function get_min_attr(tit){
     if((currMin%10) == 0){
-        return "2022"+zeroPad(monty)+zeroPad(tag)+zeroPad(tit)+zeroPad(currMin)+"00";
+        return String(jahre) + zeroPad(monty) + zeroPad(tag) + zeroPad(tit) + zeroPad(currMin) + "00";
     }else{
 
     }
