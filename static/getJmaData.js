@@ -2,7 +2,7 @@
 /* Fetching data from JMA.go.jp */
 const jmaURL = "https://www.jma.go.jp/bosai/forecast/data/forecast/";
 const city_code = [{name:"Nagoya",code:230000},{name:"Takayama",code:210000}];
-const city_idx = 1; // 0:Nagoya, 1:Takayama
+//var city_idx = 0; // 0:Nagoya, 1:Takayama
 // data per hour for current day here:
 // https://www.jma.go.jp/bosai/amedas/data/point/51106/20221007_09.json
 // format seems to be yyyymmdd_hh.json, hh< currHour, hh=0,3,6,9,...
@@ -26,7 +26,8 @@ var thisHour = new Date().getHours();
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
 }
-disp_info();
+
+disp_info(0);
 
 function getDateHour(isoStr){
     // inStr: ISO format
@@ -34,9 +35,9 @@ function getDateHour(isoStr){
     return {"monty":gotDate.getMonth() + 1,"tag":gotDate.getDate(),"day":gotDate.getDay(),"heure":gotDate.getHours()};
 }
 
-async function disp_info(){
+async function disp_info(kat){
     await sleepy(1500);
-    const gotData = await get_data();
+    const gotData = await get_data(kat);
     var myMin = gotData.temp[1][2];
     var myMax = gotData.temp[1][3];
     if(myMax === undefined){
@@ -46,6 +47,7 @@ async function disp_info(){
     var texty = "";
     const city_name = document.getElementById("this_place");
     if (city_name !== null){
+        document.title = gotData.location + "天気";
         city_name.innerText = gotData.location;
     }
     const gotTime = await getTimes();//fetch sun rise/set
@@ -154,26 +156,27 @@ async function disp_info(){
     myDiv.appendChild(tempElm);
     //console.log("forecast:",gotData.forecast);
 }
-async function get_data(){
-    var my_url = jmaURL+city_code[city_idx].code+".json";
+
+async function get_data(jdx){
+    var my_url = jmaURL + city_code[jdx].code + ".json";
     const response = await fetch(my_url);
     const data = await response.json();
     //0: currDay, 1: nextDay, 2:dayAfter2moro
-    const place = data[1].timeSeries[1].areas[city_idx].area.name;
+    const place = data[1].timeSeries[1].areas[jdx].area.name;
     var upTime = data[0].timeSeries[0].timeDefines;
-    var thisWeather = data[0].timeSeries[0].areas[city_idx].weathers;
-    var weatherIcon = data[0].timeSeries[0].areas[city_idx].weatherCodes;
-    var winds = data[0].timeSeries[0].areas[city_idx].winds;
+    var thisWeather = data[0].timeSeries[0].areas[jdx].weathers;
+    var weatherIcon = data[0].timeSeries[0].areas[jdx].weatherCodes;
+    var winds = data[0].timeSeries[0].areas[jdx].winds;
     var rainTimes = data[0].timeSeries[1].timeDefines;//6:every 6hrs
-    var rainProb = data[0].timeSeries[1].areas[city_idx].pops;//6 data
+    var rainProb = data[0].timeSeries[1].areas[jdx].pops;//6 data
     var tempTimes = data[0].timeSeries[2].timeDefines;//max/min only
-    var temp = data[0].timeSeries[2].areas[city_idx].temps;//currDay:0,1; nextDay:2,3
+    var temp = data[0].timeSeries[2].areas[jdx].temps;//currDay:0,1; nextDay:2,3
     //weekly forecast
     var weekDates = data[1].timeSeries[0].timeDefines;// 7dates
-    var weekIcons = data[1].timeSeries[0].areas[city_idx].weatherCodes; // 7 code Icons
+    var weekIcons = data[1].timeSeries[0].areas[jdx].weatherCodes; // 7 code Icons
     //var weekTempDates = data[1].timeSeries[1].timeDefines; //7dates
-    var weekTempMin = data[1].timeSeries[1].areas[city_idx].tempsMin;
-    var weekTempMax = data[1].timeSeries[1].areas[city_idx].tempsMax;
+    var weekTempMin = data[1].timeSeries[1].areas[jdx].tempsMin;
+    var weekTempMax = data[1].timeSeries[1].areas[jdx].tempsMax;
     //console.log(currWeather[0],weatherIcon);
     return {"location":place,"time":upTime,"weather":thisWeather,"icon":weatherIcon,
     "wind":winds,"rain":[rainTimes,rainProb],"temp":[tempTimes,temp],
@@ -182,8 +185,7 @@ async function get_data(){
 
 /*async function getIconCodes(){
     const resp = await fetch("../data/w_codes.json");
-    const data = await resp.json();
-    return data;
+    const data = await resp.json();return data;
 }*/
 
 function convTime(unixT){
