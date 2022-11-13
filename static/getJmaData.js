@@ -22,7 +22,7 @@ const theseMonths = ["January","February","March","April","May","June","July",
 const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 let my_date = new Date();
-const thisHour = my_date.getHours(), thisMins = my_date.getMinutes();
+const thisHour = 8/*my_date.getHours()*/, thisMins = my_date.getMinutes();
 
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
@@ -43,8 +43,8 @@ function build_sun_pos(sunSetRise) {
     const width = 300, height = 120;//px
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
     const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
-    const theta = Math.acos(1 - x0/rr);//radians
-    const posX0Y0 = [x0*width/rr,0.5*width*Math.sin(theta)-height];//px
+    const theta = Math.acos(1 - 2*x0/rr);//radians
+    const posX0Y0 = [x0*width/rr,height-0.5*width*Math.sin(theta)];//px
     console.log("thisPos", sunset, sunrise, rr,x0,theta,posX0Y0);
     const pTitle = document.createElement("p");
     pTitle.innerText = "Sun position";
@@ -92,16 +92,16 @@ async function disp_info(kat){
     const gotTime = await getTimes();//fetch sun rise/set
     //sunrise/sunset + wind info
     const weathernfo = document.getElementById("curr_weather");
-    //weathernfo.appendChild();
+    weathernfo.appendChild(build_sun_pos(gotTime));
     var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");
     //jennaDiv.style.background = "url(../assets/daylen.svg) no-repeat";
     //jennaDiv.style.backgroundPosition = "50% 0%";
     jennaDiv.setAttribute("id","sunRiseSet");
     texty = "<div class='column3 float-left'><img src='../assets/sunrise.svg' width=32/><p class='no-margin'>"+gotTime.sunrise[0]+":"+gotTime.sunrise[1]+
-    "</p></div><div class='column3 float-left'>"+ build_sun_pos(gotTime) +
-    /*"<div class='column3 float-left'><h3>"+ gotData.wind[0] +*/
-    "</div><div class='column3 float-left'><img src='../assets/sunset.svg' width=32/><p class='no-margin'>" + 
+    "</p></div><div class='column3 float-left'>" +
+    "<div class='column3 float-left'><h3>"+ gotData.wind[0] +
+    "</h3></div><div class='column3 float-left'><img src='../assets/sunset.svg' width=32/><p class='no-margin'>" + 
     gotTime.sunset[0]+":"+gotTime.sunset[1] + "</p></div>";
     jennaDiv.innerHTML = texty;
     weathernfo.appendChild(jennaDiv);
