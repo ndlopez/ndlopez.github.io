@@ -43,9 +43,13 @@ function build_sun_pos(sunSetRise) {
     const width = 200, height = 120;//px, 300x180, 120 for summer
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
     const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
-    const theta = Math.acos(1 - (2*x0/rr));//radians
-    const posX0Y0 = [x0*width/rr,height-0.5*width*Math.sin(theta)];//px
-    console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
+    var posX0Y0 = [0,0];
+    if(x0 <= rr){
+        const theta = Math.acos(1 - (2*x0/rr));//radians
+        posX0Y0 = [x0*width/rr,height-0.5*width*Math.sin(theta)];//px
+        console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
+    }
+    
     const pTitle = document.createElement("p");
     pTitle.innerText = "Sun position";
     //const subDiv = document.createElement("div");
