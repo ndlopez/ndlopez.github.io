@@ -122,7 +122,10 @@ async function disp_info(kat){
     const gotTime = await getTimes();//fetch sun rise/set
     //sunrise/sunset + wind info
     const weathernfo = document.getElementById("curr_weather");
-    weathernfo.appendChild(build_sun_pos(gotTime));
+    if(thisHour <= gotTime.sunset[0]){
+        weathernfo.appendChild(build_sun_pos(gotTime));
+    }
+    
     var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");
     //jennaDiv.style.background = "url(../assets/daylen.svg) no-repeat";
