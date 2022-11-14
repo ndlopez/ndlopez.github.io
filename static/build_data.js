@@ -456,7 +456,7 @@ function build_plot(json_array){
     .curve(d3.curveCardinal);
 
     svg2.append("path")
-    .attr("d",thisCurve(tky_pred))
+    .attr("d",thisCurve(ngo_pred))
     .attr("fill","none")
     .attr("stroke","#ffeea6")
     .attr("stroke-width","3px")

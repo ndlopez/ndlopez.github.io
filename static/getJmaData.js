@@ -1,5 +1,6 @@
 //import { theseMonths } from "./build_data.js"; SyntaxError!
 /* Fetching data from JMA.go.jp */
+const toRad = Math.PI/180.0;
 const jmaURL = "https://www.jma.go.jp/bosai/forecast/data/forecast/";
 const city_code = [{name:"Nagoya",code:230000},{name:"Takayama",code:210000}];
 //var city_idx = 0; // 0:Nagoya, 1:Takayama
@@ -39,7 +40,7 @@ function getDateHour(isoStr){
 function build_sun_pos(sunSetRise) {
     const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
-    const width = 200, height = 120;//px, 300x180
+    const width = 200, height = 120;//px, 300x180, 120 for summer
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
     const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
     const theta = Math.acos(1 - (2*x0/rr));//radians
@@ -61,9 +62,9 @@ function build_sun_pos(sunSetRise) {
     svgCircle.setAttribute("stroke-width","2");
     svgCircle.setAttribute("fill","transparent");
     svgCircle.setAttribute("stroke-dasharray","10,10");
-    svgCircle.setAttribute("r",0.5*width);
-    svgCircle.setAttribute("cx",0.5*width);
-    svgCircle.setAttribute("cy",0.5*width);
+    svgCircle.setAttribute("r",0.5*width-10);
+    svgCircle.setAttribute("cx",0.5*width-5);
+    svgCircle.setAttribute("cy",0.5*width-5);
     //var myPath = "M240 100 A40 40 40 10 90 100 0"; semicirc
     var myPath = "M3.034,56C18.629,24.513,52.554,2.687,91.9,2.687S165.172,24.513,180.766,56h3.033 C168.016,23.041,132.807,0.098,91.9,0.098C50.995,0.098,15.785,23.041,0.002,56H3.034z";
     //svgCircle.setAttribute("d",myPath);
