@@ -66,8 +66,15 @@ function build_sun_pos(sunSetRise) {
     svgCircle.setAttribute("fill","transparent");
     svgCircle.setAttribute("stroke-dasharray","10,10");
     svgCircle.setAttribute("r",0.5*width-10);
-    svgCircle.setAttribute("cx",0.5*width-5);
-    svgCircle.setAttribute("cy",0.5*width-5);
+    svgCircle.setAttribute("cx",0.5*width);
+    svgCircle.setAttribute("cy",0.5*width);
+    const svgLine = document.createElementNS('http://www.w3.org/2000/svg','line');
+    svgLine.setAttribute("x1",0);
+    svgLine.setAttribute("y1",0.5*width);
+    svgLine.setAttribute("x2",width);    
+    svgLine.setAttribute("y2",0.5*width);
+    svgLine.setAttribute("stroke","#2e4054");//set by CSS
+    svgLine.setAttribute("stroke-width","2");
     //var myPath = "M240 100 A40 40 40 10 90 100 0"; semicirc
     var myPath = "M3.034,56C18.629,24.513,52.554,2.687,91.9,2.687S165.172,24.513,180.766,56h3.033 C168.016,23.041,132.807,0.098,91.9,0.098C50.995,0.098,15.785,23.041,0.002,56H3.034z";
     
@@ -90,7 +97,9 @@ function build_sun_pos(sunSetRise) {
     svgSun.setAttribute("cy",posX0Y0[1]);
     
     svgGroup.appendChild(svgSun);
+    svgGroup.appendChild(svgLine);
     svgGroup.appendChild(svgCircle);
+    
     //subDiv.appendChild(svgGroup);
     return svgGroup;
 }
