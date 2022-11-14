@@ -23,7 +23,7 @@ const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 let my_date = new Date();
 const thisHour = my_date.getHours(), thisMins = my_date.getMinutes();
-
+console.log("now:",thisHour,thisMins);
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
 }
@@ -37,13 +37,12 @@ function getDateHour(isoStr){
 }
 
 function build_sun_pos(sunSetRise) {
-    let radius = 30;
     const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
-    const width = 200, height = 80;//px, 300x180
+    const width = 200, height = 120;//px, 300x180
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
     const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
-    const theta = Math.acos(1 - 2*x0/rr);//radians
+    const theta = Math.acos(1 - (2*x0/rr));//radians
     const posX0Y0 = [x0*width/rr,height-0.5*width*Math.sin(theta)];//px
     console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
     const pTitle = document.createElement("p");
@@ -52,28 +51,38 @@ function build_sun_pos(sunSetRise) {
     //subDiv.setAttribute("class","column3 float-left");
     //subDiv.appendChild(pTitle);
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','path');
     svgGroup.setAttribute("width",width);
     svgGroup.setAttribute("height",height);
     svgGroup.setAttribute("x","0px");
     svgGroup.setAttribute("y","0px");
-    svgCircle.setAttribute("id","semicirc");
+    const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    svgCircle.setAttribute("fill","#bed2e0");
     svgCircle.setAttribute("stroke","#E8B720");
     svgCircle.setAttribute("stroke-width","2");
-    //svgCircle.setAttribute("stroke-linecap","round");
-    svgCircle.setAttribute("fill","transparent");//#E8B720
+    svgCircle.setAttribute("fill","transparent");
     svgCircle.setAttribute("stroke-dasharray","10,10");
+    svgCircle.setAttribute("r",0.5*width);
+    svgCircle.setAttribute("cx",0.5*width);
+    svgCircle.setAttribute("cy",0.5*width);
     //var myPath = "M240 100 A40 40 40 10 90 100 0"; semicirc
     var myPath = "M3.034,56C18.629,24.513,52.554,2.687,91.9,2.687S165.172,24.513,180.766,56h3.033 C168.016,23.041,132.807,0.098,91.9,0.098C50.995,0.098,15.785,23.041,0.002,56H3.034z";
-    svgCircle.setAttribute("d",myPath);
+    //svgCircle.setAttribute("d",myPath);
+    const svgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+    svgPath.setAttribute("id","semicirc");
+    svgPath.setAttribute("stroke","#E8B720");
+    svgPath.setAttribute("stroke-width","2");
+    //svgCircle.setAttribute("stroke-linecap","round");
+    svgPath.setAttribute("fill","transparent");//#E8B720
+    svgPath.setAttribute("stroke-dasharray","10,10");
     
     const svgSun = document.createElementNS('http://www.w3.org/2000/svg','circle');
     svgSun.setAttribute("fill","#E8B720");
     svgSun.setAttribute("r",5);
     svgSun.setAttribute("cx",posX0Y0[0]);
     svgSun.setAttribute("cy",posX0Y0[1]);
-    svgGroup.appendChild(svgCircle);
+    
     svgGroup.appendChild(svgSun);
+    svgGroup.appendChild(svgCircle);
     //subDiv.appendChild(svgGroup);
     return svgGroup;
 }
