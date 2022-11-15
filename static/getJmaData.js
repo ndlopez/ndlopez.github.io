@@ -24,7 +24,7 @@ const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 let my_date = new Date();
 const thisHour = my_date.getHours(), thisMins = my_date.getMinutes();
-console.log("now:",thisHour,thisMins);
+//console.log("now:",thisHour,thisMins);
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
 }
@@ -133,8 +133,8 @@ async function disp_info(kat){
     
     var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");
-    //jennaDiv.style.background = "url(../assets/daylen.svg) no-repeat";
-    //jennaDiv.style.backgroundPosition = "50% 0%";
+    // jennaDiv.style.background = "url(../assets/daylen.svg) no-repeat";
+    // jennaDiv.style.backgroundPosition = "50% 0%";
     jennaDiv.setAttribute("id","sunRiseSet");
     texty = "<div class='column3 float-left'><img src='../assets/sunrise.svg' width=32/><p class='no-margin'>"+gotTime.sunrise[0]+":"+gotTime.sunrise[1]+
     "</p></div>" + "<div class='column3 float-left'><h3>"+ gotData.wind[0] +
@@ -159,8 +159,8 @@ async function disp_info(kat){
     if(rainP !== null){
         rainP.innerText = gotData.rain[1][0] + "%";
     }
-    /* today wind info */
-    /*const winds = document.getElementById("wind_info");
+    /* today wind info 
+    const winds = document.getElementById("wind_info");
     if(winds !== null){winds.innerHTML = gotData.wind[0];}*/
     const radarImg = document.getElementById("radar_img");
     if(gotData.rain[1][0] > 0){
