@@ -75,30 +75,35 @@ function build_sun_pos(sunSetRise) {
     svgLine.setAttribute("y2",0.5*width);
     svgLine.setAttribute("stroke","#2e4054");//set by CSS
     svgLine.setAttribute("stroke-width","2");
-    //var myPath = "M240 100 A40 40 40 10 90 100 0"; semicirc
+    /*
+    var myPath = "M240 100 A40 40 40 10 90 100 0"; semicirc
     var myPath = "M3.034,56C18.629,24.513,52.554,2.687,91.9,2.687S165.172,24.513,180.766,56h3.033 C168.016,23.041,132.807,0.098,91.9,0.098C50.995,0.098,15.785,23.041,0.002,56H3.034z";
-    
     const svgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
     svgPath.setAttribute("id","semicirc");
     svgPath.setAttribute("stroke","#bed2e0");
     svgPath.setAttribute("stroke-width","2");
-    //svgCircle.setAttribute("stroke-linecap","round");
     svgPath.setAttribute("fill","transparent");//#E8B720
     svgPath.setAttribute("stroke-dasharray","10,10");
-    svgPath.setAttribute("d",myPath);
+    svgPath.setAttribute("d",myPath);*/
+
     var offset = 5; 
-    const svgSun = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    if(thisHour<12){offset = -5;}
+
+    /*const svgSun = document.createElementNS('http://www.w3.org/2000/svg','circle');
     svgSun.setAttribute("fill","#E8B720");
     svgSun.setAttribute("r",5);
-    if(thisHour<12){
-        offset = -5;
-    }
     svgSun.setAttribute("cx",posX0Y0[0]-offset);
-    svgSun.setAttribute("cy",posX0Y0[1]);
+    svgSun.setAttribute("cy",posX0Y0[1]);*/
     
-    svgGroup.appendChild(svgSun);
-    svgGroup.appendChild(svgLine);
+    const svgTxt = document.createElementNS('http://www.w3.org/2000/svg','text');
+    svgTxt.setAttribute("fill","#E8B720");
+    svgTxt.setAttribute("x",posX0Y0[0]-offset);
+    svgTxt.setAttribute("y",posX0Y0[1]);
+    svgTxt.setAttribute("font-size","large");
+    svgTxt.textContent = "\u2600"; //Sun with rays
     svgGroup.appendChild(svgCircle);
+    svgGroup.appendChild(svgLine);
+    svgGroup.appendChild(svgTxt);   
     
     //subDiv.appendChild(svgGroup);
     return svgGroup;

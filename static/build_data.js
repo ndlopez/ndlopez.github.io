@@ -2,7 +2,7 @@ let months = ["January","February","March","April","May","June","July","August",
 /* Fetch observation data from jma site and plot */
 const jma_url = "https://www.jma.go.jp/bosai/amedas/data/point/";//51106/2022
 const cities = [{name:"Nagoya",code:51106},{name:"Takayama",code:52146}];
-const cdx = 1; // 0:Nagoya, 1:Takayama
+const cdx = 0; // 0:Nagoya, 1:Takayama
 /*current date and time*/
 let myDate = new Date();
 const jahre = myDate.getFullYear();

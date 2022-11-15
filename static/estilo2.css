@@ -172,7 +172,7 @@ panel2,.flip{
 /*.bar{fill:#bed2e030}*/
 svg g{color:#bed2e0;}
 .domain, svg line{stroke: #bed2e0;}
-svg text{fill:#bed2e0;font-size: 12px;}
+#leftAxis svg text, #mainPlot svg text, #rightAxis svg text{fill:#bed2e0;font-size: 12px;}
 .txtTemp,.txtWind{fill:whitesmoke;}
 .tempAxis text{fill:#cc274c;}
 
