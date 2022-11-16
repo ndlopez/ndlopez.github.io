@@ -18,7 +18,7 @@ let maxmin = []; // Max/Min temp from obs data
 var dataHours = [];
 const toRadians = Math.PI/180.0;
 const maxValue = 6; //m/s when 10m/s too many scales, should display half
-const ngo_pred = [{xp:0,yp:12.0},{xp:7,yp:10},{xp:14,yp:21},{xp:23,yp:10}];
+const ngo_pred = [{xp:0,yp:12.0},{xp:7,yp:10},{xp:14,yp:20},{xp:23,yp:10}];
 const tky_pred = [{xp:0,yp:5.0},{xp:7,yp:3},{xp:14,yp:17},{xp:23,yp:4}];
 var hours = [];
 for (let idx = 0; idx < 24; idx++) hours.push(idx);
@@ -226,7 +226,7 @@ function buildSVGtext(dx,dy,text){
     svgText.setAttribute("y",dy);
     svgText.setAttribute("fill","#bed2e0");
     svgText.setAttribute("font-family","Verdana");
-    svgText.setAttribute("font-size","large");
+    svgText.setAttribute("font-size","small");
     svgText.textContent = String(text);
     return svgText
 }
@@ -251,7 +251,7 @@ function buildSVGtext(dx,dy,text){
     const lastElm = curr_weather.length-1;
     var text = "<h2 id='this_place' class='align-left'></h2><h3 class='no-padding'>"+ months[monty-1] + " " + tag + " "+curr_weather[lastElm].hour_min+"</h3>";
     text += "<div class='clearfix'><span class='large'>" + 
-    "&emsp;"+curr_weather[lastElm].temp + "&#8451;</span><span id='now_weather' class='middle'></span><p id='wind_info'></p>" + 
+    "&emsp;"+curr_weather[lastElm].temp + "&#8451;</span><span id='now_weather' class='middle'></span>" + 
     "<h4>Max "+ maxmin[0] + "&#8451;&emsp;Min " + maxmin[1] +  "&#8451;</h4></div>";
     document.getElementById("curr_weather").innerHTML = text;
 
@@ -264,8 +264,8 @@ function buildSVGtext(dx,dy,text){
     var humidDiv = buildProgressCircle(curr_weather[lastElm].humid,"HUMIDITY",text);
     detailsDiv.appendChild(humidDiv);
 
-    text = "<h4>m/s</h4><h2>"+ windChar(curr_weather[lastElm].windDir) + 
-    "</h2><span>" + get_wind_desc(curr_weather[lastElm].wind) + "</span>";
+    text = "<h4>m/s<br/>"+get_wind_desc(curr_weather[lastElm].wind) +"</h4><h2>" + 
+    windChar(curr_weather[lastElm].windDir) + "</h2>";
     var kelly = Math.round(curr_weather[lastElm].wind);
     var windDiv = buildGaugeMeter(kelly,"WIND",text);
     detailsDiv.appendChild(windDiv);

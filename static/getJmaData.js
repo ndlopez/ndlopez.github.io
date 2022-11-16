@@ -52,9 +52,9 @@ function build_sun_pos(sunSetRise) {
     
     const pTitle = document.createElement("p");
     pTitle.innerText = "Sun position";
-    //const subDiv = document.createElement("div");
-    //subDiv.setAttribute("class","column3 float-left");
-    //subDiv.appendChild(pTitle);
+    const subDiv = document.createElement("div");
+    subDiv.setAttribute("class","clearfix");
+    subDiv.appendChild(pTitle);
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svgGroup.setAttribute("width",width);
     svgGroup.setAttribute("height",height);
@@ -119,8 +119,8 @@ function build_sun_pos(sunSetRise) {
     svgGroup.appendChild(svgSet);
     svgGroup.appendChild(svgTxt);
     
-    //subDiv.appendChild(svgGroup);
-    return svgGroup;
+    subDiv.appendChild(svgGroup);
+    return subDiv;
 }
 
 async function disp_info(kat){
@@ -145,17 +145,17 @@ async function disp_info(kat){
         weathernfo.appendChild(build_sun_pos(gotTime));
     }
     
-    var jennaDiv = document.createElement("div");
+    /*var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");
-    // jennaDiv.style.background = "url(../assets/daylen.svg) no-repeat";
-    // jennaDiv.style.backgroundPosition = "50% 0%";
+    jennaDiv.style.background = "url(../assets/daylen.svg) no-repeat";
+    jennaDiv.style.backgroundPosition = "50% 0%";
     jennaDiv.setAttribute("id","sunRiseSet");
     texty = "<div class='column3 float-left'><img src='../assets/sunrise.svg' width=32/><p class='no-margin'>"+gotTime.sunrise[0]+":"+gotTime.sunrise[1]+
     "</p></div>" + "<div class='column3 float-left'><h3>"+ gotData.wind[0] +
     "</h3></div><div class='column3 float-left'><img src='../assets/sunset.svg' width=32/><p class='no-margin'>" + 
     gotTime.sunset[0]+":"+gotTime.sunset[1] + "</p></div>";
     jennaDiv.innerHTML = texty;
-    weathernfo.appendChild(jennaDiv);
+    weathernfo.appendChild(jennaDiv);*/
     
     const nowTenki = document.getElementById("now_weather");
     if(nowTenki !== null){
@@ -166,7 +166,7 @@ async function disp_info(kat){
         }else{
             kaisa = "<img src='../assets/cloudy_night.svg'/><br/>";
         }
-        nowTenki.innerHTML = kaisa + gotData.weather[0];
+        nowTenki.innerHTML = kaisa + gotData.weather[0] + "<br/>" + gotData.wind[0];
     }
     /* today rain Prob*/
     const rainP = document.getElementById("rainProb");
