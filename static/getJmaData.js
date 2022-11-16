@@ -40,7 +40,7 @@ function getDateHour(isoStr){
 function build_sun_pos(sunSetRise) {
     const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
-    const width = 200, height = 120;//px, 300x180, 120 for summer
+    const width = 300, height = 180;//px, 300x180, 120 for summer
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
     const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
     var posX0Y0 = [0,0];
@@ -51,7 +51,7 @@ function build_sun_pos(sunSetRise) {
     }
     
     const pTitle = document.createElement("p");
-    pTitle.innerText = "Sun position";
+    pTitle.innerText = "SUN POSITION";
     const subDiv = document.createElement("div");
     subDiv.setAttribute("class","clearfix");
     subDiv.appendChild(pTitle);
@@ -64,8 +64,8 @@ function build_sun_pos(sunSetRise) {
     svgCircle.setAttribute("stroke","#bed2e0");
     svgCircle.setAttribute("stroke-width","2");
     svgCircle.setAttribute("fill","transparent");
-    svgCircle.setAttribute("stroke-dasharray","5,20");
-    svgCircle.setAttribute("r",0.5*width-18);
+    svgCircle.setAttribute("stroke-dasharray","2,10");//5,5; 10,10; 5,10; 20,10,5,5,5,10
+    svgCircle.setAttribute("r",0.5*width-26);
     svgCircle.setAttribute("cx",0.5*width);
     svgCircle.setAttribute("cy",0.5*width);
     const svgLine = document.createElementNS('http://www.w3.org/2000/svg','line');
@@ -103,15 +103,15 @@ function build_sun_pos(sunSetRise) {
     svgTxt.textContent = "\u2600"; //Sun with rays
     const svgRise = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgRise.setAttribute("fill","#E8B720");
-    svgRise.setAttribute("x",0);
-    svgRise.setAttribute("y",0.5*width+14);
-    svgRise.setAttribute("font-size","14px");
+    svgRise.setAttribute("x",15);
+    svgRise.setAttribute("y",0.5*width+18);
+    svgRise.setAttribute("font-size","16px");
     svgRise.textContent = sunrise[0]+":"+sunrise[1];
     const svgSet = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgSet.setAttribute("fill","#E8B720");
-    svgSet.setAttribute("x",width-40);
-    svgSet.setAttribute("y",0.5*width+14);
-    svgSet.setAttribute("font-size","14px");
+    svgSet.setAttribute("x",width-46);
+    svgSet.setAttribute("y",0.5*width+18);
+    svgSet.setAttribute("font-size","16px");
     svgSet.textContent = sunset[0]+":"+sunset[1];
     svgGroup.appendChild(svgCircle);
     svgGroup.appendChild(svgLine);
