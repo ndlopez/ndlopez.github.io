@@ -64,8 +64,8 @@ function build_sun_pos(sunSetRise) {
     svgCircle.setAttribute("stroke","#bed2e0");
     svgCircle.setAttribute("stroke-width","2");
     svgCircle.setAttribute("fill","transparent");
-    svgCircle.setAttribute("stroke-dasharray","10,10");
-    svgCircle.setAttribute("r",0.5*width-10);
+    svgCircle.setAttribute("stroke-dasharray","5,20");
+    svgCircle.setAttribute("r",0.5*width-18);
     svgCircle.setAttribute("cx",0.5*width);
     svgCircle.setAttribute("cy",0.5*width);
     const svgLine = document.createElementNS('http://www.w3.org/2000/svg','line');
@@ -101,9 +101,23 @@ function build_sun_pos(sunSetRise) {
     svgTxt.setAttribute("y",posX0Y0[1]);
     svgTxt.setAttribute("font-size","large");
     svgTxt.textContent = "\u2600"; //Sun with rays
+    const svgRise = document.createElementNS('http://www.w3.org/2000/svg','text');
+    svgRise.setAttribute("fill","#E8B720");
+    svgRise.setAttribute("x",0);
+    svgRise.setAttribute("y",0.5*width+14);
+    svgRise.setAttribute("font-size","14px");
+    svgRise.textContent = sunrise[0]+":"+sunrise[1];
+    const svgSet = document.createElementNS('http://www.w3.org/2000/svg','text');
+    svgSet.setAttribute("fill","#E8B720");
+    svgSet.setAttribute("x",width-40);
+    svgSet.setAttribute("y",0.5*width+14);
+    svgSet.setAttribute("font-size","14px");
+    svgSet.textContent = sunset[0]+":"+sunset[1];
     svgGroup.appendChild(svgCircle);
     svgGroup.appendChild(svgLine);
-    svgGroup.appendChild(svgTxt);   
+    svgGroup.appendChild(svgRise);
+    svgGroup.appendChild(svgSet);
+    svgGroup.appendChild(svgTxt);
     
     //subDiv.appendChild(svgGroup);
     return svgGroup;
@@ -147,7 +161,7 @@ async function disp_info(kat){
     if(nowTenki !== null){
         var kaisa="";
         if((thisHour <= parseInt(gotTime.sunset[0])) || (thisHour <= parseInt(gotTime.sunrise[0]))){
-            kaisa = "<img src='" + ico_url+gotData.icon[0] +
+            kaisa = "<img src='" + ico_url + gotData.icon[0] +
             ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/><br/>";
         }else{
             kaisa = "<img src='../assets/cloudy_night.svg'/><br/>";
