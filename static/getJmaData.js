@@ -60,20 +60,27 @@ function build_sun_pos(sunSetRise) {
     svgGroup.setAttribute("height",height);
     svgGroup.setAttribute("x","0px");
     svgGroup.setAttribute("y","0px");
+    const svgBkg = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    svgBkg.setAttribute("fill","#87ceeb");
+    svgBkg.setAttribute("x",0);
+    svgBkg.setAttribute("y",0);
+    svgBkg.setAttribute("width",width);
+    svgBkg.setAttribute("height",height);
+
     const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    svgCircle.setAttribute("stroke","#87ceeb");
+    svgCircle.setAttribute("stroke","#2e4054");
     svgCircle.setAttribute("stroke-width","2");
-    svgCircle.setAttribute("fill","#87ceeb");
+    svgCircle.setAttribute("fill","transparent");//
     svgCircle.setAttribute("stroke-dasharray","2,10");//5,5; 10,10; 5,10; 20,10,5,5,5,10
     svgCircle.setAttribute("r",0.5*width-26);
     svgCircle.setAttribute("cx",0.5*width);
     svgCircle.setAttribute("cy",0.5*width);
     const svgLine = document.createElementNS('http://www.w3.org/2000/svg','rect');
-    svgLine.setAttribute("x",26);
+    svgLine.setAttribute("x",0);//26
     svgLine.setAttribute("y",0.5*width);
     svgLine.setAttribute("stroke","#059862");
     svgLine.setAttribute("fill","#059862");//green
-    svgLine.setAttribute("width",width-2*26);
+    svgLine.setAttribute("width",width);// -2*26
     svgLine.setAttribute("height",30);
     //svgLine.setAttribute("x2",width);
     //svgLine.setAttribute("y2",0.5*width);
@@ -97,14 +104,14 @@ function build_sun_pos(sunSetRise) {
     svgSun.setAttribute("cx",posX0Y0[0]-offset);
     svgSun.setAttribute("cy",posX0Y0[1]);*/
     
-    const svgTxt = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgTxt.setAttribute("fill","#E8B720");
-    svgTxt.setAttribute("x",posX0Y0[0]-offset);
-    svgTxt.setAttribute("y",posX0Y0[1]);
-    svgTxt.setAttribute("font-size","24px");
-    svgTxt.textContent = "\u2600"; //Sun with rays 2600
+    const svgSun = document.createElementNS('http://www.w3.org/2000/svg','text');
+    svgSun.setAttribute("fill","#E8B720");
+    svgSun.setAttribute("x",posX0Y0[0]-offset);
+    svgSun.setAttribute("y",posX0Y0[1]);
+    svgSun.setAttribute("font-size","24px");
+    svgSun.textContent = "\u2600"; //Sun with rays 2600
     const svgCloud = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgCloud.setAttribute("fill","#fff");
+    svgCloud.setAttribute("fill","#ececec");
     svgCloud.setAttribute("x",0.7*width);
     svgCloud.setAttribute("y",0.25*width);
     svgCloud.setAttribute("font-size","24px");
@@ -121,11 +128,13 @@ function build_sun_pos(sunSetRise) {
     svgSet.setAttribute("y",0.5*width+18);
     svgSet.setAttribute("font-size","16px");
     svgSet.textContent = sunset[0]+":"+sunset[1];
+
+    svgGroup.appendChild(svgBkg);
     svgGroup.appendChild(svgCircle);
     svgGroup.appendChild(svgLine);
     svgGroup.appendChild(svgRise);
     svgGroup.appendChild(svgSet);
-    svgGroup.appendChild(svgTxt);
+    svgGroup.appendChild(svgSun);
     svgGroup.appendChild(svgCloud);
     
     subDiv.appendChild(svgGroup);
