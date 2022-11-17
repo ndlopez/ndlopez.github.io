@@ -112,8 +112,12 @@ function build_sun_pos(sunSetRise) {
     svgSun.setAttribute("y",posX0Y0[1]);
     svgSun.setAttribute("font-size","24px");
     svgSun.textContent = "\u2600"; //Sun with rays 2600
-    const svgSubG = document.createElementNS('http://www.w3.org/2000/svg','g');
-    
+    //for some reason not parsed :(
+    /*const svgSubG = document.createElementNS('http://www.w3.org/2000/svg','g');
+    svgSubG.setAttribute("font-size","30");
+    svgSubG.setAttribute("fill","#ececec");
+    svgSubG.textContent = '<text x="'+(0.1*width)+'" y="'+(0.25*width)+'">\u2601</text>'+
+    '<text x="10" y="40">\u2601</text>';*/
     const svgCloud = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgCloud.setAttribute("fill","#ececec");
     svgCloud.setAttribute("x",0.7*width);
@@ -141,6 +145,7 @@ function build_sun_pos(sunSetRise) {
     svgGroup.appendChild(svgSet);
     svgGroup.appendChild(svgSun);
     svgGroup.appendChild(svgCloud);
+    //svgGroup.appendChild(svgSubG);
     
     subDiv.appendChild(svgGroup);
     return subDiv;
@@ -164,9 +169,9 @@ async function disp_info(kat){
     const gotTime = await getTimes();//fetch sun rise/set
     //sunrise/sunset + wind info
     const weathernfo = document.getElementById("curr_weather");
-    //if(thisHour <= gotTime.sunset[0]){
-    weathernfo.appendChild(build_sun_pos(gotTime));
-    //}
+    if(thisHour <= gotTime.sunset[0]){
+        weathernfo.appendChild(build_sun_pos(gotTime));
+    }
     
     /*var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");
