@@ -86,14 +86,16 @@ function build_sun_pos(sunSetRise) {
     //svgLine.setAttribute("y2",0.5*width);
     /*
     var myPath = "M240 100 A40 40 40 10 90 100 0"; semicirc
-    var myPath = "M3.034,56C18.629,24.513,52.554,2.687,91.9,2.687S165.172,24.513,180.766,56h3.033 C168.016,23.041,132.807,0.098,91.9,0.098C50.995,0.098,15.785,23.041,0.002,56H3.034z";
+    var myPath = "M3.034,56C18.629,24.513,52.554,2.687,91.9,2.687S165.172,24.513,180.766,56h3.033 
+    C168.016,23.041,132.807,0.098,91.9,0.098C50.995,0.098,15.785,23.041,0.002,56H3.034z";*/
     const svgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
-    svgPath.setAttribute("id","semicirc");
-    svgPath.setAttribute("stroke","#bed2e0");
+    svgPath.setAttribute("id","road");
+    svgPath.setAttribute("stroke","#2e4054");
     svgPath.setAttribute("stroke-width","2");
-    svgPath.setAttribute("fill","transparent");//#E8B720
-    svgPath.setAttribute("stroke-dasharray","10,10");
-    svgPath.setAttribute("d",myPath);*/
+    svgPath.setAttribute("fill","#2e4054");//#E8B720
+    //svgPath.setAttribute("stroke-dasharray","10,10");
+    var myPath = "M100 180 L130 150 170 150 200 180Z";
+    svgPath.setAttribute("d",myPath);
 
     var offset = 5; 
     if(thisHour<12){offset = -5;}
@@ -110,6 +112,8 @@ function build_sun_pos(sunSetRise) {
     svgSun.setAttribute("y",posX0Y0[1]);
     svgSun.setAttribute("font-size","24px");
     svgSun.textContent = "\u2600"; //Sun with rays 2600
+    const svgSubG = document.createElementNS('http://www.w3.org/2000/svg','g');
+    
     const svgCloud = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgCloud.setAttribute("fill","#ececec");
     svgCloud.setAttribute("x",0.7*width);
@@ -132,6 +136,7 @@ function build_sun_pos(sunSetRise) {
     svgGroup.appendChild(svgBkg);
     svgGroup.appendChild(svgCircle);
     svgGroup.appendChild(svgLine);
+    svgGroup.appendChild(svgPath);
     svgGroup.appendChild(svgRise);
     svgGroup.appendChild(svgSet);
     svgGroup.appendChild(svgSun);
@@ -159,9 +164,9 @@ async function disp_info(kat){
     const gotTime = await getTimes();//fetch sun rise/set
     //sunrise/sunset + wind info
     const weathernfo = document.getElementById("curr_weather");
-    if(thisHour <= gotTime.sunset[0]){
-        weathernfo.appendChild(build_sun_pos(gotTime));
-    }
+    //if(thisHour <= gotTime.sunset[0]){
+    weathernfo.appendChild(build_sun_pos(gotTime));
+    //}
     
     /*var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");
