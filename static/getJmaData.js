@@ -212,8 +212,10 @@ async function disp_info(kat){
         texty += "<h2>"+gotData.time[idx].slice(0,10)+" "+currWeather[0]+"<img src='"+ico_url+gotData.icon[idx]+".svg'/></h2>";}*/
     /* Weekly forecast Max/Min*/
     const colDiv = document.getElementById("forecaster");
+    var init_idx = 2;
+    if(thisHour >= 11){init_idx=1;}
     //create as many group div as forecast are available
-    for(let idx=1;idx<gotData.forecast[0].length;idx++){
+    for(let idx = init_idx;idx < gotData.forecast[0].length; idx++){
         const groupDiv = document.createElement("div");
         groupDiv.setAttribute("class","row");
 
