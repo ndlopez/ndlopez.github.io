@@ -82,8 +82,7 @@ function build_sun_pos(sunSetRise) {
     svgLine.setAttribute("fill","#059862");//green
     svgLine.setAttribute("width",width);// -2*26
     svgLine.setAttribute("height",30);
-    //svgLine.setAttribute("x2",width);
-    //svgLine.setAttribute("y2",0.5*width);
+    //svgLine.setAttribute("x2",width);svgLine.setAttribute("y2",0.5*width);
     /*
     var myPath = "M240 100 A40 40 40 10 90 100 0"; semicirc
     var myPath = "M3.034,56C18.629,24.513,52.554,2.687,91.9,2.687S165.172,24.513,180.766,56h3.033 
@@ -101,10 +100,8 @@ function build_sun_pos(sunSetRise) {
     if(thisHour<12){offset = -5;}
 
     /*const svgSun = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    svgSun.setAttribute("fill","#E8B720");
-    svgSun.setAttribute("r",5);
-    svgSun.setAttribute("cx",posX0Y0[0]-offset);
-    svgSun.setAttribute("cy",posX0Y0[1]);*/
+    svgSun.setAttribute("fill","#E8B720");svgSun.setAttribute("r",5);
+    svgSun.setAttribute("cx",posX0Y0[0]-offset);svgSun.setAttribute("cy",posX0Y0[1]);*/
     
     const svgSun = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgSun.setAttribute("fill","#E8B720");
@@ -114,8 +111,7 @@ function build_sun_pos(sunSetRise) {
     svgSun.textContent = "\u2600"; //Sun with rays 2600
     //for some reason not parsed :(
     /*const svgSubG = document.createElementNS('http://www.w3.org/2000/svg','g');
-    svgSubG.setAttribute("font-size","30");
-    svgSubG.setAttribute("fill","#ececec");
+    svgSubG.setAttribute("font-size","30");svgSubG.setAttribute("fill","#ececec");
     svgSubG.textContent = '<text x="'+(0.1*width)+'" y="'+(0.25*width)+'">\u2601</text>'+
     '<text x="10" y="40">\u2601</text>';*/
     const svgCloud = document.createElementNS('http://www.w3.org/2000/svg','text');
@@ -244,7 +240,9 @@ async function disp_info(kat){
     /* 2moro forecast + rain Prob */
     const myDiv = document.getElementById("foreDiv");
     const headTitle = document.createElement("h2");
-    var sofy = getDateHour(gotData.forecast[0][0]);
+    var this_idx = 1;//Before 11AM 0:today, 1: tomorrow
+    if(thisHour >= 11){this_idx = 0;}     
+    var sofy = getDateHour(gotData.forecast[0][this_idx]);
     headTitle.innerText = "Tomorrow: " + theseDays[sofy.day] + ", " + theseMonths[sofy.monty-1] +
     " " + sofy.tag;
     myDiv.appendChild(headTitle);
