@@ -38,23 +38,25 @@ function getDateHour(isoStr){
 }
 
 function build_sun_pos(sunSetRise) {
-    const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
+    const sunset = [sunSetRise.sunset[0]+1,sunSetRise.sunset[1]];
     const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
-    const width = 300, height = 180;//px, 300x180, 120 for summer
+    const width = 330, height = 200;//px, 300x180, 120 for summer
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
     const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
     var posX0Y0 = [0,0];
     if(x0 <= rr){
         const theta = Math.acos(1 - (2*x0/rr));//radians
-        posX0Y0 = [x0*width/rr,height-0.5*width*Math.sin(theta)];//px
+        var my_off = 20;
+        posX0Y0 = [x0*width/rr-my_off,height-0.5*width*Math.sin(theta)];//px
         console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
     }
     
-    const pTitle = document.createElement("p");
-    pTitle.innerText = "SUN POSITION";
+    //const pTitle = document.createElement("p");
+    //pTitle.innerText = "SUN POSITION";
     const subDiv = document.createElement("div");
     subDiv.setAttribute("class","clearfix");
-    subDiv.appendChild(pTitle);
+    subDiv.setAttribute("id","sun-pos");
+    //subDiv.appendChild(pTitle);
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svgGroup.setAttribute("width",width);
     svgGroup.setAttribute("height",height);
@@ -78,8 +80,8 @@ function build_sun_pos(sunSetRise) {
     const svgLine = document.createElementNS('http://www.w3.org/2000/svg','rect');
     svgLine.setAttribute("x",0);//26
     svgLine.setAttribute("y",0.5*width);
-    svgLine.setAttribute("stroke","#059862");
-    svgLine.setAttribute("fill","#059862");//green
+    svgLine.setAttribute("stroke","#50653b");//059862
+    svgLine.setAttribute("fill","#50653b");//green
     svgLine.setAttribute("width",width);// -2*26
     svgLine.setAttribute("height",30);
     //svgLine.setAttribute("x2",width);svgLine.setAttribute("y2",0.5*width);
@@ -107,7 +109,7 @@ function build_sun_pos(sunSetRise) {
     svgSun.setAttribute("fill","#E8B720");
     svgSun.setAttribute("x",posX0Y0[0]-offset);
     svgSun.setAttribute("y",posX0Y0[1]);
-    svgSun.setAttribute("font-size","24px");
+    svgSun.setAttribute("font-size","36px");
     svgSun.textContent = "\u2600"; //Sun with rays 2600
     //for some reason not parsed :(
     /*const svgSubG = document.createElementNS('http://www.w3.org/2000/svg','g');
@@ -121,26 +123,26 @@ function build_sun_pos(sunSetRise) {
     svgCloud.setAttribute("font-size","24px");
     svgCloud.textContent = "\u2601"; //cloud
     const svgRise = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgRise.setAttribute("fill","#E8B720");
+    svgRise.setAttribute("fill","#fff");
     svgRise.setAttribute("x",15);
-    svgRise.setAttribute("y",0.5*width+18);
+    svgRise.setAttribute("y",0.5*width+28);
     svgRise.setAttribute("font-size","16px");
     svgRise.textContent = sunrise[0]+":"+sunrise[1];
     const svgSet = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgSet.setAttribute("fill","#E8B720");
+    svgSet.setAttribute("fill","#fff");
     svgSet.setAttribute("x",width-46);
-    svgSet.setAttribute("y",0.5*width+18);
+    svgSet.setAttribute("y",0.5*width+28);
     svgSet.setAttribute("font-size","16px");
     svgSet.textContent = sunset[0]+":"+sunset[1];
 
-    svgGroup.appendChild(svgBkg);
+    //svgGroup.appendChild(svgBkg);
     svgGroup.appendChild(svgCircle);
-    svgGroup.appendChild(svgLine);
-    svgGroup.appendChild(svgPath);
+    //svgGroup.appendChild(svgLine);
+    //svgGroup.appendChild(svgPath);
     svgGroup.appendChild(svgRise);
     svgGroup.appendChild(svgSet);
     svgGroup.appendChild(svgSun);
-    svgGroup.appendChild(svgCloud);
+    //svgGroup.appendChild(svgCloud);
     //svgGroup.appendChild(svgSubG);
     
     subDiv.appendChild(svgGroup);
@@ -165,9 +167,9 @@ async function disp_info(kat){
     const gotTime = await getTimes();//fetch sun rise/set
     //sunrise/sunset + wind info
     const weathernfo = document.getElementById("curr_weather");
-    if(thisHour <= gotTime.sunset[0]){
-        weathernfo.appendChild(build_sun_pos(gotTime));
-    }
+    //if(thisHour <= gotTime.sunset[0]){
+    weathernfo.appendChild(build_sun_pos(gotTime));
+    //}
     
     /*var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");

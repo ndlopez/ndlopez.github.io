@@ -88,6 +88,12 @@ ul, li{margin: 0px;padding:5px}
   background-color:#bed2e030;
 }
 #currDate h3{margin-top: 0px;}
+#sun-pos{
+  background-position-y: bottom;
+  background-position-x: center;
+  background-image: url("../assets/clear_day.svg");
+  background-repeat: no-repeat;
+}
 .col4{
   width:25%;
   float: left;
@@ -257,6 +263,7 @@ text-align:center;
     width:100%;
     /*text-align: justify;*/
   }
+  #sun-pos{background-size: cover;}
   #nav-menu{display: block;}
   nav.menu{
     bottom:0;
