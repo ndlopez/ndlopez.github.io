@@ -57,14 +57,15 @@ function build_sun_pos(sunSetRise) {
     svgGroup.setAttribute("height",height);
     svgGroup.setAttribute("x","0px");
     svgGroup.setAttribute("y","0px");
-    if(thisHour <= sunset[0]){//x0 <= rr
+    if((thisHour >= sunset[0]) || (thisHour <= sunrise[0])){
+        subDiv.style.backgroundImage = "url('../assets/clear_night.svg')";   
+    }else{
+        //x0 <= rr
         const theta = Math.acos(1 - (2*x0/rr));//radians
         var my_off = 20;
         posX0Y0 = [x0*width/rr-my_off,height-0.5*width*Math.sin(theta)];//px
         console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
         subDiv.style.backgroundImage = "url('../assets/clear_day.svg')";
-    }else{
-        subDiv.style.backgroundImage = "url('../assets/clear_night.svg')";   
     }
     
     const svgBkg = document.createElementNS('http://www.w3.org/2000/svg','rect');
@@ -149,13 +150,13 @@ function build_sun_pos(sunSetRise) {
     //svgGroup.appendChild(svgPath);
     svgGroup.appendChild(svgCloud);
     
-    if(thisHour <= sunset[0]){
+    if((thisHour >= sunset[0]) || (thisHour <= sunrise[0])){
+        svgGroup.appendChild(svgRunner);
+    }else{
         svgGroup.appendChild(svgCircle);
         svgGroup.appendChild(svgRise);
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
-    }else{
-        svgGroup.appendChild(svgRunner);
     }
     
     //svgGroup.appendChild(svgSubG);    
@@ -200,11 +201,11 @@ async function disp_info(kat){
     const nowTenki = document.getElementById("now_weather");
     if(nowTenki !== null){
         var kaisa="";
-        if((thisHour <= parseInt(gotTime.sunset[0])) || (thisHour <= parseInt(gotTime.sunrise[0]))){
+        if((thisHour >= parseInt(gotTime.sunset[0])) || (thisHour <= parseInt(gotTime.sunrise[0]))){
+            kaisa = "<img src='../assets/cloudy_night.svg'/><br/>";
+        }else{
             kaisa = "<img src='" + ico_url + gotData.icon[0] +
             ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/><br/>";
-        }else{
-            kaisa = "<img src='../assets/cloudy_night.svg'/><br/>";
         }
         nowTenki.innerHTML = kaisa + gotData.weather[0] + "<br/>" + gotData.wind[0];
     }
