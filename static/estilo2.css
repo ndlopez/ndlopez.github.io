@@ -91,9 +91,10 @@ ul, li{margin: 0px;padding:5px}
 #sun-pos{
   background-position-y: bottom;
   background-position-x: center;
-  background-image: url("../assets/clear_day.svg");
+  background-image: url("../assets/clear_night.svg");
   background-repeat: no-repeat;
 }
+
 .col4{
   width:25%;
   float: left;
