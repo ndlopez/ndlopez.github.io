@@ -38,7 +38,7 @@ function getDateHour(isoStr){
 }
 
 function build_sun_pos(sunSetRise) {
-    const sunset = [sunSetRise.sunset[0]+1,sunSetRise.sunset[1]];
+    const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
     const width = 330, height = 200;//px, 300x180, 120 for summer
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
@@ -51,6 +51,12 @@ function build_sun_pos(sunSetRise) {
     subDiv.setAttribute("class","clearfix");
     subDiv.setAttribute("id","sun-pos");
     //subDiv.appendChild(pTitle);
+
+    const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgGroup.setAttribute("width",width);
+    svgGroup.setAttribute("height",height);
+    svgGroup.setAttribute("x","0px");
+    svgGroup.setAttribute("y","0px");
     if(thisHour <= sunset[0]){//x0 <= rr
         const theta = Math.acos(1 - (2*x0/rr));//radians
         var my_off = 20;
@@ -60,11 +66,7 @@ function build_sun_pos(sunSetRise) {
     }else{
         subDiv.style.backgroundImage = "url('../assets/clear_night.svg')";   
     }
-    const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svgGroup.setAttribute("width",width);
-    svgGroup.setAttribute("height",height);
-    svgGroup.setAttribute("x","0px");
-    svgGroup.setAttribute("y","0px");
+    
     const svgBkg = document.createElementNS('http://www.w3.org/2000/svg','rect');
     svgBkg.setAttribute("fill","#87ceeb");
     svgBkg.setAttribute("x",0);
@@ -103,7 +105,6 @@ function build_sun_pos(sunSetRise) {
 
     var offset = 5; 
     if(thisHour<12){offset = -5;}
-
     /*const svgSun = document.createElementNS('http://www.w3.org/2000/svg','circle');
     svgSun.setAttribute("fill","#E8B720");svgSun.setAttribute("r",5);
     svgSun.setAttribute("cx",posX0Y0[0]-offset);svgSun.setAttribute("cy",posX0Y0[1]);*/
@@ -113,18 +114,23 @@ function build_sun_pos(sunSetRise) {
     svgSun.setAttribute("x",posX0Y0[0]-offset);
     svgSun.setAttribute("y",posX0Y0[1]);
     svgSun.setAttribute("font-size","36px");
-    svgSun.textContent = "\u2600"; //Sun with rays 2600
+    svgSun.textContent = "\u2600";//String.fromCodePoint(0x1F506);
     //for some reason not parsed :(
     /*const svgSubG = document.createElementNS('http://www.w3.org/2000/svg','g');
     svgSubG.setAttribute("font-size","30");svgSubG.setAttribute("fill","#ececec");
     svgSubG.textContent = '<text x="'+(0.1*width)+'" y="'+(0.25*width)+'">\u2601</text>'+
     '<text x="10" y="40">\u2601</text>';*/
     const svgCloud = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgCloud.setAttribute("fill","#ececec");
-    svgCloud.setAttribute("x",0.7*width);
-    svgCloud.setAttribute("y",0.25*width);
+    svgCloud.setAttribute("x",0.25*width);
+    svgCloud.setAttribute("y",0.1*height);
     svgCloud.setAttribute("font-size","24px");
-    svgCloud.textContent = "\u2601"; //cloud
+    svgCloud.textContent = String.fromCodePoint(0x1F681);//"\u2601"; //cloud
+    // String.fromCodePoint(0x1F681); emoji helicopter, 1F699, jeep
+    const svgRunner = document.createElementNS('http://www.w3.org/2000/svg','text');
+    svgRunner.setAttribute("x",0.9*width);
+    svgRunner.setAttribute("y",height-5);
+    svgRunner.setAttribute("font-size","24px");
+    svgRunner.textContent = String.fromCodePoint(0x1F6B4);
     const svgRise = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgRise.setAttribute("fill","#fff");
     svgRise.setAttribute("x",15);
@@ -139,15 +145,20 @@ function build_sun_pos(sunSetRise) {
     svgSet.textContent = sunset[0]+":"+sunset[1];
 
     //svgGroup.appendChild(svgBkg);
-    svgGroup.appendChild(svgCircle);
     //svgGroup.appendChild(svgLine);
     //svgGroup.appendChild(svgPath);
-    svgGroup.appendChild(svgRise);
-    svgGroup.appendChild(svgSet);
-    svgGroup.appendChild(svgSun);
-    //svgGroup.appendChild(svgCloud);
-    //svgGroup.appendChild(svgSubG);
+    svgGroup.appendChild(svgCloud);
     
+    if(thisHour <= sunset[0]){
+        svgGroup.appendChild(svgCircle);
+        svgGroup.appendChild(svgRise);
+        svgGroup.appendChild(svgSet);
+        svgGroup.appendChild(svgSun);
+    }else{
+        svgGroup.appendChild(svgRunner);
+    }
+    
+    //svgGroup.appendChild(svgSubG);    
     subDiv.appendChild(svgGroup);
     return subDiv;
 }
