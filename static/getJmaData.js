@@ -145,6 +145,12 @@ function build_sun_pos(sunSetRise) {
     svgSet.setAttribute("font-size","16px");
     svgSet.textContent = sunset[0]+":"+sunset[1];
 
+    const svgHour = document.createElementNS('http://www.w3.org/2000/svg','text');
+    svgHour.setAttribute("fill","#2e4054");
+    svgHour.setAttribute("x",0.87*width);
+    svgHour.setAttribute("y",0.33*height);
+    svgHour.setAttribute("font-size","13px");
+    svgHour.textContent = thisHour + ":" + thisMins;
     //svgGroup.appendChild(svgBkg);
     //svgGroup.appendChild(svgLine);
     //svgGroup.appendChild(svgPath);
@@ -158,7 +164,7 @@ function build_sun_pos(sunSetRise) {
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
     }
-    
+    svgGroup.appendChild(svgHour);
     //svgGroup.appendChild(svgSubG);    
     subDiv.appendChild(svgGroup);
     return subDiv;
@@ -244,7 +250,7 @@ async function disp_info(kat){
 
         texty += "<div class='column3 float-left' style='text-align:right;'><img src='"+
         ico_url+ gotData.forecast[1][idx]+
-        ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/></div>";
+        ".svg' onerror='this.onerror=null;this.src=\"../assets/overcast.svg\"'/></div>";
 
         /*if(idx==0){ tempMin = myMin;tempMax = myMax; }*/
         texty += "<div class='column3 float-left'><h4>"+tempMin+"&#8451; | "+tempMax+"&#8451;</h4></div>";
