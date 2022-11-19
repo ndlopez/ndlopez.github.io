@@ -44,12 +44,6 @@ function build_sun_pos(sunSetRise) {
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
     const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
     var posX0Y0 = [0,0];
-    if(x0 <= rr){
-        const theta = Math.acos(1 - (2*x0/rr));//radians
-        var my_off = 20;
-        posX0Y0 = [x0*width/rr-my_off,height-0.5*width*Math.sin(theta)];//px
-        console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
-    }
     
     //const pTitle = document.createElement("p");
     //pTitle.innerText = "SUN POSITION";
@@ -57,6 +51,15 @@ function build_sun_pos(sunSetRise) {
     subDiv.setAttribute("class","clearfix");
     subDiv.setAttribute("id","sun-pos");
     //subDiv.appendChild(pTitle);
+    if(thisHour <= sunset[0]){//x0 <= rr
+        const theta = Math.acos(1 - (2*x0/rr));//radians
+        var my_off = 20;
+        posX0Y0 = [x0*width/rr-my_off,height-0.5*width*Math.sin(theta)];//px
+        console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
+        subDiv.style.backgroundImage = "url('../assets/clear_day.svg')";
+    }else{
+        subDiv.style.backgroundImage = "url('../assets/clear_night.svg')";   
+    }
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svgGroup.setAttribute("width",width);
     svgGroup.setAttribute("height",height);
