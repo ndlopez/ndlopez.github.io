@@ -25,7 +25,7 @@ div a{
 .no-border{border:0px;}
 .no-margin{margin: 0;}
 .centered{text-align: center;}
-.header{padding:20px;text-align:center;}
+header{padding:20px;text-align:center;}
 .sticky{
   display: block;
   width: auto;
@@ -83,8 +83,8 @@ a{text-decoration: none;color: #bed2e0;}
 ul{list-style-type: none;}
 ul, li{margin: 0px;padding:5px}
 .large{font-size: 40px;font-weight: 200;}
-/*#curr_weather{background-image: url('assets/cloud-heavy.svg');}*/
-#weather_details, #curr_weather, #currDate{
+
+#weather_details, #currDate, .top-menu{/*#curr_weather*/
   background-color:#bed2e030;
 }
 #currDate h3{margin-top: 0px;}
@@ -256,8 +256,8 @@ text-align:center;
 /*Responsive layout to stack cols on top of each other
 @media only screen and (max-width:620px){*/
 @media (max-width:620px){
-  .header{padding: 0px;}
-  .header img{margin:0;width: 40vh;
+  header{padding: 0px;}
+  header img{margin:0;width: 40vh;
     /*src: url("https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_0171.jpg");*/}
   .sticky{position: inherit;}
   .column,.column80,.column20{

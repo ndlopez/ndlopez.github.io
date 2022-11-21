@@ -23,7 +23,8 @@ const theseMonths = ["January","February","March","April","May","June","July",
 const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 let my_date = new Date();
-const thisHour = my_date.getHours(), thisMins = my_date.getMinutes();
+function zero_pad(tit){return (tit<10)?"0"+tit:tit;}
+const thisHour = zero_pad(my_date.getHours()) , thisMins = zero_pad(my_date.getMinutes());
 //console.log("now:",thisHour,thisMins);
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
@@ -58,7 +59,7 @@ function build_sun_pos(sunSetRise) {
     svgGroup.setAttribute("x","0px");
     svgGroup.setAttribute("y","0px");
     if((thisHour >= sunset[0]) || (thisHour <= sunrise[0])){
-        subDiv.style.backgroundImage = "url('../assets/clear_night.svg')";   
+        subDiv.style.backgroundImage = "url('../assets/clear_night.svg')"; 
     }else{
         //x0 <= rr
         const theta = Math.acos(1 - (2*x0/rr));//radians
@@ -66,6 +67,7 @@ function build_sun_pos(sunSetRise) {
         posX0Y0 = [x0*width/rr-my_off,height-0.5*width*Math.sin(theta)];//px
         console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
         subDiv.style.backgroundImage = "url('../assets/clear_day.svg')";
+        subDiv.style.backgroundColor = "#93c3ea";
     }
     
     const svgBkg = document.createElementNS('http://www.w3.org/2000/svg','rect');
@@ -86,7 +88,7 @@ function build_sun_pos(sunSetRise) {
     const svgLine = document.createElementNS('http://www.w3.org/2000/svg','rect');
     svgLine.setAttribute("x",0);//26
     svgLine.setAttribute("y",0.5*width);
-    svgLine.setAttribute("stroke","#50653b");//059862
+    svgLine.setAttribute("stroke","#50653b");//059862 smbc color
     svgLine.setAttribute("fill","#50653b");//green
     svgLine.setAttribute("width",width);// -2*26
     svgLine.setAttribute("height",30);
@@ -146,8 +148,8 @@ function build_sun_pos(sunSetRise) {
     svgSet.textContent = sunset[0]+":"+sunset[1];
 
     const svgHour = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgHour.setAttribute("fill","#2e4054");
-    svgHour.setAttribute("x",0.87*width);
+    svgHour.setAttribute("fill","#fff");
+    svgHour.setAttribute("x",0.86*width);
     svgHour.setAttribute("y",0.33*height);
     svgHour.setAttribute("font-size","13px");
     svgHour.textContent = thisHour + ":" + thisMins;
