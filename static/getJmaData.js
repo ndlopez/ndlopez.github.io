@@ -41,7 +41,7 @@ function getDateHour(isoStr){
 function build_sun_pos(sunSetRise) {
     const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
-    const width = 330, height = 200;//px, 300x180, 120 for summer
+    const width = 330, height = 200;//px, 330x200;300x180, 120 for summer
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
     const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
     var posX0Y0 = [0,0];

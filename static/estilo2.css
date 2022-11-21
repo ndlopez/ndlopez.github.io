@@ -260,10 +260,9 @@ text-align:center;
     /*src: url("https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_0171.jpg");*/}
   .sticky{position: inherit;}
   .column,.column80,.column20{
-    width:100%;
-    /*text-align: justify;*/
+    width:100%;/*text-align: justify;*/
   }
-  #sun-pos{background-size: cover;}
+  #sun-pos svg{background-size: cover;}
   #nav-menu{display: block;}
   nav.menu{
     bottom:0;
