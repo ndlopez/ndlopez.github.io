@@ -211,6 +211,7 @@ async function disp_info(kat){
         var kaisa="";
         if((thisHour >= parseInt(gotTime.sunset[0])) || (thisHour <= parseInt(gotTime.sunrise[0]))){
             kaisa = "<img src='../assets/cloudy_night.svg'/><br/>";
+            weathernfo.style.backgroundColor = "#0B1026";
         }else{
             weathernfo.style.backgroundColor = "#87ceeb";
             weathernfo.style.color = "#2e4054";
