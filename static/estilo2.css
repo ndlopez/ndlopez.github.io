@@ -50,7 +50,6 @@ header{padding:20px;text-align:center;}
   font-size: large;
   font-weight:300;
   padding: 0px;
-  font-family: Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
 }
 .top-text{
   font-size: small;
@@ -174,7 +173,7 @@ panel2,.flip{
   display:table;
 }
 .clearfix{padding: 10px;}
-/*SVG*//*.highlight{fill: #cc274c;}*/
+/*SVG .highlight{fill: #cc274c;}*/
 /*.bar{fill:#bed2e030}*/
 svg g{color:#bed2e0;}
 .domain, svg line{stroke: #bed2e0;}
@@ -262,7 +261,7 @@ text-align:center;
   .column,.column80,.column20{
     width:100%;/*text-align: justify;*/
   }
-  #sun-pos svg{background-size: cover;}
+  #sun-pos{background-size: cover;}
   #nav-menu{display: block;}
   nav.menu{
     bottom:0;
