@@ -84,7 +84,7 @@ ul{list-style-type: none;}
 ul, li{margin: 0px;padding:5px}
 .large{font-size: 40px;font-weight: 200;}
 
-#weather_details, #currDate, .top-menu{/*#curr_weather*/
+#weather_details, #currDate{/*#curr_weather*/
   background-color:#bed2e030;
 }
 #currDate h3{margin-top: 0px;}

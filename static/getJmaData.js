@@ -67,7 +67,7 @@ function build_sun_pos(sunSetRise) {
         posX0Y0 = [x0*width/rr-my_off,height-0.5*width*Math.sin(theta)];//px
         console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
         subDiv.style.backgroundImage = "url('../assets/clear_day.svg')";
-        subDiv.style.backgroundColor = "#93c3ea";
+        //subDiv.style.backgroundColor = "#93c3ea";
     }
     
     const svgBkg = document.createElementNS('http://www.w3.org/2000/svg','rect');
@@ -212,6 +212,8 @@ async function disp_info(kat){
         if((thisHour >= parseInt(gotTime.sunset[0])) || (thisHour <= parseInt(gotTime.sunrise[0]))){
             kaisa = "<img src='../assets/cloudy_night.svg'/><br/>";
         }else{
+            weathernfo.style.backgroundColor = "#87ceeb";
+            weathernfo.style.color = "#2e4054";
             kaisa = "<img src='" + ico_url + gotData.icon[0] +
             ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/><br/>";
         }
@@ -267,9 +269,9 @@ async function disp_info(kat){
     /* 2moro forecast + rain Prob */
     const myDiv = document.getElementById("foreDiv");
     const headTitle = document.createElement("h2");
-    var this_idx = 1;//Before 11AM 0:today, 1: tomorrow
-    if(thisHour >= 11){this_idx = 0;}     
-    var sofy = getDateHour(gotData.forecast[0][this_idx]);
+    init_idx = 1;//Before 11AM 0:today, 1: tomorrow
+    if(thisHour >= 11){init_idx = 0;}     
+    var sofy = getDateHour(gotData.forecast[0][init_idx]);
     headTitle.innerText = "Tomorrow: " + theseDays[sofy.day] + ", " + theseMonths[sofy.monty-1] +
     " " + sofy.tag;
     myDiv.appendChild(headTitle);
