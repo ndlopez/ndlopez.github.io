@@ -87,9 +87,9 @@ ul, li{margin: 0px;padding:5px}
   background-color:#bed2e030;
 }
 #currDate h3{margin-top: 0px;}
-#sun-pos{
+#curr_weather{
   background-position-y: bottom;
-  background-position-x: center;
+  /*background-position-x: center;*/
   background-repeat: no-repeat;
 }
 
@@ -261,7 +261,7 @@ text-align:center;
   .column,.column80,.column20{
     width:100%;/*text-align: justify;*/
   }
-  #sun-pos{background-size: cover;}
+  /*#sun-pos{background-size: cover;}*/
   #nav-menu{display: block;}
   nav.menu{
     bottom:0;

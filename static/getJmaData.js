@@ -60,14 +60,15 @@ function build_sun_pos(sunSetRise) {
     svgGroup.setAttribute("x","0px");
     svgGroup.setAttribute("y","0px");
     if((thisHour >= sunset[0]) || (thisHour <= sunrise[0])){
-        subDiv.style.backgroundImage = "url('../assets/clear_night.svg')"; 
+        //subDiv.style.backgroundImage = "url('../assets/clear_night.svg')";
+        posX0Y0=[0,0];
     }else{
         //x0 <= rr
         const theta = Math.acos(1 - (2*x0/rr));//radians
         var my_off = 20;
         posX0Y0 = [x0*width/rr-my_off,height-0.5*width*Math.sin(theta)];//px
         console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
-        subDiv.style.backgroundImage = "url('../assets/clear_day.svg')";
+        //subDiv.style.backgroundImage = "url('../assets/clear_day.svg')";
         //subDiv.style.backgroundColor = "#93c3ea";
     }
     
@@ -201,9 +202,11 @@ async function disp_info(kat){
         if((thisHour >= parseInt(gotTime.sunset[0])) || (thisHour <= parseInt(gotTime.sunrise[0]))){
             kaisa = "<img src='../assets/cloudy_night.svg'/><br/>";
             weathernfo.style.backgroundColor = "#0B1026";
+            weathernfo.style.backgroundImage = "url('../assets/clear_night.svg')";
         }else{
             weathernfo.style.backgroundColor = "#87ceeb";
             weathernfo.style.color = "#2e4054";
+            weathernfo.style.backgroundImage = "url('../assets/clear_day.svg')";
             kaisa = "<img src='" + ico_url + gotData.icon[0] +
             ".svg' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/><br/>";
         }
