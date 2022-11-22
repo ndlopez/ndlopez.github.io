@@ -231,6 +231,7 @@ async function disp_info(kat){
     /*for(let idx=0;idx<gotData.weather.length;idx++){
         var currWeather = gotData.weather[idx].split("　");
         texty += "<h2>"+gotData.time[idx].slice(0,10)+" "+currWeather[0]+"<img src='"+ico_url+gotData.icon[idx]+".svg'/></h2>";}*/
+    
     /* Weekly forecast Max/Min*/
     const colDiv = document.getElementById("forecaster");
     var init_idx = 2;
@@ -254,8 +255,9 @@ async function disp_info(kat){
         texty += "<div class='column3 float-left'><h4>"+tempMin+"&#8451; | "+tempMax+"&#8451;</h4></div>";
         if((idx == 1) && (gotData.wind[2] != undefined)){
             //should apply after 11AM
-            texty += "<p style='text-align:center;'>"+gotData.weather[2]+"、"+gotData.wind[2]+"</p>";
+            texty += "<p style='text-align:center;'>"+gotData.weather[2]+"、"+gotData.wind[2]+"</p>";            
         }
+        texty += "<p>降水確率: "+gotData.forecast[4][idx]+"%</p>";
         groupDiv.innerHTML = texty;
         colDiv.appendChild(groupDiv);
     }
@@ -287,7 +289,7 @@ async function disp_info(kat){
     var textW = "<p>降水確率[%]</p><div class='row'>";
     for(let idx = jdx-3;idx < jdx+1;idx++){
         const get_date = getDateHour(gotData.rain[0][idx]);
-        texty += "<p class='col4'>"+get_date.heure+" - "+hh[kdx]+"<br/>"+gotData.rain[1][idx]+"%</p>";
+        texty += "<p class='col4'>"+get_date.heure+" - "+hh[kdx]+"<br/>"+gotData.rain[1][idx]+"</p>";
         //console.log(gotData.rain[0].length,texty);
 	    kdx++;
     }
@@ -318,10 +320,11 @@ async function get_data(jdx){
     //var weekTempDates = data[1].timeSeries[1].timeDefines; //7dates
     var weekTempMin = data[1].timeSeries[1].areas[jdx].tempsMin;
     var weekTempMax = data[1].timeSeries[1].areas[jdx].tempsMax;
-    //console.log(currWeather[0],weatherIcon);
+    var weekRainProb = data[1].timeSeries[0].areas[jdx].pops;
+    //console.log("RainProb",weekRainProb);
     return {"location":place,"time":upTime,"weather":thisWeather,"icon":weatherIcon,
     "wind":winds,"rain":[rainTimes,rainProb],"temp":[tempTimes,temp],
-    "forecast":[weekDates,weekIcons,weekTempMin,weekTempMax]};
+    "forecast":[weekDates,weekIcons,weekTempMin,weekTempMax,weekRainProb]};
 }
 
 /*async function getIconCodes(){
