@@ -130,12 +130,12 @@ function build_sun_pos(sunSetRise) {
     svgSet.setAttribute("font-size","16px");
     svgSet.textContent = sunset[0]+":"+sunset[1];
 
-    const svgHour = document.createElementNS('http://www.w3.org/2000/svg','text');
+    /*const svgHour = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgHour.setAttribute("fill","#fff");
     svgHour.setAttribute("x",0.5*width);
     svgHour.setAttribute("y",0.98*height);
     svgHour.setAttribute("font-size","13px");
-    svgHour.textContent = thisHour + ":" + thisMins;
+    svgHour.textContent = thisHour + ":" + thisMins;*/
 
     const svgMoon = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgMoon.setAttribute("x",width/24*thisHour);
@@ -153,10 +153,10 @@ function build_sun_pos(sunSetRise) {
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
     }
-    /*if(thisHour >= moon_times[0] || thisHour <= moon_times[2]){
+    if(thisHour >= moon_times[0] || thisHour <= moon_times[2]){
         svgGroup.appendChild(svgMoon);
-    }*/
-    svgGroup.appendChild(svgHour);
+    }
+    //svgGroup.appendChild(svgHour);
     subDiv.appendChild(svgGroup);
     return subDiv;
     //svgGroup.appendChild(svgSubG);
