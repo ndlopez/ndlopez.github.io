@@ -113,9 +113,9 @@ function build_sun_pos(sunSetRise) {
     svgFlying.textContent = String.fromCodePoint(0x1F681);//"\u2601"; //cloud
     // String.fromCodePoint(0x1F681); emoji helicopter, 1F699, jeep
     const svgRunner = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgRunner.setAttribute("x",0.9*width);
-    svgRunner.setAttribute("y",height-5);
-    svgRunner.setAttribute("font-size","24px");
+    svgRunner.setAttribute("x",0.8*width);
+    svgRunner.setAttribute("y",height-2);
+    svgRunner.setAttribute("font-size","20px");
     svgRunner.textContent = String.fromCodePoint(0x1F6B4);
     const svgRise = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgRise.setAttribute("fill","#fff");
@@ -147,15 +147,16 @@ function build_sun_pos(sunSetRise) {
     
     if((thisHour > sunset[0]) || (thisHour < sunrise[0])){
         svgGroup.appendChild(svgRunner);
+        svgGroup.appendChild(svgMoon);
     }else{
         svgGroup.appendChild(svgCircle);
         svgGroup.appendChild(svgRise);
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
     }
-    if(thisHour >= moon_times[0] || thisHour <= moon_times[2]){
+    /*if((thisHour > moon_times[0]) || (thisHour < moon_times[2])){
         svgGroup.appendChild(svgMoon);
-    }
+    }*/
     //svgGroup.appendChild(svgHour);
     subDiv.appendChild(svgGroup);
     return subDiv;
