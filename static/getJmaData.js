@@ -59,7 +59,7 @@ function build_sun_pos(sunSetRise) {
     svgGroup.setAttribute("height",height);
     svgGroup.setAttribute("x","0px");
     svgGroup.setAttribute("y","0px");
-    if((thisHour >= sunset[0]) || (thisHour <= sunrise[0])){
+    if((thisHour > sunset[0]) || (thisHour < sunrise[0])){
         //subDiv.style.backgroundImage = "url('../assets/clear_night.svg')";
         posX0Y0=[0,0];
     }else{
@@ -132,8 +132,8 @@ function build_sun_pos(sunSetRise) {
 
     const svgHour = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgHour.setAttribute("fill","#fff");
-    svgHour.setAttribute("x",0.86*width);
-    svgHour.setAttribute("y",0.33*height);
+    svgHour.setAttribute("x",0.5*width);
+    svgHour.setAttribute("y",0.98*height);
     svgHour.setAttribute("font-size","13px");
     svgHour.textContent = thisHour + ":" + thisMins;
 
@@ -145,7 +145,7 @@ function build_sun_pos(sunSetRise) {
 
     svgGroup.appendChild(svgFlying);
     
-    if((thisHour >= sunset[0]) || (thisHour <= sunrise[0])){
+    if((thisHour > sunset[0]) || (thisHour < sunrise[0])){
         svgGroup.appendChild(svgRunner);
     }else{
         svgGroup.appendChild(svgCircle);
@@ -153,9 +153,9 @@ function build_sun_pos(sunSetRise) {
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
     }
-    if(thisHour >= moon_times[0] || thisHour <= moon_times[2]){
+    /*if(thisHour >= moon_times[0] || thisHour <= moon_times[2]){
         svgGroup.appendChild(svgMoon);
-    }
+    }*/
     svgGroup.appendChild(svgHour);
     subDiv.appendChild(svgGroup);
     return subDiv;
@@ -199,7 +199,7 @@ async function disp_info(kat){
     const nowTenki = document.getElementById("now_weather");
     if(nowTenki !== null){
         var kaisa="";
-        if((thisHour >= parseInt(gotTime.sunset[0])) || (thisHour <= parseInt(gotTime.sunrise[0]))){
+        if((thisHour > parseInt(gotTime.sunset[0])) || (thisHour < parseInt(gotTime.sunrise[0]))){
             kaisa = "<img src='../assets/cloudy_night.svg'/><br/>";
             weathernfo.style.backgroundColor = "#0B1026";
             weathernfo.style.backgroundImage = "url('../assets/clear_night.svg')";
