@@ -45,7 +45,8 @@ function build_sun_pos(sunSetRise) {
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
     const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
     var posX0Y0 = [0,0];
-    
+    // Moon 2022-11-22, 15:29, 04:18, 2022-11-23, 16:04, 05:28
+    const moon_times = [4,18,15,29];
     //const pTitle = document.createElement("p");
     //pTitle.innerText = "SUN POSITION";
     const subDiv = document.createElement("div");
@@ -85,26 +86,6 @@ function build_sun_pos(sunSetRise) {
     svgCircle.setAttribute("r",0.5*width-26);
     svgCircle.setAttribute("cx",0.5*width);
     svgCircle.setAttribute("cy",0.5*width);
-    const svgLine = document.createElementNS('http://www.w3.org/2000/svg','rect');
-    svgLine.setAttribute("x",0);//26
-    svgLine.setAttribute("y",0.5*width);
-    svgLine.setAttribute("stroke","#50653b");//059862 smbc color
-    svgLine.setAttribute("fill","#50653b");//green
-    svgLine.setAttribute("width",width);// -2*26
-    svgLine.setAttribute("height",30);
-    //svgLine.setAttribute("x2",width);svgLine.setAttribute("y2",0.5*width);
-    /*
-    var myPath = "M240 100 A40 40 40 10 90 100 0"; semicirc
-    var myPath = "M3.034,56C18.629,24.513,52.554,2.687,91.9,2.687S165.172,24.513,180.766,56h3.033 
-    C168.016,23.041,132.807,0.098,91.9,0.098C50.995,0.098,15.785,23.041,0.002,56H3.034z";*/
-    const svgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
-    svgPath.setAttribute("id","road");
-    svgPath.setAttribute("stroke","#2e4054");
-    svgPath.setAttribute("stroke-width","2");
-    svgPath.setAttribute("fill","#2e4054");//#E8B720
-    //svgPath.setAttribute("stroke-dasharray","10,10");
-    var myPath = "M100 180 L130 150 170 150 200 180Z";
-    svgPath.setAttribute("d",myPath);
 
     var offset = 5; 
     if(thisHour<12){offset = -5;}
@@ -123,11 +104,12 @@ function build_sun_pos(sunSetRise) {
     svgSubG.setAttribute("font-size","30");svgSubG.setAttribute("fill","#ececec");
     svgSubG.textContent = '<text x="'+(0.1*width)+'" y="'+(0.25*width)+'">\u2601</text>'+
     '<text x="10" y="40">\u2601</text>';*/
-    const svgCloud = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgCloud.setAttribute("x",0.25*width);
-    svgCloud.setAttribute("y",0.1*height);
-    svgCloud.setAttribute("font-size","24px");
-    svgCloud.textContent = String.fromCodePoint(0x1F681);//"\u2601"; //cloud
+    offset = (width-20)/24*thisHour;
+    const svgFlying = document.createElementNS('http://www.w3.org/2000/svg','text');
+    svgFlying.setAttribute("x",(width - offset));
+    svgFlying.setAttribute("y",0.2*height);
+    svgFlying.setAttribute("font-size","24px");
+    svgFlying.textContent = String.fromCodePoint(0x1F681);//"\u2601"; //cloud
     // String.fromCodePoint(0x1F681); emoji helicopter, 1F699, jeep
     const svgRunner = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgRunner.setAttribute("x",0.9*width);
@@ -153,10 +135,14 @@ function build_sun_pos(sunSetRise) {
     svgHour.setAttribute("y",0.33*height);
     svgHour.setAttribute("font-size","13px");
     svgHour.textContent = thisHour + ":" + thisMins;
-    //svgGroup.appendChild(svgBkg);
-    //svgGroup.appendChild(svgLine);
-    //svgGroup.appendChild(svgPath);
-    svgGroup.appendChild(svgCloud);
+
+    const svgMoon = document.createElementNS('http://www.w3.org/2000/svg','text');
+    svgMoon.setAttribute("x",width/24*thisHour);
+    svgMoon.setAttribute("y",0.1*height);
+    svgMoon.setAttribute("font-size","24px");
+    svgMoon.textContent = String.fromCodePoint(0x1F314);
+
+    svgGroup.appendChild(svgFlying);
     
     if((thisHour >= sunset[0]) || (thisHour <= sunrise[0])){
         svgGroup.appendChild(svgRunner);
@@ -166,10 +152,13 @@ function build_sun_pos(sunSetRise) {
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
     }
+    if(thisHour >= moon_times[0] || thisHour <= moon_times[2]){
+        svgGroup.appendChild(svgMoon);
+    }
     svgGroup.appendChild(svgHour);
-    //svgGroup.appendChild(svgSubG);    
     subDiv.appendChild(svgGroup);
     return subDiv;
+    //svgGroup.appendChild(svgSubG);
 }
 
 async function disp_info(kat){
@@ -353,3 +342,24 @@ async function getTimes(){
     
     return {"sunrise":convTime(sunRise),"sunset":convTime(sunSet)}; 
 }
+/*
+    const svgLine = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    svgLine.setAttribute("x",0);//26
+    svgLine.setAttribute("y",0.5*width);
+    svgLine.setAttribute("stroke","#50653b");//059862 smbc color
+    svgLine.setAttribute("fill","#50653b");//green
+    svgLine.setAttribute("width",width);// -2*26
+    svgLine.setAttribute("height",30);
+    //svgLine.setAttribute("x2",width);svgLine.setAttribute("y2",0.5*width);
+    
+    //var myPath = "M240 100 A40 40 40 10 90 100 0"; semicirc
+    //var myPath = "M3.034,56C18.629,24.513,52.554,2.687,91.9,2.687S165.172,24.513,180.766,56h3.033 
+    C168.016,23.041,132.807,0.098,91.9,0.098C50.995,0.098,15.785,23.041,0.002,56H3.034z";
+    const svgPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+    svgPath.setAttribute("id","road");
+    svgPath.setAttribute("stroke","#2e4054");
+    svgPath.setAttribute("stroke-width","2");
+    svgPath.setAttribute("fill","#2e4054");//#E8B720
+    var myPath = "M100 180 L130 150 170 150 200 180Z";
+    svgPath.setAttribute("d",myPath);
+*/
