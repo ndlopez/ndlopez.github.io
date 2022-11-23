@@ -256,7 +256,8 @@ function buildSVGtext(dx,dy,text){
     document.getElementById("curr_weather").innerHTML = text;
 
     var detailsDiv = document.getElementById("weather_details");
-    text = "<h4>mm</h4><h2 id='rainProb'></h2>";
+    text = "<h4>mm/H</h4><h2 id='rainProb'></h2>";
+    //console.log("rain1H",Math.round(curr_weather[lastElm].rain));
     var rainDiv = buildGaugeMeter(Math.round(curr_weather[lastElm].rain),"RAIN",text);
     detailsDiv.appendChild(rainDiv);
 
@@ -291,7 +292,7 @@ function build_array(hour,gotData){
     // zoey: last elm of each json array, data/10min
     const zoey = {"hour_min":lena.slice(-6,-4)+":"+lena.slice(-4,-2),"temp":gotData[lena].temp[0],
     "humid":gotData[lena].humidity[0],"wind":gotData[lena].wind[0],"windDir":gotData[lena].windDirection[0],
-    "rain":gotData[lena].precipitation10m[0]};
+    "rain":gotData[lena].precipitation1h[0]};
     curr_weather.push(zoey);
     //var lena = get_min_attr(idx);
     //return result;
