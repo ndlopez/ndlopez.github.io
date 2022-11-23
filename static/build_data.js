@@ -353,11 +353,19 @@ function build_plot(json_array){
     .append("svg").attr("width",35).attr("height",ySize)
     .append("g")
     .attr("transform","translate(" + 5 + "," + margin.top + ")");
+
+    /*Rain mm/H scale */
+    const rainMin = d3.min(json_array,(d)=>{return d.rain;}), 
+    rainMax = d3.max(json_array,(d)=>{return d.rain;});
+    console.log("thisRain",rainMin,rainMax);
+    const yRain = d3.scaleLinear().domain([rainMin,rainMax+1]).range([h,0]);
+    svgRight.append("g").call(d3.axisRight(yRain));
+
     const yHumid = d3.scaleLinear()
     .domain([humidMin-5,humidMax+5])
     .range([h,0]);
-    svgRight.append("g").call(d3.axisRight(yHumid));//.attr("transform","translate("+w+",0)");
-    svgRight.append("g").append("text").text("%").attr("x",10).attr("y",-10);
+    //svgRight.append("g").call(d3.axisRight(yHumid));//.attr("transform","translate("+w+",0)");
+    //svgRight.append("g").append("text").text("%").attr("x",10).attr("y",-10);
 
     var svg2 = d3.select("#mainPlot")
     .append("svg")
@@ -387,13 +395,26 @@ function build_plot(json_array){
     .attr("fill","#bed2e040")
     .attr("rx",8)
     .attr("height",function(d){return h-yScale(0);})
-    .attr("y",function(d){return yScale(0);})
+    .attr("y",function(d){return yScale(0);});
     svg2.selectAll("rect")
     .transition()
     .duration(800)
     .attr("y",function(d){return yHumid(d.humid);})
     .attr("height",function(d){return h-yHumid(d.humid);})
-    .delay(function(d,i){return(i*100)})
+    .delay(function(d,i){return(i*100)});
+    /* Rain mm: bar plot */
+    svg2.selectAll("bar2")
+    .data(json_array).enter()
+    .append("rect")
+    .attr("x",(d)=>{return xScale(d.hour);})
+    .attr("width",xScale.bandwidth())
+    .attr("fill","#fff")
+    .attr("rx",8)
+    .attr("height",(d)=>{return h-yScale(0);})
+    .attr("y",(d)=>{return yScale(0);});
+    svg2.selectAll("rect")
+    .attr("y",(d)=>{return yRain(d.rain);})
+    .attr("height",(d)=>{return h-yRain(d.rain);});
     /* Temperature: square plot */
     svg2.append("g")
     .selectAll("squares")
