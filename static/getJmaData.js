@@ -23,8 +23,8 @@ const theseMonths = ["January","February","March","April","May","June","July",
 const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 let my_date = new Date();
-function zero_pad(tit){return (tit<10)?"0"+tit:tit;}
-const thisHour = zero_pad(my_date.getHours()) , thisMins = zero_pad(my_date.getMinutes());
+/*function zero_pad(tit){return (tit<10)?"0"+tit:tit;}*/
+const thisHour = my_date.getHours(), thisMins = my_date.getMinutes();
 //console.log("now:",thisHour,thisMins);
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
@@ -59,19 +59,15 @@ function build_sun_pos(sunSetRise) {
     svgGroup.setAttribute("height",height);
     svgGroup.setAttribute("x","0px");
     svgGroup.setAttribute("y","0px");
-    if((thisHour > sunset[0]) || (thisHour < sunrise[0])){
-        //subDiv.style.backgroundImage = "url('../assets/clear_night.svg')";
-        posX0Y0=[0,0];
-    }else{
-        //x0 <= rr
+    if((x0 <= rr) && (x0 > 0)){
         const theta = Math.acos(1 - (2*x0/rr));//radians
         var my_off = 20;
         posX0Y0 = [x0*width/rr-my_off,height-0.5*width*Math.sin(theta)];//px
         console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
-        //subDiv.style.backgroundImage = "url('../assets/clear_day.svg')";
-        //subDiv.style.backgroundColor = "#93c3ea";
     }
-    
+    /*if((thisHour > sunset[0]) || (thisHour < sunrise[0])){  
+    }else{calc theta and y0}*/
+    console.log("thisPos", sunset, sunrise, rr,x0);
     const svgBkg = document.createElementNS('http://www.w3.org/2000/svg','rect');
     svgBkg.setAttribute("fill","#87ceeb");
     svgBkg.setAttribute("x",0);
@@ -131,10 +127,8 @@ function build_sun_pos(sunSetRise) {
     svgSet.textContent = sunset[0]+":"+sunset[1];
 
     /*const svgHour = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgHour.setAttribute("fill","#fff");
-    svgHour.setAttribute("x",0.5*width);
-    svgHour.setAttribute("y",0.98*height);
-    svgHour.setAttribute("font-size","13px");
+    svgHour.setAttribute("fill","#fff");svgHour.setAttribute("font-size","13px");
+    svgHour.setAttribute("x",0.5*width);svgHour.setAttribute("y",0.98*height);
     svgHour.textContent = thisHour + ":" + thisMins;*/
 
     const svgMoon = document.createElementNS('http://www.w3.org/2000/svg','text');
@@ -146,6 +140,7 @@ function build_sun_pos(sunSetRise) {
     svgGroup.appendChild(svgFlying);
     
     if((thisHour > sunset[0]) || (thisHour < sunrise[0])){
+        // Sun disappears
         svgGroup.appendChild(svgRunner);
         svgGroup.appendChild(svgMoon);
     }else{
@@ -176,7 +171,7 @@ async function disp_info(kat){
     const city_name = document.getElementById("this_place");
     if (city_name !== null){
         document.title = gotData.location + "天気";
-        city_name.innerText = gotData.location;
+        city_name.innerHTML = "<br>" + gotData.location;
     }
     const gotTime = await getTimes();//fetch sun rise/set
     //sunrise/sunset + wind info
