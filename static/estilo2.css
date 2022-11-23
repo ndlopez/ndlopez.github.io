@@ -102,7 +102,9 @@ ul, li{margin: 0px;padding:5px}
 .column3{
   width: 33.3%;
   border:0;
-  text-align: center;
+  /*display: grid;
+  place-items: center;
+  text-align: center;*/
 }
 .column3 p{font-size: medium;}
 /*2 columns*/

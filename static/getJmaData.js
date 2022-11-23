@@ -246,10 +246,11 @@ async function disp_info(kat){
         texty = "<div class='column3 float-left' style='margin:0;border-radius:inherit;'><div class='row-date'>" + 
         "<h2 class='col-date float-left'>"+ aux.tag + "</h2><div class='col-date float-left' style='text-align:left;padding-left:0;'><p><strong>"+theseDays[aux.day] + 
         "</strong></p><p><small>"+theseMonths[aux.monty-1]+"</small></p></div></div></div>";
-
-        texty += "<div class='column3 float-left' style='text-align:right;'><img src='"+
+        //style='text-align:right;'
+        texty += "<div class='column3 float-left'><img src='"+
         ico_url+ gotData.forecast[1][idx]+
-        ".svg' onerror='this.onerror=null;this.src=\"../assets/overcast.svg\"'/></div>";
+        ".svg' onerror='this.onerror=null;this.src=\"../assets/overcast.svg\"'/><span>"+
+        gotData.forecast[4][idx]+"%</span></div>";
 
         /*if(idx==0){ tempMin = myMin;tempMax = myMax; }*/
         texty += "<div class='column3 float-left'><h4>"+tempMin+"&#8451; | "+tempMax+"&#8451;</h4></div>";
@@ -257,7 +258,7 @@ async function disp_info(kat){
             //should apply after 11AM
             texty += "<p style='text-align:center;'>"+gotData.weather[2]+"、"+gotData.wind[2]+"</p>";            
         }
-        texty += "<p>降水確率: "+gotData.forecast[4][idx]+"%</p>";
+        //texty += "<p>降水確率: "+gotData.forecast[4][idx]+"%</p>";
         groupDiv.innerHTML = texty;
         colDiv.appendChild(groupDiv);
     }
