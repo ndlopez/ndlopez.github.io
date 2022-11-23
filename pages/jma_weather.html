@@ -21,18 +21,18 @@
     <header><h2>Weather Report</h2>
     <button>Nagoya</button><button>Takayama</button><!--onclick="disp_info(1)"--></header>
     <!--Weather conditions-->
-    <div class="row" id="weather_info">
+    <main class="row" id="weather_info">
       <div id="curr_weather"></div>
       <div class="row" id="weather_details"></div>
       <!--div class="row align-right" id="currDate"></div-->
-      <div class="clearfix" id="radar_img"></div>
-      <div class="row"><!--d3js plot-->
+      <section class="clearfix" id="radar_img"></section>
+      <section class="row"><!--d3js plot-->
         <div id="weather_bar" class="column80 float-left"></div>
-        <div class="column20 align-right"></div></div>
-    </div>
+        <div class="column20 align-right"></div></section>
+    </main>
 
-    <div class="clearfix" id="foreDiv"></div>
-    <div class="clearfix" id="forecaster"><h2>5-day forecast</h2></div>
+    <aside class="clearfix" id="foreDiv"></aside>
+    <aside class="clearfix" id="forecaster"><h2>5-day forecast</h2></aside>
     
     <script src="../static/getJmaData.js"></script>
   </body>
