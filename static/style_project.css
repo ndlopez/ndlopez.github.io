@@ -144,10 +144,11 @@ panel2,.flip{
   filter:FlipH;-ms-filter:"FlipH";
 }
 .proj_stats .hero{width:70%;}
-.mod-content{
+/*.mod-content{
   border-radius: 10px;
   background-color:#bed2e0;
-  color: #2e4054;}
+  color: #2e4054;
+}*/
 #nav-menu{display: none;}
 
 /*Responsive layout to stack cols on top of each other
@@ -158,6 +159,7 @@ panel2,.flip{
     text-align: justify;
     padding: 0px;
   }
+  .mod-content{padding: 5px;}
   #nav-menu{display: block;}
   .column3{width: 100%;margin-bottom: 20px;}
   .column3{padding: 0px;}

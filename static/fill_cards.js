@@ -2,7 +2,7 @@ const projects=[
     {
         name:"Numerical Analysis in C",
         title:"Code repository for FIS340. Numerical Analysis for Physicists.",
-        description:"It includes several code samples to solve some problems in Thermodynamics and \
+        description:"It includes several code samples to solve numerically some problems in Thermodynamics and \
         Electromagnetism. Data Analysis algorithms are also included.",
         language:"C",
         image:"../assets/cloud-heavy.svg",
@@ -229,10 +229,10 @@ function addDivs(_val){
     secDiv.innerHTML += "<div><div class='column'><img class='hero' src='" +
     projects[_val].image + "' alt='Screenshot of main window'><p>Main window</p></div><div class='column mod-content'><h3>"+ 
     projects[_val].title + "</h3><p>" + projects[_val].description + "</p><div><p class='col4'><a href='"+
-    projects[_val].repo + "'><img src='../assets/code.svg'/></a><br/>repo</p><p class='col4'><a href='" + 
+    projects[_val].repo + "'><img src='../assets/github-logo.svg'/></a><br/>repo</p><p class='col4'><a href='" + 
     projects[_val].demo + "'><img src='../assets/firefox-browser.svg' width='32'/></a><br/>demo</p>" +
-    "<p class='col4'><img src='../assets/laptop-code.svg' width='36'/><br/>" + projects[_val].language + 
-    "</p><p class='col4'><img src='../assets/calendar-alt.svg' width='24'/><br/>"+ projects[_val].builtOn+ 
+    "<p class='col4'><img src='../assets/laptop-code.svg' width='40'/><br/>" + projects[_val].language + 
+    "</p><p class='col4'><img src='../assets/calendar-alt.svg' width='28'/><br/>"+ projects[_val].builtOn+ 
     "</p></div></div></div>";
     return secDiv;
 }
