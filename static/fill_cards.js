@@ -226,13 +226,14 @@ function addDivs(_val){
     secDiv.className = "proj_stats";
     secDiv.innerHTML=`<a href='javascript:void(0)' class='closeBtn' onclick="closeNav('myNav${_val}')">&times;</a>`;
 	secDiv.innerHTML += "<div><h2 class='header'>" + projects[_val].name + "</h2></div>";
-    secDiv.innerHTML += "<div><div class='column'><img src='" +
+    secDiv.innerHTML += "<div><div class='column'><img class='hero' src='" +
     projects[_val].image + "' alt='Screenshot of main window'><p>Main window</p></div><div class='column mod-content'><h3>"+ 
-    projects[_val].title + "</h3><p>" + projects[_val].description + "</p><ul><li>Project Repository: <a href='"+
-    projects[_val].repo + "'>Available here.</a></li><li><a href='" + 
-    projects[_val].demo + "'>Live Demo</a></li>" +
-    "<li> Written in: " + projects[_val].language + 
-    "</li><li>Built on: "+ projects[_val].builtOn+ "</li></ul></div></div>";
+    projects[_val].title + "</h3><p>" + projects[_val].description + "</p><div><p class='col4'><a href='"+
+    projects[_val].repo + "'><img src='../assets/code.svg'/></a><br/>repo</p><p class='col4'><a href='" + 
+    projects[_val].demo + "'><img src='../assets/firefox-browser.svg' width='32'/></a><br/>demo</p>" +
+    "<p class='col4'><img src='../assets/laptop-code.svg' width='36'/><br/>" + projects[_val].language + 
+    "</p><p class='col4'><img src='../assets/calendar-alt.svg' width='24'/><br/>"+ projects[_val].builtOn+ 
+    "</p></div></div></div>";
     return secDiv;
 }
 const mainDiv = document.querySelector("#projects");
