@@ -55,7 +55,7 @@ function build_sun_pos(sunSetRise) {
     const moon_pos = calc_obj_pos(moon_times);
     var posX0Y0 = [0,0],moon_x0y0 = [0,0];
     
-    console.log("Moon",calc_obj_pos(moon_times),"Sun",calc_obj_pos(sun_times));
+    //console.log("Moon",calc_obj_pos(moon_times),"Sun",calc_obj_pos(sun_times));
     const subDiv = document.createElement("div");
     subDiv.setAttribute("class","clearfix");
     subDiv.setAttribute("id","sun-pos");
@@ -155,7 +155,7 @@ function build_sun_pos(sunSetRise) {
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
     }
-    if((thisHour > moon_times[0]) || (thisHour < moon_times[2])){
+    if((thisHour > moon_times[2]) || (thisHour < moon_times[0])){
         svgGroup.appendChild(svgMoon);
     }
     //svgGroup.appendChild(svgHour);
@@ -255,7 +255,7 @@ async function disp_info(kat){
         /*if(idx==0){ tempMin = myMin;tempMax = myMax; }*/
         texty += "<div class='column3 float-left'><h4>"+tempMin+"&#8451; | "+tempMax+"&#8451;</h4></div>";
         if((idx == 1) && (gotData.wind[2] != undefined)){
-            texty += "<p style='text-align:center;'>"+gotData.weather[2]+"、"+gotData.wind[2]+"</p>";            
+            texty += "<p style='text-align:center;font-size:small;'>"+gotData.weather[2]+"、"+gotData.wind[2]+"</p>";            
         }
         groupDiv.innerHTML = texty;
         colDiv.appendChild(groupDiv);
