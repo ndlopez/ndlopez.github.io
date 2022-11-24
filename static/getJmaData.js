@@ -40,8 +40,8 @@ function getDateHour(isoStr){
 
 function calc_obj_pos(setRiseArr){
     //setRiseArr = [riseHr,riseMin,setHr,setMin]
-    const x0 = (thisHour - setRiseArr[0])*60 + (thisMins-setRiseArr[1]);
-    const rr = (setRiseArr[2]-setRiseArr[0])*60 + (setRiseArr[3]-setRiseArr[1]);//diameter
+    const x0 = (thisHour - setRiseArr[0])*60 + (thisMins - setRiseArr[1]);
+    const rr = (setRiseArr[2] - setRiseArr[0])*60 + (setRiseArr[3] - setRiseArr[1]);//diameter
     const phi = Math.acos(1 - (2*x0/rr));
     const y0 = Math.sin(phi);
     return [rr,x0,y0];
@@ -50,11 +50,9 @@ function build_sun_pos(sunSetRise) {
     const sun_times = [sunSetRise.sunrise[0],sunSetRise.sunrise[1],sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const moon_times = [7,55,17,37];// Moon 2022-11-25, 17:37, 07:55
     const width = 330, height = 200;//px, 330x200;300x180, 120 for summer
-    
+
     const sun_pos = calc_obj_pos(sun_times);//[0]:rr,[1]:x0, [2]:y0
     const moon_pos = calc_obj_pos(moon_times);
-    //const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
-    //const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
     var posX0Y0 = [0,0],moon_x0y0 = [0,0];
     
     console.log("Moon",calc_obj_pos(moon_times),"Sun",calc_obj_pos(sun_times));
@@ -118,17 +116,17 @@ function build_sun_pos(sunSetRise) {
     offset = (width-20)/24*thisHour;
     const svgFlying = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgFlying.setAttribute("x",(width - offset));
-    svgFlying.setAttribute("y",0.2*height);
+    svgFlying.setAttribute("y",0.3*height);
     svgFlying.setAttribute("font-size","24px");
     svgFlying.textContent = String.fromCodePoint(0x1F681);//"\u2601"; //cloud
-    // String.fromCodePoint(0x1F681); emoji helicopter, 1F699, jeep
+    // String.fromCodePoint(0x1F681); helicopter, 1F699, jeep
     const svgRunner = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgRunner.setAttribute("x",0.8*width);
     svgRunner.setAttribute("y",height-2);
     svgRunner.setAttribute("font-size","20px");
     svgRunner.textContent = String.fromCodePoint(0x1F6B4);
     const svgRise = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgRise.setAttribute("fill","#fff");
+    svgRise.setAttribute("fill","#cc274c");
     svgRise.setAttribute("x",15);
     svgRise.setAttribute("y",0.5*width+28);
     svgRise.setAttribute("font-size","16px");
@@ -184,9 +182,7 @@ async function disp_info(kat){
     const gotTime = await getTimes();//fetch sun rise/set
     //sunrise/sunset + wind info
     const weathernfo = document.getElementById("curr_weather");
-    //if(thisHour <= gotTime.sunset[0]){
     weathernfo.appendChild(build_sun_pos(gotTime));
-    //}
     
     /*var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");
@@ -259,10 +255,8 @@ async function disp_info(kat){
         /*if(idx==0){ tempMin = myMin;tempMax = myMax; }*/
         texty += "<div class='column3 float-left'><h4>"+tempMin+"&#8451; | "+tempMax+"&#8451;</h4></div>";
         if((idx == 1) && (gotData.wind[2] != undefined)){
-            //should apply after 11AM
             texty += "<p style='text-align:center;'>"+gotData.weather[2]+"、"+gotData.wind[2]+"</p>";            
         }
-        //texty += "<p>降水確率: "+gotData.forecast[4][idx]+"%</p>";
         groupDiv.innerHTML = texty;
         colDiv.appendChild(groupDiv);
     }
@@ -291,10 +285,10 @@ async function disp_info(kat){
     texty = "";
     let jdx = gotData.rain[0].length-1;
     let kdx = 0;
-    var textW = "<p>降水確率[%]</p><div class='row'>";
+    var textW = "<p>降水確率</p><div class='row'>";
     for(let idx = jdx-3;idx < jdx+1;idx++){
         const get_date = getDateHour(gotData.rain[0][idx]);
-        texty += "<p class='col4'>"+get_date.heure+" - "+hh[kdx]+"<br/>"+gotData.rain[1][idx]+"</p>";
+        texty += "<p class='col4'>"+get_date.heure+" - "+hh[kdx]+"<br/>"+gotData.rain[1][idx]+"%</p>";
         //console.log(gotData.rain[0].length,texty);
 	    kdx++;
     }
@@ -302,7 +296,6 @@ async function disp_info(kat){
     tempElm.innerHTML = textW + texty;
     myDiv.appendChild(iconElm);
     myDiv.appendChild(tempElm);
-    //console.log("forecast:",gotData.forecast);
 }
 
 async function get_data(jdx){
@@ -331,11 +324,6 @@ async function get_data(jdx){
     "wind":winds,"rain":[rainTimes,rainProb],"temp":[tempTimes,temp],
     "forecast":[weekDates,weekIcons,weekTempMin,weekTempMax,weekRainProb]};
 }
-
-/*async function getIconCodes(){
-    const resp = await fetch("../data/w_codes.json");
-    const data = await resp.json();return data;
-}*/
 
 function convTime(unixT){
     const myTime = new Date(unixT *1000);
@@ -375,3 +363,7 @@ async function getTimes(){
     var myPath = "M100 180 L130 150 170 150 200 180Z";
     svgPath.setAttribute("d",myPath);
 */
+/*async function getIconCodes(){
+    const resp = await fetch("../data/w_codes.json");
+    const data = await resp.json();return data;
+}*/
