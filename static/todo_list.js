@@ -8,7 +8,7 @@ initData = [
     },{
         id:4,activity:"Read a book",
     },{
-        id:5,activity:"Re-write resume and submit to マイナビ転職"
+        id:5,activity:"Move data analysis scripts to R"
     },
 ];
 

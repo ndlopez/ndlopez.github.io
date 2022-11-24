@@ -1,14 +1,35 @@
 const projects=[
     {
+        name:"Numerical Analysis in C",
+        title:"Code repository for FIS340. Numerical Analysis for Physicists.",
+        description:"It includes several code samples to solve some problems in Thermodynamics and \
+        Electromagnetism. Data Analysis algorithms are also included.",
+        language:"C",
+        image:"../assets/cloud-heavy.svg",
+        repo:"https://github.com/ndlopez/num_anl/",
+        demo:"",
+        builtOn:2004
+    },{
+        name: "Solar Physics Research",
+        title: "Code repository for some of the tools I used as a graduate student.",
+        description: "Code to calculate Sun's zenith angle, atmospherical influence on particles\
+        coming from the Sun, neutron's survival probability and other variables used to determine \
+        solar neutrons acceleration mechanism. It requires <a target='blank' href='https://root.cern.ch'>CERN's ROOT</a> (C++ framework)",
+        language: "C++",
+        image: "",
+        repo: "https://github.com/ndlopez/solar_neutrons",
+        demo:"https://https://ndlopez.github.io/pages/research.html",
+        builtOn:2015
+    },{
         name:"Unpublished website of Galileo Inc.",
         title:"Employee's daily routine webpage and Internship schedule webpage.",
         description:"It includes a home page, 3 pages for different types of employees at the company:\
         new graduates, foreigners, and working moms and one page to display the schedule of internship. \
         The Bootstrap CSS library is used to display better the HTML elements.",
-        language:"JavaScript, CSS, HTML",
+        language:"HTML, JavaScript, CSS",
         image:"../assets/cloud-heavy.svg",
         repo:"https://github.com/ndlopez/galileo_web",
-        demo:"https://ndlopez.github.io/pages/galileo_web",
+        demo:"https://ndlopez.github.io/galileo_web",
         builtOn:2018
     },{
         name:"Quotes, a CLI Application",
@@ -22,16 +43,16 @@ const projects=[
         demo:"https://ndlopez.github.io/",
         builtOn:2020
     },{
-        name:"NowPlaying",
-        title:"Notification app to display current song playing on FM La Paz",
-        description:"Gnome extension and Windows TaskBar Application. It displays \
-        the current song playing on FM La Paz (internet radio). The application makes a request to \
-        the host site to check for updates every four minutes. No data is stored on device. The repository \
-        also includes a Notification App and an xbar-plugin for MacOS, it requires cron scheduler to get updates and xbar to install the plugin.",
-        language:"JavaScript, C#",
-        image:"https://raw.githubusercontent.com/ndlopez/NowPlaying/master/assets/now_playing.png",
-        repo:"https://github.com/ndlopez/fmLaPazNow",
-        demo:"https://ndlopez.github.io/fmLaPazNow",
+        name:"NowPlaying on ThirdRock Radio",
+        title:"Notification app to display current song playing on NASA's ThirdRock radio",
+        description:"Gnome Extension, MacOS Notification App and xbar-plugin to display \
+        the current song playing on ThirdRock (internet radio). The application makes a request to \
+        the host site to check for updates every four minutes. No data are stored on device. \
+        It requires cron scheduler to get updates and MacOS xbar to install the plugin.",
+        language:"JavaScript, Python",
+        image:"https://raw.githubusercontent.com/ndlopez/fmLaPazNow/main/assets/fmLaPaz_plugin_prev.png",
+        repo:"https://github.com/ndlopez/fmLaPazNow/tree/main/xbar_plugin",
+        demo:"",
         builtOn:2020
     },{
         name:"PassAdm",
@@ -46,28 +67,28 @@ const projects=[
         language:"Python, Java",
         image:"../assets/cloud-heavy.svg",
         repo:"https://github.com/ndlopez/",
-        demo:"Not available",
+        demo:"",
         builtOn:2021
     },{
         name:"WeatherApp",
-        title:"REST-api and Gnome Extension to display current weather conditions.",
-        description:"The website displays current conditions plus a bar-plot done using D3JS library. \
-        The Gnome extension is a notification app that displays the current \
-        and the next hour conditions. Data was scrapped from tenki.jp using a Shell script. A cron \
-        script can be implemented to download and scrap data every day. Back-end is developed in \
-        PHP, and MySQL. A Windows 10 widget is in development in C#.",
-        language:"PHP, Shell, JavaScript",
-        image:"../assets/cloud-heavy.svg",
-        repo:"https://github.com/ndlopez/weather_app",
-        demo:"https://ndlopez.github.io/pages/weather.html",
-        builtOn: 2021
-    },{
-        name: "Linux/UNIX info tools",
-        title: "Gnome Extension to display OS information.",
-        description: "Display on the top panel information about SDD/HDD temperature, uptime, battery status,headphone-jack status and Wifi/LAN download status",
+        title:"Gnome Extension, MacOS Notification App to display current weather conditions.",
+        description:"The Gnome extension and MacOS Notification App displays the current \
+        and the next hour conditions for a certain location which can be changed in the Shell Script. \
+        Data was scrapped from tenki.jp using a Shell script. A cron \
+        script can be implemented to download and scrap data every day.",
         language: "JavaScript, Shell",
         image: "../assets/cloud-heavy.svg",
         repo: "https://github.com/ndlopez/weather_app",
+        demo: "",
+        builtOn: 2021
+    },{
+        name: "Gnome Utilities",
+        title: "Gnome Extension to display devices information.",
+        description: "Display on the top panel information about SSD/HDD/NVME temperature, uptime, \
+        battery, headphone-jack and Wifi/LAN download status",
+        language: "JavaScript, Shell",
+        image: "https://raw.githubusercontent.com/ndlopez/gnome_utils/main/gnome_utils.png",
+        repo: "https://github.com/ndlopez/gnome_utils",
         demo: "",
         builtOn: 2021
     },{
@@ -76,7 +97,7 @@ const projects=[
         description:"Android Application developed in Java using Android Studio. The application \
         allows the user to input the departure time and bus stop and arrival bus stop in Japanese \
         and displays based on that info the next departing buses. At the moment, it is not possible \
-        to make transfers between bus lines, that work is still under development. Data is from the \
+        to make transfers between bus lines, that work is still under development. Data are from the \
         Nagoya City Transportation Bureau.",
         language:"Java",
         image:"../assets/cloud-heavy.svg",
@@ -85,10 +106,10 @@ const projects=[
         builtOn:2021
     },{
         name:"Paiza Tests",
-        title:"Test for programming skills",
+        title:"Solutions to some of the programming skill examinations offered by paiza.jp",
         description:"The site paiza.jp offers different levels to test programming skills. Given my \
-        level, I tried some of the C and B level. The repository also includes code to solve the 'Wordle' \
-        game",
+        level, I tried some of the B and C levels (I got a 979 score [中級プログラマー]). \
+        The repository also includes code to solve the 'Wordle' game",
         image:"https://img001.prntscr.com/file/img001/U6hzfAXXR7aoLUBHf2mgww.png",
         language:"Python, Ruby",
         repo:"htpps://github.com/ndlopez/paiza_test",
@@ -96,8 +117,8 @@ const projects=[
         builtOn:2022
     },{
         name: "Jumble Game",
-        title: "Unscramble the words.",
-        description: "Web Application developed in JavaScript. Inspired by NewsRadio - Arcade \
+        title: "Unscramble the words.<br/>Web Application",
+        description: "Inspired by NewsRadio - Arcade \
         Episode (S03EP04). The displayed words are the ones whose meaning I did not know from \
         the books: Pride and Prejudice by Jane Austen, Zealot by Reza Aslan and Flowers for Algernon \
         by Daniel Keyes. It is a little hard to guess the correct word, but the app helps the user by coloring the \
@@ -106,6 +127,54 @@ const projects=[
         image: "https://raw.githubusercontent.com/ndlopez/jumble_game/main/data/Jumble_Game_2022-04-02_2152.png",
         repo: "https://github.com/ndlopez/jumble_game",
         demo: "https://ndlopez.github.io/jumble_game",
+        builtOn: 2022
+    },{
+        name:"Weather WebApp",
+        title:"REST-api to display current and forecast weather conditions. Updating data can be done within the website.",
+        description:"The website displays current conditions plus a bar-plot done using D3JS library.\
+        CRUD operations can be performed within the website. \
+        Data was scrapped from tenki.jp using a Shell script and feed into a MySQL database hosted \
+        locally running Debian on Windows11. WSL setup can be found on the repository. A cron \
+        script can be implemented to download and scrap data every day. Back-end is developed in \
+        PHP, Python and MySQL. Front-End is developed in JavaScript",
+        language: "PHP, JavaScript, MySQL, Shell",
+        image: "https://raw.githubusercontent.com/ndlopez/webApp/main/static/access_to_api.png",
+        repo: "https://github.com/ndlopez/webApp",
+        demo: "",
+        builtOn: 2022
+    },{
+        name:"Stream Player App",
+        title:"Discover new music by listening to NASA's ThirdRock radio.",
+        description:"Windows TaskBar Application. Displays the current song playing on ThirdRock radio. \
+        Artwork data is fetched from a repository. Requires Windows Desktop Runtime v3.1, \
+        available once granted permission to execute.",
+        language:"C#",
+        image:"https://raw.githubusercontent.com/ndlopez/NowPlaying/master/assets/now_playing.png",
+        repo:"https://github.com/ndlopez/NowPlaying",
+        demo:"https://github.com/ndlopez/NowPlaying/raw/master/pre_release/nowPlaying_new.zip",
+        builtOn:2022
+    },{
+        name: "Stream Player WebUI",
+        title: "Listen to and discover new music while working/coding. Four different audio streams are available: ThirdRock radio, 113.fm 181.fm, and LaPaz.fm",
+        description: "Web application developed in JavaScript. Displays a music player with pre-defined \
+        streams. Keyboard events are associated to Play/Pause/Stop buttons. Works on both Desktop and Mobile \
+        platforms. A 'recently listened' playlist is created for LaPaz.fm page. Disclaimer: Artwork is not \
+        available for all the audio streams. Some CORS issue with the provider.",
+        language: "JavaScript, CSS",
+        image: "https://raw.githubusercontent.com/ndlopez/fmLaPazNow/main/assets/new_design.png",
+        repo: "https://github.com/ndlopez/fmLaPazNow/web_player",
+        demo: "https://ndlopez.github.io/fmLaPazNow/web_player/",
+        builtOn: 2022
+    },{
+        name: "JMA weather",
+        title: "WebPage to display current weather conditions for Nagoya. Features also, Sun/Moon aparent \
+        position in the sky.",
+        description: "Display on a webpage current weather conditions and 5-day forecast for Nagoya. \
+        All data (updated every 10 minutes) are from the Japanese Metereological Agency (www.jma.go.jp).",
+        language: "JavaScript, CSS",
+        image: "",
+        repo: "https://github.com/ndlopez/ndlopez.github.io/",
+        demo: "https://ndlopez.github.io/pages/jma_weather.html",
         builtOn: 2022
     }
 ];
