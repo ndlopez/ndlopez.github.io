@@ -38,15 +38,25 @@ function getDateHour(isoStr){
     return {"monty":gotDate.getMonth() + 1,"tag":gotDate.getDate(),"day":gotDate.getDay(),"heure":gotDate.getHours()};
 }
 
+function calc_obj_pos(setRiseArr){
+    //setRiseArr = [riseHr,riseMin,setHr,setMin]
+    const x0 = (thisHour - setRiseArr[0])*60 + (thisMins-setRiseArr[1]);
+    const rr = (setRiseArr[2]-setRiseArr[0])*60 + (setRiseArr[3]-setRiseArr[1]);
+    const phi = Math.acos(1 - (2*x0/rr));
+    const y0 = Math.sin(phi);
+    return [x0,y0];
+}
 function build_sun_pos(sunSetRise) {
+    const sun_times = [sunSetRise.sunrise[0],sunSetRise.sunrise[1],sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
     const width = 330, height = 200;//px, 330x200;300x180, 120 for summer
     const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
     const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
     var posX0Y0 = [0,0];
-    // Moon 2022-11-22, 15:29, 04:18, 2022-11-23, 16:04, 05:28
-    const moon_times = [4,18,15,29];
+    // Moon 2022-11-24, 16:45, 06:41
+    const moon_times = [6,41,16,45]; //use same logic when calc Sun position
+    console.log("Moon",calc_obj_pos(moon_times),"Sun",calc_obj_pos(sun_times));
     //const pTitle = document.createElement("p");
     //pTitle.innerText = "SUN POSITION";
     const subDiv = document.createElement("div");
@@ -142,16 +152,16 @@ function build_sun_pos(sunSetRise) {
     if((thisHour > sunset[0]) || (thisHour < sunrise[0])){
         // Sun disappears
         svgGroup.appendChild(svgRunner);
-        svgGroup.appendChild(svgMoon);
+        //svgGroup.appendChild(svgMoon);
     }else{
         svgGroup.appendChild(svgCircle);
         svgGroup.appendChild(svgRise);
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
     }
-    /*if((thisHour > moon_times[0]) || (thisHour < moon_times[2])){
+    if((thisHour > moon_times[0]) || (thisHour < moon_times[2])){
         svgGroup.appendChild(svgMoon);
-    }*/
+    }
     //svgGroup.appendChild(svgHour);
     subDiv.appendChild(svgGroup);
     return subDiv;
