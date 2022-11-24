@@ -48,24 +48,19 @@ function calc_obj_pos(setRiseArr){
 }
 function build_sun_pos(sunSetRise) {
     const sun_times = [sunSetRise.sunrise[0],sunSetRise.sunrise[1],sunSetRise.sunset[0],sunSetRise.sunset[1]];
-    const moon_times = [6,41,16,45];// Moon 2022-11-24, 06:41, 16:45
-
-    const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
-    const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
+    const moon_times = [7,55,17,37];// Moon 2022-11-25, 17:37, 07:55
     const width = 330, height = 200;//px, 330x200;300x180, 120 for summer
+    
     const sun_pos = calc_obj_pos(sun_times);//[0]:rr,[1]:x0, [2]:y0
     const moon_pos = calc_obj_pos(moon_times);
-    //(sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
-    const sun_x0 = sun_pos[1];//(thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
+    //const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
+    //const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
     var posX0Y0 = [0,0],moon_x0y0 = [0,0];
     
     console.log("Moon",calc_obj_pos(moon_times),"Sun",calc_obj_pos(sun_times));
-    //const pTitle = document.createElement("p");
-    //pTitle.innerText = "SUN POSITION";
     const subDiv = document.createElement("div");
     subDiv.setAttribute("class","clearfix");
     subDiv.setAttribute("id","sun-pos");
-    //subDiv.appendChild(pTitle);
 
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svgGroup.setAttribute("width",width);
@@ -76,14 +71,11 @@ function build_sun_pos(sunSetRise) {
     if((sun_pos[1] <= sun_pos[0]) && (sun_pos[1] > 0)){
         //const theta = Math.acos(1 - (2*sun_pos[1]/sun_pos[0]));//radians
         posX0Y0 = [sun_pos[1]*width/sun_pos[0] - offset,height-0.5*width*sun_pos[2]];//px
-        console.log("thisPos", sun_times, sun_pos[0],sun_pos[1],0.5*width*sun_pos[2],posX0Y0);
+        //console.log("thisPos", sun_times, sun_pos[0],sun_pos[1],0.5*width*sun_pos[2],posX0Y0);
     }
     if((moon_pos[1] <= moon_pos[0]) && (moon_pos[1] > 0)){
         moon_x0y0 = [moon_pos[1]*width/moon_pos[0] - offset,height-0.5*width*moon_pos[2]];
     }
-    /*if((thisHour > sunset[0]) || (thisHour < sunrise[0])){  
-    }else{calc theta and y0}*/
-    console.log("thisPos", sunset, sunrise, rr,x0);
     const svgBkg = document.createElementNS('http://www.w3.org/2000/svg','rect');
     svgBkg.setAttribute("fill","#87ceeb");
     svgBkg.setAttribute("x",0);
@@ -140,13 +132,13 @@ function build_sun_pos(sunSetRise) {
     svgRise.setAttribute("x",15);
     svgRise.setAttribute("y",0.5*width+28);
     svgRise.setAttribute("font-size","16px");
-    svgRise.textContent = sunrise[0]+":"+sunrise[1];
+    svgRise.textContent = sun_times[0] + ":" + sun_times[1];
     const svgSet = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgSet.setAttribute("fill","#fff");
     svgSet.setAttribute("x",width-46);
     svgSet.setAttribute("y",0.5*width+28);
     svgSet.setAttribute("font-size","16px");
-    svgSet.textContent = sunset[0]+":"+sunset[1];
+    svgSet.textContent = sun_times[2] + ":" + sun_times[3];
 
     /*const svgHour = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgHour.setAttribute("fill","#fff");svgHour.setAttribute("font-size","13px");
@@ -155,7 +147,7 @@ function build_sun_pos(sunSetRise) {
 
     svgGroup.appendChild(svgFlying);
     
-    if((thisHour > sunset[0]) || (thisHour < sunrise[0])){
+    if((thisHour > sun_times[2]) || (thisHour < sun_times[0])){
         // Sun disappears
         svgGroup.appendChild(svgRunner);
         //svgGroup.appendChild(svgMoon);
