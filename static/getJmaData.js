@@ -41,21 +41,24 @@ function getDateHour(isoStr){
 function calc_obj_pos(setRiseArr){
     //setRiseArr = [riseHr,riseMin,setHr,setMin]
     const x0 = (thisHour - setRiseArr[0])*60 + (thisMins-setRiseArr[1]);
-    const rr = (setRiseArr[2]-setRiseArr[0])*60 + (setRiseArr[3]-setRiseArr[1]);
+    const rr = (setRiseArr[2]-setRiseArr[0])*60 + (setRiseArr[3]-setRiseArr[1]);//diameter
     const phi = Math.acos(1 - (2*x0/rr));
     const y0 = Math.sin(phi);
-    return [x0,y0];
+    return [rr,x0,y0];
 }
 function build_sun_pos(sunSetRise) {
     const sun_times = [sunSetRise.sunrise[0],sunSetRise.sunrise[1],sunSetRise.sunset[0],sunSetRise.sunset[1]];
+    const moon_times = [6,41,16,45];// Moon 2022-11-24, 06:41, 16:45
+
     const sunset = [sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const sunrise = [sunSetRise.sunrise[0],sunSetRise.sunrise[1]];
     const width = 330, height = 200;//px, 330x200;300x180, 120 for summer
-    const rr = (sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
-    const x0 = (thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
-    var posX0Y0 = [0,0];
-    // Moon 2022-11-24, 16:45, 06:41
-    const moon_times = [6,41,16,45]; //use same logic when calc Sun position
+    const sun_pos = calc_obj_pos(sun_times);//[0]:rr,[1]:x0, [2]:y0
+    const moon_pos = calc_obj_pos(moon_times);
+    //(sunset[0]-sunrise[0])*60 + (sunset[1]-sunrise[1]); //mins
+    const sun_x0 = sun_pos[1];//(thisHour - sunrise[0])*60 + (thisMins - sunrise[1]);//mins
+    var posX0Y0 = [0,0],moon_x0y0 = [0,0];
+    
     console.log("Moon",calc_obj_pos(moon_times),"Sun",calc_obj_pos(sun_times));
     //const pTitle = document.createElement("p");
     //pTitle.innerText = "SUN POSITION";
@@ -69,11 +72,14 @@ function build_sun_pos(sunSetRise) {
     svgGroup.setAttribute("height",height);
     svgGroup.setAttribute("x","0px");
     svgGroup.setAttribute("y","0px");
-    if((x0 <= rr) && (x0 > 0)){
-        const theta = Math.acos(1 - (2*x0/rr));//radians
-        var my_off = 20;
-        posX0Y0 = [x0*width/rr-my_off,height-0.5*width*Math.sin(theta)];//px
-        console.log("thisPos", sunset, sunrise, rr,x0,0.5*width*Math.sin(theta),theta,posX0Y0);
+    var offset = 20;
+    if((sun_pos[1] <= sun_pos[0]) && (sun_pos[1] > 0)){
+        //const theta = Math.acos(1 - (2*sun_pos[1]/sun_pos[0]));//radians
+        posX0Y0 = [sun_pos[1]*width/sun_pos[0] - offset,height-0.5*width*sun_pos[2]];//px
+        console.log("thisPos", sun_times, sun_pos[0],sun_pos[1],0.5*width*sun_pos[2],posX0Y0);
+    }
+    if((moon_pos[1] <= moon_pos[0]) && (moon_pos[1] > 0)){
+        moon_x0y0 = [moon_pos[1]*width/moon_pos[0] - offset,height-0.5*width*moon_pos[2]];
     }
     /*if((thisHour > sunset[0]) || (thisHour < sunrise[0])){  
     }else{calc theta and y0}*/
@@ -94,18 +100,24 @@ function build_sun_pos(sunSetRise) {
     svgCircle.setAttribute("cx",0.5*width);
     svgCircle.setAttribute("cy",0.5*width);
 
-    var offset = 5; 
-    if(thisHour<12){offset = -5;}
+    offset = 5; 
+    if(thisHour < 12){offset = -5;}
     /*const svgSun = document.createElementNS('http://www.w3.org/2000/svg','circle');
     svgSun.setAttribute("fill","#E8B720");svgSun.setAttribute("r",5);
     svgSun.setAttribute("cx",posX0Y0[0]-offset);svgSun.setAttribute("cy",posX0Y0[1]);*/
     
     const svgSun = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgSun.setAttribute("fill","#E8B720");
-    svgSun.setAttribute("x",posX0Y0[0]-offset);
+    svgSun.setAttribute("x",posX0Y0[0] - offset);
     svgSun.setAttribute("y",posX0Y0[1]);
     svgSun.setAttribute("font-size","36px");
     svgSun.textContent = "\u2600";//String.fromCodePoint(0x1F506);
+    
+    const svgMoon = document.createElementNS('http://www.w3.org/2000/svg','text');
+    svgMoon.setAttribute("x",moon_x0y0[0] - offset);//width/24*thisHour
+    svgMoon.setAttribute("y",moon_x0y0[1]);//0.1*height
+    svgMoon.setAttribute("font-size","24px");
+    svgMoon.textContent = String.fromCodePoint(0x1F314);
     //for some reason not parsed :(
     /*const svgSubG = document.createElementNS('http://www.w3.org/2000/svg','g');
     svgSubG.setAttribute("font-size","30");svgSubG.setAttribute("fill","#ececec");
@@ -140,12 +152,6 @@ function build_sun_pos(sunSetRise) {
     svgHour.setAttribute("fill","#fff");svgHour.setAttribute("font-size","13px");
     svgHour.setAttribute("x",0.5*width);svgHour.setAttribute("y",0.98*height);
     svgHour.textContent = thisHour + ":" + thisMins;*/
-
-    const svgMoon = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgMoon.setAttribute("x",width/24*thisHour);
-    svgMoon.setAttribute("y",0.1*height);
-    svgMoon.setAttribute("font-size","24px");
-    svgMoon.textContent = String.fromCodePoint(0x1F314);
 
     svgGroup.appendChild(svgFlying);
     
