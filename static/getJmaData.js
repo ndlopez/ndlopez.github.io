@@ -63,8 +63,8 @@ function build_sun_pos(sunSetRise) {
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svgGroup.setAttribute("width",width);
     svgGroup.setAttribute("height",height);
-    svgGroup.setAttribute("x","0px");
-    svgGroup.setAttribute("y","0px");
+    // svgGroup.setAttribute("x","0px");
+    // svgGroup.setAttribute("y","0px");
     var offset = 20;
     if((sun_pos[1] <= sun_pos[0]) && (sun_pos[1] > 0)){
         //const theta = Math.acos(1 - (2*sun_pos[1]/sun_pos[0]));//radians
@@ -74,12 +74,11 @@ function build_sun_pos(sunSetRise) {
     if((moon_pos[1] <= moon_pos[0]) && (moon_pos[1] > 0)){
         moon_x0y0 = [moon_pos[1]*width/moon_pos[0] - offset,height-0.5*width*moon_pos[2]];
     }
+    /*
     const svgBkg = document.createElementNS('http://www.w3.org/2000/svg','rect');
     svgBkg.setAttribute("fill","#87ceeb");
-    svgBkg.setAttribute("x",0);
-    svgBkg.setAttribute("y",0);
-    svgBkg.setAttribute("width",width);
-    svgBkg.setAttribute("height",height);
+    svgBkg.setAttribute("x",0); svgBkg.setAttribute("y",0);
+    svgBkg.setAttribute("width",width); svgBkg.setAttribute("height",height);*/
 
     const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
     svgCircle.setAttribute("stroke","#2e4054");
@@ -146,18 +145,16 @@ function build_sun_pos(sunSetRise) {
     svgGroup.appendChild(svgFlying);
     
     if((thisHour > sun_times[2]) || (thisHour < sun_times[0])){
-        // Sun disappears
         svgGroup.appendChild(svgRunner);
-        //svgGroup.appendChild(svgMoon);
+        svgGroup.appendChild(svgMoon);
     }else{
         svgGroup.appendChild(svgCircle);
         svgGroup.appendChild(svgRise);
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
     }
-    if((thisHour > moon_times[2]) || (thisHour < moon_times[0])){
-        svgGroup.appendChild(svgMoon);
-    }
+    /*if((thisHour > moon_times[2]) || (thisHour < moon_times[0])){
+        svgGroup.appendChild(svgMoon);}*/
     //svgGroup.appendChild(svgHour);
     subDiv.appendChild(svgGroup);
     return subDiv;
@@ -229,7 +226,8 @@ async function disp_info(kat){
     //when parsing currCond only: var currWeather = gotData.weather[1].split("　");
     /*for(let idx=0;idx<gotData.weather.length;idx++){
         var currWeather = gotData.weather[idx].split("　");
-        texty += "<h2>"+gotData.time[idx].slice(0,10)+" "+currWeather[0]+"<img src='"+ico_url+gotData.icon[idx]+".svg'/></h2>";}*/
+        texty += "<h2>"+gotData.time[idx].slice(0,10)+" "+currWeather[0]+
+        "<img src='"+ico_url+gotData.icon[idx]+".svg'/></h2>";}*/
     
     /* Weekly forecast Max/Min*/
     const colDiv = document.getElementById("forecaster");
@@ -351,7 +349,6 @@ async function getTimes(){
     svgLine.setAttribute("width",width);// -2*26
     svgLine.setAttribute("height",30);
     //svgLine.setAttribute("x2",width);svgLine.setAttribute("y2",0.5*width);
-    
     //var myPath = "M240 100 A40 40 40 10 90 100 0"; semicirc
     //var myPath = "M3.034,56C18.629,24.513,52.554,2.687,91.9,2.687S165.172,24.513,180.766,56h3.033 
     C168.016,23.041,132.807,0.098,91.9,0.098C50.995,0.098,15.785,23.041,0.002,56H3.034z";
@@ -362,8 +359,8 @@ async function getTimes(){
     svgPath.setAttribute("fill","#2e4054");//#E8B720
     var myPath = "M100 180 L130 150 170 150 200 180Z";
     svgPath.setAttribute("d",myPath);
-*/
-/*async function getIconCodes(){
+
+    async function getIconCodes(){
     const resp = await fetch("../data/w_codes.json");
     const data = await resp.json();return data;
 }*/
