@@ -71,9 +71,10 @@ function build_sun_pos(sunSetRise) {
         posX0Y0 = [sun_pos[1]*width/sun_pos[0] - offset,height-0.5*width*sun_pos[2]];//px
         //console.log("thisPos", sun_times, sun_pos[0],sun_pos[1],0.5*width*sun_pos[2],posX0Y0);
     }
+    /*Bug: Not displaying during MoonRise time
     if((moon_pos[1] <= moon_pos[0]) && (moon_pos[1] > 0)){
         moon_x0y0 = [moon_pos[1]*width/moon_pos[0] - offset,height-0.5*width*moon_pos[2]];
-    }
+    }*/
     /*
     const svgBkg = document.createElementNS('http://www.w3.org/2000/svg','rect');
     svgBkg.setAttribute("fill","#87ceeb");
@@ -103,8 +104,8 @@ function build_sun_pos(sunSetRise) {
     svgSun.textContent = "\u2600";//String.fromCodePoint(0x1F506);
     
     const svgMoon = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgMoon.setAttribute("x",moon_x0y0[0] - offset);//width/24*thisHour
-    svgMoon.setAttribute("y",moon_x0y0[1]);//0.1*height
+    svgMoon.setAttribute("x",width/24*thisHour);//moon_x0y0[0] - offset
+    svgMoon.setAttribute("y",0.1*height);//moon_x0y0[1]
     svgMoon.setAttribute("font-size","24px");
     svgMoon.textContent = String.fromCodePoint(0x1F314);
     //for some reason not parsed :(
