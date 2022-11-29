@@ -179,9 +179,10 @@ panel2,.flip{
 /*.bar{fill:#bed2e030}*/
 svg g{color:#bed2e0;}
 .domain, svg line{stroke: #bed2e0;}
-#leftAxis svg text, #mainPlot svg text, #rightAxis svg text{fill:#bed2e0;font-size: 12px;}
-.txtTemp,.txtWind{fill:whitesmoke;}
+#leftAxis text, #mainPlot .tick text, #rightAxis text{fill:#bed2e0;font-size: 12px;}
+.txtTemp,.txtWind,.txtWindDir{fill:whitesmoke;}
 .tempAxis text{fill:#cc274c;}
+.txtRain{fill: #87ceeb;}
 
 .progress-ring-circle {
   transform: rotate(-90deg);

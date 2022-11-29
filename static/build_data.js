@@ -350,7 +350,7 @@ function build_plot(json_array){
 
     /* Y2 humid: right axis */
     const humidMin = d3.min(json_array,(d)=>{return d.humid;});
-    const humidMax = d3.max(json_array,(d)=>{return d.humid;});
+    const humidMax = 100;//d3.max(json_array,(d)=>{return d.humid;});
     
     const svgRight = d3.select("#rightAxis")
     .append("svg").attr("width",35).attr("height",ySize)
@@ -364,7 +364,7 @@ function build_plot(json_array){
     svgRight.append("g").call(d3.axisRight(yRain));*/
 
     const yHumid = d3.scaleLinear()
-    .domain([humidMin-5,humidMax+5])
+    .domain([humidMin-5,humidMax])
     .range([h,0]);
     svgRight.append("g").call(d3.axisRight(yHumid));//.attr("transform","translate("+w+",0)");
     svgRight.append("g").append("text").text("%").attr("x",10).attr("y",-10);
@@ -383,8 +383,8 @@ function build_plot(json_array){
     .attr("transform","translate(0,"+0+")")
     .call(d3.axisTop(xScale))
     .selectAll("text")
-    .attr("transform","translate(0,0)")
-    .attr("font-size","12");
+    .attr("transform","translate(0,0)");
+    //.attr("font-size","12");
     //.style("text-anchor","middle");
 
     /* Humidity: bar plot */
@@ -457,6 +457,14 @@ function build_plot(json_array){
         adjHeight = (i%2) === 0?23:38;
         return h + adjHeight;
     })
+    .attr("font-size","11px");
+    /*rain amount in mm/hour*/
+    svg2.append("g").selectAll(".txtRain").data(json_array).enter()
+    .append("text").attr("class","txtRain")
+    .text((d)=>{return d.rain;})
+    .attr("text-anchor","middle")
+    .attr("x",(d)=>{return xScale(d.hour)+9;})
+    .attr("y",(d)=>{return h-25;})
     .attr("font-size","11px");
     //prediction curve
     var thisCurve = d3.line()
