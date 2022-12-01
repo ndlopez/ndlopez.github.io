@@ -2,9 +2,9 @@ const titles = ["Tools","Interests","Music"];
 const subTitles = ["Software","Hardware"];
 const tools = [
     {
-        item0: "OS: Debian or Fedora",
-        item1: "Browser: Firefox",
-        item2: "Search Engine: DuckDuckGo",
+        item0: "OS: <a href='https://www.debian.org'>Debian</a> or <a href='https://www.getfedora.org'>Fedora</a>",
+        item1: "Browser: <a target='_blank' href='www.firefox.com'>Firefox</a>",
+        item2: "Search Engine: <a target='_blank' href='https://www.duckduckgo.com'>DuckDuckGo</a>",
         item3: "IDE: Mostly Emacs and VI, sometimes VSCodium",
         item4: "Notes: Joplin",
         item5: "Music: VLC (streaming ThirdRock Radio and sometimes FM La Paz)"
@@ -36,7 +36,7 @@ function buildList(jdx){
     for (item in tools[jdx]){
         var liElm = document.createElement("li");
         //console.log("thisData",tools[jdx][item]);
-        liElm.innerText = tools[jdx][item];
+        liElm.innerHTML = tools[jdx][item];
         ulElm.appendChild(liElm);
     }
     return ulElm;

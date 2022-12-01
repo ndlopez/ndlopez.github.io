@@ -21,8 +21,8 @@ let maxmin = []; // Max/Min temp from obs data
 var dataHours = [];
 const toRadians = Math.PI/180.0;
 const maxValue = 6; //m/s when 10m/s too many scales, should display half
-const ngo_pred = [{xp:0,yp:10.0},{xp:7,yp:8.0},{xp:14,yp:16.0},{xp:23,yp:9.0}];
-const tky_pred = [{xp:0,yp:5.0},{xp:7,yp:3},{xp:14,yp:17},{xp:23,yp:4}];
+const ngo_pred = [{xp:0,yp:10.0},{xp:7,yp:8.0},{xp:14,yp:15.5},{xp:23,yp:9.0}];
+const tky_pred = [{xp:0,yp:5.0},{xp:7,yp:3},{xp:14,yp:13},{xp:23,yp:4}];
 var hours = [];
 for (let idx = 0; idx < 24; idx++) hours.push(idx);
 /* build array of hours: 0 ~ hh */
@@ -344,7 +344,7 @@ function build_plot(json_array){
     .append("g")
     .attr("transform","translate(" + 35 + "," + margin.top + ")");
     const yScale = d3.scaleLinear()
-    .domain([Math.round(tMin)-2,22]).range([h,0]);
+    .domain([Math.round(tMin)-2,16]).range([h,0]);
     svgLeft.append("g").call(d3.axisLeft(yScale)).attr("font-size","12");
     svgLeft.append("g").append("text").text("\u2103").attr("x",-24).attr("y",-10);
 
