@@ -48,9 +48,9 @@ function calc_obj_pos(setRiseArr){
     const y0 = Math.sin(phi);
     return [rr,x0,y0];
 }
-function build_sun_pos(sunSetRise) {
+function build_obj_pos(sunSetRise,moonSetRise) {
     const sun_times = [sunSetRise.sunrise[0],sunSetRise.sunrise[1],sunSetRise.sunset[0],sunSetRise.sunset[1]];
-    const moon_times = [12,24,23,23];// Moon 2022-11-30, 23:23, 12:24
+    const moon_times = [moonSetRise[2][0].trim(),moonSetRise[2][1],moonSetRise[1][0].trim(),moonSetRise[1][1]];// Moon 2022-11-30, 23:23, 12:24
     const width = 330, height = 200;//px, 330x200;300x180, 120 for summer
 
     const sun_pos = calc_obj_pos(sun_times);//[0]:rr,[1]:x0, [2]:y0
@@ -185,9 +185,10 @@ async function disp_info(kat){
     }
     const gotTime = await getTimes();//fetch Sun rise/set
     const moonTimes = await getMoonTimes();//fetch Moon rise/set
+    console.log("Moon",moonTimes);
     //sunrise/sunset + wind info
     const weathernfo = document.getElementById("curr_weather");
-    weathernfo.appendChild(build_sun_pos(gotTime));
+    weathernfo.appendChild(build_obj_pos(gotTime,moonTimes));
     
     /*var jennaDiv = document.createElement("div");
     jennaDiv.setAttribute("class","clearfix");
@@ -355,13 +356,15 @@ async function getMoonTimes(){
     const rows = data.split('\n').slice(1);
     const thisDay = my_date.getFullYear() + "-" + (zero_pad(my_date.getMonth())+1) + 
     "-" + zero_pad(my_date.getDate());
-    var thisData = "";
+    var thisData = [];
     rows.forEach(row => {
         const thisVal = row.split(","); // [2022-12-05, 08:32,21:20]
         
         if(thisDay == thisVal[0]){
             //console.log(thisDay,thisVal);
-            thisData = thisVal;
+            thisData.push(thisVal[0]);
+            thisData.push(thisVal[1].split(":"));
+            thisData.push(thisVal[2].split(":"))
         }
     });
     return thisData;
