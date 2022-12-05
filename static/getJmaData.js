@@ -23,7 +23,9 @@ const theseMonths = ["January","February","March","April","May","June","July",
 const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 let my_date = new Date();
-/*function zero_pad(tit){return (tit<10)?"0"+tit:tit;}*/
+
+function zero_pad(tit){return (tit<10)?"0"+tit:tit;}
+
 const thisHour = my_date.getHours(), thisMins = my_date.getMinutes();
 //console.log("now:",thisHour,thisMins);
 async function sleepy(msec){
@@ -181,7 +183,8 @@ async function disp_info(kat){
         document.title = gotData.location + "天気";
         city_name.innerHTML = "<br>" + gotData.location;
     }
-    const gotTime = await getTimes();//fetch sun rise/set
+    const gotTime = await getTimes();//fetch Sun rise/set
+    const moonTimes = await getMoonTimes();//fetch Moon rise/set
     //sunrise/sunset + wind info
     const weathernfo = document.getElementById("curr_weather");
     weathernfo.appendChild(build_sun_pos(gotTime));
@@ -344,6 +347,24 @@ async function getTimes(){
     let sunSet = data["sunset"];
     
     return {"sunrise":convTime(sunRise),"sunset":convTime(sunSet)}; 
+}
+
+async function getMoonTimes(){
+    const response = await fetch("https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/moon_setrise.csv");
+    const data = await response.text();
+    const rows = data.split('\n').slice(1);
+    const thisDay = my_date.getFullYear() + "-" + (zero_pad(my_date.getMonth())+1) + 
+    "-" + zero_pad(my_date.getDate());
+    var thisData = "";
+    rows.forEach(row => {
+        const thisVal = row.split(","); // [2022-12-05, 08:32,21:20]
+        
+        if(thisDay == thisVal[0]){
+            //console.log(thisDay,thisVal);
+            thisData = thisVal;
+        }
+    });
+    return thisData;
 }
 /*
     const svgLine = document.createElementNS('http://www.w3.org/2000/svg','rect');
