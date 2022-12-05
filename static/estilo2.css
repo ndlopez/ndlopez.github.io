@@ -1,8 +1,17 @@
+:root{
+  --smoke: #2e4054;
+  --wine: #cc274c;
+  --dark-smoke:#6a7285;
+  --light-sky:#bed2e0;
+  --darkish-sky:#bed2e040;
+  --lemon: #ffeea6;
+  --sky-blue: #87ceeb;
+}
 *{box-sizing:border-box;}
 body{
   font-family:Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
-  background-color:#2e4054;
-  color: #bed2e0;
+  background-color: var(--smoke);
+  color: var(--light-sky);
   margin:0;
 }
 h3{
@@ -15,7 +24,7 @@ section ul{
   line-height: 1.3;
 }
 section h2{
-  border-bottom: #cc274c 1px solid;
+  border-bottom: var(--wine) 1px solid;
 }
 p{line-height: 1.5;}
 div a{
@@ -24,6 +33,8 @@ div a{
 .no-padding{padding: 0px;}
 .no-border{border:0px;}
 .no-margin{margin: 0;}
+.align-right{text-align: right;}
+.align-left{text-align: left;}
 .centered{text-align: center;}
 header{padding:20px;text-align:center;}
 .sticky{
@@ -32,7 +43,7 @@ header{padding:20px;text-align:center;}
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #cc274c;
+  background-color: var(--wine);
   color: whitesmoke;
 }
 .half{
@@ -56,14 +67,14 @@ header{padding:20px;text-align:center;}
   margin-top: -18px;
 }
 nav.top-menu{
-  display: block;
+  /*display: block;*/
   width: 100%;
   box-sizing: inherit;
   text-align: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-a{text-decoration: none;color: #bed2e0;}
+a{text-decoration: none;color: var(--light-sky);}
 .navlink{
   position:relative;
   padding-left: 1rem;
@@ -72,8 +83,8 @@ a{text-decoration: none;color: #bed2e0;}
 }
 .navlink-off,.navlink-on{position:relative}
 .navlink-off:after,.navlink-on:after{content:" ";display:block;margin:.125rem auto 0;width:0;height:.125rem;border-radius:.125rem;background:rgba(255,255,255,0);pointer-events:none;transition:all .4s ease}
-.navlink-off:hover:after{width:100%;background:#bed2e0;}
-.navlink-on:after{width:100%;background:#bed2e0;}
+.navlink-off:hover:after{width:100%;background:var(--light-sky);}
+.navlink-on:after{width:100%;background:var(--light-sky);}
 .inline-block{
   display: inline-block;
   vertical-align: top;
@@ -142,8 +153,8 @@ ul, li{margin: 0px;padding:5px}
   transform:translate(-50%,-50%);
 }
 #forecaster .row{
-  /*border-bottom: 1px dashed #bed2e0;*/
-  background-color: #bed2e040;
+  /*border-bottom: 1px dashed var(--light-sky);*/
+  background-color: var(--darkish-sky);
   margin-bottom: 8px;
   border-radius: 8px;
 }
@@ -162,9 +173,9 @@ panel2,.flip{
   font-size:16px;
   padding:10px;
   text-align:center;
-  background-color:#2e4054;
+  background-color:var(--smoke);
   color:whitesmoke;
-  border:solid 1px #cc274c;
+  border:solid 1px var(--wine);
   margin:auto;
 }
 #panel2{display:none;}
@@ -175,14 +186,14 @@ panel2,.flip{
   display:table;
 }
 .clearfix{padding: 10px;}
-/*SVG .highlight{fill: #cc274c;}*/
-/*.bar{fill:#bed2e030}*/
-svg g{color:#bed2e0;}
-.domain, svg line{stroke: #bed2e0;}
-#leftAxis text, #mainPlot .tick text, #rightAxis text{fill:#bed2e0;font-size: 12px;}
+/*SVG .highlight{fill: var(--wine);}*/
+/*.bar{fill:var(--light-sky)30}*/
+svg g{color:var(--light-sky);}
+.domain, svg line{stroke: var(--light-sky);}
+#leftAxis text, #mainPlot .tick text, #rightAxis text{fill:var(--light-sky);font-size: 12px;}
 .txtTemp,.txtWind,.txtWindDir{fill:whitesmoke;}
-.tempAxis text{fill:#cc274c;}
-.txtRain{fill: #87ceeb;}
+.tempAxis text{fill:var(--wine);}
+.txtRain{fill: var(--sky-blue);}
 
 .progress-ring-circle {
   transform: rotate(-90deg);
@@ -192,7 +203,7 @@ svg g{color:#bed2e0;}
   position: relative;
   bottom: 150px;
   left: 0px;
-  color: #bed2e0;
+  color: var(--light-sky);
   text-align: center;
   border: 0px;
 }
@@ -205,14 +216,14 @@ svg g{color:#bed2e0;}
   border:1px dashed #98a2a9;
   padding:10px;
   text-align:left;
-  background-color:#2e4054;
-  color:#bed2e0;
+  background-color:var(--smoke);
+  color:var(--light-sky);
 }
 #myday tr:nth-child(even){background-color:#f2f2f2;}
 #myday tr:hover{background-color:#ddd;}
 /*table cols title*/
 .accordion{
-  color:#bed2e0;
+  color:var(--light-sky);
   cursor:pointer;
   padding:18px;
   width:100%;
@@ -223,23 +234,23 @@ svg g{color:#bed2e0;}
 }
 .accordion:after{
   content:'\02193';/*Down*/
-  color:#bed2e0;
+  color:var(--light-sky);
   font-size: x-large;
-  /*'\02795'; background-color: #bed2e0;*/
+  /*'\02795'; background-color: var(--light-sky);*/
   float:right;margin-left:5px;
 }
 .active:after{
   content:'\02191';/*Up*/
-  color:#bed2e0;
+  color:var(--light-sky);
   font-size: x-large;
-  /*content:"\02796";background-color: #bed2e0;*/}
+  /*content:"\02796";background-color: var(--light-sky);*/}
 .panel{
   display:none;
   background-color:#e5e5e5;
   overflow:hidden;
 }
 button{
-background-color:#2e4054;
+background-color:var(--smoke);
 color:white;
 text-align:center;
 }
@@ -251,12 +262,13 @@ text-align:center;
   -o-transform:scaleX(-1);
   -webkit-transform:scaleX(-1);
   transform:scaleX(-1);
-  filter:FlipH;-ms-filter:"FlipH";
+  filter:FlipH;
 }
-#nav-menu{display: none;}
+.no-desktop{display: none;}
 /*Responsive layout to stack cols on top of each other
 @media only screen and (max-width:620px){*/
 @media (max-width:620px){
+  .no_mobil{display: none;}
   header{padding: 0px;}
   header img{margin:0;width: 40vh;
     /*src: url("https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_0171.jpg");*/}
@@ -272,7 +284,7 @@ text-align:center;
     position: sticky;
     height: 56px;
     z-index: 2000;
-    background-color: #bed2e0;
+    background-color: var(--light-sky);
   }
   nav.menu ul{  
     height: 100%;
@@ -289,8 +301,8 @@ text-align:center;
     width: 100%;
     font-size: .8rem;
   }
-  .link-on{color: #cc274c;}
-  .link-off{color: #2e4054;}
+  .link-on{color: var(--wine);}
+  .link-off{color: var(--smoke);}
   nav.menu ul li{flex: 1;}
   nav.menu ul li a img{width: 1.15rem;height: 1.15rem;}
 
@@ -310,7 +322,7 @@ text-align:center;
   }
   .top-menu{display: none;}
   #forecaster img{height: 48px;}
-  #foreDiv div{border-bottom: 1px dashed #bed2e040;}
+  #foreDiv div{border-bottom: 1px dashed var(--darkish-sky);}
 }
 /*@media (max-width:360px){
   .outer{width: 280px;  overflow-x: auto;  }
