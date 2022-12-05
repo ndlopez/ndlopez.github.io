@@ -43,7 +43,7 @@ function getDateHour(isoStr){
 function calc_obj_pos(setRiseArr){
     //setRiseArr = [riseHr,riseMin,setHr,setMin]
     const x0 = (thisHour - setRiseArr[0])*60 + (thisMins - setRiseArr[1]);
-    const rr = (setRiseArr[2] - setRiseArr[0])*60 + (setRiseArr[3] - setRiseArr[1]);//diameter
+    const rr = Math.abs((setRiseArr[2] - setRiseArr[0])*60 + (setRiseArr[3] - setRiseArr[1]));//diameter
     const phi = Math.acos(1 - (2*x0/rr));
     const y0 = Math.sin(phi);
     return [rr,x0,y0];
@@ -157,10 +157,12 @@ function build_obj_pos(sunSetRise,moonSetRise) {
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
     }
-    if((thisHour > moon_times[2]) || (thisHour < moon_times[0])){
-        console.log("no Moon at this hour",thisHour);
-    }else{
+    if((thisHour < moon_times[2]) || (thisHour > moon_times[0])){
+        //console.log("inside:",moon_times[2],moon_times[0]);
         svgGroup.appendChild(svgMoon);
+    }else{
+        console.log("no Moon at this hour",thisHour);
+        //svgGroup.appendChild(svgMoon);
     }
     //svgGroup.appendChild(svgHour);
     subDiv.appendChild(svgGroup);
