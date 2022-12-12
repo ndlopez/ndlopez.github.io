@@ -157,20 +157,22 @@ function build_obj_pos(sunSetRise,moonSetRise) {
 
     svgGroup.appendChild(svgFlying);
     
-    if((thisHour > sun_times[2]) || (thisHour < sun_times[0])){
-        svgGroup.appendChild(svgRunner);
-        //svgGroup.appendChild(svgMoon);
-    }else{
+    if(sun_pos[1] < sun_pos[0]){
         svgGroup.appendChild(svgCircle);
         svgGroup.appendChild(svgRise);
         svgGroup.appendChild(svgSet);
         svgGroup.appendChild(svgSun);
+        //(thisHour > sun_times[2]) || (thisHour < sun_times[0])
+    }else{
+        console.log("no Sun at this hour",thisHour,thisMins);
+        svgGroup.appendChild(svgRunner);
     }
-    if((thisHour <= moon_times[2]) || (thisHour >= moon_times[0])){
+    if(moon_pos[1] < moon_pos[1]){
+        //(thisHour <= moon_times[2]) || (thisHour >= moon_times[0])
         //console.log("inside:",moon_times[2],moon_times[0]);
         svgGroup.appendChild(svgMoon);
     }else{
-        console.log("no Moon at this hour",thisHour);
+        console.log("no Moon at this hour",thisHour,thisMins);
         //svgGroup.appendChild(svgMoon);
     }
     //svgGroup.appendChild(svgHour);
