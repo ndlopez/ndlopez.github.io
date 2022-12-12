@@ -40,10 +40,15 @@ function getDateHour(isoStr){
     return {"monty":gotDate.getMonth() + 1,"tag":gotDate.getDate(),"day":gotDate.getDay(),"heure":gotDate.getHours()};
 }
 
-function calc_obj_pos(setRiseArr){
+function calc_obj_pos(setRiseArr,sw){
     //setRiseArr = [riseHr,riseMin,setHr,setMin]
-    const x0 = (thisHour - setRiseArr[0])*60 + (thisMins - setRiseArr[1]);
-    const rr = Math.abs((setRiseArr[2] - setRiseArr[0])*60 + (setRiseArr[3] - setRiseArr[1]));//diameter
+    var x0 = (thisHour - setRiseArr[0])*60 + (thisMins - setRiseArr[1]);
+    var rr = (setRiseArr[2] - setRiseArr[0])*60 + (setRiseArr[3] - setRiseArr[1]);//diameter
+    if(sw){
+        /* as long as rise time is larger than set time */
+        rr = (24 - setRiseArr[2] + setRiseArr[0])*60 + (setRiseArr[3]-setRiseArr[1]);
+        x0 = (24 - setRiseArr[2] + thisHour)*60 + (thisMins -setRiseArr[1]);
+    }
     const phi = Math.acos(1 - (2*x0/rr));
     const y0 = Math.sin(phi);
     return [rr,x0,y0];
@@ -53,8 +58,8 @@ function build_obj_pos(sunSetRise,moonSetRise) {
     const moon_times = [moonSetRise[2][0].trim(),moonSetRise[2][1],moonSetRise[1][0].trim(),moonSetRise[1][1]];// Moon 2022-11-30, 23:23, 12:24
     const width = 330, height = 200;//px, 330x200;300x180, 120 for summer
 
-    const sun_pos = calc_obj_pos(sun_times);//[0]:rr,[1]:x0, [2]:y0
-    const moon_pos = calc_obj_pos(moon_times);
+    const sun_pos = calc_obj_pos(sun_times,false);//[0]:rr,[1]:x0, [2]:y0
+    const moon_pos = calc_obj_pos(moon_times,true);
     var posX0Y0 = [0,0],moon_x0y0 = [0,0];
     
     //console.log("Moon",calc_obj_pos(moon_times),"Sun",calc_obj_pos(sun_times));
