@@ -164,7 +164,7 @@ function build_obj_pos(sunSetRise,moonSetRise) {
         svgGroup.appendChild(svgSun);
         //if not(thisHour > sun_times[2]) || (thisHour < sun_times[0])
     }else{
-        console.log("no Sun at this hour",thisHour,thisMins);
+        console.log("Sun below horizon",thisHour,thisMins);
         svgGroup.appendChild(svgRunner);
     }
     if(moon_pos[1] < moon_pos[1]){
@@ -172,7 +172,7 @@ function build_obj_pos(sunSetRise,moonSetRise) {
         //console.log("inside:",moon_times[2],moon_times[0]);
         svgGroup.appendChild(svgMoon);
     }else{
-        console.log("no Moon at this hour",thisHour,thisMins);
+        console.log("Moon below horizon",thisHour,thisMins);
         //svgGroup.appendChild(svgMoon);
     }
     svgGroup.appendChild(svgHour);
