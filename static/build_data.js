@@ -10,7 +10,7 @@ const jahre = myDate.getFullYear();
 const monty = myDate.getMonth() + 1;
 const today = myDate.getDay();
 const tag = myDate.getDate();
-//console.log("today",today);
+
 var currHH = myDate.getHours();
 var currMin = myDate.getMinutes();
 currHH = currMin > 21? currHH+1:currHH;
@@ -25,7 +25,7 @@ const ngo_pred = [{xp:0,yp:10.0},{xp:7,yp:8.0},{xp:14,yp:15.5},{xp:23,yp:9.0}];
 const tky_pred = [{xp:0,yp:5.0},{xp:7,yp:3},{xp:14,yp:13},{xp:23,yp:4}];
 var hours = [];
 for (let idx = 0; idx < 24; idx++) hours.push(idx);
-/* build array of hours: 0 ~ hh */
+/* build array of every 3 hours: 0 ~ hh */
 for (let idx=0;idx < currHH;idx++){
     if(idx % 3 == 0){
         dataHours.push(idx);
@@ -43,7 +43,7 @@ function windChar(number){
         }
     }
 }
-// wind description according to Beaufort scale up to 6 in m/s
+// wind description according to Beaufort scale (up to 6) in m/s
 const desc_wind = [{"speed":0.28,"en_desc":"calm","jp_desc":"静穏"},
 {"speed":1.38,"en_desc":"Light Air","jp_desc":"至軽風"},{"speed":3.05,"en_desc":"Light Breeze","jp_desc":"軽風"},
 {"speed":5.28,"en_desc":"Gentle Breeze","jp_desc":"軟風"},{"speed":7.78,"en_desc":"Moderate Breeze","jp_desc":"和風"},
@@ -72,8 +72,6 @@ function build_attrib(tit){
 function get_min_attr(tit){
     if((currMin%10) == 0){
         return String(jahre) + zeroPad(monty) + zeroPad(tag) + zeroPad(tit) + zeroPad(currMin) + "00";
-    }else{
-
     }
 }
 

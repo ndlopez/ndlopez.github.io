@@ -55,6 +55,7 @@ function calc_obj_pos(setRiseArr,sw){
     const y0 = Math.sin(phi);
     return [rr,x0,y0];
 }
+
 function build_obj_pos(sunSetRise,moonSetRise) {
     const sun_times = [sunSetRise.sunrise[0],sunSetRise.sunrise[1],sunSetRise.sunset[0],sunSetRise.sunset[1]];
     // Moon 2022-11-30, 23:23, 12:24
@@ -74,24 +75,18 @@ function build_obj_pos(sunSetRise,moonSetRise) {
     const svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svgGroup.setAttribute("width",width);
     svgGroup.setAttribute("height",height);
-    // svgGroup.setAttribute("x","0px");
-    // svgGroup.setAttribute("y","0px");
+    
     var offset = 20;
     if((sun_pos[1] <= sun_pos[0]) && (sun_pos[1] > 0)){
         //const theta = Math.acos(1 - (2*sun_pos[1]/sun_pos[0]));//radians
         posX0Y0 = [sun_pos[1]*width/sun_pos[0] - offset,height-0.5*width*sun_pos[2]];//px
         //console.log("thisPos", sun_times, sun_pos[0],sun_pos[1],0.5*width*sun_pos[2],posX0Y0);
     }
-    /*Bug: Not displaying during MoonRise time*/
+    
     if((moon_pos[1] <= moon_pos[0]) && (moon_pos[1] > 0)){
         moon_x0y0 = [moon_pos[1]*width/moon_pos[0],height-0.5*width*moon_pos[2]];
     }
-    console.log("_Moon",moon_pos,moon_x0y0);
-    /*
-    const svgBkg = document.createElementNS('http://www.w3.org/2000/svg','rect');
-    svgBkg.setAttribute("fill","#87ceeb");
-    svgBkg.setAttribute("x",0); svgBkg.setAttribute("y",0);
-    svgBkg.setAttribute("width",width); svgBkg.setAttribute("height",height);*/
+    //console.log("_Moon",moon_pos,moon_x0y0);
 
     const svgCircle = document.createElementNS('http://www.w3.org/2000/svg','circle');
     svgCircle.setAttribute("stroke","#2e4054");
@@ -145,7 +140,7 @@ function build_obj_pos(sunSetRise,moonSetRise) {
     svgRise.textContent = sun_times[0] + ":" + sun_times[1];
     const svgSet = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgSet.setAttribute("fill","#fff");
-    svgSet.setAttribute("x",width-46);
+    svgSet.setAttribute("x",width-40);
     svgSet.setAttribute("y",0.5*width+28);
     svgSet.setAttribute("font-size","16px");
     svgSet.textContent = sun_times[2] + ":" + sun_times[3];
@@ -176,7 +171,6 @@ function build_obj_pos(sunSetRise,moonSetRise) {
     svgGroup.appendChild(svgHour);
     subDiv.appendChild(svgGroup);
     return subDiv;
-    //svgGroup.appendChild(svgSubG);
 }
 
 async function disp_info(kat){
@@ -234,9 +228,7 @@ async function disp_info(kat){
     if(rainP !== null){
         rainP.innerText = gotData.rain[1][0] + "%";
     }
-    /* today wind info 
-    const winds = document.getElementById("wind_info");
-    if(winds !== null){winds.innerHTML = gotData.wind[0];}*/
+
     const radarImg = document.getElementById("radar_img");
     if(gotData.rain[1][0] > 0){
         // put a radar img from tenki.jp
@@ -307,7 +299,6 @@ async function disp_info(kat){
     for(let idx = jdx-3;idx < jdx+1;idx++){
         const get_date = getDateHour(gotData.rain[0][idx]);
         texty += "<p class='col4'>"+get_date.heure+" - "+hh[kdx]+"<br/>"+gotData.rain[1][idx]+"%</p>";
-        //console.log(gotData.rain[0].length,texty);
 	    kdx++;
     }
     texty += "</div>";
@@ -369,7 +360,7 @@ async function getMoonTimes(){
     "-" + zero_pad(my_date.getDate());
     var thisData = [];
     rows.forEach(row => {
-        const thisVal = row.split(","); // [2022-12-05, 08:32,21:20]
+        const thisVal = row.split(","); // [2022-12-05, 08:32, 21:20]
         
         if(thisDay == thisVal[0]){
             //console.log(thisDay,thisVal);
