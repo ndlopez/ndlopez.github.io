@@ -18,8 +18,15 @@
     </nav>
     <div class="header">
       <h2>Solar Physics and Cosmic Rays</h2>
-      <img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_0171.jpg"/>
-      <p>Latest <a href="https://sdo.gsfc.nasa.gov">SDO/AIA</a> 171 image</p>
+      <picture>
+        <a href="https://sdo.gsfc.nasa.gov/data/"><p>Latest SDO/AIA 171 image</p></a>
+        <p>This channel is especially good at showing coronal loops - the arcs extending off of the Sun where plasma moves along magnetic field lines. The brightest spots seen here are locations where the magnetic field near the surface is exceptionally strong.</p>
+        <source media="(min-width:1000px)" srcset="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_1024_0171.jpg">
+        <source media="(min-width:650px)" srcset="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_0171.jpg">
+        <source media="(min-width:370px)" srcset="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_0171.jpg">
+        <img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_0171.jpg" style="width: auto;"/>
+      </picture>
+      
       <!--p>also <a href="https://services.swpc.noaa.gov/json/goes/primary/xray-flares-latest.json">here</a></p-->
     </div>
     <div id="latest_event" class="clearfix"><p>Latest <a target="blank" href="https://www.swpc.noaa.gov/products/goes-x-ray-flux">GOES-16 X-ray</a> event</p></div>
@@ -28,7 +35,7 @@
   <footer><hr>
     <div class="row">
       <div class="column clearfix float-left align-left">
-        <p>Data is kindly provided by <a href="https://swpc.noaa.gov">NOAA</a> and NASA</p>
+        <p>X-ray data are from <a href="https://swpc.noaa.gov">NOAA</a> and Sun image is courtesy of NASA/SDO and the AIA, EVE, and HMI science teams.</p>
         <p>Hello from
           <a target="blank" href="https://www.openstreetmap.org/search?whereami=1&query=34.7022%2C135.1940#map=14/34.7021/135.1940">34°41'24"N 135°11'44"E</a></p>
       </div>
@@ -42,12 +49,12 @@
       <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-09-28 ndzerglink </span></p>
     </div>
   </footer>
-  <nav class="menu" id="nav-menu">  
+  <nav class="menu no-desktop" id="nav-menu">  
     <ul>
       <li><a class="link-off" href="/"><img src="../assets/home.svg"/> home</a></li>
-      <li><a class="link-on href="research.html"><img src="../assets/telescope.svg"/> research</a></li>
+      <li><a class="link-on" href="research.html"><img src="../assets/telescope.svg"/> research</a></li>
       <li><a class="link-off" href="projects.html"><img src="../assets/code.svg"/> projects</a></li>
       <li><a class="link-off" href="jma_weather.html"><img src="../assets/cloudy_night.svg"/> weather</a></li>
-      <li><a class="link-off" href="/"><img src="../assets/todo.svg"/> todo</a></li>
+      <li><a class="link-off" href="todo_list.html"><img src="../assets/todo.svg"/> todo</a></li>
     </ul></nav>
 </html>

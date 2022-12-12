@@ -134,7 +134,7 @@ function build_obj_pos(sunSetRise,moonSetRise) {
     // String.fromCodePoint(0x1F681); helicopter, 1F699, jeep
     const svgRunner = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgRunner.setAttribute("x",0.8*width);
-    svgRunner.setAttribute("y",height-2);
+    svgRunner.setAttribute("y",height-4);
     svgRunner.setAttribute("font-size","20px");
     svgRunner.textContent = String.fromCodePoint(0x1F6B4);
     const svgRise = document.createElementNS('http://www.w3.org/2000/svg','text');
@@ -164,16 +164,14 @@ function build_obj_pos(sunSetRise,moonSetRise) {
         svgGroup.appendChild(svgSun);
         //if not(thisHour > sun_times[2]) || (thisHour < sun_times[0])
     }else{
-        console.log("Sun below horizon",thisHour,thisMins);
+        console.log(thisHour,thisMins,"Sun below horizon");
         svgGroup.appendChild(svgRunner);
     }
     if(moon_pos[1] < moon_pos[1]){
         //(thisHour <= moon_times[2]) || (thisHour >= moon_times[0])
-        //console.log("inside:",moon_times[2],moon_times[0]);
         svgGroup.appendChild(svgMoon);
     }else{
-        console.log("Moon below horizon",thisHour,thisMins);
-        //svgGroup.appendChild(svgMoon);
+        console.log(thisHour,thisMins,"Moon below horizon");
     }
     svgGroup.appendChild(svgHour);
     subDiv.appendChild(svgGroup);
