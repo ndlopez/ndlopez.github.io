@@ -111,7 +111,7 @@ function build_obj_pos(sunSetRise,moonSetRise) {
     svgSun.textContent = "\u2600";//String.fromCodePoint(0x1F506);
     
     const svgMoon = document.createElementNS('http://www.w3.org/2000/svg','text');
-    svgMoon.setAttribute("x",moon_x0y0[0] - offset);//width/24*thisHour
+    svgMoon.setAttribute("x",moon_x0y0[0] + offset);//width/24*thisHour
     svgMoon.setAttribute("y",moon_x0y0[1]);//0.1*height
     svgMoon.setAttribute("font-size","24px");
     svgMoon.textContent = String.fromCodePoint(0x1F314);
