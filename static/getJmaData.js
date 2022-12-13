@@ -46,8 +46,8 @@ function calc_obj_pos(setRiseArr,sw){
     var offset = [thisHour - setRiseArr[0],setRiseArr[2] - setRiseArr[0]];
     if(sw){
         /* as long as rise time is larger than set time, will change on Dec 17*/
-        offset[0] = (24 - setRiseArr[0] + setRiseArr[2]);
-        offset[1] = (24 - setRiseArr[0] + thisHour);
+        offset[1] = (24 - setRiseArr[0] + setRiseArr[2]);
+        offset[0] = (24 - setRiseArr[0] + thisHour);
     }
     const x0 = offset[0]*60 + (thisMins - setRiseArr[1]);
     const rr = offset[1]*60 + (setRiseArr[3] - setRiseArr[1]);//diameter
@@ -162,7 +162,7 @@ function build_obj_pos(sunSetRise,moonSetRise) {
         console.log(thisHour,thisMins,"Sun below horizon");
         svgGroup.appendChild(svgRunner);
     }
-    if(moon_pos[1] < moon_pos[1]){
+    if(moon_pos[1] < moon_pos[0]){
         //(thisHour <= moon_times[2]) || (thisHour >= moon_times[0])
         svgGroup.appendChild(svgMoon);
     }else{
