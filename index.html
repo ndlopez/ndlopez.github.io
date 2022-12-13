@@ -9,7 +9,7 @@
     <!--script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script-->
     <script src="static/countdown.js"></script>
   </head>
-  <body>
+  <body id="home">
     <div class="sticky row no-padding">
       <div class="half align-left float-left"><p>Next 
         <a href="https://en.wikipedia.org/wiki/Solar_zenith_angle">solar zenith</a> @ 
@@ -21,56 +21,57 @@
 
     <nav class="top-menu">
       <div class="navlink inline-block">
-        <a title="Home" href="/" class="navlink-on">home</a></div>
+        <a title="Home" href="#" class="navlink-on">home</a></div>
       <div class="navlink inline-block"><a title="Research" href="/pages/research.html" class="navlink-off">research</a></div>
       <div class="navlink inline-block"><a title="Projects" href="/pages/projects.html" class="navlink-off">projects</a></div>
       <div class="navlink inline-block"><a title="Todo" href="/pages/todo_list.html" class="navlink-off">to do</a></div>
       <div class="navlink inline-block"><a title="About" href="/pages/about.html" class="navlink-off">about</a></div>
     </nav>
 
-    <div class="header"><h1>My web portfolio</h1><p id="randQuote"></p></div>
-    <div class="row">
-        <div class="column clearfix align-left float-left">
-            <h2>Hello, I am Diego</h2> 
-            <p>I am a Physicist working in Aichi, Japan as a Python/Javascript programmer. 
-              Although I hate bugs (is one of my pet-peeves) on weekends I like going for hiking, 
-              taking a JR local train and enjoy the ride.</p>
-            <p>Please check out <a href="/pages/projects.html"><strong>my projects</strong></a> and a few 
-            <a href="https://ndzerglink.wordpress.com"><strong>articles I've written</strong></a> on subjects 
-            like particle physics and programming or learn more 
-            <a href="/pages/about.html"><strong>about me</strong></a> or if you are hiring please review my
-            <a href="/pages/resume.html"><strong>CV</strong></a>.</p>
-        </div>
-    </div>
+    <header><h2>My web portfolio</h2><p id="randQuote"></p></header>
+    <main class="row">
+      <div class="column clearfix align-left float-left">
+          <h2>Hello, I am Diego</h2> 
+          <p>I am a Physicist working in Aichi, Japan as a Python/Javascript programmer. 
+            Although I hate bugs (is one of my pet-peeves) on weekends I like going for hiking, 
+            taking a JR local train and enjoy the ride.</p>
+          <p>Please check out <a href="/pages/projects.html"><em>my projects</em></a> and a few 
+          <a href="https://ndzerglink.wordpress.com"><em>articles I've written</em></a> on subjects 
+          like particle physics and programming or learn more 
+          <a href="/pages/about.html"><strong>about me</strong></a> or if you are hiring please review my
+          <a href="/pages/resume.html"><strong>CV</strong></a>.</p>
+      </div>
+    </main>
     <!--My schedule-->
     <button class="accordion">one fine day</button>
     
-    <div class="panel no-padding"><table id="myday"></table></div>
+    <aside class="panel no-padding"><table id="myday"></table></aside>
 
     <script src="static/fetch_sched.js"></script>
+  
+    <footer>
+      <div class="row">
+        <div class="column clearfix align-left float-left">
+          <p>Hello from
+            <a target="blank" href="https://www.openstreetmap.org/search?whereami=1&query=34.7022%2C135.1940#map=14/34.7021/135.1940">34°41'24"N 135°11'44"E</a></p>
+        </div>
+        <div class="column clearfix align-right float-left">
+          <a class="mySNS" href="https://twitter.com/ndzerglink" target="_blank"><img src="assets/twitter-logo.svg"/></a>
+          <a class="mySNS" href="https://github.com/ndlopez"><img src="assets/github-logo.svg"/></a>
+          <a class="mySNS" target="blank" href="https://jp.linkedin.com/in/diego-lopez-58a033147"><img src="assets/linkein-logo.svg" /></a>
+        </div>
+      </div>
+      <div class="clearfix">
+        <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2022-12-13 made by ndzerglink </span></p>
+      </div>
+    </footer>
+    <nav class="menu no-desktop" id="nav-menu">
+      <ul>
+        <li><a class="link-off" href="/pages/jma_weather.html"><img src="assets/cloudy.svg"/> weather</a></li>
+        <li><a class="link-off" href="/pages/research.html"><img src="assets/telescope.svg"/> research</a></li>
+        <li><a class="link-off" href="/pages/projects.html"><img src="assets/code.svg"/> projects</a></li>
+        <li><a class="link-off" href="/web_player"><img src="assets/music.svg"/> music</a></li>
+        <li><a class="link-off" href="/pages/todo_list.html"><img src="assets/todo.svg"/> todo</a></li>
+      </ul></nav>
   </body>
-  <footer>
-    <div class="row"><hr>
-      <div class="column clearfix align-left float-left">
-        <p>Hello from
-          <a target="blank" href="https://www.openstreetmap.org/search?whereami=1&query=34.7022%2C135.1940#map=14/34.7021/135.1940">34°41'24"N 135°11'44"E</a></p>
-      </div>
-      <div class="column clearfix align-right float-left">
-        <a class="mySNS" href="https://twitter.com/ndzerglink" target="_blank"><img src="assets/twitter-logo.svg"/></a>
-        <a class="mySNS" href="https://github.com/ndlopez"><img src="assets/github-logo.svg"/></a>
-        <a class="mySNS" target="blank" href="https://jp.linkedin.com/in/diego-lopez-58a033147"><img src="assets/linkein-logo.svg" /></a>
-      </div>
-    </div>
-    <div class="clearfix">
-      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2022-09-26 made by ndzerglink </span></p>
-    </div>
-  </footer>
-  <nav class="menu no_mobil" id="nav-menu">
-    <ul>
-      <li><a class="link-off" href="/pages/jma_weather.html"><img src="assets/cloudy.svg"/> weather</a></li>
-      <li><a class="link-off" href="/pages/research.html"><img src="assets/telescope.svg"/> research</a></li>
-      <li><a class="link-off" href="/pages/projects.html"><img src="assets/code.svg"/> projects</a></li>
-      <li><a class="link-off" href="/web_player"><img src="assets/music.svg"/> music</a></li>
-      <li><a class="link-off" href="/pages/todo_list.html"><img src="assets/todo.svg"/> todo</a></li>
-    </ul></nav>
 </html>
