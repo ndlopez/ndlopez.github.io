@@ -23,11 +23,10 @@ const theseMonths = ["January","February","March","April","May","June","July",
 const theseDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 let my_date = new Date();
+const thisHour = my_date.getHours(), thisMins = my_date.getMinutes();
 
 function zero_pad(tit){return (tit<10)?"0"+tit:tit;}
 
-const thisHour = 10/*my_date.getHours()*/, thisMins = my_date.getMinutes();
-//console.log("now:",thisHour,thisMins);
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
 }
@@ -35,7 +34,7 @@ async function sleepy(msec){
 disp_info(0);
 
 function getDateHour(isoStr){
-    // inStr: ISO format
+    // isoStr: ISO format
     const gotDate = new Date(isoStr);
     return {"monty":gotDate.getMonth() + 1,"tag":gotDate.getDate(),"day":gotDate.getDay(),"heure":gotDate.getHours()};
 }
@@ -48,8 +47,6 @@ function calc_obj_pos(setRiseArr){
         offset[1] = 24-setRiseArr[0]+setRiseArr[2];
     }
     if(thisHour < setRiseArr[0]){
-        //as long as rise time is larger than set time, will change on Dec 17
-        //offset[1] = 24 - setRiseArr[0] + setRiseArr[2];
         offset[0] = 24 - setRiseArr[0] + thisHour;
     }
     const x0 = offset[0]*60 + (thisMins - setRiseArr[1]);
@@ -67,7 +64,6 @@ function build_obj_pos(sunSetRise,moonSetRise) {
 
     const sun_pos = calc_obj_pos(sun_times);//[0]:rr,[1]:x0, [2]:y0
     const moon_pos = calc_obj_pos(moon_times);
-    console.log("_moon",calc_obj_pos(moon_times));
     var posX0Y0 = [0,0],moon_x0y0 = [0,0];
     
     //console.log("Moon",calc_obj_pos(moon_times),"Sun",calc_obj_pos(sun_times));
