@@ -26,7 +26,7 @@ let my_date = new Date();
 
 function zero_pad(tit){return (tit<10)?"0"+tit:tit;}
 
-const thisHour = my_date.getHours(), thisMins = my_date.getMinutes();
+const thisHour = 10/*my_date.getHours()*/, thisMins = my_date.getMinutes();
 //console.log("now:",thisHour,thisMins);
 async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
@@ -40,14 +40,17 @@ function getDateHour(isoStr){
     return {"monty":gotDate.getMonth() + 1,"tag":gotDate.getDate(),"day":gotDate.getDay(),"heure":gotDate.getHours()};
 }
 
-function calc_obj_pos(setRiseArr,sw){
+function calc_obj_pos(setRiseArr){
     // setRiseArr = [riseHr,riseMin,setHr,setMin]
-    // console.log("thisTimes:",setRiseArr);
-    var offset = [thisHour - setRiseArr[0],setRiseArr[2] - setRiseArr[0]];
-    if(sw){
-        /* as long as rise time is larger than set time, will change on Dec 17*/
-        offset[1] = (24 - setRiseArr[0] + setRiseArr[2]);
-        offset[0] = (24 - setRiseArr[0] + thisHour);
+    console.log("thisTimes:",setRiseArr);
+    var offset = [thisHour - setRiseArr[0], setRiseArr[2] - setRiseArr[0]];
+    if(setRiseArr[0] > setRiseArr[2]){
+        offset[1] = 24-setRiseArr[0]+setRiseArr[2];
+    }
+    if(thisHour < setRiseArr[0]){
+        //as long as rise time is larger than set time, will change on Dec 17
+        //offset[1] = 24 - setRiseArr[0] + setRiseArr[2];
+        offset[0] = 24 - setRiseArr[0] + thisHour;
     }
     const x0 = offset[0]*60 + (thisMins - setRiseArr[1]);
     const rr = offset[1]*60 + (setRiseArr[3] - setRiseArr[1]);//diameter
@@ -58,13 +61,13 @@ function calc_obj_pos(setRiseArr,sw){
 
 function build_obj_pos(sunSetRise,moonSetRise) {
     const sun_times = [sunSetRise.sunrise[0],sunSetRise.sunrise[1],sunSetRise.sunset[0],sunSetRise.sunset[1]];
-    // Moon 2022-11-30, 23:23, 12:24
     const moon_times = [parseInt(moonSetRise[2][0].trim()),parseInt(moonSetRise[2][1]),
     parseInt(moonSetRise[1][0].trim()),parseInt(moonSetRise[1][1])];
     const width = 330, height = 200;//px, 330x200;300x180, 120 for summer
 
-    const sun_pos = calc_obj_pos(sun_times,false);//[0]:rr,[1]:x0, [2]:y0
-    const moon_pos = calc_obj_pos(moon_times,true);
+    const sun_pos = calc_obj_pos(sun_times);//[0]:rr,[1]:x0, [2]:y0
+    const moon_pos = calc_obj_pos(moon_times);
+    console.log("_moon",calc_obj_pos(moon_times));
     var posX0Y0 = [0,0],moon_x0y0 = [0,0];
     
     //console.log("Moon",calc_obj_pos(moon_times),"Sun",calc_obj_pos(sun_times));
