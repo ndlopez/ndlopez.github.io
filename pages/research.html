@@ -5,6 +5,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <link rel="stylesheet" type="text/css" href="../static/estilo2.css">
+      <script src="../static/d3.v4.js"></script>
+      <script src="../static/plot_xrays.js"></script>
       <!--script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script-->
   </head>
   <body>
@@ -34,8 +36,8 @@
           <figcaption>Image courtesy of SILSO data/image, Royal Observatory of Belgium, Brussels</figcaption>
         </figure>
       </section>
-      <!--p>also <a href="https://services.swpc.noaa.gov/json/goes/primary/xray-flares-latest.json">here</a></p-->
       <section id="latest_event" class="clearfix">
+        <div id="xrays-long"></div>
         <h3>Latest <a target="blank" href="https://www.swpc.noaa.gov/products/goes-x-ray-flux">GOES-16 X-ray</a> event</h3></section>
     </main>
     <script src="../static/get_flares.js"></script>
@@ -54,7 +56,7 @@
       </div>
     </div>
     <div class="clearfix">
-      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-12-12 ndzerglink </span></p>
+      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-12-15 ndzerglink </span></p>
     </div>
   </footer>
   <nav class="menu no-desktop" id="nav-menu">  
