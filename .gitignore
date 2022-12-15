@@ -7,4 +7,6 @@ build/*
  
 # Exclude OS X folder attributes
 .DS_Store
- 
+
+#Exclude original data
+data/sunspot_number_all.csv

@@ -1,4 +1,4 @@
-/*GOES 16 xrays 01~0.8nm*/
+/*SILSO data: Sunspot daily number*/
 const spots_url = "";
 // set the dimensions and margins of the graph
 const margin = {top: 10, right: 30, bottom: 30, left: 60},
