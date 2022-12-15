@@ -14,30 +14,37 @@ const svg = d3.select("#sunspots")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv(spots_url,
-  function(d){return {date: d3.timeParse("%Y-%m-%d")(d.date), value: d.spotNum}},
-  function(data){
-      // Add X axis --> it is a date format xValue = d3.utcParse("%Y-%m-%d %H:%M:%S")(d.time_tag);
-      const x = d3.scaleTime()
-      .domain(d3.extent(data,(d)=>{return d.date;}))
-      .range([ 0, width ]);
-      svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-      
-      // Add Y axis
-      const y = d3.scaleLinear()
-      .domain([0,d3.max(data,(d)=>{return +d.value; })])
-      .range([ height, 0 ]);
-      svg.append("g")
-      .call(d3.axisLeft(y));
-      svg.append("path")
-      .data(data)
-      .attr("fill","none")
-      .attr("stroke","steelblue")
-      .attr("stroke-width",1.5)
-      .attr("d",d3.line()
-          .x((d)=>{return x(d.date);})
-          .y((d)=>{return y(d.value);}));
-      //console.log(data);
-  });
+const dateParser = d3.timeParse("%Y-%m-%d");
+
+function getData(d){
+  return {date: dateParser(d.date),value: d.spotNum}
+}
+
+d3.csv(spots_url, getData)
+.then(res => { console.log(res);})
+
+function nome(data){
+  // Add X axis --> it is a date format xValue = d3.utcParse("%Y-%m-%d %H:%M:%S")(d.time_tag);
+  const x = d3.scaleTime()
+  .domain(d3.extent(data,(d)=>{return d.date;}))
+  .range([ 0, width ]);
+  svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x));
+  
+  // Add Y axis
+  const y = d3.scaleLinear()
+  .domain([0,d3.max(data,(d)=>{return +d.value; })])
+  .range([ height, 0 ]);
+  svg.append("g")
+  .call(d3.axisLeft(y));
+  svg.append("path")
+  .data(data)
+  .attr("fill","none")
+  .attr("stroke","steelblue")
+  .attr("stroke-width",1.5)
+  .attr("d",d3.line()
+      .x((d)=>{return x(d.date);})
+      .y((d)=>{return y(d.value);}))
+  //console.log(data);
+}
