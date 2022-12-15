@@ -1,5 +1,5 @@
 /*SILSO data: Sunspot daily number*/
-const spots_url = "";
+const spots_url = "https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/sunspot_number.csv";
 // set the dimensions and margins of the graph
 const margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 460 - margin.left - margin.right,
