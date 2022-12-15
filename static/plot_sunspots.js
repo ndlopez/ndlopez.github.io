@@ -14,7 +14,7 @@ const svg = d3.select("#sunspots")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv(xrays_url,
+d3.csv(spots_url,
   function(d){return {date: d3.timeParse("%Y-%m-%d")(d.date), value: d.spotNum}},
   function(data){
       // Add X axis --> it is a date format xValue = d3.utcParse("%Y-%m-%d %H:%M:%S")(d.time_tag);

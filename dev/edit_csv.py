@@ -12,13 +12,14 @@ with open(path_file,mode="r",) as data_file:
         if not lines[0] == "year":
             newArr = []
             auxArr = lines[0] + "-" + lines[1] + "-" + lines[2]
+            # my_data = dict(date = auxArr,value = lines[4].strip())
             newArr.append(auxArr)
             newArr.append(lines[4].strip())
             newFile.append(newArr)
 
 print(newFile)
 
-with open("../data/sunspot_number.csv","w") as new_file:
+with open("../data/sunspot_number.csv","w",newline='') as new_file:
     write = csv.writer(new_file)
     write.writerow(fields)
     write.writerows(newFile)
