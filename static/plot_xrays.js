@@ -19,7 +19,7 @@ d3.json(xrays_url,
         // Add X axis --> it is a date format xValue = d3.utcParse("%Y-%m-%d %H:%M:%S")(d.time_tag);
         var xValue="";
         const x = d3.scaleTime()
-        .domain(d3.extent(d3.map(data,(d)=>{return d.time_tag;})))
+        .domain(d3.extent(data,(d)=>{return d.time_tag;}))
         .range([ 0, width ]);
         svg.append("g")
         .attr("transform", "translate(0," + height + ")")
