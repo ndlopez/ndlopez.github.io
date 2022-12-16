@@ -17,8 +17,11 @@ async function latest_xrays(){
             myStr = "time_tag";
         }
         //console.log(myStr);
-        texty += "<tr><td>"+titles[idx]+"</td><td>"+data[myStr]+"</td><td>"+
-        data[titles[idx]+'_class']+"</td></tr>";
+        texty += "<tr><td>" + titles[idx] + "</td><td>" + data[myStr] + "</td><td>";
+        if(data[titles[idx]+'_class'] === null){
+            data[titles[idx]+'_class'] = "---";
+        }
+        texty += data[titles[idx] + '_class'] + "</td></tr>";
     }
     //console.log(texty);
     myList.innerHTML = texty;

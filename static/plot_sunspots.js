@@ -39,24 +39,3 @@ d3.csv(spots_url,function(error,data){
       .call(d3.axisBottom(x));
   svg.append("g").attr("class","spot_num").call(d3.axisLeft(y));
 });
-
-async function display(){
-  const myData = await get_spots_data();
-  const mod_data = [];
-  mod_data.push(myData.date,myData.spots);
-  const trData =mod_data[0].map((_,colIdx)=> mod_data.map(row => row[colIdx]));
-  console.log(trData);
-}
-
-async function get_spots_data(){
-  const date = [], spots = [];
-  const response = await fetch(spots_url);
-  const data = await response.text();
-  const lines = data.split('\n').slice(1);
-  lines.forEach(row =>{
-    const this_data = row.split(',');
-    date.push(d3.timeParse("%Y-%m-%d")(this_data[0]));
-    spots.push(this_data[1]);
-  });
-  return {date,spots};
-}
