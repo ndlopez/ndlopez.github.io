@@ -51,3 +51,14 @@ d3.csv(spots_url,function(error,data){
   .attr("stroke","#ffeea6")
   .attr("stroke-dasharray","5,5");*/
 });
+
+function run_avg(data,steps){
+  // data = [date,value]
+  var avg_value = [], date_arr = [];
+  var sum = 0;
+  for (let idx = 0; idx < steps; idx++) {
+    sum += data[1];
+  }
+  arg_value.push(sum);
+  return {date_arr,avg_value};
+}
