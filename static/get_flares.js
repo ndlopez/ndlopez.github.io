@@ -26,6 +26,9 @@ async function latest_xrays(){
     //console.log(texty);
     myList.innerHTML = texty;
     mainDiv.appendChild(myList);
+    const tab_caption = document.createElement("p");
+    tab_caption.innerHTML = 'Data are courtesy of <a href="https://swpc.noaa.gov">NOAA/SWPC</a>';
+    mainDiv.appendChild(tab_caption);
 }
 async function get_noaa(){
     const response = await fetch(flares_latest);

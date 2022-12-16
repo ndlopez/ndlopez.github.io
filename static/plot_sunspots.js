@@ -22,8 +22,8 @@ d3.csv(spots_url,function(error,data){
     d.date = dateParser(d.date);
     d.value = +d.spotNum;
   });
-  x.domain(d3.extent(data,(d)=>{return d.date;}));
-  y.domain([0,d3.max(data,(d)=>{return +d.value; })]);
+  x.domain(d3.extent(data,(d)=> d.date ));
+  y.domain([0,d3.max(data,(d)=> +d.value )]);
 
   svg.append("path")
       .datum(data)
@@ -31,11 +31,21 @@ d3.csv(spots_url,function(error,data){
       .attr("stroke","#bed2e040")
       .attr("stroke-width",1.5)
       .attr("d",d3.line()
-          .x((d)=>{ return x(d.date); })
-          .y((d)=>{ return y(d.value); }));
+          .x((d)=> x(d.date))
+          .y((d)=> y(d.value)));
   svg.append("g")
       .attr("class","date_axis")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
   svg.append("g").attr("class","spot_num").call(d3.axisLeft(y));
+  // smooth curve
+  const smooth_curve = d3.line()
+  .x((d)=> x(d.date))
+  .y((d)=> y(d.value))
+  .curve(d3.curveBundle);
+  svg.append("path")
+  .attr("d",smooth_curve(data))
+  .attr("fill","none")
+  .attr("stroke","#ffeea6")
+  .attr("stroke-dasharray","5,5");
 });
