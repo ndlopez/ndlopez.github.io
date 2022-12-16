@@ -16,12 +16,13 @@ const svg = d3.select("#sunspots")
 
 const dateParser = d3.timeParse("%Y-%m-%d");
 
-function getData(d){
-  return {date: dateParser(d.date),value: d.spotNum}
-}
-
-d3.csv(spots_url, getData)
-.then(res => { console.log(res);})
+d3.csv(spots_url,function(error,data){
+  if(error)throw error;
+  data.forEach((d)=>{
+    d.date = parseTime(d.date);
+    d.spots = +d.spots;
+  });
+});
 
 function nome(data){
   // Add X axis --> it is a date format xValue = d3.utcParse("%Y-%m-%d %H:%M:%S")(d.time_tag);
@@ -47,4 +48,25 @@ function nome(data){
       .x((d)=>{return x(d.date);})
       .y((d)=>{return y(d.value);}))
   //console.log(data);
+}
+
+async function display(){
+  const myData = await get_spots_data();
+  const mod_data = [];
+  mod_data.push(myData.date,myData.spots);
+  const trData =mod_data[0].map((_,colIdx)=> mod_data.map(row => row[colIdx]));
+  console.log(trData);
+}
+
+async function get_spots_data(){
+  const date = [], spots = [];
+  const response = await fetch(spots_url);
+  const data = await response.text();
+  const lines = data.split('\n').slice(1);
+  lines.forEach(row =>{
+    const this_data = row.split(',');
+    date.push(d3.timeParse("%Y-%m-%d")(this_data[0]));
+    spots.push(this_data[1]);
+  });
+  return {date,spots};
 }
