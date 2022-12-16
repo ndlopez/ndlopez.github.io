@@ -6,49 +6,37 @@ const margin = {top: 10, right: 30, bottom: 30, left: 60},
     height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-const svg = d3.select("#sunspots")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+const svg = d3.select("#sunspots").append("svg")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom)
+              .append("g").attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
 const dateParser = d3.timeParse("%Y-%m-%d");
+const x = d3.scaleTime().range([ 0, width ]);
+const y = d3.scaleLinear().range([ height, 0 ]);
+const valueLine = d3.line().x((d)=>{return x(d.date); }).y((d)=>{ y(d.spots); });
 
 d3.csv(spots_url,function(error,data){
+  console.log(data);
   if(error)throw error;
   data.forEach((d)=>{
-    d.date = parseTime(d.date);
-    d.spots = +d.spots;
+    d.date = dateParser(d.date);
+    d.spots = +d.spotNum;
   });
-});
+  x.domain(d3.extent(data,(d)=>{return d.date;}));
+  y.domain([0,d3.max(data,(d)=>{return +d.spots; })]);
 
-function nome(data){
-  // Add X axis --> it is a date format xValue = d3.utcParse("%Y-%m-%d %H:%M:%S")(d.time_tag);
-  const x = d3.scaleTime()
-  .domain(d3.extent(data,(d)=>{return d.date;}))
-  .range([ 0, width ]);
-  svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
-  
-  // Add Y axis
-  const y = d3.scaleLinear()
-  .domain([0,d3.max(data,(d)=>{return +d.value; })])
-  .range([ height, 0 ]);
-  svg.append("g")
-  .call(d3.axisLeft(y));
   svg.append("path")
-  .data(data)
-  .attr("fill","none")
-  .attr("stroke","steelblue")
-  .attr("stroke-width",1.5)
-  .attr("d",d3.line()
-      .x((d)=>{return x(d.date);})
-      .y((d)=>{return y(d.value);}))
-  //console.log(data);
-}
+      .data([data])
+      .attr("fill","none")
+      .attr("stroke","steelblue")
+      .attr("stroke-width",1.5)
+      .attr("d",valueLine);
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+  svg.append("g").call(d3.axisLeft(y));
+});
 
 async function display(){
   const myData = await get_spots_data();
