@@ -1,15 +1,19 @@
+/*
+    DLopez small programming projects
+{
+    name:"Numerical Analysis in C",
+    title:"Code repository for FIS340. Numerical Analysis for Physicists.",
+    description:"It includes several code samples to solve numerically some problems in Thermodynamics and \
+    Electromagnetism. Data Analysis algorithms are also included.",
+    language:"C",
+    image:"../assets/cloud-heavy.svg",
+    repo:"https://github.com/ndlopez/num_anl/",
+    demo:"",
+    builtOn:2004
+    },
+*/
 const projects=[
     {
-        name:"Numerical Analysis in C",
-        title:"Code repository for FIS340. Numerical Analysis for Physicists.",
-        description:"It includes several code samples to solve numerically some problems in Thermodynamics and \
-        Electromagnetism. Data Analysis algorithms are also included.",
-        language:"C",
-        image:"../assets/cloud-heavy.svg",
-        repo:"https://github.com/ndlopez/num_anl/",
-        demo:"",
-        builtOn:2004
-    },{
         name: "Solar Physics Research",
         title: "Code repository for some of the tools I used as a graduate student.",
         description: "Code to calculate Sun's zenith angle, atmospherical influence on particles\
@@ -50,8 +54,8 @@ const projects=[
         the host site to check for updates every four minutes. No data are stored on device. \
         It requires cron scheduler to get updates and MacOS xbar to install the plugin.",
         language:"JavaScript, Python",
-        image:"https://raw.githubusercontent.com/ndlopez/fmLaPazNow/main/assets/fmLaPaz_plugin_prev.png",
-        repo:"https://github.com/ndlopez/fmLaPazNow/tree/main/xbar_plugin",
+        image:"https://raw.githubusercontent.com/ndlopez/fetch_id3/main/assets/fmLaPaz_plugin_prev.png",
+        repo:"https://github.com/ndlopez/fetch_id3/tree/main/xbar_plugin",
         demo:"",
         builtOn:2020
     },{
@@ -161,9 +165,18 @@ const projects=[
         platforms. A 'recently listened' playlist is created for LaPaz.fm page. Disclaimer: Artwork is not \
         available for all the audio streams. Some CORS issue with the provider.",
         language: "JavaScript, CSS",
-        image: "https://raw.githubusercontent.com/ndlopez/fmLaPazNow/main/assets/new_design.png",
-        repo: "https://github.com/ndlopez/fmLaPazNow/web_player",
-        demo: "https://ndlopez.github.io/fmLaPazNow/web_player/",
+        image: "https://raw.githubusercontent.com/ndlopez/web_player/main/assets/new_design.png",
+        repo: "https://github.com/ndlopez/web_player",
+        demo: "https://ndlopez.github.io/web_player/",
+        builtOn: 2022
+    },{
+        name: "MyNotes",
+        title: "Android note application. Notes are saved on device.",
+        description: "大学卒業後、自動車部品メーカーのxx株式会社に入社。自動車エンジン部品の生産技術部門に配属され、7年間生産技術業務に従事。工程設計から保全まで幅広い工程を経験し、4年目には生産ラインの時産向上の目標を掲げ、生産ライン見直しを実施。現状を分析し、切削条件の変更等複数の仮説のシミュレーションと検証を繰り返し、試行錯誤の結果大幅な生産性の向上に結びつけることができた。6年目から現在に至るまでアジアの現地法人に出向し、現地メンバーと協業し、生産ラインの新規立ち上げと管理指導業務に従事",
+        language: "Java",
+        image: "",
+        repo: "",
+        demo: "",
         builtOn: 2022
     },{
         name: "JMA weather",
