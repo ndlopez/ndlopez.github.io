@@ -39,13 +39,15 @@ d3.csv(spots_url,function(error,data){
       .call(d3.axisBottom(x));
   svg.append("g").attr("class","spot_num").call(d3.axisLeft(y));
   // smooth curve
-  const smooth_curve = d3.line()
+  // Consider taking only the avg/month
+  // sum/num_days_month = month value
+  /*const smooth_curve = d3.line()
   .x((d)=> x(d.date))
   .y((d)=> y(d.value))
-  .curve(d3.curveBundle);
+  .curve(d3.curveBundle.beta(0.5));
   svg.append("path")
   .attr("d",smooth_curve(data))
   .attr("fill","none")
   .attr("stroke","#ffeea6")
-  .attr("stroke-dasharray","5,5");
+  .attr("stroke-dasharray","5,5");*/
 });
