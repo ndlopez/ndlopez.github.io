@@ -5,44 +5,53 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <link rel="stylesheet" type="text/css" href="../static/style_project.css">
+      <link rel="stylesheet" type="text/css" href="../static/burger.css">
   </head>
   <body>
-    <nav class="top-menu">
-      <div class="navlink inline-block">
-        <a title="Projects" href="#" class="navlink-on">projects</a></div>
-      <div class="navlink inline-block"><a title="Home" href="/" class="navlink-off">home</a></div>
-      <div class="navlink inline-block"><a title="Research" href="research.html" class="navlink-off">research</a></div>
-      <div class="navlink inline-block"><a target="blank" title="Articles" href="https://ndzerglink.wordpress.com" class="navlink-off">articles</a></div>
-      <div class="navlink inline-block"><a title="About" href="about.html" class="navlink-off">about</a></div>
+    <nav class="top-nav">
+      <div><h2>Projects</h2></div>
+      <input id="menu-toggle" type="checkbox"/><label class="menu-button-container" for="menu-toggle">
+        <div class="menu-button"></div>
+      </label>
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="https://ndzerglink.wordpress.com">Articles</a></li>
+        <li><a href="jma_weather.html">Weather</a></li>
+        <li><a href="/web_player">Music</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
     </nav>
+    
     <div class="header"><h1>Programming Projects</h1>
       <p>Please check my <a href="https://www.github.com/ndlopez/?tab=repositories">GitHub repository</a> for a full list of code repositories.</p></div>
     <main id="projects"></main>
     <script src="../static/fill_cards.js"></script>
   
-  <footer>
-    <div class="row">
-      <div class="column align-left">
-        <p>Hello from
-          <a target="blank" href="https://www.openstreetmap.org/search?whereami=1&query=34.7022%2C135.1940#map=14/34.7021/135.1940">34°41'24"N 135°11'44"E</a></p>
+    <footer>
+      <div class="row">
+        <div class="column align-left">
+          <p>Hello from
+            <a target="blank" href="https://www.openstreetmap.org/search?whereami=1&query=34.7022%2C135.1940#map=14/34.7021/135.1940">34°41'24"N 135°11'44"E</a></p>
+        </div>
+        <div class="column align-right">
+          <a class="mySNS" href="https://twitter.com/ndzerglink" target="_blank"><img src="../assets/twitter-logo.svg"/></a>
+          <a class="mySNS" href="https://github.com/ndlopez"><img src="../assets/github-logo.svg"/></a>
+          <a class="mySNS" target="blank" href="https://jp.linkedin.com/in/diego-lopez-58a033147"><img src="../assets/linkein-logo.svg" /></a>
+        </div>
       </div>
-      <div class="column align-right">
-        <a class="mySNS" href="https://twitter.com/ndzerglink" target="_blank"><img src="../assets/twitter-logo.svg"/></a>
-        <a class="mySNS" href="https://github.com/ndlopez"><img src="../assets/github-logo.svg"/></a>
-        <a class="mySNS" target="blank" href="https://jp.linkedin.com/in/diego-lopez-58a033147"><img src="../assets/linkein-logo.svg" /></a>
+      <div class="clearfix">
+        <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-09-26 ndzerglink </span></p>
       </div>
-    </div>
-    <div class="clearfix">
-      <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-09-26 ndzerglink </span></p>
-    </div>
-  </footer>
-  <nav class="menu no-desktop" id="nav-menu">  
-    <ul>
-      <li><a class="link-off" href="/"><img src="../assets/home.svg"/> home</a></li>
-      <li><a class="link-off" href="research.html"><img src="../assets/telescope.svg"/> research</a></li>
-      <li><a class="link-on" href="#"><img src="../assets/code.svg"/> projects</a></li>
-      <li><a class="link-off" href="jma_weather.html"><img src="../assets/sunny.svg"/> weather</a></li>
-      <li><a class="link-off" href="todo_list.html"><img src="../assets/todo.svg"/> todo</a></li>
-    </ul></nav>
+    </footer>
+    <nav class="menu no-desktop" id="nav-menu">  
+      <ul>
+        <li><a class="link-off" href="/"><img src="../assets/home.svg"/> home</a></li>
+        <li><a class="link-off" href="research.html"><img src="../assets/telescope.svg"/> research</a></li>
+        <li><a class="link-on" href="#"><img src="../assets/code.svg"/> projects</a></li>
+        <li><a class="link-off" href="jma_weather.html"><img src="../assets/sunny.svg"/> weather</a></li>
+        <li><a class="link-off" href="todo_list.html"><img src="../assets/todo.svg"/> todo</a></li>
+      </ul>
+    </nav>
   </body>
 </html>
