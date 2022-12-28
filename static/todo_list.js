@@ -54,8 +54,8 @@ function deleteElm(){
     }
 }
 
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
+// Create a "close" button and append it to each <li> list item
+const myNodelist = mainDiv.getElementsByTagName("LI");
 for (let i = 0; i < myNodelist.length; i++) {
     var span = document.createElement("span");
     var txt = document.createTextNode("\u00D7");
@@ -110,6 +110,7 @@ function newTask() {
 //Add checked task to doing list
 
 doingUL = document.createElement("UL");
+doingUL.setAttribute("id","doingList");
 
 function doingTask(idx){
     var todoli = document.getElementsByClassName("checked");

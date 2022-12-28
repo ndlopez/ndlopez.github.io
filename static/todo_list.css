@@ -1,3 +1,12 @@
+:root{
+    --smoke: #2e4054;
+    --wine: #cc274c;
+    --dark-smoke:#6a7285;
+    --light-sky:#bed2e0;
+    --darkish-sky:#bed2e040;
+    --lemon: #ffeea6;
+    --sky-blue: #87ceeb;
+}
 body {
     font-family:Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
     background-color:#2e4054;
@@ -8,36 +17,14 @@ body {
 
 /* Include the padding and border in an element's total width and height */
 * {box-sizing: border-box;}
-nav{
-    display: block;
-    width: 100%;
-    box-sizing: inherit;
-    text-align: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
+
 a{
     text-decoration: none;
     color: #bed2e0;
 }
-.navlink{
-    position:relative;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    font-size: 1rem;
-}
-.navlink-off,.navlink-on{position:relative}
-.navlink-off:after,.navlink-on:after{
-    content:" ";display:block;margin:.125rem auto 0;width:0;height:.125rem;border-radius:.125rem;
-    background:rgba(255,255,255,0);pointer-events:none;transition:all .4s ease}
-.navlink-off:hover:after{width:100%;background:#bed2e0;}
-.navlink-on:after{width:100%;background:#bed2e0;}
-.inline-block{
-display: inline-block;
-vertical-align: top;
-}
+
 /* Remove margins and padding from the list */
-ul {margin: 0;padding: 0;border:1px #bed2e0 dashed;}
+#todoList, #doingList {margin: 0;padding: 0;border:1px #bed2e0 dashed;}
 /* Style the list items */
 .column ul li {
 position: relative;
@@ -101,7 +88,7 @@ text-decoration: line-through;
 }
 
 /* Style the input */
-input {
+#my_task {
     margin: 0;
     border: 1px #2e4054 solid;
     width: 75%;

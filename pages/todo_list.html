@@ -5,16 +5,26 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <link rel="stylesheet" type="text/css" href="../static/todo_list.css">
+      <link rel="stylesheet" type="text/css" href="../static/burger.css">
   </head>
   <body>
-    <nav class="top-menu">
-      <div class="navlink inline-block">
-        <a title="todo" href="#" class="navlink-on">todo list</a></div>
-      <div class="navlink inline-block"><a title="Home" href="/" class="navlink-off">home</a></div>
-      <div class="navlink inline-block"><a title="Projects" href="projects.html" class="navlink-off">projects</a></div>
-      <div class="navlink inline-block"><a target="blank" title="Articles" href="https://ndzerglink.wordpress.com" class="navlink-off">articles</a></div>
-      <div class="navlink inline-block"><a title="About" href="about.html" class="navlink-off">about</a></div>
+    <nav class="top-nav">
+      <div><h2>Todo</h2></div>
+      <input id="menu-toggle" type="checkbox"/><label class="menu-button-container" for="menu-toggle">
+        <div class="menu-button"></div>
+      </label>
+      <ul class="menu">
+        <!--li><a href="fmlapaz.html">LaPaz.fm</a></li>
+        <li class="no_desktop">Other locations</li-->
+        <li><a href="/">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="https://ndzerglink.wordpress.com">Articles</a></li>
+        <li><a href="/web_player">Music</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
     </nav>
+
     <section id="lists"></section>
     <script src="../static/todo_list.js"></script>
   <footer>
