@@ -110,7 +110,7 @@ ul, li{margin: 0px;padding:5px}
   /*background-position-x: center;*/
   background-repeat: no-repeat;
 }
-
+#this_place{margin-top: 0px;}
 .col4{
   width:25%;
   float: left;
