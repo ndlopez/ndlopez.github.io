@@ -5,22 +5,31 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <link rel="stylesheet" type="text/css" href="../static/estilo2.css">
+      <link rel="stylesheet" type="text/css" href="../static/burger.css">
   </head>
   <body>
-    <nav class="top-menu">
-      <div class="navlink inline-block">
-        <a title="About Me" href="#" class="navlink-on">about Me</a></div>
-      <div class="navlink inline-block"><a title="Home" href="/" class="navlink-off">home</a></div>
-      <div class="navlink inline-block"><a title="Research" href="research.html" class="navlink-off">research</a></div>
-      <div class="navlink inline-block"><a target="blank" title="Articles" href="https://ndzerglink.wordpress.com" class="navlink-off">articles</a></div>
-      <div class="navlink inline-block"><a title="Projects" href="projects.html" class="navlink-off">projects</a></div>
+    <nav class="top-nav">
+      <div><h2>About me</h2></div>
+      <input id="menu-toggle" type="checkbox"/><label class="menu-button-container" for="menu-toggle">
+        <div class="menu-button"></div>
+      </label>
+      <ul class="menu">
+        <!--li><a href="fmlapaz.html">LaPaz.fm</a></li>
+        <li class="no_desktop">Other locations</li-->
+        <li><a href="/">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="jma_weather.html">Weather</a></li>
+        <li><a href="/web_player">Music</a></li>
+        <li><a href="todo_list.html">Todo</a></li>
+      </ul>
     </nav>
+
     <div class="clearfix">
-      <h1>About me</h1>
-      <p>Hello, I am Diego Lopez a Physicist, and occasional programmer who currently works in Aichi, Japan.<br>
+      <p class="init-cap">Hello, I am Diego Lopez a Physicist, and occasional programmer who currently works in Aichi, Japan.<br>
       What it started as a hobby back in undergrad school (~2003) became a profession.<br> 
-      I mostly do data analysis (in Python and R) and more recently front-end (in JavaScript).</p>
-      <p>Before joining the recruiting staff company, I was doing research at Nagoya University as a grad student.</p>
+      I mostly do data analysis (in Python and R) and more recently front-end (in JavaScript).<br/>
+      Before joining the recruiting staff company, I was doing research at Nagoya University as a grad student.</p>
       <p>I received a PhD in Astroparticle Physics from the Graduate School of Science at the 
       University of Nagoya in Japan, under the supervision of Prof. Y. Matsubara and Dr. T. Sako.<br>
       My research was generously supported by the Monbukagakusho Scholarship offered by the Japanese 
@@ -38,7 +47,7 @@
     <div class="clearfix" id="aboutMe">
       <h2>What I am doing now</h2><hr>
       <span><em>Updated December 2022</em></span>
-      <p> I am still searching for a job in any Tokai(Aichi, Gifu, Mie) area in Japan.
+      <p class="init-cap"> I am still searching for a job in any Tokai(Aichi, Gifu, Mie) area in Japan.
       <br>Main role: Front-End, Data Analysis.
       </p>
       <!--p>September post: Lately (I mean for the last 3 months), I've been reading "Zealot" by Reza Aslan, a book that explores about the life of 
