@@ -3,15 +3,15 @@ const subTitles = ["Software","Hardware"];
 const tools = [
     {
         item0: "OS: <a href='https://www.debian.org'>Debian</a> or <a href='https://www.getfedora.org'>Fedora</a>",
-        item1: "Browser: <a target='_blank' href='www.firefox.com'>Firefox</a>",
+        item1: "Browser: <a target='_blank' href='https://www.firefox.com'>Firefox</a>",
         item2: "Search Engine: <a target='_blank' href='https://www.duckduckgo.com'>DuckDuckGo</a>",
         item3: "IDE: Mostly Emacs and VI, sometimes VSCodium",
         item4: "Notes: Joplin",
         item5: "Music: VLC (streaming ThirdRock Radio and sometimes FM La Paz)"
     },{
         item0: "Personal: Panasonic Let'sNote CF-QV 12\" w/Linux Fedora 36",
-        item1: "Work: Dell Vostro 13\" w/Windows 11 Pro",
-        item2: "MacBook Pro 15\" w/MacOS 10.15",
+        item1: "Work: ",
+        item2: "",
         item3: "Display: hp Z23n 1080p",
         item4: "Keyboard: Sony vaio VGP-UKB3JP, silver, full-size",
         item5: "Headphones: Bose AE2 w/remote",
