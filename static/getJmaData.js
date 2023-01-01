@@ -355,14 +355,14 @@ async function getMoonTimes(){
     const response = await fetch("https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/moon_setrise.csv");
     const data = await response.text();
     const rows = data.split('\n').slice(1);
-    const thisDay = my_date.getFullYear() + "-" + (zero_pad(my_date.getMonth())+1) + 
+    const thisDay = my_date.getFullYear() + "-" + zero_pad(my_date.getMonth()+1) + 
     "-" + zero_pad(my_date.getDate());
     var thisData = [];
     rows.forEach(row => {
         const thisVal = row.split(","); // [2022-12-05, 08:32, 21:20]
         
         if(thisDay == thisVal[0]){
-            //console.log(thisDay,thisVal);
+            // console.log(thisDay,thisVal);
             thisData.push(thisVal[0]);
             thisData.push(thisVal[1].split(":"));
             thisData.push(thisVal[2].split(":"))
