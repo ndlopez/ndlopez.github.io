@@ -10,7 +10,7 @@
     justify-content: space-between;
     /*background-color: #00BAF0;*/
     background: var(--wine);/*linear-gradient(to left, var(--wine), var(--dark-smoke));*/
-    color: var(--light-sky);
+    color: whitesmoke;
     height: 50px;
     padding: 1em;
 }
