@@ -5,18 +5,18 @@ const tools = [
         item0: "OS: <a href='https://www.debian.org'>Debian</a> or <a href='https://www.getfedora.org'>Fedora</a>",
         item1: "Browser: <a target='_blank' href='https://www.firefox.com'>Firefox</a>",
         item2: "Search Engine: <a target='_blank' href='https://www.duckduckgo.com'>DuckDuckGo</a>",
-        item3: "IDE: Mostly Emacs and VI, sometimes VSCodium",
-        item4: "Notes: Joplin",
-        item5: "Music: VLC (streaming ThirdRock Radio and sometimes FM La Paz)"
+        item3: "Editor: Mostly Emacs and VI, sometimes VSCodium",
+        item4: "Notes: Joplin and own-build",
+        item5: "Music: VLC (streaming ThirdRock Radio and sometimes FM La Paz) or <a href='https://ndlopez.github.io/web_player'>webPlayer</a> app I created"
     },{
         item0: "Personal: Panasonic Let'sNote CF-QV 12\" w/Linux Fedora 36",
-        item1: "Work: ",
-        item2: "",
-        item3: "Display: hp Z23n 1080p",
-        item4: "Keyboard: Sony vaio VGP-UKB3JP, silver, full-size",
-        item5: "Headphones: Bose AE2 w/remote",
+        item1: "Work: NEC VersaPro 14\" w/Windows 10 Pro",
+        item2: "Display: DELL 24in 1080p",
+        item3: "Keyboard: Sony vaio VGP-UKB3JP, silver, full-size",
+        item4: "Headphones: Bose AE2 w/remote",
+        item5: "Portable HDD: io-data 2TB silver",
     }
-];
+];//hp Z23n 1080p
 
 const interests = {
     main:["High-energy physics","Astronomy","Electronics"],
