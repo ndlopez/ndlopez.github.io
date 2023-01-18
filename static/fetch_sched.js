@@ -5,10 +5,6 @@
 
 const urlSched="https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/sched.json";
 
-const urlQuote="https://raw.githubusercontent.com/ndlopez/quotes/main/quotes/data/goodreads_quotes.json";
-
-disp_quote();
-
 disp_sched();
 
 async function disp_sched(){
@@ -24,13 +20,7 @@ async function disp_sched(){
     //console.log(text);
 }
 
-async function disp_quote(){
-    const key="quotes";
-    const elem1 = "quote", elem2="author";
-    const myQuote = await get_url_data(urlQuote,key,elem1,elem2);
-    var text = "<cite>" + myQuote.quote + "</cite><br>by " + myQuote.author;
-    document.getElementById("randQuote").innerHTML = text;
-}
+
 async function get_url_data(url,jsonKey,keyElm1,keyElm2){
     const response = await fetch(url);
     const data = await response.json();
