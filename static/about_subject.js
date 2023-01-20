@@ -17,7 +17,29 @@ const tools = [
         item5: "Portable HDD: io-data 2TB silver",
     }
 ];//hp Z23n 1080p
-
+const musik = [
+        {artist: "Beethoven", song: "Moonlight"}
+        {artist: "Phantogram", song: "You don't get me high anymore"},
+        {artist: "Beach Weather", song: "Sex, Drugs, Etc."},
+        {artist: "Beach House", song: "Once Twice Melody"},
+        {artist: "Arcade Fire", song: "Unconditional"},
+        {artist: "OK Go", song: "Get Over It"},
+        {artist: "Bob Moses", song: "Love Brand New"},
+        {artist: "NeedtoBreathe", song: "Into the Mistery"},
+        {artist: "Kongos", song: "Take it from Me"},
+        {artist: "The Shins", song: "So now what / New slang"},
+        {artist: "lovelytheband", song: "these are my friends"},
+        {artist: "Cigarettes After Sex", song: "Apocalypse"},
+        {artist: "Mazzy Star", song: "Fade into you"},
+        {artist: "Fitz and the Tantrums", song: "I Just Wanna Shine"},
+        {artist: "Sneaker Pimps", song: "6 Underground"},
+        {artist: "Ashe", song: "Moral of the Story"},
+        {artist: "Of Monsters and Men", song: "Dirty paws"},
+        {artist: "I DONT KNOW HOW BUT THEY FOUND ME", song: "Leave Me Alone"},
+        {artist: "Tame Impala", song: "Lost in yesterday"},
+        {artist: "Sleigh Bells", song: "Crush"},
+        {artist: "The head and the heart"", song: "Virginia"}
+];
 const interests = {
     main:["High-energy physics","Astronomy","Electronics"],
     hobby:["Programming","Cycling","Hiking","Reading"]};
