@@ -18,45 +18,45 @@ const tools = [
     }
 ];//hp Z23n 1080p
 const musik = [
-        {artist: "Beethoven", song: "Moonlight"},
-        {artist: "Phantogram", song: "You don't get me high anymore"},
-        {artist: "Beach Weather", song: "Sex, Drugs, Etc."},
-        {artist: "Beach House", song: "Once Twice Melody"},
-        {artist: "Arcade Fire", song: "Unconditional"},
-        {artist: "OK Go", song: "Get Over It"},
-        {artist: "Bob Moses", song: "Love Brand New"},
-        {artist: "NeedtoBreathe", song: "Into the Mistery"},
-        {artist: "Kongos", song: "Take it from Me"},
-        {artist: "The Shins", song: "So now what / New slang"},
-        {artist: "lovelytheband", song: "these are my friends"},
-        {artist: "Cigarettes After Sex", song: "Apocalypse"},
-        {artist: "Mazzy Star", song: "Fade into you"},
-        {artist: "Fitz and the Tantrums", song: "I Just Wanna Shine"},
-        {artist: "Sneaker Pimps", song: "6 Underground"},
-        {artist: "Ashe", song: "Moral of the Story"},
-        {artist: "Of Monsters and Men", song: "Dirty paws"},
-        {artist: "I DONT KNOW HOW BUT THEY FOUND ME", song: "Leave Me Alone"},
-        {artist: "Tame Impala", song: "Lost in yesterday"},
-        {artist: "Sleigh Bells", song: "Crush"},
-        {artist: "The head and the heart", song: "Virginia"}
+    {artist: "Beethoven", song: "Moonlight"},
+    {artist: "Phantogram", song: "You don't get me high anymore"},
+    {artist: "Beach Weather", song: "Sex, Drugs, Etc."},
+    {artist: "Beach House", song: "Once Twice Melody"},
+    {artist: "Arcade Fire", song: "Unconditional"},
+    {artist: "OK Go", song: "Get Over It"},
+    {artist: "Bob Moses", song: "Love Brand New"},
+    {artist: "NeedtoBreathe", song: "Into the Mistery"},
+    {artist: "Kongos", song: "Take it from Me"},
+    {artist: "The Shins", song: "So now what / New slang"},
+    {artist: "lovelytheband", song: "these are my friends"},
+    {artist: "Cigarettes After Sex", song: "Apocalypse"},
+    {artist: "Mazzy Star", song: "Fade into you"},
+    {artist: "Fitz and the Tantrums", song: "I Just Wanna Shine"},
+    {artist: "Sneaker Pimps", song: "6 Underground"},
+    {artist: "Ashe", song: "Moral of the Story"},
+    {artist: "Of Monsters and Men", song: "Dirty paws"},
+    {artist: "I DONT KNOW HOW BUT THEY FOUND ME", song: "Leave Me Alone"},
+    {artist: "Tame Impala", song: "Lost in yesterday"},
+    {artist: "Sleigh Bells", song: "Crush"},
+    {artist: "The head and the heart", song: "Virginia"}
 ];
 const interests = {
-    main:["High-energy physics","Astronomy","Electronics"],
-    hobby:["Programming","Cycling","Hiking","Reading"]};
+    main:["High-energy physics"," Astronomy"," Electronics"],
+    hobby:["Programming"," Cycling"," Hiking"," Reading"]};
 
 //console.log(tools[0]["item0"]);
 const mainDiv = document.getElementById("aboutMe"); // createElement("section");
 mainDiv.setAttribute("class","clearfix");
 function createTitle(elm,text){
-    var h2Title = document.createElement(elm);
+    const h2Title = document.createElement(elm);
     h2Title.innerText = text;
     return h2Title;
 }
 
 function buildList(jdx){
-    var ulElm = document.createElement("ul");
+    let ulElm = document.createElement("ul");
     for (item in tools[jdx]){
-        var liElm = document.createElement("li");
+        let liElm = document.createElement("li");
         //console.log("thisData",tools[jdx][item]);
         liElm.innerHTML = tools[jdx][item];
         ulElm.appendChild(liElm);
@@ -73,13 +73,30 @@ for (let idx=0;idx<tools.length;idx++){
 mainDiv.appendChild(createTitle("h2",titles[1]));
 //console.log(titles[1]);
 function getList(){
-    var ulElm = document.createElement("ul");
+    let ulElm = document.createElement("ul");
     for (item in interests){
-        var liElm = document.createElement("li");
+        let liElm = document.createElement("li");
         liElm.innerText = interests[item];
         ulElm.appendChild(liElm);
     }
     return ulElm;
 }
 mainDiv.appendChild(getList());
+
+mainDiv.appendChild(createTitle("h2",titles[2]));
+
+let ulElm = document.createElement("ul");
+
+musik.forEach(list =>{
+    let liElm = document.createElement("li");
+    var auxVar = "";
+    for (let key in list){
+        auxVar += list[key] + " - ";
+    }
+    liElm.innerHTML = auxVar;
+    ulElm.appendChild(liElm);
+});
+
+mainDiv.appendChild(ulElm);
+
 //document.body.appendChild(mainDiv);
