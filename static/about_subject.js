@@ -18,7 +18,7 @@ const tools = [
     }
 ];//hp Z23n 1080p
 const musik = [
-        {artist: "Beethoven", song: "Moonlight"}
+        {artist: "Beethoven", song: "Moonlight"},
         {artist: "Phantogram", song: "You don't get me high anymore"},
         {artist: "Beach Weather", song: "Sex, Drugs, Etc."},
         {artist: "Beach House", song: "Once Twice Melody"},
@@ -38,7 +38,7 @@ const musik = [
         {artist: "I DONT KNOW HOW BUT THEY FOUND ME", song: "Leave Me Alone"},
         {artist: "Tame Impala", song: "Lost in yesterday"},
         {artist: "Sleigh Bells", song: "Crush"},
-        {artist: "The head and the heart"", song: "Virginia"}
+        {artist: "The head and the heart", song: "Virginia"}
 ];
 const interests = {
     main:["High-energy physics","Astronomy","Electronics"],
