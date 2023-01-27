@@ -1,35 +1,43 @@
-/* 
+/*
+JS code from https://www.w3schools.com
+Modified by ndlopez (github.com/ndlopez). 
+
+Must add timezone validator, init set to JST but 
+since from Japan a zenith cant be seen...
+
 Data from https://rl.se/zenith-calendar
 idx, Day, Date Hour Altitude
-0, Tue, Nov 8, 2022 01:16	89.9
-1, Wed, Nov 9, 2022 01:16	89.8
-2, Thu, Nov 10, 2022 01:16	89.5
-3, Fri, Feb 3, 2023 01:46	89.7
-4, Sat, Feb 4, 2023 01:46	90.0
-5, Sun, Feb 5, 2023 01:46	89.7
-JS code from https://www.w3schools.com
-Modified by ndlopez (github.com/ndlopez).
+0, Tue, Nov 8, 2022 01:16 89.9
+1, Wed, Nov 9, 2022 01:16 89.8
+2, Thu, Nov 10, 2022 01:16 89.5
+3, Fri, Feb 3, 2023 01:46 89.7
+4, Sat, Feb 4, 2023 01:46 90.0
+5, Sun, Feb 5, 2023 01:46 89.7
+6, Tue, Nov 7, 2023 01:16:10 89.6
+7, Wed, Nov 8, 2023 01:16:13 89.9
+8, Thu, Nov 9, 2023 01:16:17 89.9
+9, Fri, Nov 10, 2023 01:16:22 89.6
 */
-// Set the date we're counting down to
-var allDates=["Nov 8, 2022 01:16:00","Nov 9, 2022 01:16:00","Nov 10, 2022 01:16:00","Feb 3, 2023 01:46:00","Feb 4, 2023 01:46:00","Feb 5, 2023 01:46:00"];
-var countDownDate = new Date(allDates[3]).getTime();
+// Set the date in JST counting down to
+let idx = 0;
+const allDates=["Feb 3, 2023 01:46:00","Feb 4, 2023 01:46:00","Feb 5, 2023 01:46:00","Nov 7, 2023 01:16:10", "Nov 8, 2023 01:16:13", "Nov 9, 2023 01:16:17", "Nov 10, 2023 01:16:22"];
+let countDownDate = new Date(allDates[idx]).getTime();
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+const gina = setInterval(function() {
 
   // Get today's date and time
-  var now = new Date().getTime();
+  let now = new Date().getTime();
     
   // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+  const distance = countDownDate - now;
     
   // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-  // Output the result in an element with id="countdown"
+  // Output the result in an element with id="zenith"
   if (hours < 10){
     hours = `0${hours}`;
   }
@@ -39,12 +47,14 @@ var x = setInterval(function() {
   if (seconds < 10){
       seconds = `0${seconds}`;
   }
+
   document.getElementById("zenith").innerHTML = days + " : " + hours + " : "
   + minutes + " : " + seconds;
     
-  // If the count down is over, should go to next counter
+  // If the count down is over, go to next counter
   if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("zenith").innerHTML = "EXPIRED";
+    // clearInterval(gina);
+    countDownDate = new Date(allDates[idx + 1]).getTime();
+    // document.getElementById("zenith").innerHTML = "EXPIRED";
   }
 }, 1000);

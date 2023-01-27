@@ -38,7 +38,9 @@ const musik = [
     {artist: "I DONT KNOW HOW BUT THEY FOUND ME", song: "Leave Me Alone"},
     {artist: "Tame Impala", song: "Lost in yesterday"},
     {artist: "Sleigh Bells", song: "Crush"},
-    {artist: "The head and the heart", song: "Virginia"}
+    {artist: "The head and the heart", song: "Virginia"},
+    {artist: "Modest Mouse",song: "Lampshades on Fire"},
+    {artist: "Joywave", song: "We Are All We Need"}
 ];
 const interests = {
     main:["High-energy physics"," Astronomy"," Electronics"],
