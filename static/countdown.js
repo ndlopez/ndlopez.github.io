@@ -53,8 +53,10 @@ const gina = setInterval(function() {
     
   // If the count down is over, go to next counter
   if (distance < 0) {
+    // console.log(idx,allDates[idx],"EXPIRED");
     // clearInterval(gina);
-    countDownDate = new Date(allDates[idx + 1]).getTime();
+    idx += 1;
+    countDownDate = new Date(allDates[idx]).getTime();
     // document.getElementById("zenith").innerHTML = "EXPIRED";
   }
 }, 1000);
