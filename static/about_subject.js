@@ -41,7 +41,9 @@ const musik = [
     {artist: "The head and the heart", song: "Virginia"},
     {artist: "Modest Mouse",song: "Lampshades on Fire"},
     {artist: "Joywave", song: "We Are All We Need"},
-    {artist: "Stone Temple Pilots", song: "Vasoline"}
+    {artist: "Stone Temple Pilots", song: "Vasoline"},
+    {artist: "White Town", song:"Your Woman"},
+    {artist: "The Airborne Toxic Event",song: "Changing"}
 ];
 const interests = {
     main:["High-energy physics"," Astronomy"," Electronics"],
