@@ -40,7 +40,8 @@ const musik = [
     {artist: "Sleigh Bells", song: "Crush"},
     {artist: "The head and the heart", song: "Virginia"},
     {artist: "Modest Mouse",song: "Lampshades on Fire"},
-    {artist: "Joywave", song: "We Are All We Need"}
+    {artist: "Joywave", song: "We Are All We Need"},
+    {artist: "Stone Temple Pilots", song: "Vasoline"}
 ];
 const interests = {
     main:["High-energy physics"," Astronomy"," Electronics"],
