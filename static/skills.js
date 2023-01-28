@@ -20,7 +20,7 @@ const content = {
             university: "Solar-Terrestrial Environment Laboratory, Nagoya University",
             location: "Nagoya, Japan",
             year: "Astroparticle Physics, March 2012",
-            area: "Cosmic-rays, particle identification",
+            area: "Cosmic-rays, particle tracking and identification",
             advisor: "Prof. Y. Matsubara"
         },{
             title: "Bachelor of Science",
@@ -32,26 +32,30 @@ const content = {
         }],
     programming:[
         {
-            lang: "C, Python, JavaScript",
-            skill: "can code without reference",
-            level: "Intermediate",
-        },{
             lang: "Bash, HTML, CSS",
             skill: "can code without reference",
             level: "Advanced",
         },{
-            lang: "Java, PHP, C++",
-            skill: "can code with reference",
-            level: "Beginner"
+            lang: "C, Python, JavaScript",
+            skill: "can code without reference",
+            level: "Intermediate",
+        },{
+            lang: "Databases (MySQL)",
+            level: "Intermediate",
+            skill: ""
         },{
             lang: "Linux/Unix Administration",
             level: "Intermediate",
             skill: ""
         },{
-            lang: "Databases (MySQL)",
-            level: "Intermediate",
-            skill: ""
-        }
+            lang: "Java, PHP, C++",
+            skill: "can code with reference",
+            level: "Beginner"
+        },{
+	    lang: "VBA (Visual Basic for Applications) and PostgreSQL",
+	    level: "Learning",
+	    skill: ""
+	}
     ],
     language:[
         {
@@ -72,13 +76,18 @@ const content = {
             skill: "basic greetings and asking for directions",
         }],
     work:[
-        {
+	{   position: "Current Position: CFD Analyst",
+	    place: "Toyoda Gosei Kitajima Technical Center",
+	    location: "Inazawa, Aichi, Japan",
+	    period: "Jan 2023 - ",
+	    job: ["Main: CAE software operator and CFD analyst", "Sub: Python, VBA programmer, and provide technical support."]
+	},{
             position: "Programmer",
             place: "Toyota Motors Corporation Kamigo Plant",
             location: "Kamigo, Toyota, Japan",
-            period: "Apr 2022 - Aug 2022",
+            period: "Apr 2022 - Sep 2022",
             job : ["Operational Research: Implemented a tool to improve suppliers routing in Python.",
-            "Build mobile version of Flask/React autonomous robot control tool."] 
+            "Built mobile version of Flask/React autonomous robot control tool.", "To improve image recognition tool, aided with object annotations."] 
         },{
             position: "Python and MySQL Mentor",
             place: "Galileo Co. Ltd.",
