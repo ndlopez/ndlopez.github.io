@@ -9,8 +9,8 @@
 }
 body {
     font-family:Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
-    background-color:#2e4054;
-    color:#bed2e0;
+    background-color:var(--smoke);
+    color:var(--light-sky);
     margin: 0;
     /*min-width: 350px;*/
 }
@@ -20,11 +20,11 @@ body {
 
 a{
     text-decoration: none;
-    color: #bed2e0;
+    color: var(--light-sky);
 }
 
 /* Remove margins and padding from the list */
-#todoList, #doingList {margin: 0;padding: 0;border:1px #bed2e0 dashed;}
+#todoList, #doingList {margin: 0;padding: 0;border:1px var(--light-sky) dashed;}
 /* Style the list items */
 .column ul li {
 position: relative;
@@ -40,19 +40,19 @@ user-select: none;
 /* Set all odd list items to a different color (zebra-stripes) */
 .column ul li:nth-child(odd) {
 background: #98a2a9;
-color:#2e4054;
+color:var(--smoke);
 }
 /* When clicked on, add a background color and strike out text */
 .column ul li.checked {
-background: #bed2e0;
-color: #2e4054;
+background: var(--darkish-sky);
+color: var(--light-sky);
 text-decoration: line-through;
 }
 /* Add a "checked" mark when clicked on */
 .column ul li.checked::before {
     content: '';
     position: absolute;
-    border-color: #cc274c;
+    border-color: var(--lemon);
     border-style: solid;
     border-width: 0 2px 2px 0;
     top: 10px;
@@ -70,13 +70,13 @@ text-decoration: line-through;
     padding: 10px 20px 20px 10px;
     font-size: 20px;
 }
-/*.close:hover {background-color: #cc274c;color: #bed2e0;}*/
+.close:hover {background-color: var(--wine);color: var(--light-sky);}
 
 /* Style the header */
 .header {
-    background-color: #bed2e0;
+    background-color: var(--light-sky);
     padding: 20px 10px;
-    color: #2e4054;
+    color: var(--smoke);
     text-align: center;
 }
 
@@ -90,19 +90,19 @@ text-decoration: line-through;
 /* Style the input */
 #my_task {
     margin: 0;
-    border: 1px #2e4054 solid;
+    border: 1px var(--smoke) solid;
     width: 75%;
     padding: 11px;
     float: left;
-    background-color: #bed2e0;
+    background-color: var(--light-sky);
 }
 
 /* Style the "Add" button */
 .addBtn {
     padding: 10px;
     width: 25%;
-    background: #2e4054;
-    color: #bed2e0;
+    background: var(--smoke);
+    color: var(--light-sky);
     float: left;
     text-align: center;
     cursor: pointer;
@@ -147,7 +147,7 @@ text-decoration: line-through;
         position: sticky;
         height: 56px;
         z-index: 2000;
-        background-color: #bed2e0;
+        background-color: var(--light-sky);
       }
       nav.menu ul{  
         height: 100%;
@@ -164,8 +164,8 @@ text-decoration: line-through;
         width: 100%;
         font-size: .8rem;
       }
-      .link-on{color: #cc274c;}
-      .link-off{color: #2e4054;}
+      .link-on{color: var(--wine);}
+      .link-off{color: var(--smoke);}
       nav.menu ul li{flex: 1;}
       nav.menu ul li a img{width: 1.15rem;height: 1.15rem;}
 }
