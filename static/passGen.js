@@ -4,7 +4,7 @@ const num = "23456789";
 const sym = "!#$%&()-_}{@][";
 
 let lenValue = document.getElementById("passLen").value;
-let smallCaps = document.getElementById("lowers").value;
+let smallCaps = document.getElementById("lowers").checked;
 let addNumbers = document.getElementById("numbers").value;
 let addSymbols = document.getElementById("symbols").value;
 
