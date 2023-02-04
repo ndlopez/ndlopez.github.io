@@ -262,9 +262,9 @@ svg g{color:var(--light-sky);}
   overflow:hidden;
 }
 button{
-background-color:var(--smoke);
-color:white;
-text-align:center;
+  background-color:var(--smoke);
+  color:white;
+  text-align:center;
 }
 .mySNS{padding:5px;}
 .copy-left{
