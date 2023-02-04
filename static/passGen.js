@@ -1,17 +1,26 @@
 const default_length = 10;
-const txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const num = "23456789";
-const sym = "!#$%&()-_}{@][";
-
-let lenValue = document.getElementById("passLen").value;
-let smallCaps = document.getElementById("lowers").checked;
-let addNumbers = document.getElementById("numbers").value;
-let addSymbols = document.getElementById("symbols").value;
+const sym = "!#$%&-_@[]";
 
 function pswdgen(){
+    let mystr = "";
+    let lenValue = document.getElementById("passLen").value;
+    let smallCaps = document.getElementById("lowers").checked;
+    let addNumbers = document.getElementById("numbers").checked;
+    let addSymbols = document.getElementById("symbols").checked;
     const nump = (lenValue)?(lenValue):(default_length);
     console.log(lenValue,smallCaps,addNumbers,addSymbols);
-    let mystr = num + txt + sym;
+    if (smallCaps == "true"){
+        txt = txt + txt.toLowerCase();
+    }
+    if (numbers == "false"){
+        num = "";
+    }
+    if (symbols == "false"){
+        sym = "";
+    }
+    mystr = num + txt + sym;
     // returns a number between 0 and 9
     //var num2=Math.floor(Math.random() * 10);
     let pasw="";let hole="";
