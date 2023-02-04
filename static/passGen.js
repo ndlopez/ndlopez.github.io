@@ -4,11 +4,13 @@ let num, sym;
 
 function pswdgen(){
     let mystr = "",auxStr="";
+    const thisLen = document.getElementById("gotLen");
     let lenValue = document.getElementById("passLen").value;
     let smallCaps = document.querySelector("#lowers");
     let addNumbers = document.querySelector("#numbers");
     let addSymbols = document.querySelector("#symbols");
     const nump = (lenValue)?(lenValue):(default_length);
+    thisLen.innerText = nump;
     console.log(lenValue,smallCaps.checked,addNumbers.checked,addSymbols.checked);
     if (smallCaps.checked){
         auxStr = ABC + ABC.toLowerCase();

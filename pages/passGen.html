@@ -28,14 +28,14 @@
 
     <main>
         <section>
-            <h1 id="pass"></h1>
+            <h1 id="pass" class="centered"></h1>
             <button onclick="pswdgen()">Generate</button>
         </section>
         <section>
             <p>Options</p>
-            <label for="passLen"> Length: 8 </label>
+            <label for="passLen"> Length [ 8 ~ 20 ] </label>
             <input type="range" id="passLen" name="passLen" min="8" max="20">
-            20<br>
+            <span id="gotLen"></span><br>
             <input type="checkbox" id="lowers" name="lowers" value="true">
             <label for="lowers"> Add lowercase letters: a~z</label><br/>
             <input type="checkbox" id="numbers" name="numbers"  value="true">
