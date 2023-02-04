@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>.:: Password Generator ::. </title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="../static/estilo2.css">
+      <link rel="stylesheet" type="text/css" href="../static/burger.css">
+  </head>
+  <body>
+    <nav class="top-nav">
+      <div><h2>Password Generator</h2></div>
+      <input id="menu-toggle" type="checkbox"/><label class="menu-button-container" for="menu-toggle">
+        <div class="menu-button"></div>
+      </label>
+      <ul class="menu">
+        <!--li><a href="fmlapaz.html">LaPaz.fm</a></li>
+        <li class="no_desktop">Other locations</li-->
+        <li><a href="/">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="https://ndzerglink.wordpress.com">Articles</a></li>
+        <li><a href="/web_player">Music</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+
+    <section>
+        <button onclick="pswdgen()">Generate</button>
+        <p id="pass"></p>
+    </section>
+    
+    <script src="../static/passGen.js"></script>
+  <footer>
+    <hr>
+    <div class="clearfix">
+      <div class="column align-left">
+        <p>Hello from
+          <a target="blank" href="https://www.openstreetmap.org/search?whereami=1&query=34.7022%2C135.1940#map=14/34.7021/135.1940">34°41'24"N 135°11'44"E</a></p>
+      </div>
+      <div class="column align-right">
+        <a class="mySNS" href="https://twitter.com/ndzerglink" target="_blank"><img src="../assets/twitter-logo.svg"/></a>
+        <a class="mySNS" href="https://github.com/ndlopez"><img src="../assets/github-logo.svg"/></a>
+        <a class="mySNS" target="blank" href="https://jp.linkedin.com/in/diego-lopez-58a033147"><img src="../assets/linkein-logo.svg" /></a>
+      </div>
+    </div>
+    <div class="clearfix">
+      <p><span class="copy-left">&copy;</span><span> 2018-02-20 ndzerglink </span></p>
+    </div>
+  </footer>
+  <nav class="menu" id="nav-menu">  
+    <ul>
+      <li><a class="link-off" href="/"><img src="../assets/home.svg"/> home</a></li>
+      <li><a class="link-off" href="research.html"><img src="../assets/telescope.svg"/> research</a></li>
+      <li><a class="link-off" href="projects.html"><img src="../assets/code.svg"/> projects</a></li>
+      <li><a class="link-off" href="jma_weather.html"><img src="../assets/cloudy_night.svg"/> weather</a></li>
+      <li><a class="link-on" href="#"><img src="../assets/todo.svg"/> todo</a></li>
+    </ul></nav>
+  </body>
+</html>
