@@ -1,11 +1,16 @@
-const default_length=10;
+const default_length = 10;
 const txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const num = "23456789";
 const sym = "!#$%&()-_}{@][";
 
-function pswdgen(size){
-    const nump = (size)?(size):(default_length);
-    
+let lenValue = document.getElementById("passLen").value;
+let smallCaps = document.getElementById("lowers").value;
+let addNumbers = document.getElementById("numbers").value;
+let addSymbols = document.getElementById("symbols").value;
+
+function pswdgen(){
+    const nump = (lenValue)?(lenValue):(default_length);
+    console.log(lenValue,smallCaps,addNumbers,addSymbols);
     let mystr = num + txt + sym;
     // returns a number between 0 and 9
     //var num2=Math.floor(Math.random() * 10);
@@ -14,13 +19,7 @@ function pswdgen(size){
     let ent1,ent2,ent3;
     while (hole.length < nump) {
         ent1=Math.floor(mystr.length*Math.random()*Math.random());
-        //ent2=Math.floor(Math.random()*Math.random()*num.length);
-        //ent3=Math.floor(Math.random()*Math.random()*sym.length);
-        //var vec=[ent1,ent2,ent3];
         pasw += mystr.charAt(ent1);
-        //pasw+=txt[ent1];//Should not be treated as array!!
-        //pasw+=num.charAt( ent2 );
-        //pasw+=sym.charAt( ent3 );
         hole = pasw;
     }
     //return pasw;	//pasw is a string!
