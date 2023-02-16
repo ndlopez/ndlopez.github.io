@@ -32,6 +32,7 @@ const musik = [
     {artist: "lovelytheband", song: "these are my friends"},
     {artist: "Cigarettes After Sex", song: "Apocalypse"},
     {artist: "Mazzy Star", song: "Fade into you"},
+    {artist: "Dave Matthews Band", song: "Crash Into Me"},
     {artist: "Fitz and the Tantrums", song: "I Just Wanna Shine"},
     {artist: "Sneaker Pimps", song: "6 Underground"},
     {artist: "Ashe", song: "Moral of the Story"},
