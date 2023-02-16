@@ -2,15 +2,23 @@ const default_length = 10;
 const ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let num, sym;
 
+let inp = document.getElementById('passLen');
+let outp = document.querySelector('output');
+outp.innerHTML = inp.value;
+
+inp.addEventListener('input',()=>{
+    outp.innerHTML = inp.value;
+},false);
+
 function pswdgen(){
     let mystr = "",auxStr="";
-    const thisLen = document.getElementById("gotLen");
+    // const thisLen = document.getElementById("gotLen");
     let lenValue = document.getElementById("passLen").value;
     let smallCaps = document.querySelector("#lowers");
     let addNumbers = document.querySelector("#numbers");
     let addSymbols = document.querySelector("#symbols");
     const nump = (lenValue)?(lenValue):(default_length);
-    thisLen.innerText = nump;
+    // thisLen.innerText = nump;
     console.log(lenValue,smallCaps.checked,addNumbers.checked,addSymbols.checked);
     if (smallCaps.checked){
         auxStr = ABC + ABC.toLowerCase();
