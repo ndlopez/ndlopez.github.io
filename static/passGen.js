@@ -1,4 +1,5 @@
 const default_length = 10;
+const words = "https://raw.githubusercontent.com/ndlopez/jumble_game/main/data/book_words.txt";
 const ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let num, sym;
 
@@ -36,8 +37,7 @@ function pswdgen(){
         sym = "";
     }
     mystr = num + auxStr + sym;
-    // returns a number between 0 and 9
-    //var num2=Math.floor(Math.random() * 10);
+    
     let pasw="";let hole="";
     //var tot=txt.length+num.length+sym.length;
     let ent1,ent2,ent3;
