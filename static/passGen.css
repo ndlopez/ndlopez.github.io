@@ -3,12 +3,20 @@
     margin: 5px;
     padding: 10px;
     background-color: var(--darkish-sky);
+    height: 50px;
   }
   button{
     padding: 10px;
     width: 100%;
+    font-size: larger;
+    border-radius: 5px;
+    margin-top: 10px;
   }
   section{
-    width: 100%;      
+    width: 100%;
+    padding: 10px;
+  }
+  section div{
+    background-color: var(--darkish-sky);
   }
 }
