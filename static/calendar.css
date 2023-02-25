@@ -22,7 +22,7 @@ td{
     background:#eee;
 }
 table{
-    align:center;
+    text-align:center;
     border-collapse:collapse;
     border:1px solid #4acf50;
     width:100%;
