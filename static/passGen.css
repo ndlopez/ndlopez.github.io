@@ -16,9 +16,9 @@
     width: 100%;
     padding: 10px;
   }
-  section div{
+  /*section div{
     background-color: var(--darkish-sky);
-  }
+  }*/
   section > div{
     padding: 10px;
   }
@@ -29,11 +29,16 @@
     background:white;
     border-radius:5px;
     border:2px solid #555;
+    position: absolute;
   }
   input[type='checkbox']:checked {
     background: var(--wine);
   }
-  label{
-    height:25px;
+  .checkbox_label{
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 35px;
+    position: relative;
+    padding-left: 38px;
   }
 }

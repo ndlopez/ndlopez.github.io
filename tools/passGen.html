@@ -34,15 +34,24 @@
       <section>
         <div>
           <p> Options</p>
-          <label for="passLen"> Length [ 8 ~ 20 ] </label>
-          <input type="range" id="passLen" name="passLen" min="8" max="20">
-          <output></output><br><br>
-          <input type="checkbox" id="lowers" name="lowers" value="true">
-          <label for="lowers"> Add lowercase letters: a~z</label><br/>
-          <input type="checkbox" id="numbers" name="numbers"  value="true">
-          <label for="numbers"> Add numbers: 2 ~ 9</label><br/>
-          <input type="checkbox" id="symbols" name="symbols" value="true">
-          <label for="symbols"> Add symbols: ! # $ % & - _ @ ] [</label><br/>
+          <div>
+            <label for="passLen"> Length [ 8 ~ 20 ] </label>
+            <input type="range" id="passLen" name="passLen" min="8" max="20">
+            <output></output>
+          </div>
+          
+          <div>
+            <input type="checkbox" id="lowers" name="lowers" value="true">
+            <label class="checkbox_label" for="lowers"> Add lowercase letters: a~z</label>
+          </div>
+          <div>
+            <input type="checkbox" id="numbers" name="numbers"  value="true">
+            <label class="checkbox_label" for="numbers"> Add numbers: 2 ~ 9</label>
+          </div>
+          <div>
+            <input type="checkbox" id="symbols" name="symbols" value="true">
+            <label class="checkbox_label" for="symbols"> Add symbols: ! # $ % & - _ @ ] [</label>
+          </div>
         </div>
         
       </section>
