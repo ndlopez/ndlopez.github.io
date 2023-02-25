@@ -57,3 +57,11 @@ function pswdgen(){
     //hole+=i;
     document.getElementById("pass").innerHTML = hole;
 }
+
+function copy_to_clipboard(){
+    const getText = document.getElementById("pass");
+    
+    navigator.clipboard.writeText(getText.innerText);
+    // console.log("yourPass",getText.innerText);
+    alert("Generated password was copied to clipboard");
+}

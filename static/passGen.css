@@ -10,7 +10,11 @@
     width: 100%;
     font-size: larger;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 13px;
+  }
+  .first_btn{
+    background-color: var(--wine);
+    color: white;
   }
   section{
     width: 100%;
