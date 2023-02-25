@@ -11,8 +11,6 @@
     font-size: larger;
     border-radius: 5px;
     margin-top: 10px;
-    background-color: var(--light-sky);
-    color: var(--smoke);
   }
   section{
     width: 100%;
@@ -26,7 +24,7 @@
     -webkit-appearance:none;
     width:25px;
     height:25px;
-    background:white;
+    background: var(--light-sky);
     border-radius:5px;
     border:2px solid var(--smoke);
     position: absolute;

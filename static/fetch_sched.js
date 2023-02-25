@@ -1,5 +1,4 @@
-/*  Display one random quote on the header and also
-    fill the table with current schedule.
+/*  Display one-fine-day filling a table with current schedule.
 */
 "use strict";
 
@@ -24,12 +23,12 @@ async function disp_sched(){
 async function get_url_data(url,jsonKey,keyElm1,keyElm2){
     const response = await fetch(url);
     const data = await response.json();
-    const myTime=[];
-    const myAct=[];
+    const myTime = [];
+    const myAct = [];
     if (jsonKey === "quotes"){
         const randIdx = Math.floor(Math.random()*data[jsonKey].length);
-        var quote=data[jsonKey][randIdx][keyElm1];
-        var author=data[jsonKey][randIdx][keyElm2];
+        const quote = data[jsonKey][randIdx][keyElm1];
+        const author = data[jsonKey][randIdx][keyElm2];
         //console.log(data["quotes"][randIdx]["quote"]);
         return {quote,author};
     }else{
@@ -44,11 +43,11 @@ async function get_url_data(url,jsonKey,keyElm1,keyElm2){
     //console.log(rows);
 }
 
-var acc=document.getElementsByClassName("accordion");
+const acc = document.getElementsByClassName("accordion");
 for(var i=0;i<acc.length;i++){
     acc[i].addEventListener("click",function(){
         this.classList.toggle("active");
-        var panel=this.nextElementSibling;
+        const panel=this.nextElementSibling;
         if(panel.style.display==="block"){
         panel.style.display="none";
         }else{

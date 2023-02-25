@@ -5,9 +5,9 @@ const tools = [
         item0: "OS: <a href='https://www.debian.org'>Debian</a> or <a href='https://www.getfedora.org'>Fedora</a>",
         item1: "Browser: <a target='_blank' href='https://www.firefox.com'>Firefox</a>",
         item2: "Search Engine: <a target='_blank' href='https://www.duckduckgo.com'>DuckDuckGo</a>",
-        item3: "Editor: Mostly Emacs and VI, sometimes VSCodium",
-        item4: "Notes: Joplin and own-build",
-        item5: "Music: VLC (streaming ThirdRock Radio and sometimes FM La Paz) or <a href='https://ndlopez.github.io/web_player'>webPlayer</a> app I created"
+        item3: "Editor: Mostly Emacs and VI, @Work VSCode and Notepad",
+        item4: "Notes: Joplin and MacOS Notes",
+        item5: "Music: VLC (streaming ThirdRock Radio and sometimes FM La Paz) or <a href='https://ndlopez.github.io/web_player'>webPlayer</a> I created"
     },{
         item0: "Personal: Panasonic Let'sNote CF-QV 12\" w/Linux Fedora 36",
         item1: "Work: NEC VersaPro 14\" w/Windows 10 Pro",

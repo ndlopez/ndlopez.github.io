@@ -262,8 +262,8 @@ svg g{color:var(--light-sky);}
   overflow:hidden;
 }
 button{
-  background-color:var(--smoke);
-  color:white;
+  background-color:var(--light-sky);
+  color:var(--smoke);
   text-align:center;
 }
 .mySNS{padding:5px;}
