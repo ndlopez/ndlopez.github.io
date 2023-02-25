@@ -1,13 +1,10 @@
 .month1 .date1,/*New years day*/
 .month2 .date12,/*New years day*/
 .month3 .date4,/*New years day*/
-.month7 .date6,/*New years day*/
-/*.month9 .date9,New years day*/
+.month7 .date9,/*New years day*/
 .month10 .date20,/*New years day*/
 .month10 .date29,/*New years day*/
-/*#d20220321,Spring*/
-/*#d20220923,Autumn*/
-.sun1,.sun2,.sun3,.sun4,.sun5{background:#4acf50;color:#fff;}
+.Sun1,.Sun2,.Sun3,.Sun4,.Sun5{background:#4acf50;color:#fff;}
 /**{box-sizing:border-box;}*/
 .today{background:#2e4054;color:#bed2e0;}
 body{
