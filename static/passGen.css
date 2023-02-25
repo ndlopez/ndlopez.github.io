@@ -11,6 +11,8 @@
     font-size: larger;
     border-radius: 5px;
     margin-top: 10px;
+    background-color: var(--light-sky);
+    color: var(--smoke);
   }
   section{
     width: 100%;
@@ -26,7 +28,7 @@
     height:25px;
     background:white;
     border-radius:5px;
-    border:2px solid #555;
+    border:2px solid var(--smoke);
     position: absolute;
   }
   input[type='checkbox']:checked {
