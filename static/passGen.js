@@ -11,7 +11,18 @@ inp.addEventListener('input',()=>{
     outp.innerHTML = inp.value;
 },false);
 
-disp_words();
+const radBtns = document.querySelectorAll("input[type='radio']");
+
+radBtns.forEach(button =>{
+    button.onclick = ()=>{
+        if(button.id == "phrase"){
+            disp_words();
+        }else{
+            alert(button.value);
+        }
+    }
+});
+// disp_words();
 
 function pswdgen(){
     let mystr = "",auxStr="";
