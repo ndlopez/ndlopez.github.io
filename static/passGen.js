@@ -16,9 +16,9 @@ const radBtns = document.querySelectorAll("input[type='radio']");
 radBtns.forEach(button =>{
     button.onclick = ()=>{
         if(button.id == "phrase"){
-            disp_words();
+            document.getElementById("pass").innerHTML = disp_words();
         }else{
-            alert(button.value);
+            pswdgen();
         }
     }
 });
@@ -84,10 +84,9 @@ async function disp_words(){
     const myWords = await get_url_data(words);
     let text = "";
     for (let idx=0; idx < 4; idx++){
-        text += myWords[rand_idx(myWords)] + ", "
+        text += myWords[rand_idx(myWords)] + " "
     }
     console.log(text,text.length);
-    // console.log(myWords[rand_idx()],myWords[rand_idx()]);
 }
 
 async function get_url_data(url){
@@ -99,8 +98,6 @@ async function get_url_data(url){
         if(row.length <= 6){
             fiveChars.push(row);
         }
-        //console.log("one word",row);
     });
     return fiveChars;
-    //console.log(rows);
 }
