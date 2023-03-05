@@ -61,13 +61,6 @@ function pswdgen(){
     }
     //return pasw;	//pasw is a string!
     const num2 = hole.length;
-    /*ent2=0;
-    while(pasw.length<nump){
-        ent1=Math.floor(Math.random()*num2);
-        if(ent1==ent2){	ent2=ent1; }
-        else{ hole+=pasw.charAt(ent1);}
-    }*/
-    //hole+=i;
     document.getElementById("pass").innerHTML = hole;
 }
 
