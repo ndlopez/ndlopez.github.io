@@ -5,6 +5,7 @@
     background-color: var(--darkish-sky);
     height: 50px;
   }
+  p{margin: 0px;}
   button{
     padding: 10px;
     width: 100%;
