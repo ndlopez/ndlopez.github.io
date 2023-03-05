@@ -11,6 +11,8 @@ inp.addEventListener('input',()=>{
     outp.innerHTML = inp.value;
 },false);
 
+disp_words();
+
 function pswdgen(){
     let mystr = "",auxStr="";
     // const thisLen = document.getElementById("gotLen");
@@ -60,42 +62,34 @@ function pswdgen(){
 
 function copy_to_clipboard(){
     const getText = document.getElementById("pass");
-    
     navigator.clipboard.writeText(getText.innerText);
     // console.log("yourPass",getText.innerText);
     alert("Generated password was copied to clipboard");
 }
 
-async function disp_sched(){
-    const thisDay = await get_url_data(urlSched,key,elem1,elem2);
-
-    var text ="";
-    for (let idx=0; idx < thisDay["myTime"].length;idx++){        
-        text += "<tr><td style='text-align:right;'>" + thisDay["myTime"][idx] + "</td><td>" + thisDay["myAct"][idx]+"</td></tr>";
-    };
-    document.getElementById("myday").innerHTML = text;
-    //console.log(text);
+const rand_idx= () => Math.floor(Math.random()*159); 
+async function disp_words(){
+    // max num words: 4
+    const myWords = await get_url_data(words);
+    let text = "";
+    for (let idx=0; idx < 4; idx++){
+        text += myWords[rand_idx()] + ", "
+    }
+    console.log(text,text.length);
+    // console.log(myWords[rand_idx()],myWords[rand_idx()]);
 }
 
-async function get_url_data(url,jsonKey,keyElm1,keyElm2){
+async function get_url_data(url){
+    let fiveChars = [];
     const response = await fetch(url);
-    const data = await response.json();
-    const myTime = [];
-    const myAct = [];
-    if (jsonKey === "quotes"){
-        const randIdx = Math.floor(Math.random()*data[jsonKey].length);
-        const quote = data[jsonKey][randIdx][keyElm1];
-        const author = data[jsonKey][randIdx][keyElm2];
-        //console.log(data["quotes"][randIdx]["quote"]);
-        return {quote,author};
-    }else{
-        const table = data[jsonKey];
-        table.forEach(row => {
-            //console.log(row[keyElm1]);
-            myTime.push(row[keyElm1]);
-            myAct.push(row[keyElm2]);
-        });
-        return {myTime,myAct};
-    }
+    const data = await response.text();
+    const rows = data.split('\n');
+    rows.forEach(row=>{
+        if(row.length <= 6){
+            fiveChars.push(row);
+        }
+        //console.log("one word",row);
+    });
+    return fiveChars;
     //console.log(rows);
 }
