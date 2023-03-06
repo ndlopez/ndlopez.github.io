@@ -3,7 +3,7 @@ Should request data from:
 https://sidc.be/silso/DATA/SN_d_tot_V2.0.txt
 '''
 import csv
-path_file = "/home/diego/Downloads/SN_d_tot_V2.0.csv"
+path_file = "~/Downloads/SN_d_tot_V2.0.csv"
 
 newFile = []
 fields = ["date","spotNum"]
@@ -22,9 +22,9 @@ with open(path_file,mode="r") as data_file:
                 newArr.append(lines[4].strip())
                 newFile.append(newArr)
 
-print(newFile)
+#print(newFile)
 
-outFile = "../data/sunspot_number2.csv"
+outFile = "../data/sunspot_number.csv"
 with open(outFile,"w",newline='') as new_file:
     write = csv.writer(new_file)
     write.writerow(fields)
