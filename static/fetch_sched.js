@@ -1,5 +1,4 @@
-/*  Display one-fine-day filling a table with current schedule.
-*/
+/*  Display one-fine-day filling a table with current schedule.*/
 "use strict";
 
 const urlSched="https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/sched.json";
@@ -18,7 +17,6 @@ async function disp_sched(){
     document.getElementById("myday").innerHTML = text;
     //console.log(text);
 }
-
 
 async function get_url_data(url,jsonKey,keyElm1,keyElm2){
     const response = await fetch(url);
@@ -49,9 +47,9 @@ for(var i=0;i<acc.length;i++){
         this.classList.toggle("active");
         const panel=this.nextElementSibling;
         if(panel.style.display==="block"){
-        panel.style.display="none";
+            panel.style.display="none";
         }else{
-        panel.style.display="block";
+            panel.style.display="block";
         }
     });
 }
