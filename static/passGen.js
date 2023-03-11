@@ -14,6 +14,8 @@ inp.addEventListener('input',()=>{
 const radBtns = document.querySelectorAll("input[type='radio']");
 
 radBtns.forEach(button =>{
+    /* is not necessary to assign an event to every "option"
+    Phrase:onclick use disp_words as async and display on h2 tag*/
     button.onclick = ()=>{
         if(button.id == "phrase"){
             document.getElementById("pass").innerHTML = disp_words();

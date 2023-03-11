@@ -278,6 +278,7 @@ function buildSVGtext(dx,dy,text){
 function build_array(hour,gotData){
     // void function, 
     // fills "result" array with data/hour, and "zoey" Obj with currentData
+    // here I should distinguish between Max and Min at every 10min obs.
     const limit = 2;
     for(let idx = hour; idx <= hour + limit; idx++){
         var aux = build_attrib(idx);
