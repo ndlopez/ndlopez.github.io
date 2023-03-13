@@ -53,9 +53,12 @@ const interests = {
     hobby:["Programming"," Cycling"," Hiking"," Reading"]};
 
 //console.log(tools[0]["item0"]);
+// the idea is:
+// <details><summary><h2>Musik</h2></summary><ul><li>...</ul></details>
 const mainDiv = document.getElementById("aboutMe"); // createElement("section");
 mainDiv.setAttribute("class","clearfix");
 function createTitle(elm,text){
+    /* This func should return <summary><h2> */
     const h2Title = document.createElement(elm);
     h2Title.innerText = text;
     return h2Title;
