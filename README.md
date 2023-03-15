@@ -2,15 +2,35 @@
 
 [Live Demo](https://ndlopez.github.io)
 
-Display on Web weather conditions and famous quotes scrapped from goodreads.com
+As a way to show some of the [projects](https://ndlopez.github.io/pages/projects.html) I've been working on and worked on, these small site acts as my digital [resume](https://ndlopez.github.io/pages/resume.html).
 
-Weather data are updated daily.
+On a single page I also summarize some of the research I worked on and current [research](https://ndlopez.github.io/pages/research.html) interests.
 
-Some links are still broken, sorry about that. 
+## Available tools
 
-Some of the SVGs are from [here](https://github.com/danklammer/bytesize-icons)
+- Weather data (updated daily)
 
-To plot weather data I used the D3JS library.
+- Password Generator (namely LazyPass)
+
+- To do/doing list
+
+- Current month calendar
+
+## Used libraries and assets
+
+- Some of the SVGs are from [here](https://github.com/danklammer/bytesize-icons)
+
+- Weather data are plot using D3JS library.
+
+## Running Environment
+
+Browser: Firefox, obviously.
+
+Editor: VIM and Codium
+
+Debian Buster, Sony Vaio J21
+
+--
 
 ## Wrangling CSV data in VIM
 
@@ -25,14 +45,6 @@ Replace comma with "cr" char for the last line:
 Search and DEL words that start with capital A,B,C,...Z:
 
 	:g/[A~Z]/d
-
-## Running Environment
-
-Browser: Firefox, obviously.
-
-Editor: VIM and Codium
-
-Debian Buster, Sony Vaio J21
 
 <!--p>September post: Lately (I mean for the last 3 months), I've been reading "Zealot" by Reza Aslan, a book that explores about the life of 
         Jesus of Nazareth. Being raised in a Roman catholic family, I knew little or close to nothing about his life. At school I probably was not that interested and so I focused more on Math and Physics.<br>
