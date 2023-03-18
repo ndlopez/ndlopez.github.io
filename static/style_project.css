@@ -113,7 +113,7 @@ panel2,.flip{
   border:solid 1px #cc274c;
   margin:auto;
 }
-#panel2{display:none;}
+#panel2, #nav-menu, .no-desktop{display:none;}
 
 .clearfix::after{
   content:"";
@@ -133,8 +133,6 @@ panel2,.flip{
   filter:FlipH;-ms-filter:"FlipH";
 }
 .proj_stats .hero{width:70%;}
-
-#nav-menu{display: none;}
 
 /*Responsive layout to stack cols on top of each other
 @media only screen and (max-width:620px){*/

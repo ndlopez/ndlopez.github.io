@@ -1,3 +1,4 @@
+const info = {about: ""};
 const titles = ["Tools","Interests","Music"];
 const subTitles = ["Software","Hardware"];
 const tools = [
