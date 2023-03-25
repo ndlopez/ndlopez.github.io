@@ -3,12 +3,12 @@
 const toRad = Math.PI/180.0;
 const jmaURL = "https://www.jma.go.jp/bosai/forecast/data/forecast/";
 const city_code = [{name:"Nagoya",code:230000},{name:"Takayama",code:210000}];
-//var city_idx = 0; // 0:Nagoya, 1:Takayama
-// data per hour for current day here:
-// https://www.jma.go.jp/bosai/amedas/data/point/51106/20221007_09.json
-// format seems to be yyyymmdd_hh.json, hh< currHour, hh=0,3,6,9,...
-// also https://www.jma.go.jp/bosai/amedas/#area_type=offices&area_code=230000&amdno=51106&format=table1h&elems=53414
-// might be helpful when rain https://codepen.io/aureliendotpro/pen/kVwyVe
+// var city_idx = 0; // 0:Nagoya, 1:Takayama
+/* data per hour for current day here:
+ https://www.jma.go.jp/bosai/amedas/data/point/51106/20221007_09.json
+ format seems to be yyyymmdd_hh.json, hh< currHour, hh=0,3,6,9,...
+ also https://www.jma.go.jp/bosai/amedas/#area_type=offices&area_code=230000&amdno=51106&format=table1h&elems=53414
+ might be helpful when rain https://codepen.io/aureliendotpro/pen/kVwyVe*/
 const ico_url = "https://www.jma.go.jp/bosai/forecast/img/";
 const radar_url = ["https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg",
 "https://www.jma.go.jp/bosai/nowc/m_index.html#zoom:11/lat:35.211116/lon:136.901665/colordepth:normal/elements:hrpns&slmcs"];
