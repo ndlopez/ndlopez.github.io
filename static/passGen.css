@@ -1,5 +1,12 @@
+.top-nav{
+  background: var(--dark-smoke);/*linear-gradient(to left, var(--wine), var(--dark-smoke));*/
+}
+.pwd_type{
+  display: none;
+}
 @media (max-width: 700px){
   h1{
+    font-family: Georgia;
     margin: 5px;
     padding: 10px;
     background-color: var(--darkish-sky);

@@ -47,7 +47,7 @@ function pswdgen(){
         num = "";
     }
     if (symbols.checked){
-        sym = "!#$%&-_@[]";
+        sym = "!#$%&-_@";
     }else{
         sym = "";
     }
