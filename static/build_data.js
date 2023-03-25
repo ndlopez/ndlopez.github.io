@@ -1,3 +1,14 @@
+/*
+Fetch data from jma website and organize it to display and plot.
+New feature to be added later:
+Up to a certain date all earthquakes in Japan
+ https://www.jma.go.jp/bosai/quake/data/list.json
+Latest observation
+ https://www.jma.go.jp/bosai/ltpgm/data/list.json
+From the above url fetch json field and request data to the following path
+ https://www.jma.go.jp/bosai/quake/data/ + jsonFileName
+ jsonFileName = 20230325071721_20230325071439_VXSE5k_1.json
+ */
 let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 let days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 /* Fetch observation data from jma site and plot */
@@ -22,7 +33,7 @@ var dataHours = [];
 const toRadians = Math.PI/180.0;
 const maxValue = 6; //m/s when 10m/s too many scales, should display half
 // Autumn: const ngo_pred = [{xp:0,yp:10.0},{xp:7,yp:8.0},{xp:14,yp:15.5},{xp:23,yp:9.0}];
-const ngo_pred = [{xp:0,yp:14.0},{xp:7,yp:13.0},{xp:14,yp:20.0},{xp:23,yp:12.0}];//winter
+const ngo_pred = [{xp:0,yp:14.0},{xp:7,yp:11.0},{xp:14,yp:20.0},{xp:23,yp:12.0}];//spring
 const tky_pred = [{xp:0,yp:5.0},{xp:7,yp:3},{xp:14,yp:13},{xp:23,yp:4}];
 var hours = [];
 for (let idx = 0; idx < 24; idx++) hours.push(idx);
@@ -35,12 +46,12 @@ for (let idx=0;idx < currHH;idx++){
 function zeroPad(tit){return (tit<10)?"0"+tit:tit;}
 
 /* wind Direction -> JPchar */
-const allDirs = {0:"静穏",1:"北北東",2:"北東",3:"東北東",4:"東",5:"東南東",6:"南東",7:"南南東",8:"南",
+const allDirections = {0:"静穏",1:"北北東",2:"北東",3:"東北東",4:"東",5:"東南東",6:"南東",7:"南南東",8:"南",
 9:"南南西",10:"南西",11:"西南西",12:"西",13:"西北西",14:"北西",15:"北北西",16:"北"};
 function windChar(number){    
-    for (let dat in allDirs){
+    for (let dat in allDirections){
         if(dat == number){
-            return allDirs[number];
+            return allDirections[number];
         }
     }
 }
