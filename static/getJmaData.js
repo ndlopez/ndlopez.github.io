@@ -60,7 +60,7 @@ function build_obj_pos(sunSetRise,moonSetRise) {
     const sun_times = [sunSetRise.sunrise[0],sunSetRise.sunrise[1],sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const moon_times = [parseInt(moonSetRise[2][0].trim()),parseInt(moonSetRise[2][1]),
     parseInt(moonSetRise[1][0].trim()),parseInt(moonSetRise[1][1])];
-    const width = 330, height = 200;//px, 330x200;300x180, 120 for summer
+    const width = 350, height = 220;//px, 330x200;300x180, 120 for summer
 
     const sun_pos = calc_obj_pos(sun_times);//[0]:rr,[1]:x0, [2]:y0
     const moon_pos = calc_obj_pos(moon_times);
@@ -131,19 +131,20 @@ function build_obj_pos(sunSetRise,moonSetRise) {
     svgRunner.setAttribute("y",height-4);
     svgRunner.setAttribute("font-size","20px");
     svgRunner.textContent = String.fromCodePoint(0x1F6B4);
+    // Sun Rise/Set times on svg bkg
     const svgRise = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgRise.setAttribute("fill","#cc274c");
-    svgRise.setAttribute("x",15);
-    svgRise.setAttribute("y",0.5*width+28);
-    svgRise.setAttribute("font-size","16px");
+    svgRise.setAttribute("x",18);
+    svgRise.setAttribute("y",0.5*width + 35);//+28
+    svgRise.setAttribute("font-size","18px");
     svgRise.textContent = sun_times[0] + ":" + sun_times[1];
     const svgSet = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgSet.setAttribute("fill","#fff");
-    svgSet.setAttribute("x",width-40);
-    svgSet.setAttribute("y",0.5*width+28);
-    svgSet.setAttribute("font-size","16px");
+    svgSet.setAttribute("x",width - 48);
+    svgSet.setAttribute("y",0.5*width + 35);//28
+    svgSet.setAttribute("font-size","18px");
     svgSet.textContent = sun_times[2] + ":" + sun_times[3];
-
+    // Clock on tower of svg bkg
     const svgHour = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgHour.setAttribute("fill","#fff");svgHour.setAttribute("font-size","13px");
     svgHour.setAttribute("x",0.77*width);svgHour.setAttribute("y",0.51*height);
