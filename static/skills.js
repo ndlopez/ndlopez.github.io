@@ -175,9 +175,9 @@ const public = {
         date:"2015-12-03",
         doi:"DOI 10.1186/s40623-015-0222-2"
     },{
-        title: "Observaci\'on simult\'anea de neutrones solares en asociacion con una fulguracion solar del 7 de septiembre de 2005",
+        title: "Observaci&oacute;n simult&aacute;nea de neutrones solares en asociaci&oacute;n con una fulguraci&oacute;n solar del 7 de Septiembre de 2005",
         authors: "Y. Ricaldi, P. Miranda, D. Lopez, R. Bustos",
-        journal: "Revista Boliviana de Fisica 13, 29-32, 2007",
+        journal: "Revista Boliviana de F&iacute;sica 13, 29-32, 2007",
         date: "2007-10",
         doi: "http://www.fiumsa.edu.bo/rbf/numero13.pdf"
     }],
@@ -207,7 +207,7 @@ const public = {
         date:"2012-03",
         link: "Available as a compendium of MSc theses from the Solar-Terrestrial Environment Laboratory, Nagoya University, Jun 2012"
     },{
-        title: "Analisis de Eventos producidos por neutrones solares detectados en Monte Chacaltaya",
+        title: "An&aacute;lisis de eventos producidos por neutrones solares detectados en el Monte Chacaltaya",
         authors:"D.Lopez",
         journal:"Bachelor thesis submitted for BSc in Physics, San Andres University",
         date: "2007-10",
@@ -332,7 +332,7 @@ function buildPublic(jdx){
             texty +="";
         }else{
             if(item == "title"){
-            texty += "<a href='" + initData["doi"] +"'>"+initData[item]+"</a>";
+            texty += "<a class='title' href='" + initData["doi"] +"'>"+initData[item]+"</a>";
             }else{
                 texty += "<p>" + initData[item] +"</p>";
             }
