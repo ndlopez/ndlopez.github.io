@@ -24,15 +24,15 @@ const content = {
             advisor: "Prof. Y. Matsubara"
         },{
             title: "Bachelor of Science",
-            university: "Universidad Mayor de San Andres",
+            university: "Facultad de Ciencias Puras y Naturales, Universidad Mayor de San Andr&eacute;s",
             location: "La Paz, Bolivia",
             year: "Physics, December 2008",
             area: "Solar Physics",
-            advisor: "Prof. Nicolas Martinic"
+            advisor: "Prof. N. Martinic"
         }],
     programming:[
         {
-            lang: "Bash, HTML, CSS",
+            lang: "Bash, CSS",
             skill: "can code without reference",
             level: "Advanced",
         },{
@@ -44,17 +44,17 @@ const content = {
             level: "Intermediate",
             skill: ""
         },{
-            lang: "Linux/Unix Administration",
+            lang: "GNU Linux/Unix Administration",
             level: "Intermediate",
             skill: ""
         },{
-            lang: "Java, PHP, C++",
+            lang: "Java, PHP, C++, C#",
             skill: "can code with reference",
             level: "Beginner"
         },{
-	    lang: "VBA (Visual Basic for Applications) and PostgreSQL",
-	    level: "Learning",
-	    skill: ""
+    	    lang: "VBA (Visual Basic for Applications) and PostgreSQL",
+	        level: "Learning",
+	        skill: ""
 	}
     ],
     language:[
@@ -128,18 +128,18 @@ const content = {
         }],
     invited:[
         {
-            place: "Geophysics Department, Universidad Nacional Autonoma de Mexico, Mexico",
-            period: "Oct 2010 - Nov 2010",
-            job: ["Set up protoype experiment atop Mt.Sierra Negra (4600 masl)","Set data acquisition software to perform cosmic-ray measurements and monitor environment."]
+            place: "Astrophysics Department, INAOE, Puebla, Mexico",
+            period: "Mar 2012 - May 2012",
+            job:["Dismantle experimental setup of high-energy physics detector (SciBar)","Set atop Mt. Sierra Negra (4600m a.s.l.) SciBar and make first cosmic-ray measurements.","Monitor environment and electronic equipment at high-altitude."]
         },{
             place: "Fermi National Laboratory, Illinois, USA",
             period: "Feb 2011 - Mar 2011",
             job: ["Dismantle a high-energy physics detector (MiniBooNE experiment).","Set up data-acquisition equipment to be packed and sent to Mexico"]
         },{
-            place: "Astrophysics Department, INAOE, Puebla, Mexico",
-            period: "Mar 2012 - May 2012",
-            job:["Dismantle experimental setup of high-energy physics detector (SciBar)","Set atop Mt. Sierra Negra (4600m a.s.l.) SciBar and make first cosmic-ray measurements.","Monitor environment and electronic equipment at high-altitude."]
-        } 
+            place: "Geophysics Department, Universidad Nacional Autonoma de Mexico, Mexico",
+            period: "Oct 2010 - Nov 2010",
+            job: ["Set up protoype experiment atop Mt.Sierra Negra (4600 masl)","Set data acquisition software to perform cosmic-ray measurements and monitor environment."]
+        }, 
     ],
 };
 
@@ -332,7 +332,8 @@ function buildPublic(jdx){
             texty +="";
         }else{
             if(item == "title"){
-            texty += "<a class='title' href='" + initData["doi"] +"'>"+initData[item]+"</a>";
+            texty += "<a class='title' href='" + initData["doi"] + "'>[" + (jdx + 1) +
+            "] " + initData[item] + "</a>";
             }else{
                 texty += "<p>" + initData[item] +"</p>";
             }
