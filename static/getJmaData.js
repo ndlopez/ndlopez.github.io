@@ -1,4 +1,6 @@
 //import { theseMonths } from "./build_data.js"; SyntaxError!
+// 120x120 px Moon, courtesy of timeanddate.com
+const curr_Moon = "https://www.timeanddate.com/scripts/moon.php?i=0.809&p=5.670&r=5.592";
 /* Fetching data from JMA.go.jp */
 const toRad = Math.PI/180.0;
 const jmaURL = "https://www.jma.go.jp/bosai/forecast/data/forecast/";
@@ -57,6 +59,7 @@ function calc_obj_pos(setRiseArr){
 }
 
 function build_obj_pos(sunSetRise,moonSetRise) {
+    /* moonSetRise=[date,hhR,mmR,hhS,mmS] date might not be needed*/
     const sun_times = [sunSetRise.sunrise[0],sunSetRise.sunrise[1],sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const moon_times = [parseInt(moonSetRise[2][0].trim()),parseInt(moonSetRise[2][1]),
     parseInt(moonSetRise[1][0].trim()),parseInt(moonSetRise[1][1])];
@@ -128,7 +131,7 @@ function build_obj_pos(sunSetRise,moonSetRise) {
     // String.fromCodePoint(0x1F681); helicopter, 1F699, jeep
     const svgRunner = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgRunner.setAttribute("x",0.8*width);
-    svgRunner.setAttribute("y",height-4);
+    svgRunner.setAttribute("y",height-2);
     svgRunner.setAttribute("font-size","20px");
     svgRunner.textContent = String.fromCodePoint(0x1F6B4);
     // Sun Rise/Set times on svg bkg
@@ -372,7 +375,7 @@ async function getMoonTimes(){
     });
     if (thisData.length == 0){
         // Just in case moon_data is not updated
-        thisData = ["2023-04-01","03","20","13","27"];
+        thisData = ["2023-04-01",["03","20"],["13","27"]];
     }
     return thisData;
 }
