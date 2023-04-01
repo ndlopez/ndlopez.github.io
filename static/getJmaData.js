@@ -1,6 +1,19 @@
 //import { theseMonths } from "./build_data.js"; SyntaxError!
 // 120x120 px Moon, courtesy of timeanddate.com
+/* append png image to svg Object
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    ...
+    <image
+        width="100" height="100"
+        xlink:href="data:image/png;base64,IMAGE_DATA"
+        />
+    ...
+</svg>
+ */
 const curr_Moon = "https://www.timeanddate.com/scripts/moon.php?i=0.809&p=5.670&r=5.592";
+// console.log(getBase64Img(document.getElementById("pngImg")));
 /* Fetching data from JMA.go.jp */
 const toRad = Math.PI/180.0;
 const jmaURL = "https://www.jma.go.jp/bosai/forecast/data/forecast/";
@@ -378,6 +391,16 @@ async function getMoonTimes(){
         thisData = ["2023-04-01",["03","20"],["13","27"]];
     }
     return thisData;
+}
+
+function getBase64Img(img){
+    let canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(img,0,0);
+    let dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 /*
     const svgLine = document.createElementNS('http://www.w3.org/2000/svg','rect');
