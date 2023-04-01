@@ -357,7 +357,7 @@ async function getMoonTimes(){
     const data = await response.text();
     const rows = data.split('\n').slice(1);
     const thisDay = my_date.getFullYear() + "-" + zero_pad(my_date.getMonth()+1) + 
-    "-" + zero_pad(my_date.getDate());
+    "-" + zero_pad(my_date.getDate()); //Current date
     var thisData = [];
     rows.forEach(row => {
         const thisVal = row.split(","); // [2022-12-05, 08:32, 21:20]
@@ -369,6 +369,10 @@ async function getMoonTimes(){
             thisData.push(thisVal[2].split(":"))
         }
     });
+    if (thisData.length == 0){
+        // Just in case moon_data is not updated
+        thisData = ["2023-04-01","03","20","13","27"];
+    }
     return thisData;
 }
 /*
