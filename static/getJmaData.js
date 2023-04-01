@@ -176,6 +176,7 @@ function build_obj_pos(sunSetRise,moonSetRise) {
 async function disp_info(kat){
     await sleepy(1500);
     const gotData = await get_data(kat);
+    console.log(gotData.temp);
     var myMin = gotData.temp[1][2];
     var myMax = gotData.temp[1][3];
     if(myMax === undefined){
@@ -185,7 +186,7 @@ async function disp_info(kat){
     var texty = "";
     const city_name = document.getElementById("this_place");
     if (city_name !== null){
-        document.title = gotData.location + "天気";
+        document.title = gotData.location + ": " + gotData.weather[0];
         city_name.innerHTML = "<br>" + gotData.location;
     }
     const gotTime = await getTimes();//fetch Sun rise/set
