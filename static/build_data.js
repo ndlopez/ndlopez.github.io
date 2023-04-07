@@ -20,7 +20,7 @@ let myDate = new Date();
 const jahre = myDate.getFullYear();
 const monty = myDate.getMonth() + 1;
 const today = myDate.getDay();
-const tag = myDate.getDate();
+let tag = myDate.getDate();
 
 var currHH = myDate.getHours();
 var currMin = myDate.getMinutes();
@@ -37,12 +37,18 @@ const ngo_pred = [{xp:0,yp:14.0},{xp:8,yp:11.0},{xp:14,yp:20.0},{xp:23,yp:12.0}]
 const tky_pred = [{xp:0,yp:5.0},{xp:7,yp:3},{xp:14,yp:13},{xp:23,yp:4}];
 var hours = [];
 for (let idx = 0; idx < 24; idx++) hours.push(idx);
+
+/* Fixing bug at 0:00 ~ 0:20 */
+/*if (currHH == 0 && currMin < 20){
+    tag = tag - 1;
+}*/
 /* build array of every 3 hours: 0 ~ hh */
 for (let idx=0;idx < currHH;idx++){
     if(idx % 3 == 0){
         dataHours.push(idx);
     }
 }
+// console.log("yester-you",tag,dataHours);
 function zeroPad(tit){return (tit<10)?"0"+tit:tit;}
 
 /* wind Direction -> JPchar */
