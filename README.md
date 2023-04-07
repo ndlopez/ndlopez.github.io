@@ -2,13 +2,13 @@
 
 [Live Demo](https://ndlopez.github.io)
 
-As a way to show some of the [projects](https://ndlopez.github.io/pages/projects.html) I've been working on and worked on, this small site acts as my digital [resume](https://ndlopez.github.io/pages/resume.html).
+As a way to show some of the [projects](https://ndlopez.github.io/pages/projects.html) I've been working on and worked on. This small site acts as my [resume](https://ndlopez.github.io/pages/resume.html).
 
 On a single page I also summarize some of the research I worked on and current [research](https://ndlopez.github.io/pages/research.html) interests.
 
 ## Available tools
 
-- [Weather data](https://ndlopez.github.io/pages/weather.html) (updated daily)
+- [Weather data](https://ndlopez.github.io/pages/weather.html)
 
 - [Password Generator](https://ndlopez.github.io/tools/passGen.html) (namely LazyPass)
 
