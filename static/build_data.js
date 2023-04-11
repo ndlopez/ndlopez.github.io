@@ -342,7 +342,7 @@ function build_plot(json_array){
     innDiv.setAttribute("class","inner");
 
     const myDiv = document.createElement("div");
-    myDiv.innerHTML = "<img src='" + imgName + "'>";
+    myDiv.innerHTML = "<img src='" + imgName + "' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/>";
     innDiv.appendChild(myDiv);
     outDiv.appendChild(innDiv);
     centDiv.appendChild(outDiv);
