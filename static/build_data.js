@@ -13,6 +13,7 @@ let months = ["January","February","March","April","May","June","July","August",
 let days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 /* Fetch observation data from jma site and plot */
 const jma_url = "https://www.jma.go.jp/bosai/amedas/data/point/";//51106/2022
+const pm25_url = "https://www.data.jma.go.jp/gmd/env/kosa/fcst/img/surf/jp/";
 const cities = [{name:"Nagoya",code:51106},{name:"Takayama",code:52146}];
 const cdx = 0; // 0:Nagoya, 1:Takayama
 /*current date and time*/
@@ -22,8 +23,8 @@ const monty = myDate.getMonth() + 1;
 const today = myDate.getDay();
 let tag = myDate.getDate();
 
-var currHH = myDate.getHours();
-var currMin = myDate.getMinutes();
+let currHH = myDate.getHours();
+let currMin = myDate.getMinutes();
 currHH = currMin > 21? currHH+1:currHH;
 
 let result = []; //store per hour weather data
@@ -81,7 +82,7 @@ function get_wind_desc(wspeed){
 
 function build_path(jdx){
     //0 < jdx < 8:
-    var path = jma_url + cities[cdx].code + "/" + jahre + zeroPad(monty) + zeroPad(tag) + "_"+zeroPad(dataHours[jdx]) + ".json";
+    const path = jma_url + cities[cdx].code + "/" + jahre + zeroPad(monty) + zeroPad(tag) + "_"+zeroPad(dataHours[jdx]) + ".json";
     return path;
 }
 function build_attrib(tit){
@@ -319,6 +320,12 @@ function build_array(hour,gotData){
 }
 
 function build_plot(json_array){
+    // 0:0~2, 1:3~5, 2:6~
+    const pm25Img = document.getElementById("pm25_img");
+    const imgName = pm25_url + jahre + zeroPad(monty) + zeroPad(tag) + zeroPad(dataHours[7]) + "00_kosafcst-s_jp_jp.png";
+    console.log("pm25img",imgName);
+    pm25Img.innerHTML = "<img src='" + imgName + "'>";
+
     /*d3js bar plot-> https://jsfiddle.net/matehu/w7h81xz2/38/*/
     const containDiv = document.getElementById("weather_bar");
     const leftDiv = document.createElement("div");
@@ -496,6 +503,7 @@ function build_plot(json_array){
     .attr("stroke-width","3px")
     .attr("stroke-dasharray","5,5");
 }
+
 /** might be helpful
 async function convToUpper(data){
     return data.toUpperCase();
