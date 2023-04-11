@@ -320,9 +320,19 @@ function build_array(hour,gotData){
 }
 
 function build_plot(json_array){
-    // 0:0~2, 1:3~5, 2:6~
+    // 0:0~2, 1:3~5, 2:6~8, 3:9~11, 4:12~14, 5:15~17,6:18~20,7:21~23
+    let myIdx = 0;
+    for (let idx = 0; idx < dataHours.length; idx++) {
+        if (dataHours.includes(currHH)){
+            myIdx = idx;
+            break;
+        }
+        if(currHH > dataHours[idx]){
+            myIdx = idx;
+        }
+    }
     const pm25Img = document.getElementById("pm25_img");
-    const imgName = pm25_url + jahre + zeroPad(monty) + zeroPad(tag) + zeroPad(dataHours[7]) + "00_kosafcst-s_jp_jp.png";
+    const imgName = pm25_url + jahre + zeroPad(monty) + zeroPad(tag) + zeroPad(dataHours[myIdx]) + "00_kosafcst-s_jp_jp.png";
     console.log("pm25img",imgName);
     pm25Img.innerHTML = "<img src='" + imgName + "'>";
 
