@@ -337,9 +337,9 @@ function build_plot(json_array){
     const centDiv = document.createElement("div");
     centDiv.setAttribute("class","column-right float-left");
     const outDiv = document.createElement("div");
-    outDiv.setAttribute("class","outer");
+    outDiv.setAttribute("class","outer_div");
     const innDiv = document.createElement("div");
-    innDiv.setAttribute("class","inner");
+    innDiv.setAttribute("class","inner_div");
 
     const myDiv = document.createElement("div");
     myDiv.innerHTML = "<img src='" + imgName + "' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/>";
