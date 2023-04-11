@@ -331,10 +331,23 @@ function build_plot(json_array){
             myIdx = idx;
         }
     }
-    const pm25Img = document.getElementById("pm25_img");
+    const pm25Div = document.getElementById("pm25_div");
     const imgName = pm25_url + jahre + zeroPad(monty) + zeroPad(tag) + zeroPad(dataHours[myIdx]) + "00_kosafcst-s_jp_jp.png";
-    console.log("pm25img",imgName);
-    pm25Img.innerHTML = "<img src='" + imgName + "'>";
+    // console.log("pm25img",imgName);
+    const centDiv = document.createElement("div");
+    centDiv.setAttribute("class","column-right float-left");
+    const outDiv = document.createElement("div");
+    outDiv.setAttribute("class","outer");
+    const innDiv = document.createElement("div");
+    innDiv.setAttribute("class","inner");
+
+    const myDiv = document.createElement("div");
+    myDiv.innerHTML = "<img src='" + imgName + "'>";
+    innDiv.appendChild(myDiv);
+    outDiv.appendChild(innDiv);
+    centDiv.appendChild(outDiv);
+    pm25Div.appendChild(centDiv)
+    
 
     /*d3js bar plot-> https://jsfiddle.net/matehu/w7h81xz2/38/*/
     const containDiv = document.getElementById("weather_bar");
