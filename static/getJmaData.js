@@ -16,7 +16,7 @@ Chibineko request PM img:
 
 An image is generated every 3hours
  */
-const curr_Moon = "https://www.timeanddate.com/scripts/moon.php?i=0.809&p=5.670&r=5.592";
+const not_curr_Moon = "https://www.timeanddate.com/scripts/moon.php?i=0.809&p=5.670&r=5.592";
 // console.log(getBase64Img(document.getElementById("pngImg")));
 /* Fetching data from JMA.go.jp */
 const toRad = Math.PI/180.0;
@@ -253,8 +253,8 @@ async function disp_info(kat){
     const radarImg = document.getElementById("radar_img");
     if(gotData.rain[1][0] > 0){
         // put a radar img from tenki.jp
-        radarImg.innerHTML = '<p>Click on the img for 1hour forecast</p><a href="' + 
-        radar_url[1] + '" title="Redirects to JMA.go.jp" target="_blank"><img src="' + radar_url[0] + '"></a>';
+        radarImg.innerHTML = '<h3>Rain radar</h3><a href="' + 
+        radar_url[1] + '" title="Click on the img for 1hour forecast. Redirects to JMA.go.jp" target="_blank"><img src="' + radar_url[0] + '"></a>';
     }
     //when parsing currCond only: var currWeather = gotData.weather[1].split("　");
     /*for(let idx=0;idx<gotData.weather.length;idx++){

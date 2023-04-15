@@ -30,7 +30,8 @@ currHH = currMin > 21? currHH+1:currHH;
 let result = []; //store per hour weather data
 let curr_weather = []; //store last entry of JSON weather data
 let maxmin = []; // Max/Min temp from obs data
-var dataHours = [];
+let dataHours = [];
+let mod3_hours = [];
 const toRadians = Math.PI/180.0;
 const maxValue = 6; //m/s when 10m/s too many scales, should display half
 // Autumn: const ngo_pred = [{xp:0,yp:10.0},{xp:7,yp:8.0},{xp:14,yp:15.5},{xp:23,yp:9.0}];
@@ -40,14 +41,13 @@ var hours = [];
 for (let idx = 0; idx < 24; idx++) hours.push(idx);
 
 /* Fixing bug at 0:00 ~ 0:20 */
-/*if (currHH == 0 && currMin < 20){
-    tag = tag - 1;
-}*/
+/*if (currHH == 0 && currMin < 20){tag = tag - 1;}*/
 /* build array of every 3 hours: 0 ~ hh */
 for (let idx=0;idx < currHH;idx++){
-    if(idx % 3 == 0){
-        dataHours.push(idx);
-    }
+    if(idx % 3 == 0){ dataHours.push(idx); }
+}
+for (let idx=0;idx < 24;idx++){
+    if(idx %3 ==0){ mod3_hours.push(idx); }
 }
 // console.log("yester-you",tag,dataHours);
 function zeroPad(tit){return (tit<10)?"0"+tit:tit;}
@@ -322,18 +322,20 @@ function build_array(hour,gotData){
 function build_plot(json_array){
     // 0:0~2, 1:3~5, 2:6~8, 3:9~11, 4:12~14, 5:15~17,6:18~20,7:21~23
     let myIdx = 0;
-    for (let idx = 0; idx < dataHours.length; idx++) {
-        if (dataHours.includes(currHH)){
+    for (let idx = 0; idx < mod3_hours.length; idx++) {
+        /*if (dataHours.includes(currHH)){
             myIdx = idx;
             break;
-        }
-        if(currHH > dataHours[idx]){
+        }*/
+        if(currHH <= mod3_hours[idx]){
             myIdx = idx;
+            console.log("idx",myIdx);
+            break;
         }
     }
     const pm25Div = document.getElementById("pm25_div");
-    const imgName = pm25_url + jahre + zeroPad(monty) + zeroPad(tag) + zeroPad(dataHours[myIdx]) + "00_kosafcst-s_jp_jp.png";
-    // console.log("pm25img",imgName);
+    const imgName = pm25_url + jahre + zeroPad(monty) + zeroPad(tag) + zeroPad(mod3_hours[myIdx]) + "00_kosafcst-s_jp_jp.png";
+    console.log(currHH,"pm25img",imgName);
     const centDiv = document.createElement("div");
     centDiv.setAttribute("class","column-right float-left");
     const outDiv = document.createElement("div");
@@ -341,8 +343,8 @@ function build_plot(json_array){
     const innDiv = document.createElement("div");
     innDiv.setAttribute("class","inner_div");
 
-    const myDiv = document.createElement("div");
-    myDiv.innerHTML = "<img src='" + imgName + "' onerror='this.onerror=null;this.src=\"../assets/cloudy_all.svg\"'/>";
+    const myDiv = document.createElement("div");//<h3>Yellow dust forecast</h3>
+    myDiv.innerHTML = "<img src='" + imgName + "' onerror='this.onerror=null;this.src=\"../assets/100_0999.jpg\"'/>";
     innDiv.appendChild(myDiv);
     outDiv.appendChild(innDiv);
     centDiv.appendChild(outDiv);
