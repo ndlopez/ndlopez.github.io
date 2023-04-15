@@ -29,7 +29,7 @@ const city_code = [{name:"Nagoya",code:230000},{name:"Takayama",code:210000}];
  also https://www.jma.go.jp/bosai/amedas/#area_type=offices&area_code=230000&amdno=51106&format=table1h&elems=53414
  might be helpful when rain https://codepen.io/aureliendotpro/pen/kVwyVe*/
 const ico_url = "https://www.jma.go.jp/bosai/forecast/img/";
-const radar_url = ["https://static.tenki.jp/static-images/radar/recent/pref-26-middle.jpg",
+const radar_url = ["https://static.tenki.jp/static-images/radar/recent/pref-26-",
 "https://www.jma.go.jp/bosai/nowc/m_index.html#zoom:11/lat:35.211116/lon:136.901665/colordepth:normal/elements:hrpns&slmcs"];
 const sun_time = ["https://dayspedia.com/api/widget/city/11369/?lang=en",
 "https://dayspedia.com/api/widget/city/4311/?lang=en"];
@@ -253,8 +253,12 @@ async function disp_info(kat){
     const radarImg = document.getElementById("radar_img");
     if(gotData.rain[1][0] > 0){
         // put a radar img from tenki.jp
+        let auxVar = ""; 
+        if(navigator.userAgent.match(/(iPhone|iPad|Android|IEMobile)/)){
+            auxVar = "middle";
+        }else{auxVar = "large";}
         radarImg.innerHTML = '<h3>Rain radar</h3><a href="' + 
-        radar_url[1] + '" title="Click on the img for 1hour forecast. Redirects to JMA.go.jp" target="_blank"><img src="' + radar_url[0] + '"></a>';
+        radar_url[1] + '" title="Click on the img for 1hour forecast. Redirects to JMA.go.jp" target="_blank"><img src="' + radar_url[0] + auxVar +'.jpg"></a>';
     }
     //when parsing currCond only: var currWeather = gotData.weather[1].split("　");
     /*for(let idx=0;idx<gotData.weather.length;idx++){

@@ -323,13 +323,10 @@ function build_plot(json_array){
     // 0:0~2, 1:3~5, 2:6~8, 3:9~11, 4:12~14, 5:15~17,6:18~20,7:21~23
     let myIdx = 0;
     for (let idx = 0; idx < mod3_hours.length; idx++) {
-        /*if (dataHours.includes(currHH)){
-            myIdx = idx;
-            break;
-        }*/
+        /*if (dataHours.includes(currHH)){myIdx = idx;break;}*/
         if(currHH <= mod3_hours[idx]){
             myIdx = idx;
-            console.log("idx",myIdx);
+            // console.log("idx",myIdx);
             break;
         }
     }
@@ -338,7 +335,7 @@ function build_plot(json_array){
     pm25Title.innerText = "Yellow dust forecast";
     pm25Div.appendChild(pm25Title);
     const imgName = pm25_url + jahre + zeroPad(monty) + zeroPad(tag) + zeroPad(mod3_hours[myIdx]) + "00_kosafcst-s_jp_jp.png";
-    console.log(currHH,"pm25img",imgName);
+    // console.log(currHH,"pm25img",imgName);
     const centDiv = document.createElement("div");
     centDiv.setAttribute("class","column-right float-left");
     const outDiv = document.createElement("div");
