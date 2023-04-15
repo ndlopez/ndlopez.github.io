@@ -334,6 +334,9 @@ function build_plot(json_array){
         }
     }
     const pm25Div = document.getElementById("pm25_div");
+    const pm25Title = document.createElement("h3");
+    pm25Title.innerText = "Yellow dust forecast";
+    pm25Div.appendChild(pm25Title);
     const imgName = pm25_url + jahre + zeroPad(monty) + zeroPad(tag) + zeroPad(mod3_hours[myIdx]) + "00_kosafcst-s_jp_jp.png";
     console.log(currHH,"pm25img",imgName);
     const centDiv = document.createElement("div");
@@ -343,7 +346,7 @@ function build_plot(json_array){
     const innDiv = document.createElement("div");
     innDiv.setAttribute("class","inner_div");
 
-    const myDiv = document.createElement("div");//<h3>Yellow dust forecast</h3>
+    const myDiv = document.createElement("div");
     myDiv.innerHTML = "<img src='" + imgName + "' onerror='this.onerror=null;this.src=\"../assets/100_0999.jpg\"'/>";
     innDiv.appendChild(myDiv);
     outDiv.appendChild(innDiv);
