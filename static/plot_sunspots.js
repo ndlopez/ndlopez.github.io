@@ -54,13 +54,15 @@ d3.csv(spots_url,function(error,data){
       .attr("stroke","#bed2e040")
       .attr("stroke-width",1.5)
       .attr("d",d3.line()
-          .x((d)=> x(d.date))
-          .y((d)=> y(d.value)));
+        .x((d)=> x(d.date))
+        .y((d)=> y(d.value)));
   svg.append("g")
       .attr("class","date_axis")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
   svg.append("g").attr("class","spot_num").call(d3.axisLeft(y));
+  // To help visibility
+  svg.append("g").attr("transform","translate(" + width + "," + 0 + ")").attr("class","spot_num").call(d3.axisLeft(y));
   // smooth curve
   // Consider taking only the avg/month
   // sum/num_days_month = month value

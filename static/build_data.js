@@ -319,7 +319,7 @@ function build_array(hour,gotData){
     //return result;
 }
 
-function build_plot(json_array){
+function yellow_dust(){
     // 0:0~2, 1:3~5, 2:6~8, 3:9~11, 4:12~14, 5:15~17,6:18~20,7:21~23
     let myIdx = 0;
     for (let idx = 0; idx < mod3_hours.length; idx++) {
@@ -348,9 +348,12 @@ function build_plot(json_array){
     innDiv.appendChild(myDiv);
     outDiv.appendChild(innDiv);
     centDiv.appendChild(outDiv);
-    pm25Div.appendChild(centDiv)
-    
+    pm25Div.appendChild(centDiv);
+}
 
+function build_plot(json_array){
+    // fetch yellow dust forecast
+    yellow_dust();
     /*d3js bar plot-> https://jsfiddle.net/matehu/w7h81xz2/38/*/
     const containDiv = document.getElementById("weather_bar");
     const leftDiv = document.createElement("div");
