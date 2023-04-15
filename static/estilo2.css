@@ -203,11 +203,12 @@ panel2,.flip{
 /*.bar{fill:var(--light-sky)30}*/
 svg g{color:var(--light-sky);}
 .domain, svg line{stroke: var(--light-sky);}
+
 #leftAxis text, #mainPlot .tick text, #rightAxis text{
-  fill:var(--light-sky);
+  fill:var(--lemon);
   font-size: 12px;
 }
-.date_axis text, .spot_num text{fill:var(--light-sky);}
+/*.date_axis text, .spot_num text{fill:var(--lemon);}*/
 .txtTemp,.txtWind,.txtWindDir{fill:whitesmoke;}
 .tempAxis text{fill:var(--wine);}
 .txtRain{fill: var(--sky-blue);}
