@@ -21,10 +21,10 @@ radBtns.forEach(button =>{
     button.onclick = ()=>{
         if(button.id == "phrase"){
             sw_pass = true;
-            console.log("clicked",button.id);
+            //console.log("clicked",button.id);
         }else{
             sw_pass = false;
-            console.log("clicked",button.id);
+            //console.log("clicked",button.id);
         }
     }
 });
@@ -36,6 +36,7 @@ async function get_option(){
     let valPhrase = await disp_words();
     genBtn.addEventListener("click",()=>{
         if (sw_pass){
+            get_option(); // callback
             document.getElementById("pass").innerHTML = valPhrase;
             // console.log("Button clicked",valPhrase);
         }else{
@@ -55,7 +56,7 @@ function pswdgen(){
     let addSymbols = document.querySelector("#symbols");
     const nump = (lenValue)?(lenValue):(default_length);
     // thisLen.innerText = nump;
-    console.log(lenValue,smallCaps.checked,addNumbers.checked,addSymbols.checked);
+    // console.log(lenValue,smallCaps.checked,addNumbers.checked,addSymbols.checked);
     if (smallCaps.checked){
         auxStr = abc + abc.toUpperCase();
     }else{
@@ -68,18 +69,15 @@ function pswdgen(){
         sym = "!#$%&-_@";
     }
     mystr = auxStr + num + sym;
-    
-    let pasw="", hole="";
+    // console.log(mystr);
+    let pasw="";
     //var tot=txt.length+num.length+sym.length;
     let ent1;
-    while (hole.length < nump) {
-        ent1 = Math.floor(mystr.length*Math.random()*Math.random());
+    while (pasw.length < nump) {
+        ent1 = Math.floor(mystr.length*Math.random());
         pasw += mystr.charAt(ent1);
-        hole = pasw;
     }
-    // return pasw;	//pasw is a string!
-    // const num2 = hole.length;
-    document.getElementById("pass").innerHTML = hole;
+    document.getElementById("pass").innerHTML = pasw;
 }
 
 function copy_to_clipboard(){

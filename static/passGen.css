@@ -7,6 +7,7 @@
 @media (max-width: 700px){
   h1{
     font-family: Georgia;
+    /*letter-spacing: 0.1em;*/
     margin: 5px;
     padding: 10px;
     background-color: var(--darkish-sky);
