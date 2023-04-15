@@ -1,6 +1,6 @@
 const default_length = 10;
 const words = "https://raw.githubusercontent.com/ndlopez/jumble_game/main/data/book_words.txt";
-const ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const abc = "qwertyuiopzxcvbnmasdfghjkl";
 let num, sym;
 
 let inp = document.getElementById('passLen');
@@ -18,16 +18,17 @@ radBtns.forEach(button =>{
     Phrase:onclick use disp_words as async and display on h2 tag*/
     button.onclick = ()=>{
         if(button.id == "phrase"){
-            document.getElementById("pass").innerHTML = disp_words();
+            console.log("clicked",button.id);
         }else{
-            pswdgen();
+            console.log("clicked",button.id);
         }
     }
 });
-// disp_words();
+disp_words();
 
 function pswdgen(){
     let mystr = "",auxStr="";
+    num= ""; sym = "";
     // const thisLen = document.getElementById("gotLen");
     let lenValue = document.getElementById("passLen").value;
     let smallCaps = document.querySelector("#lowers");
@@ -37,32 +38,28 @@ function pswdgen(){
     // thisLen.innerText = nump;
     console.log(lenValue,smallCaps.checked,addNumbers.checked,addSymbols.checked);
     if (smallCaps.checked){
-        auxStr = ABC + ABC.toLowerCase();
+        auxStr = abc + abc.toUpperCase();
     }else{
-        auxStr = ABC;
+        auxStr = abc;
     }
     if (numbers.checked){
-        num = "23456789";
-    }else{
-        num = "";
+        num = "98745632";
     }
     if (symbols.checked){
         sym = "!#$%&-_@";
-    }else{
-        sym = "";
     }
-    mystr = num + auxStr + sym;
+    mystr = auxStr + num + sym;
     
-    let pasw="";let hole="";
+    let pasw="", hole="";
     //var tot=txt.length+num.length+sym.length;
-    let ent1,ent2,ent3;
+    let ent1;
     while (hole.length < nump) {
-        ent1=Math.floor(mystr.length*Math.random()*Math.random());
+        ent1 = Math.floor(mystr.length*Math.random()*Math.random());
         pasw += mystr.charAt(ent1);
         hole = pasw;
     }
-    //return pasw;	//pasw is a string!
-    const num2 = hole.length;
+    // return pasw;	//pasw is a string!
+    // const num2 = hole.length;
     document.getElementById("pass").innerHTML = hole;
 }
 
@@ -90,7 +87,7 @@ async function get_url_data(url){
     const data = await response.text();
     const rows = data.split('\n');
     rows.forEach(row=>{
-        if(row.length <= 6){
+        if(row.length < 6){
             fiveChars.push(row);
         }
     });
