@@ -30,6 +30,7 @@ const musik = [
     {artist: "NeedtoBreathe", song: "Into the Mistery"},
     {artist: "Kongos", song: "Take it from Me"},
     {artist: "The Shins", song: "So now what / New slang"},
+    {artis: "Carole King", song: "Anyone at all"},
     {artist: "lovelytheband", song: "these are my friends"},
     {artist: "Cigarettes After Sex", song: "Apocalypse"},
     {artist: "Mazzy Star", song: "Fade into you"},
