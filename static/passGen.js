@@ -36,8 +36,8 @@ async function get_option(){
     let valPhrase = await disp_words();
     genBtn.addEventListener("click",()=>{
         if (sw_pass){
-            
-            console.log("Button clicked",valPhrase);
+            document.getElementById("pass").innerHTML = valPhrase;
+            // console.log("Button clicked",valPhrase);
         }else{
             pswdgen();
         }
@@ -97,7 +97,7 @@ async function disp_words(){
     for (let idx=0; idx < 4; idx++){
         text += myWords[rand_idx(myWords)] + " "
     }
-    console.log(text,text.length);
+    // console.log(text,text.length);
     return text;
 }
 
