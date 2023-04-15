@@ -13,18 +13,37 @@ inp.addEventListener('input',()=>{
 
 const radBtns = document.querySelectorAll("input[type='radio']");
 
+let sw_pass = true;
+
 radBtns.forEach(button =>{
     /* is not necessary to assign an event to every "option"
     Phrase:onclick use disp_words as async and display on h2 tag*/
     button.onclick = ()=>{
         if(button.id == "phrase"){
+            sw_pass = true;
             console.log("clicked",button.id);
         }else{
+            sw_pass = false;
             console.log("clicked",button.id);
         }
     }
 });
-disp_words();
+
+get_option();
+
+async function get_option(){
+    const genBtn = document.getElementById("gen_btn");
+    let valPhrase = await disp_words();
+    genBtn.addEventListener("click",()=>{
+        if (sw_pass){
+            
+            console.log("Button clicked",valPhrase);
+        }else{
+            pswdgen();
+        }
+        
+    });
+}
 
 function pswdgen(){
     let mystr = "",auxStr="";
@@ -79,6 +98,7 @@ async function disp_words(){
         text += myWords[rand_idx(myWords)] + " "
     }
     console.log(text,text.length);
+    return text;
 }
 
 async function get_url_data(url){

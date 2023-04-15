@@ -20,7 +20,7 @@
     border-radius: 5px;
     margin-top: 13px;
   }
-  .first_btn{
+  #gen_btn{
     background-color: var(--wine);
     color: white;
   }
