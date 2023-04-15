@@ -10,3 +10,4 @@ build/*
 
 #Exclude original data
 data/sunspot_number_all.csv
+data/SN_d_tot_V2.0.csv

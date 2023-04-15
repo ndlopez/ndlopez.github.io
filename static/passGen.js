@@ -16,8 +16,6 @@ const radBtns = document.querySelectorAll("input[type='radio']");
 let sw_pass = true;
 
 radBtns.forEach(button =>{
-    /* is not necessary to assign an event to every "option"
-    Phrase:onclick use disp_words as async and display on h2 tag*/
     button.onclick = ()=>{
         if(button.id == "phrase"){
             sw_pass = true;
@@ -41,8 +39,7 @@ async function get_option(){
             // console.log("Button clicked",valPhrase);
         }else{
             pswdgen();
-        }
-        
+        }        
     });
 }
 

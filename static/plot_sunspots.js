@@ -16,7 +16,7 @@ const x = d3.scaleTime().range([ 0, width ]);
 const y = d3.scaleLinear().range([ height, 0 ]);
 
 d3.csv(spots_url,function(error,data){
-  console.log(data);
+  // console.log(data);
   if(error)throw error;
   data.forEach((d)=>{
     d.date = dateParser(d.date);

@@ -1,9 +1,9 @@
-'''Read local csv file and edit date to output better format
+'''Read local csv file and edit date to output w/better format
 Should request data from: 
 https://sidc.be/silso/DATA/SN_d_tot_V2.0.txt
 '''
 import csv
-path_file = "~/Downloads/SN_d_tot_V2.0.csv"
+path_file = "../data/SN_d_tot_V2.0.csv"
 
 newFile = []
 fields = ["date","spotNum"]
@@ -24,7 +24,7 @@ with open(path_file,mode="r") as data_file:
 
 #print(newFile)
 
-outFile = "../data/sunspot_number.csv"
+outFile = "../data/sunspot_number2.csv"
 with open(outFile,"w",newline='') as new_file:
     write = csv.writer(new_file)
     write.writerow(fields)
