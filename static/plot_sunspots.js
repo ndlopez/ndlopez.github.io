@@ -1,12 +1,34 @@
-/*SILSO data: Sunspot daily number*/
+/*SILSO data: daily Sunspot number*/
 const spots_url = "https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/sunspot_number.csv";
+const containDiv = document.getElementById("sunspots");
+const spotTitle = document.createElement("p");
+spotTitle.innerText = "International sunspot number: daily observations since 2008-01-01 ~ 2023-03-31 (Solar cycles 24 and 25)";
+containDiv.appendChild(spotTitle);
+const centerDiv = document.createElement("div");
+centerDiv.setAttribute("class","column-right float-left");
+const outerDiv = document.createElement("div");
+outerDiv.setAttribute("class","outer");
+const innerDiv = document.createElement("div");
+innerDiv.setAttribute("class","inner");
+const mainDiv = document.createElement("div");
+mainDiv.setAttribute("id","mainPlot");
+
+innerDiv.appendChild(mainDiv);
+outerDiv.appendChild(innerDiv);
+centerDiv.appendChild(outerDiv);
+//containDiv.appendChild(leftDiv);
+containDiv.appendChild(centerDiv);
+const plotCaption = document.createElement("p");
+plotCaption.innerHTML = 'Data are courtesy of <a target="_blank" href="https://sidc.be/silso/">SILSO data/image, Royal Observatory of Belgium, Brussels</a>';
+containDiv.appendChild(plotCaption);
+//containDiv.appendChild(rightDiv);
 // set the dimensions and margins of the graph
-const margin = {top: 10, right: 10, bottom: 30, left: 25},
+const margin = {top: 10, right: 10, bottom: 30, left: 35},
     width = 460 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-const svg = d3.select("#sunspots").append("svg")
+const svg = d3.select("#mainPlot").append("svg")
               .attr("width", width + margin.left + margin.right)
               .attr("height", height + margin.top + margin.bottom)
               .append("g").attr("transform","translate(" + margin.left + "," + margin.top + ")");

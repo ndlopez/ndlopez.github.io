@@ -33,6 +33,7 @@
     
     <header><h2>Solar Physics</h2></header>
     <main>
+      <!-- Sun image by sdo-->
       <section class="clearfix">
         <h3>Latest SDO/AIA 171 image</h3>
         <p>This channel is especially good at showing coronal loops - the arcs extending off 
@@ -47,16 +48,17 @@
           <p>Sun image is courtesy of <a href="https://sdo.gsfc.nasa.gov/data/">NASA/SDO and the AIA, EVE, and HMI science teams.</a></p>
         </picture>
       </section>
-      
+      <!-- Sunspot number plot by SILSO-->
       <section class="clearfix">
-        <h3>Sunspot number</h3><p>International sunspot number: daily observations since 2009-01-01 ~ 2023-02-28</p>
-        <figure class="no-margin">
-          <!--source media="(min-width:650px)" srcset="https://sidc.be/silso/IMAGES/GRAPHICS/wolfjmms.png"/-->
-          <!--img src="https://sidc.be/silso/IMAGES/GRAPHICS/wolfjmms.png" style="width:100%"-->
-          <div id="sunspots"></div>
-          <figcaption>Data are courtesy of <a target="_blank" href="https://sidc.be/silso/">SILSO data/image, Royal Observatory of Belgium, Brussels</a></figcaption>
-        </figure>
+        <h3>Sunspot number</h3>
+        <div id="sunspots"></div>
+        <!--figure class="no-margin">
+          <source media="(min-width:650px)" srcset="https://sidc.be/silso/IMAGES/GRAPHICS/wolfjmms.png"/->
+          <--img src="https://sidc.be/silso/IMAGES/GRAPHICS/wolfjmms.png" style="width:100%">
+          <figcaption></figcaption>
+        </figure-->
       </section>
+      <!-- X-ray flux -->
       <section id="latest_event" class="clearfix">
         <h3>Latest <a target="blank" href="https://www.swpc.noaa.gov/products/goes-x-ray-flux">GOES-16 X-ray</a> event</h3></section>
         
@@ -66,8 +68,8 @@
     <footer><hr>
       <div class="row">
         <div class="column clearfix float-left align-left">
-          <p>Hello from
-            <a target="blank" href="https://www.openstreetmap.org/search?whereami=1&query=34.7022%2C135.1940#map=14/34.7021/135.1940">34°41'24"N 135°11'44"E</a></p>
+          <p>
+            <a target="blank" href="https://www.openstreetmap.org/search?whereami=1&query=34.7022%2C135.1940#map=14/34.7021/135.1940">Hello from 34°41'24"N 135°11'44"E</a></p>
         </div>
         <div class="column clearfix float-left align-right">
           <a class="mySNS" href="https://twitter.com/ndzerglink" target="_blank"><img src="../assets/twitter-logo.svg"/></a>
@@ -76,7 +78,7 @@
         </div>
       </div>
       <div class="clearfix">
-        <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2020-03-16 ndzerglink </span></p>
+        <p style="text-align:center;"><span class="copy-left">&copy;</span><span> 2023-04-15 ndzerglink </span></p>
       </div>
     </footer>
     <nav class="menu no-desktop" id="nav-menu">  
