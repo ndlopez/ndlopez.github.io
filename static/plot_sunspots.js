@@ -84,6 +84,6 @@ function run_avg(data,steps){
   for (let idx = 0; idx < steps; idx++) {
     sum += data[1];
   }
-  arg_value.push(sum);
+  avg_value.push(sum);
   return {date_arr,avg_value};
 }
