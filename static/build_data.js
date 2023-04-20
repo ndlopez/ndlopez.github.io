@@ -9,7 +9,7 @@ From the above url fetch json field and request data to the following path
  https://www.jma.go.jp/bosai/quake/data/ + jsonFileName
  jsonFileName = 20230325071721_20230325071439_VXSE5k_1.json
  */
-import {buildProgressCircle, buildGaugeMeter } from "https://raw.githubusercontent.com/ndlopez/webApp/main/static/build_svg.js";
+// CORS problem import {buildProgressCircle, buildGaugeMeter } from "https://raw.githubusercontent.com/ndlopez/webApp/main/static/build_svg.js";
 let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 let days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 /* Fetch observation data from jma site and plot */
@@ -95,7 +95,7 @@ function get_min_attr(tit){
     }
 }
 
-function buildProgressCircle_2(percent,title,texty) {
+function buildProgressCircle(percent,title,texty) {
     let radius = 52;
     const pTitle = document.createElement("p");
     pTitle.innerText = title;
@@ -140,7 +140,7 @@ function buildProgressCircle_2(percent,title,texty) {
 
     return subDiv;
 }
-function buildGaugeMeter_2(value,title,htmlTxt){
+function buildGaugeMeter(value,title,htmlTxt){
     //Path - Text - Path
     if(value > maxValue){
         // Should re-scale but seems not so easy, probably change maxValue?
@@ -210,7 +210,7 @@ function buildGaugeMeter_2(value,title,htmlTxt){
 
     return subDiv;
 }
-function buildPath_2(inValue,radio,xOffset){
+function buildPath(inValue,radio,xOffset){
     //calc circ_path based on MaxValue = 6m/s
     var beta = 0; 
     var dx = 0;
@@ -241,7 +241,7 @@ function buildPath_2(inValue,radio,xOffset){
     arr.push(flag);
     return arr;
 }
-function buildSVGtext_2(dx,dy,text){
+function buildSVGtext(dx,dy,text){
     const svgText = document.createElementNS('http://www.w3.org/2000/svg','text');
     svgText.setAttribute("x",dx);
     svgText.setAttribute("y",dy);
