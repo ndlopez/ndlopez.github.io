@@ -332,12 +332,10 @@ function yellow_dust(){
     }
     if (currHH > 21){
         //display next day forecast
-        
-        //tag = ;
         let today = new Date(jahre+"-"+monty+"-"+tag);
         let tomorrow = new Date(today);
-        let aux = tomorrow.setDate(today.getDate()+1)
-        console.log("whatDay",new Date(aux *1000));
+        // let aux = tomorrow.setDate(today.getDate()+1)
+        // console.log("whatDay",new Date(aux *1000));
         tag = tag +1;
     }
     const pm25Div = document.getElementById("pm25_div");
