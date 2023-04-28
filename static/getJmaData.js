@@ -50,6 +50,7 @@ async function sleepy(msec){
     return new Promise(resolve =>setTimeout(resolve,msec));
 }
 
+// console.log(window.screen.width,window.screen.height);
 disp_info(0);
 
 function getDateHour(isoStr){
@@ -80,7 +81,7 @@ function build_obj_pos(sunSetRise,moonSetRise) {
     const sun_times = [sunSetRise.sunrise[0],sunSetRise.sunrise[1],sunSetRise.sunset[0],sunSetRise.sunset[1]];
     const moon_times = [parseInt(moonSetRise[2][0].trim()),parseInt(moonSetRise[2][1]),
     parseInt(moonSetRise[1][0].trim()),parseInt(moonSetRise[1][1])];
-    const width = 350, height = 220;//px, 330x200;300x180, 120 for summer
+    const width = window.screen.width -10, height = Math.floor(220*width/360) ;//px, 330x200;300x180, 120 for summer
 
     const sun_pos = calc_obj_pos(sun_times);//[0]:rr,[1]:x0, [2]:y0
     const moon_pos = calc_obj_pos(moon_times);
