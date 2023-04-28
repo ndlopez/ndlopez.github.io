@@ -1,0 +1,8 @@
+{
+    "name":"Diego's web portfolio",
+    "short_name":"DLopez",
+    "icons":[{"src":"assets/favicon.svg","sized":"128x128"}],
+    "background_color":"#ffffff",
+    "theme_color":"#ffffff",
+    "display":"fullscreen"
+}
