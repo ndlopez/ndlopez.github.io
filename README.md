@@ -4,11 +4,11 @@
 
 As a way to show some of the [projects](https://ndlopez.github.io/pages/projects.html) I've been working on and worked on. This small site acts as my [resume](https://ndlopez.github.io/pages/resume.html).
 
-On a single page I also summarize some of the research I worked on and current [research](https://ndlopez.github.io/pages/research.html) interests.
+On a single page I also summarize some of the research I worked on as a grad student and current [research](https://ndlopez.github.io/pages/research.html) interests.
 
 ## Available tools
 
-- [Weather data](https://ndlopez.github.io/pages/weather.html)
+- [Weather forecast](https://ndlopez.github.io/weather) for a certain city
 
 - [Password Generator](https://ndlopez.github.io/tools/passGen.html) (namely LazyPass)
 
@@ -18,9 +18,20 @@ On a single page I also summarize some of the research I worked on and current [
 
 ## Used libraries and assets
 
-- Some of the SVGs are from [here](https://github.com/danklammer/bytesize-icons)
+- Most icons and images are SVGs and are from [here](https://github.com/danklammer/bytesize-icons), svgrepo.com or own created.
 
-- Weather data are plot using D3JS library.
+- Weather data are rendered with D3JS library.
+
+- Current and forecast weather data are from the Japan Meteorological Agency.
+
+- Sunspot data are from the Royal Observatory of Belgium.
+
+- GOES X-ray list of events are scraped from NOAA/SWPC.
+
+- Sun and Moon rise/set times are from [dayspedia](https://dayspedia.com/)and [timeanddate.com](https://www.timeanddate.com) respectively.
+
+## Features
+- Fully responsive design
 
 ## Running Environment
 
@@ -28,7 +39,9 @@ Browser: Firefox, obviously.
 
 Editor: VIM and Codium
 
-Debian Buster, Sony Vaio J21
+OS: Debian Buster
+
+PC: Sony Vaio J21
 
 --
 
