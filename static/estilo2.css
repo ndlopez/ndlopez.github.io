@@ -324,7 +324,7 @@ button{
   nav.menu ul li{flex: 1;}
   nav.menu ul li a img{width: 1.15rem;height: 1.15rem;}
 
-  .outer{width: 320px;  overflow-x: auto;  }
+  .outer{width: auto;/*320px;*/  overflow-x: auto;  }
   .large{font-size: 40px;}
   .middle{font-size: 18px;}
   .column-left{margin: 0px 0px 0px -8px;}

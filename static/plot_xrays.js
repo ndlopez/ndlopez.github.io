@@ -1,3 +1,4 @@
+/*https://services.swpc.noaa.gov/products/summary/solar-wind-speed.json*/
 /*GOES 16 xrays 01~0.8nm*/
 const xrays_url = "https://services.swpc.noaa.gov/json/goes/primary/xrays-3-day.json";
 // set the dimensions and margins of the graph
