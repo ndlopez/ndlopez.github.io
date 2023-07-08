@@ -1,0 +1,50 @@
+/* Styles for homePage*/
+#home{
+  background-image:url('../assets/100_0999.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#home main{color: var(--smoke);}
+#home main a{color: var(--wine);}
+.counter{
+  width: 60%;
+  padding: 0px 10px 0px 0px;
+  border: 0px;
+}
+.top-text{
+  font-size: small;
+  margin-top: -18px;
+}
+#zenith{
+  text-align: right;
+  font-size: large;
+  font-weight:300;
+  padding: 0px;
+}
+nav.top-menu{
+  /*display: block;*/
+  width: 100%;
+  box-sizing: inherit;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.navlink{
+  position:relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+}
+.navlink-off,.navlink-on{position:relative}
+.navlink-off:after,.navlink-on:after{content:" ";display:block;margin:.125rem auto 0;width:0;height:.125rem;border-radius:.125rem;background:rgba(255,255,255,0);pointer-events:none;transition:all .4s ease}
+.navlink-off:hover:after{width:100%;background:var(--light-sky);}
+.navlink-on:after{width:100%;background:var(--light-sky);}
+.inline-block{
+  display: inline-block;
+  vertical-align: top;
+}
+
+@media (max-width: 700px){
+  .top-menu{display: none;}
+  #zenith{font-size: large;}
+}
