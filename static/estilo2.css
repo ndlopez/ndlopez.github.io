@@ -217,10 +217,9 @@ svg g{color:var(--light-sky);}
   content:'\02191';/*Up*/
   color:var(--light-sky);
   font-size: x-large;
-  /*content:"\02796";background-color: var(--light-sky);*/}
+  /*content:"\02796";background-color: var(--light-sky);*/
+}
 .panel{
-  display:none;
-  background-color:#e5e5e5;
   overflow:hidden;
 }
 button{

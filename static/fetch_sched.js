@@ -10,7 +10,7 @@ async function disp_sched(){
     const elem1 = "time",elem2="activity";
     const thisDay = await get_url_data(urlSched,key,elem1,elem2);
 
-    var text ="";
+    let text ="";
     for (let idx=0; idx < thisDay["myTime"].length;idx++){        
         text += "<tr><td style='text-align:right;'>" + thisDay["myTime"][idx] + "</td><td>" + thisDay["myAct"][idx]+"</td></tr>";
     };
@@ -41,6 +41,7 @@ async function get_url_data(url,jsonKey,keyElm1,keyElm2){
     //console.log(rows);
 }
 
+/* details/summary
 const acc = document.getElementsByClassName("accordion");
 for(var i=0;i<acc.length;i++){
     acc[i].addEventListener("click",function(){
@@ -52,4 +53,4 @@ for(var i=0;i<acc.length;i++){
             panel.style.display="block";
         }
     });
-}
+}*/
