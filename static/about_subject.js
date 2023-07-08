@@ -50,7 +50,9 @@ const musik = [
     {artist: "Stone Temple Pilots", song: "Vasoline"},
     {artist: "White Town", song:"Your Woman"},
     {artist: "The Airborne Toxic Event",song: "Changing"},
-    {artist: "WALK THE MOON",song: "Kamikaze"}
+    {artist: "WALK THE MOON",song: "Kamikaze"},
+    {artist: "Donato Espinoza", song: "Pre-sentimiento"},
+    {artist: "Eddy Navia", song: "Copagira"}
 ]; //AJR - Burn The House Down
 const interests = {
     main:["High-energy physics"," Astronomy"," Electronics"],
