@@ -59,10 +59,8 @@ const interests = {
     hobby:["Programming"," Cycling"," Hiking"," Reading"]};
 
 //console.log(tools[0]["item0"]);
-// the idea is:
-// <details><summary><h2>Musik</h2></summary><ul><li>...</ul></details>
 const mainDiv = document.getElementById("aboutMe"); // createElement("section");
-mainDiv.setAttribute("class","clearfix");
+//mainDiv.setAttribute("class","clearfix");
 function createTitle(elm,text){
     /* This func should return <summary><h2> */
     const h2Title = document.createElement(elm);
@@ -100,10 +98,11 @@ function getList(){
 }
 mainDiv.appendChild(getList());
 
-mainDiv.appendChild(createTitle("h2",titles[2]));
-
-let ulElm = document.createElement("ul");
-
+const musicDiv = document.createElement("details");
+const inner_div = document.createElement("summary"); 
+inner_div.appendChild(createTitle("h2",titles[2]));
+musicDiv.appendChild(inner_div);
+const ulElm = document.createElement("ul");
 musik.forEach(list =>{
     let liElm = document.createElement("li");
     var auxVar = "";
@@ -113,7 +112,7 @@ musik.forEach(list =>{
     liElm.innerHTML = auxVar;
     ulElm.appendChild(liElm);
 });
-
-mainDiv.appendChild(ulElm);
+musicDiv.appendChild(ulElm);
+mainDiv.appendChild(musicDiv);
 
 //document.body.appendChild(mainDiv);
