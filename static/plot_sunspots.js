@@ -5,7 +5,7 @@ const spotTitle = document.createElement("p");
 spotTitle.innerHTML = 'International sunspot number: daily observations since 2008-01-01 ~ 2023-06-30 (Solar cycles 24 and 25). Data are courtesy of <a target="_blank" href="https://sidc.be/silso/">SILSO data/image, Royal Observatory of Belgium, Brussels</a>';
 containDiv.appendChild(spotTitle);
 const centerDiv = document.createElement("div");
-centerDiv.setAttribute("class","column-right float-left");
+centerDiv.setAttribute("class","one-column float-left");
 const outerDiv = document.createElement("div");
 outerDiv.setAttribute("class","outer");
 const innerDiv = document.createElement("div");
