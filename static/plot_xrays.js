@@ -1,5 +1,8 @@
-/*GOES 16 xrays 01~0.8nm
-
+/*
+GOES 16 xrays w/lambda = [0.05,0.4] and [0.1,0.8] nm
+E = h*c*lambda [~10^2eV]
+E = {[248.137,31.01],[124.068,15.508]} 10^2eV
+ref scales https://www.d3indepth.com/scales/
 https://observablehq.com/@d3/line-chart/2?intent=fork
 
 */
@@ -19,8 +22,9 @@ const svg_plot = d3.select("#xrays-long")
 
 const dateParse = d3.timeParse("%Y-%m-%dT%H:%M:%SZ");
 const x_scale = d3.scaleTime().range([ 0, w_plot]);
-const y_scale = d3.scaleLinear().range([h_plot, 0]);
+const y_scale = d3.scaleLog().range([h_plot, 0]); // d3.scaleLinear().range([h_plot, 0]);
 
+let aux = 0.0;
 d3.json(xrays_url,
  function(err,data){
    if(err)throw err;
@@ -28,15 +32,21 @@ d3.json(xrays_url,
    // d3.time.format("%Y-%m-%d %H:%M:%S").parse;
    data.forEach((d,i) => {
      if(i%2==0){
+      // energy 0.05-0.4 nm
        d.date = dateParse(d.time_tag);
-       let aux = d.flux*1e+8;
+       aux = d.flux * 1e+8;
        d.value = parseFloat(aux.toFixed(3));
        //console.log(d.date,d.value);
-     }
+     }else{
+      // energy 0.1-0.8nm
+      d.tag = dateParse(d.time_tag);
+      aux = d.flux * 1e+8;
+      d.fluss = parseFloat(aux.toFixed(3));
+    }
    });
 
-   x_scale.domain(d3.extent(data,(d,i) => d.date));
-   y.domain([0,d3.max(data,(d,i) => d.value)]);
+   x_scale.domain(d3.extent(data,(d) => d.date));
+   y_scale.domain([2,d3.max(data,(d) => d.fluss)]);
    
    // Plot line
    /*svg_plot.append("path")
@@ -59,6 +69,15 @@ d3.json(xrays_url,
      .attr("width","2")
      .attr("height","2")
      .style("fill","#bed2e0");
+  svg_plot.append("g")
+     .selectAll("squares")
+     .data(data).enter()
+     .append("rect")
+     .attr("x",(d,i)=>{if(i%2!=0){return x_scale(d.tag);}})
+     .attr("y",(d,i)=>{if(i%2!=0){return y_scale(d.fluss);}})
+     .attr("width","2")
+     .attr("height","2")
+     .style("fill","#cc274c");
 
    svg_plot.append("g")
      .attr("class","date_axis")
