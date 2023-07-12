@@ -1,5 +1,6 @@
 /*SILSO data: daily Sunspot number*/
 const spots_url = "https://raw.githubusercontent.com/ndlopez/ndlopez.github.io/main/data/sunspot_number.csv";
+
 const containDiv = document.getElementById("sunspots");
 const spotTitle = document.createElement("p");
 spotTitle.innerHTML = 'International sunspot number: daily observations since 2008-01-01 ~ 2023-06-30 (Solar cycles 24 and 25). Data are courtesy of <a target="_blank" href="https://sidc.be/silso/">SILSO data/image, Royal Observatory of Belgium, Brussels</a>';

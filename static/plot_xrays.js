@@ -69,6 +69,7 @@ d3.json(xrays_url,
      .attr("width","2")
      .attr("height","2")
      .style("fill","#bed2e0");
+     
   svg_plot.append("g")
      .selectAll("squares")
      .data(data).enter()
