@@ -27,9 +27,9 @@ const projects=[
     },{
         name:"Unpublished website of Galileo Inc.",
         title:"Employee's daily routine webpage and Internship schedule webpage.",
-        description:"It includes a home page, 3 pages for different types of employees at the company:\
+        description:"Includes a home page, 3 pages for different types of employees at the company:\
         new graduates, foreigners, and working moms and one page to display the schedule of internship. \
-        The Bootstrap CSS library is used to display better the HTML elements.",
+        Bootstrap library is used to style HTML elements.",
         language:"HTML, JavaScript, CSS",
         image:"../assets/cloud-heavy.svg",
         repo:"https://github.com/ndlopez/galileo_web",
@@ -37,10 +37,10 @@ const projects=[
         builtOn:2018
     },{
         name:"Quotes, a CLI Application",
-        title:"Display on the Terminal quotes from famous people.",
+        title:"Display on the Terminal inspirational quotes from famous people.",
         description:"Similar to the <fortune> CLI app available on most linux repositiories, \
-        this application displays a quote every time a Terminal window is open. \
-        Data was scrapped using Python\'s module Scrapy from the website goodreads.com.",
+        this application displays a quote every time a Terminal window is open. Setting is obviously necessary at  .bashrc or .profile. \
+        Data were scrapped using Python\'s module Scrapy from the website goodreads.com. Requires Python3 installed on system. No binary (exe) available.",
         language:"Python",
         image:"../assets/cloud-heavy.svg",
         repo:"https://github.com/ndlopez/quotes",
@@ -150,7 +150,7 @@ const projects=[
         name:"Stream Player App",
         title:"Discover new music by listening to NASA's ThirdRock radio.",
         description:"Windows TaskBar Application. Displays the current song playing on ThirdRock radio. \
-        Artwork data is fetched from a repository. Requires Windows Desktop Runtime v3.1, \
+        Artwork and iD3-tag data are fetched from 2 different remote APIs. Requires Windows Desktop Runtime v3.1, \
         available once granted permission to execute.",
         language:"C#",
         image:"https://raw.githubusercontent.com/ndlopez/NowPlaying/master/assets/now_playing.png",
@@ -159,10 +159,10 @@ const projects=[
         builtOn:2022
     },{
         name: "Stream Player WebUI",
-        title: "Listen to and discover new music while working/coding. Four different audio streams are available: ThirdRock radio, 113.fm 181.fm, and LaPaz.fm",
+        title: "Listen to and discover new music while working/coding/running. Thirteen different audio streams are available: ThirdRock radio, 113.fm, 181.fm, LaPaz.fm and more.",
         description: "Web application developed in JavaScript. Displays a music player with pre-defined \
         streams. Keyboard events are associated to Play/Pause/Stop buttons. Works on both Desktop and Mobile \
-        platforms. A 'recently listened' playlist is created for LaPaz.fm page. Disclaimer: Artwork is not \
+        platforms. A 'recently listened' playlist is created for LaPaz.fm page only. Disclaimer: Artwork and iD3-tag info are not \
         available for all the audio streams. Some CORS issue with the provider.",
         language: "JavaScript, CSS",
         image: "https://raw.githubusercontent.com/ndlopez/web_player/main/assets/new_design.png",
@@ -181,9 +181,9 @@ const projects=[
     },{
         name: "JMA weather",
         title: "WebPage to display current weather conditions for Nagoya. Features also, Sun/Moon aparent \
-        position in the sky.",
-        description: "Display on a webpage current weather conditions and 5-day forecast for Nagoya. \
-        All data (updated every 10 minutes) are from the Japanese Metereological Agency (www.jma.go.jp).",
+        position in the sky and rise/set times.",
+        description: "Display on a webpage current weather conditions and 5-day forecast for Nagoya. Added also information of the Japanese earthquake system. \
+        All data (updated every 10 minutes for weather) are from the Japanese Metereological Agency (www.jma.go.jp).",
         language: "JavaScript, CSS",
         image: "",
         repo: "https://github.com/ndlopez/ndlopez.github.io/",
