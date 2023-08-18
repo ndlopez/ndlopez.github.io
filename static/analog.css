@@ -59,17 +59,15 @@ svg {
  transform: rotate(calc(12 * 30deg));
  stroke-width: 0.5;
 }
-.seconds,
-.minute,
-.hour
-{
+.seconds,.minute,.hour{
  transform: translate(20px, 20px) rotate(0deg);
 }
 .seconds {
  stroke-width: 0.3;
  stroke: #d00505;
  transform: translate(20px,20px) rotate(calc(var(--start-seconds)*6deg));
- /*animation: rotSecondsHand 60s steps(60) infinite;*/
+ /*animation: rotSecondsHand 60s steps(60) infinite; analog step*/
+ animation: rotSecondsHand 60s steps(512) infinite;
 }
 .minute {
  stroke-width: 0.6;
@@ -90,8 +88,8 @@ svg {
 .dateText{
  font-size:4px;
  font-family: sans-serif;
- transform: translate(19px,32px) rotate(90deg);
- fill: black;
+ transform: translate(19px,28px) rotate(90deg);
+ fill: #d00505;
  stroke: none;
 }
 
