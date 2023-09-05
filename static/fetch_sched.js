@@ -1,7 +1,7 @@
 /*  Display one-fine-day filling a table with current schedule.*/
 "use strict";
 
-const urlSched="https://raw.githubusercontent.com/ndlopez/scrapped/main/sched.json";
+const urlSched="https://raw.githubusercontent.com/ndlopez/scrapped/main/data/sched.json";
 
 disp_sched();
 
