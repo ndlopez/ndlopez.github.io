@@ -8,15 +8,14 @@ https://medium.com/the-andela-way/create-a-pure-css-clock-with-svg-f123bcc41e46*
   --darkish-sky:#bed2e040;
   --lemon: #ffeea6;
   --sky-blue: #87ceeb;
-  --salmon:#ffa07a;
-  --angle:calc(360./12);
+  --angle:calc(360/12);
 }
 html {
-  background: #dedede;
+  background: var(--dark-smoke);
 }
 svg {
-  width: 150px;
-  fill: wheat;
+  width: 200px;
+  fill: var(--light-sky);
   stroke: black;
   stroke-width: 1;
   stroke-linecap: round;
@@ -31,51 +30,51 @@ svg {
 }
 .marks > line:nth-child(1) {
  /* There are 12 marks, so we rotate by 30deg (12 * 30 = 360) */
-  transform: rotate(calc(1*30deg));
+  transform: rotate(calc(1 * var(--angle) *1deg));
 }
 .marks > line:nth-child(2) {
-  transform: rotate(calc(2 * 30deg));
+  transform: rotate(calc(2 * var(--angle) *1deg));
 }
 /*.marks > line:nth-child(3) {
- transform: rotate(calc(3 * 30deg));
+ transform: rotate(calc(3 * var(--angle)*1deg));
  stroke-width: 0.5;
 }*/
 .marks > line:nth-child(4) {
-  transform: rotate(calc(4 * 30deg));
+  transform: rotate(calc(4 * var(--angle) *1deg));
 }
 .marks > line:nth-child(5) {
-  transform: rotate(calc(5 * 30deg));
+  transform: rotate(calc(5 * var(--angle) *1deg));
 }
 .marks > line:nth-child(6) {
-  transform: rotate(calc(6 * 30deg));
+  transform: rotate(calc(6 * var(--angle) *1deg));
   stroke-width: 0.5;
 }
 .marks > line:nth-child(7) {
-  transform: rotate(calc(7 * 30deg));
+  transform: rotate(calc(7 * var(--angle) *1deg));
 }
 .marks > line:nth-child(8) {
-  transform: rotate(calc(8 * 30deg));
+  transform: rotate(calc(8 * var(--angle) *1deg));
 }
 .marks > line:nth-child(9) {
-  transform: rotate(calc(9 * 30deg));
+  transform: rotate(calc(9 * var(--angle) *1deg));
   stroke-width: 0.5;
 }
 .marks > line:nth-child(10) {
-  transform: rotate(calc(10 * 30deg));
+  transform: rotate(calc(10 * var(--angle) *1deg));
 }
 .marks > line:nth-child(11) {
-  transform: rotate(calc(11 * 30deg));
+  transform: rotate(calc(11 * var(--angle) *1deg));
 }
-.marks > line:nth-child(12) {
-  transform: rotate(calc(12 * 30deg));
+/*.marks > line:nth-child(12) {
+  transform: rotate(calc(12 * var(--angle) *1deg));
   stroke-width: 0.5;
-}
+}*/
 .seconds,.minute,.hour{
   transform: translate(20px, 20px) rotate(0deg);
 }
 .seconds {
   stroke-width: 0.3;
-  stroke: #d00505;
+  stroke: var(--wine);
   transform: translate(20px,20px) rotate(calc(var(--start-seconds)*6deg));
   /*animation: rotSecondsHand 60s steps(60) infinite; analog step*/
   animation: rotSecondsHand 60s steps(512) infinite;
@@ -93,15 +92,22 @@ svg {
   animation-delay: calc(calc(var(--start-minutes) * -60 *1s) + calc(var(--start-seconds) * -1 *1s));
 }
 .pin {
-  stroke: #d00505;
+  stroke: var(--wine);
   stroke-width: 0.2;
+  fill: var(--wine);
 }
-.dateText{
+.texty{
   font-size:4px;
   font-family: sans-serif;
-  transform: translate(19px,28px) rotate(90deg);
-  fill: #d00505;
   stroke: none;
+}
+.dateText{
+  fill: var(--wine);
+  transform: translate(19px,28px) rotate(90deg);
+}
+.text12{
+  fill:var(--smoke);
+  transform: translate(34px,18px) rotate(90deg);
 }
 
 @keyframes rotSecondsHand{
