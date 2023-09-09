@@ -42,9 +42,14 @@ nav.top-menu{
 .inline-block{
   display: inline-block;
   vertical-align: top;
+  /*background-color: var(--smoke);*/
 }
-
+main div{
+  font-size: larger;
+  font-weight: bold;
+}
 @media (max-width: 700px){
+  #home{background-size: auto;}
   .top-menu{display: none;}
   #zenith{font-size: large;}
 }
