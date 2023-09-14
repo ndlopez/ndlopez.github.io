@@ -12,7 +12,8 @@
     builtOn:2004
     },
 */
-const projects=[
+/*
+const projects2=[
     {
         name: "Solar Physics Research",
         title: "Code repository for some of the tools I used as a graduate student.",
@@ -190,7 +191,7 @@ const projects=[
         demo: "https://ndlopez.github.io/pages/jma_weather.html",
         builtOn: 2022
     }
-];
+];*/
 /*,{
     name: "NagoyaBus",
     title: "Display the next departing bus",
@@ -203,7 +204,9 @@ const projects=[
 }*/
 //console.log(projects[0].name,projects.length);
 //Refer to this girl's site https://danajanoskova.sk/
-function createCards(jdx){
+async function createCards(jdx){
+    const projects = await get_list();
+    console.log("nothing?",projects);
     var divCol = document.createElement("div");
     divCol.setAttribute("class","column3");
     var divCard = document.createElement("div");
@@ -256,4 +259,17 @@ mainDiv.appendChild(divRow);
 //mainDiv.appendChild(divRow2);
 for(let idx=0;idx<projects.length;idx++){
     divRow.appendChild(createCards(idx));
+}
+get_list();
+async function get_list(){
+    const proj_url = "https://raw.githubusercontent.com/ndlopez/scrapped/main/data/projects.json";
+    try {
+        const resp = await fetch(proj_url);
+        const data = await resp.json();
+        console.log("gotThis",data["projects"]);
+        return data["projects"];
+    } catch (error) {
+        alert("sorry, no projects are available");
+    }
+
 }
