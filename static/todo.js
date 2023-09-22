@@ -1,4 +1,4 @@
-initData = [
+const initData = [
     {
         id:1,activity:"Learn Geant4 and C++",
     },{
@@ -11,7 +11,8 @@ initData = [
         id:5,activity:"Read a book"
     },
 ];
-
+const days =["日","月","火","水","木","金","土"];
+//const monty = ["Jan","Feb",Mar,Apr,"May","Jun","Jul"];
 /* Create the main container and the unordered todo list */
 mainDiv = document.getElementById("lists");
 todoDiv = document.createElement("div");
@@ -149,8 +150,7 @@ doingUL.addEventListener('click', function(ev) {
         clicks ++;
     }
 }, false);
-const days =["日","月","火","水","木","金","土"];
-//const monty = ["Jan","Feb",Mar,Apr,"May","Jun","Jul"];
+
 const newDate = new Date();
 const myDate = newDate.getFullYear() +"年"+ (newDate.getMonth()+1) + "月" + 
 newDate.getDate() + "日 ("+ days[newDate.getDay()] + ")";
@@ -165,15 +165,25 @@ pInfo.setAttribute("class","align-right");
 pInfo.innerHTML = "<p>When a task is done dismiss it by clicking on the X button</p>";
 pInfo.style.padding = "10px";
 mainDiv.appendChild(pInfo);
-let myList = [];
+
 let todo = [];
-let temp_data = {"task":"Learn Geant4 and C++","checked":false};
-todo.push(temp_data);
+let temp_data;
+let check_value = false;
+const todo_items = document.getElementById("todoList");
+
+for (let idx=0;idx < todo_items.childNodes.length; idx++){
+    console.log("todoL",idx,todo_items.childNodes[idx].firstChild.data);
+    if (todo_items.childNodes[idx].classList.value == "checked"){
+        check_value = true
+    } 
+    temp_data = {"task":todo_items.childNodes[idx].firstChild.data,"checked":check_value};
+    todo.push(temp_data);
+}
+
 let doing = [];
 temp_data = {"task":"Cook lunch","checked":true};
 doing.push(temp_data);
 temp_data = {"todo":todo,"doing":doing};
-myList.push(temp_data);
 export_to_file(temp_data);
 const dLink = document.getElementById("downLink");
 dLink.innerHTML = "<img src='../assets/download.svg' width='20'/>";
