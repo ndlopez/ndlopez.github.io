@@ -67,7 +67,7 @@ text-decoration: line-through;
     position: absolute;
     right: 0;
     top: 0;
-    padding: 10px 20px 20px 10px;
+    padding: 10px 20px 10px 10px;
     font-size: 20px;
 }
 .close:hover {background-color: var(--wine);color: var(--light-sky);}
@@ -130,8 +130,10 @@ text-decoration: line-through;
     transform:scaleX(-1);
     filter:FlipH;-ms-filter:"FlipH";
 }
-#nav-menu{display: none;}
+#nav-menu, .no-desktop{display: none;}
+
 @media (max-width:800px){
+    .no_mobil{display: none;}
     .column{
       width:100%;
       text-align: justify;
@@ -148,24 +150,24 @@ text-decoration: line-through;
         height: 56px;
         z-index: 2000;
         background-color: var(--light-sky);
-      }
-      nav.menu ul{  
+    }
+    nav.menu ul{  
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-      
-      nav.menu ul li a{
+    }
+    
+    nav.menu ul li a{
         display: inline-flex;
         align-items: center;
         flex-direction: column;
         justify-content: center;
         width: 100%;
         font-size: .8rem;
-      }
-      .link-on{color: var(--wine);}
-      .link-off{color: var(--smoke);}
-      nav.menu ul li{flex: 1;}
-      nav.menu ul li a img{width: 1.15rem;height: 1.15rem;}
+    }
+    .link-on{color: var(--wine);}
+    .link-off{color: var(--smoke);}
+    nav.menu ul li{flex: 1;}
+    nav.menu ul li a img{width: 1.15rem;height: 1.15rem;}
 }
