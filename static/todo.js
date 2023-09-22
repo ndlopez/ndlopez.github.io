@@ -39,6 +39,17 @@ for(let item in initData){
 todoList.appendChild(ulList);
 todoDiv.appendChild(todoList)
 mainDiv.appendChild(todoDiv);
+
+function export_to_file(jsonData){
+    const dataStr = JSON.stringify(jsonData);
+    const dataUri = 'data:application/json;charset=utf-8,'+encodeURIComponent(dataStr);
+    const exportFile = "todo.json";
+
+    const linkElm = document.getElementById("downLink")
+    linkElm.setAttribute('href',dataUri);
+    linkElm.setAttribute('download',exportFile);
+    //linkElm.click();//downloads a file every update
+}
 /* The following code is from 
 https://www.w3schools.com/howto/howto_js_todolist.asp 
 I implemented some features*/
@@ -154,3 +165,7 @@ pInfo.setAttribute("class","align-right");
 pInfo.innerHTML = "<p>When a task is done dismiss it by clicking on the X button</p>";
 pInfo.style.padding = "10px";
 mainDiv.appendChild(pInfo);
+
+// export_to_file(myList);
+const dLink = document.getElementById("downLink");
+dLink.innerHTML = "<img src='../assets/download.svg' width='32'/>";
