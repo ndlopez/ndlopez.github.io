@@ -169,20 +169,29 @@ mainDiv.appendChild(pInfo);
 let todo = [];
 let temp_data;
 let check_value = false;
-const todo_items = document.getElementById("todoList");
+let items = document.getElementById("todoList");
 
-for (let idx=0;idx < todo_items.childNodes.length; idx++){
-    console.log("todoL",idx,todo_items.childNodes[idx].firstChild.data);
-    if (todo_items.childNodes[idx].classList.value == "checked"){
+for (let idx=0;idx < items.childNodes.length; idx++){
+    // console.log("todoL",idx,items.childNodes[idx].firstChild);
+    //.firstChild.data
+    if (items.childNodes[idx].classList.value == "checked"){
         check_value = true
     } 
-    temp_data = {"task":todo_items.childNodes[idx].firstChild.data,"checked":check_value};
+    temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":check_value};
     todo.push(temp_data);
 }
 
 let doing = [];
-temp_data = {"task":"Cook lunch","checked":true};
-doing.push(temp_data);
+items = document.getElementById("doingList");
+if(items !== "undefined"){
+    for (idx =0; idx < items.childNodes.length;idx++){
+        console.log(idx,items.childNodes[idx]);
+        //temp_data = {"task":"Cook lunch","checked":true};
+        //doing.push(temp_data);
+    }
+}
+
+
 temp_data = {"todo":todo,"doing":doing};
 export_to_file(temp_data);
 const dLink = document.getElementById("downLink");
