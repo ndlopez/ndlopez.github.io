@@ -165,7 +165,15 @@ pInfo.setAttribute("class","align-right");
 pInfo.innerHTML = "<p>When a task is done dismiss it by clicking on the X button</p>";
 pInfo.style.padding = "10px";
 mainDiv.appendChild(pInfo);
-
-// export_to_file(myList);
+let myList = [];
+let todo = [];
+let temp_data = {"task":"Learn Geant4 and C++","checked":false};
+todo.push(temp_data);
+let doing = [];
+temp_data = {"task":"Cook lunch","checked":true};
+doing.push(temp_data);
+temp_data = {"todo":todo,"doing":doing};
+myList.push(temp_data);
+export_to_file(temp_data);
 const dLink = document.getElementById("downLink");
-dLink.innerHTML = "<img src='../assets/download.svg' width='32'/>";
+dLink.innerHTML = "<img src='../assets/download.svg' width='20'/>";
