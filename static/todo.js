@@ -141,12 +141,8 @@ function doingTask(idx){
     doingUL.appendChild(doingLI);
     
     deleteElm();//add click event listener
-
-    temp_data = {"todo":todo,"doing":doing};
-    export_to_file(temp_data);
-    const dLink = document.getElementById("downLink");
-    dLink.innerHTML = "<img src='../assets/download.svg' width='20'/>";
 }
+
 /* The following should be a function */
 let clicks = 0;
 doingUL.addEventListener('click', function(ev) {
@@ -173,21 +169,28 @@ pInfo.innerHTML = "<p>When a task is done dismiss it by clicking on the X button
 pInfo.style.padding = "10px";
 mainDiv.appendChild(pInfo);
 
-let items = document.getElementById("todoList");
+function update_out(){
+    let items = document.getElementById("todoList");
+    for (let idx=0;idx < items.childNodes.length; idx++){
+        // console.log("todoL",idx,items.childNodes[idx].firstChild);
+        //.firstChild.data
+        if (items.childNodes[idx].classList.value == "checked"){
+            check_value = true
+        } 
+        temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":check_value};
+        todo.push(temp_data);
+    }
+    doingList.appendChild(doingUL);
+    items = document.getElementById("doingList");
+    for (idx =0; idx < items.childNodes.length;idx++){
+        console.log("doing",idx,items.childNodes[idx]);
+        temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":true};
+        doing.push(temp_data);
+    }
+    return {"date":myDate,"todo":todo,"doing":doing};
+}
 
-for (let idx=0;idx < items.childNodes.length; idx++){
-    // console.log("todoL",idx,items.childNodes[idx].firstChild);
-    //.firstChild.data
-    if (items.childNodes[idx].classList.value == "checked"){
-        check_value = true
-    } 
-    temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":check_value};
-    todo.push(temp_data);
-}
-doingList.appendChild(doingUL);
-items = document.getElementById("doingList");
-for (idx =0; idx < items.childNodes.length;idx++){
-    console.log("doing",idx,items.childNodes[idx]);
-    temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":true};
-    doing.push(temp_data);
-}
+temp_data = update_out();
+export_to_file(temp_data);
+const dLink = document.getElementById("downLink");
+dLink.innerHTML = "<img src='../assets/download.svg' width='20'/>";
