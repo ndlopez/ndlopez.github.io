@@ -130,16 +130,17 @@ function doingTask(idx){
     /* Fetched all checked li from todoList */
     const todoli = document.getElementsByClassName("checked");
     const doingLI = document.createElement("LI");
-    doingLI.innerText = todoli[idx].innerText.replace('\n','').slice(0,-1);
-    console.log(todoli,todoli[idx].innerText);
-    const span = document.createElement("SPAN");
-    const txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
+    if (typeof doingLI !== "undefined"){
+        doingLI.innerText = todoli[idx].innerText.replace('\n','').slice(0,-1);
+        console.log(todoli,todoli[idx].innerText);
+        const span = document.createElement("SPAN");
+        const txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
 
-    doingLI.appendChild(span);
-    doingUL.appendChild(doingLI);
-    
+        doingLI.appendChild(span);
+        doingUL.appendChild(doingLI);
+    }    
     deleteElm();//add click event listener
 }
 
