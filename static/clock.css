@@ -65,10 +65,10 @@ svg {
 .marks > line:nth-child(11) {
   transform: rotate(calc(11 * var(--angle) *1deg));
 }
-/*.marks > line:nth-child(12) {
+.marks > line:nth-child(12) {
   transform: rotate(calc(12 * var(--angle) *1deg));
   stroke-width: 0.5;
-}*/
+}
 .seconds,.minute,.hour{
   transform: translate(20px, 20px) rotate(0deg);
 }
@@ -97,18 +97,21 @@ svg {
   fill: var(--wine);
 }
 .texty{
-  font-size:4px;
   font-family: sans-serif;
   stroke: none;
 }
 .dateText{
+  font-size:4px;
   fill: var(--wine);
   transform: translate(19px,28px) rotate(90deg);
 }
-.text12{
+.dials{
   fill:var(--smoke);
-  transform: translate(34px,18px) rotate(90deg);
+  font-size: 3px;
 }
+.text12{ transform: translate(32px,18px) rotate(90deg);}
+.text6{ transform: translate(6px,18px) rotate(90deg);}
+.text9{ transform: translate(19px,6px) rotate(90deg);}
 
 @keyframes rotSecondsHand{
   from{

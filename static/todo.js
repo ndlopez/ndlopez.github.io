@@ -139,6 +139,11 @@ function doingTask(idx){
     doingUL.appendChild(doingLI);
     doingList.appendChild(doingUL);
     deleteElm();//add click event listener
+
+    temp_data = {"todo":todo,"doing":doing};
+    export_to_file(temp_data);
+    const dLink = document.getElementById("downLink");
+    dLink.innerHTML = "<img src='../assets/download.svg' width='20'/>";
 }
 /* The following should be a function */
 let clicks = 0;
@@ -186,13 +191,7 @@ items = document.getElementById("doingList");
 if(items !== "undefined"){
     for (idx =0; idx < items.childNodes.length;idx++){
         console.log(idx,items.childNodes[idx]);
-        //temp_data = {"task":"Cook lunch","checked":true};
-        //doing.push(temp_data);
+        temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":true};
+        doing.push(temp_data);
     }
 }
-
-
-temp_data = {"todo":todo,"doing":doing};
-export_to_file(temp_data);
-const dLink = document.getElementById("downLink");
-dLink.innerHTML = "<img src='../assets/download.svg' width='20'/>";
