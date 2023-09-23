@@ -13,10 +13,8 @@ const initData = [
 ];
 const days =["日","月","火","水","木","金","土"];
 //const monty = ["Jan","Feb",Mar,Apr,"May","Jun","Jul"];
-let todo = [];
-let doing = [];
 let temp_data;
-let check_value = false;
+
 /* Create the main container and the unordered todo list */
 const mainDiv = document.getElementById("lists");
 const todoDiv = document.createElement("div");
@@ -131,7 +129,10 @@ function doingTask(idx){
     const todoli = document.getElementsByClassName("checked");
     const doingLI = document.createElement("LI");
     if (typeof doingLI !== "undefined"){
-        doingLI.innerText = todoli[idx].innerText.replace('\n','').slice(0,-1);
+        // doingLI.innerText = todoli[idx].innerText.replace('\n','').slice(0,-1);
+        doingLI.innerText = todoli[idx].firstChild.nodeValue;
+        //"remove" todo item
+        todoli[idx].style.display = "none";
         console.log(todoli,todoli[idx].innerText);
         const span = document.createElement("SPAN");
         const txt = document.createTextNode("\u00D7");
@@ -140,6 +141,8 @@ function doingTask(idx){
 
         doingLI.appendChild(span);
         doingUL.appendChild(doingLI);
+        temp_data = update_out();
+        export_to_file(temp_data);
     }    
     deleteElm();//add click event listener
 }
@@ -171,26 +174,31 @@ pInfo.style.padding = "10px";
 mainDiv.appendChild(pInfo);
 
 function update_out(){
+    let todo = [], doing = [], check_value = false;
     let items = document.getElementById("todoList");
     for (let idx=0;idx < items.childNodes.length; idx++){
         // console.log("todoL",idx,items.childNodes[idx].firstChild);
         //.firstChild.data
         if (items.childNodes[idx].classList.value == "checked"){
-            check_value = true
-        } 
+            check_value = true;
+        }else{ check_value = false;} 
         temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":check_value};
         todo.push(temp_data);
     }
+    
     doingList.appendChild(doingUL);
     items = document.getElementById("doingList");
     for (idx =0; idx < items.childNodes.length;idx++){
         console.log("doing",idx,items.childNodes[idx]);
-        temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":true};
+        if (items.childNodes[idx].classList.value == "checked"){
+            check_value = true;
+        }else{ check_value = false;} 
+        temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":check_value};
         doing.push(temp_data);
     }
     return {"date":myDate,"todo":todo,"doing":doing};
 }
-
+// onload
 temp_data = update_out();
 export_to_file(temp_data);
 const dLink = document.getElementById("downLink");
