@@ -13,26 +13,33 @@ const initData = [
 ];
 const days =["日","月","火","水","木","金","土"];
 //const monty = ["Jan","Feb",Mar,Apr,"May","Jun","Jul"];
+let todo = [];
+let doing = [];
+let temp_data;
+let check_value = false;
 /* Create the main container and the unordered todo list */
-mainDiv = document.getElementById("lists");
-todoDiv = document.createElement("div");
+const mainDiv = document.getElementById("lists");
+const todoDiv = document.createElement("div");
 todoDiv.className = "column";
-todoList = document.createElement("div");  //("todo_list");
-todoHeader = document.createElement("div");
+const todoList = document.createElement("div");  //("todo_list");
+const todoHeader = document.createElement("div");
 todoHeader.className = "header";
 let text = "<h2>To Do List</h2><input type='text' id='my_task' placeholder='Input Task'>";
 text += "<span onclick='newTask()' class='addBtn' id='addBtn'>Add</span>";
 todoHeader.innerHTML = text;
 todoDiv.appendChild(todoHeader);
 
-doingDiv = document.createElement("div");
+const doingDiv = document.createElement("div");
 doingDiv.className = "column";
-doingList = document.createElement("div"); //getElementById("doing_list");
+const doingList = document.createElement("div"); //getElementById("doing_list");
 
-ulList = document.createElement("UL");//from TODO list
+const ulList = document.createElement("UL");//from TODO list
 ulList.id = "todoList";
+const doingUL = document.createElement("UL");
+doingUL.setAttribute("id","doingList");
+
 for(let item in initData){
-    liElm = document.createElement("LI");
+    const liElm = document.createElement("LI");
     liElm.innerText = initData[item].activity;
     ulList.appendChild(liElm);
 }
@@ -56,7 +63,6 @@ https://www.w3schools.com/howto/howto_js_todolist.asp
 I implemented some features*/
 // Click on a close button to hide the current list item
 const close = document.getElementsByClassName("close");
-
 function deleteElm(){
     for (let i = 0; i < close.length; i++) {
         close[i].onclick = function() {
@@ -120,10 +126,6 @@ function newTask() {
     deleteElm();
 }
 //Add checked task to doing list
-
-doingUL = document.createElement("UL");
-doingUL.setAttribute("id","doingList");
-
 function doingTask(idx){
     /* Fetched all checked li from todoList */
     const todoli = document.getElementsByClassName("checked");
@@ -137,7 +139,7 @@ function doingTask(idx){
 
     doingLI.appendChild(span);
     doingUL.appendChild(doingLI);
-    doingList.appendChild(doingUL);
+    
     deleteElm();//add click event listener
 
     temp_data = {"todo":todo,"doing":doing};
@@ -171,9 +173,6 @@ pInfo.innerHTML = "<p>When a task is done dismiss it by clicking on the X button
 pInfo.style.padding = "10px";
 mainDiv.appendChild(pInfo);
 
-let todo = [];
-let temp_data;
-let check_value = false;
 let items = document.getElementById("todoList");
 
 for (let idx=0;idx < items.childNodes.length; idx++){
@@ -185,13 +184,10 @@ for (let idx=0;idx < items.childNodes.length; idx++){
     temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":check_value};
     todo.push(temp_data);
 }
-
-let doing = [];
+doingList.appendChild(doingUL);
 items = document.getElementById("doingList");
-if(items !== "undefined"){
-    for (idx =0; idx < items.childNodes.length;idx++){
-        console.log(idx,items.childNodes[idx]);
-        temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":true};
-        doing.push(temp_data);
-    }
+for (idx =0; idx < items.childNodes.length;idx++){
+    console.log("doing",idx,items.childNodes[idx]);
+    temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":true};
+    doing.push(temp_data);
 }
