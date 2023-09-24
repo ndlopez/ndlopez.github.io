@@ -1,4 +1,4 @@
-const urlQuote="https://raw.githubusercontent.com/ndlopez/quotes/main/quotes/data/goodreads_quotes.json";
+const urlQuote="https://raw.githubusercontent.com/ndlopez/scrapped/main/data/goodreads_quotes.json";
 
 disp_quote();
 

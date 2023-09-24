@@ -1,3 +1,8 @@
+/* Parts of the following code are from 
+https://www.w3schools.com/howto/howto_js_todolist.asp 
+I implemented more features
+Better to feed an array with tasks and update it.
+*/
 const initData = [
     {
         id:1,activity:"Learn Geant4 and C++",
@@ -56,9 +61,7 @@ function export_to_file(jsonData){
     linkElm.setAttribute('download',exportFile);
     //linkElm.click();//downloads a file every update
 }
-/* The following code is from 
-https://www.w3schools.com/howto/howto_js_todolist.asp 
-I implemented some features*/
+
 // Click on a close button to hide the current list item
 const close = document.getElementsByClassName("close");
 function deleteElm(){
