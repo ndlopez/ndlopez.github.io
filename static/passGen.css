@@ -8,7 +8,7 @@
   h1{
     font-family: Georgia;
     /*letter-spacing: 0.1em;*/
-    margin: 5px;
+    margin: 2px;
     padding: 10px;
     background-color: var(--darkish-sky);
     height: 50px;
@@ -57,9 +57,12 @@
     border-radius: 5px;
   }
   input[type="range"]{
-    height: 35px;
-    width: 80vw;
+    /*height: 35px;*/
+    width: 75vw;
     margin-top: 10px;
   }
-  
+  input[type="radio"]{
+    width: 25px;
+    height: 25px;
+  }
 }

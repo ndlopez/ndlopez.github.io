@@ -1,5 +1,5 @@
 const default_length = 10;
-const words = "https://raw.githubusercontent.com/ndlopez/jumble_game/main/data/book_words.txt";
+const words = "https://raw.githubusercontent.com/ndlopez/scrapped/main/data/book_words.txt";
 const abc = "qwertyuiopzxcvbnmasdfghjkl";
 let num, sym;
 

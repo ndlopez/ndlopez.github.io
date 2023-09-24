@@ -171,7 +171,7 @@ doingDiv.appendChild(doingList);
 mainDiv.appendChild(doingDiv);
 const pInfo = document.createElement("div");
 pInfo.setAttribute("class","align-right");
-pInfo.innerHTML = "<p>When a task is done dismiss it by clicking on the X button</p>";
+pInfo.innerHTML = "<p>When a task is done dismiss it by clicking on it or on the X button</p>";
 pInfo.style.padding = "10px";
 mainDiv.appendChild(pInfo);
 
