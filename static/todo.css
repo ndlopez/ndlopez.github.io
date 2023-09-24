@@ -142,7 +142,7 @@ text-decoration: line-through;
     .column ul li{padding: 28px 25px 15px 40px;}
     .close{padding: 1px 10px 25px 10px;font-size: 25px;}
     .align-left,.align-right{text-align: center;}
-    #nav-menu{display: block;}
+    /*#nav-menu{display: block;}
     nav.menu{
         bottom:0;
         position: -webkit-sticky;
@@ -169,5 +169,5 @@ text-decoration: line-through;
     .link-on{color: var(--wine);}
     .link-off{color: var(--smoke);}
     nav.menu ul li{flex: 1;}
-    nav.menu ul li a img{width: 1.15rem;height: 1.15rem;}
+    nav.menu ul li a img{width: 1.15rem;height: 1.15rem;}*/
 }

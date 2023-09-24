@@ -120,7 +120,9 @@ function newTask() {
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
-    
+    // update todo and doing list
+    temp_data = update_out();
+    export_to_file(temp_data);
     deleteElm();
 }
 //Add checked task to doing list
