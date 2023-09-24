@@ -1,6 +1,6 @@
 /*
     DLopez small programming projects
-{
+    {
     name:"Numerical Analysis in C",
     title:"Code repository for FIS340. Numerical Analysis for Physicists.",
     description:"It includes several code samples to solve numerically some problems in Thermodynamics and \
@@ -19,11 +19,12 @@
     repo: "https://github.com/ndlopez/busApp",
     demo: "htpps://ndlopez.github.io/",
     builtOn: 2022
-}
-*/
-//console.log(projects[0].name,projects.length);
-//Refer to this girl's site https://danajanoskova.sk/
+    }
 
+ console.log(projects[0].name,projects.length);
+ Refer to this girl's site https://www.danajanoskova.sk/
+ word list https://github.com/DJanoskova/WorldMeals.json/blob/main/public/meals.json
+*/
 const mainDiv = document.querySelector("#projects");
 const divRow = document.createElement("div");
 //const divRow2 = document.createElement("div");
