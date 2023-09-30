@@ -68,7 +68,8 @@ function deleteElm(){
     for (let i = 0; i < close.length; i++) {
         close[i].onclick = function() {
             const thisTask = this.parentElement;
-            thisTask.style.display = "none";
+            thisTask.remove();
+            // thisTask.style.display = "none";
         }
     }
 }
@@ -137,7 +138,8 @@ function doingTask(idx){
         // doingLI.innerText = todoli[idx].innerText.replace('\n','').slice(0,-1);
         doingLI.innerText = todoli[idx].firstChild.nodeValue;
         //"remove" todo item
-        todoli[idx].style.display = "none";
+        todoli[idx].remove();
+        // todoli[idx].style.display = "none";
         console.log(todoli,todoli[idx].innerText);
         const span = document.createElement("SPAN");
         const txt = document.createTextNode("\u00D7");
