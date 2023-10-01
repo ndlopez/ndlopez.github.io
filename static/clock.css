@@ -10,6 +10,7 @@ https://medium.com/the-andela-way/create-a-pure-css-clock-with-svg-f123bcc41e46*
   --sky-blue: #87ceeb;
   --angle: calc(360/12);
   --x0y0: 20px;
+  --dxdy: 13px;
 }
 html {
   background: var(--dark-smoke);
@@ -24,6 +25,11 @@ svg {
   --start-seconds: 0;
   --start-minutes: 45;
   --start-hours: 11;
+}
+.inner_dial{
+  fill: #bed2e0;
+  stroke: #2e4054;
+  stroke-width: 0.3;
 }
 .marks {
   transform: translate(var(--x0y0), var(--x0y0));
@@ -50,6 +56,7 @@ svg {
   transform: rotate(calc(6 * var(--angle) *1deg));
   stroke-width: 0.5;
 }
+/* commented to allow 2nd dial
 .marks > line:nth-child(7) {
   transform: rotate(calc(7 * var(--angle) *1deg));
 }
@@ -59,7 +66,7 @@ svg {
 .marks > line:nth-child(9) {
   transform: rotate(calc(9 * var(--angle) *1deg));
   stroke-width: 0.5;
-}
+}*/
 .marks > line:nth-child(10) {
   transform: rotate(calc(10 * var(--angle) *1deg));
 }
@@ -70,15 +77,15 @@ svg {
   transform: rotate(calc(12 * var(--angle) *1deg));
   stroke-width: 0.5;
 }
-.seconds,.minute,.hour{
+.minute,.hour{
   transform: translate(var(--x0y0), var(--x0y0)) rotate(0deg);
 }
 .seconds {
   stroke-width: 0.3;
   stroke: var(--wine);
-  transform: translate(var(--x0y0),var(--x0y0)) rotate(calc(var(--start-seconds)*6deg));
-  /*animation: rotSecondsHand 60s steps(60) infinite; analog step*/
-  animation: rotSecondsHand 60s steps(512) infinite;
+  transform: translate(var(--dxdy),var(--dxdy)) rotate(calc(var(--start-seconds)*6deg));
+  animation: rotSecondsHand 60s steps(60) infinite; /*analog step
+  animation: rotSecondsHand 60s steps(512) infinite;*/
 }
 .minute {
   stroke-width: 0.6;
@@ -110,16 +117,20 @@ svg {
   fill:var(--smoke);
   font-size: 3px;
 }
-.text12{ transform: translate(32px,18px) rotate(90deg);}
+/*.text12{ transform: translate(32px,18px) rotate(90deg);}
 .text6{ transform: translate(6px,18px) rotate(90deg);}
 .text9{ transform: translate(19px,6px) rotate(90deg);}
-
+*/
+.text12{transform: translate(16px,11px) rotate(90deg);}
+.text6{transform: translate(7px,11px) rotate(90deg);}
+.text9{transform: translate(12px,6px) rotate(90deg);}
+.text3{transform: translate(12px,16px) rotate(90deg);}
 @keyframes rotSecondsHand{
   from{
-    transform: translate(var(--x0y0),var(--x0y0)) rotate(calc(var(--start-seconds)*6deg));
+    transform: translate(var(--dxdy),var(--dxdy)) rotate(calc(var(--start-seconds)*6deg));
   }
   to{
-    transform: translate(var(--x0y0),var(--x0y0)) rotate(calc(var(--start-seconds)*6deg + 360deg));
+    transform: translate(var(--dxdy),var(--dxdy)) rotate(calc(var(--start-seconds)*6deg + 360deg));
   }
 }
 
