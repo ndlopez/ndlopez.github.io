@@ -62,11 +62,11 @@ svg {
 }
 .marks > line:nth-child(8) {
   transform: rotate(calc(8 * var(--angle) *1deg));
-}
+}*/
 .marks > line:nth-child(9) {
   transform: rotate(calc(9 * var(--angle) *1deg));
   stroke-width: 0.5;
-}*/
+}
 .marks > line:nth-child(10) {
   transform: rotate(calc(10 * var(--angle) *1deg));
 }
