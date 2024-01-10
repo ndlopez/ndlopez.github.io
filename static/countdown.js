@@ -10,9 +10,19 @@
   idx, Day, Date Hour Altitude
 */
 let idx = 0;
+const csv_url="https://raw.githubusercontent.com/ndlopez/scrapped/main/data/solar_zenith.csv";
 const allDates=["Feb 3, 2024 01:46:08", "Nov 8, 2023 01:16:13", "Nov 9, 2023 01:16:17", "Nov 10, 2023 01:16:22"];
 let countDownDate = new Date(allDates[idx]).getTime();
-
+get_csv();
+async function get_csv(){
+  const resp = await fetch(csv_url);
+  const data = await resp.text();
+  const rows = data.split('\n').slice(1);
+  rows.forEach(row => {
+    const this_date = row.split(',');
+  });
+  console.log("this_data",data);
+}
 const gina = setInterval(function() {
 
   // Get today's date and time
