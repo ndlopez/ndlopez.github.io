@@ -11,11 +11,13 @@
 */
 let idx = 0;
 const csv_url="https://raw.githubusercontent.com/ndlopez/scrapped/main/data/solar_zenith.csv";
-//const allDates=["Feb 3, 2024 01:46:08", "Nov 8, 2023 01:16:13", "Nov 9, 2023 01:16:17", "Nov 10, 2023 01:16:22"];
-const allDates = get_csv();
+// const allDates=["Feb 3, 2024 01:46:08", "Nov 8, 2023 01:16:13", "Nov 9, 2023 01:16:17", "Nov 10, 2023 01:16:22"];
 
-let countDownDate = new Date(allDates[idx]).getTime();
-
+let countDownDate = "";
+(async ()=>{
+  countDownDate = await get_csv();
+})();
+//console.log(countDownDate);
 async function get_csv(){
   const dates = [];
   const resp = await fetch(csv_url);
@@ -26,7 +28,8 @@ async function get_csv(){
     dates.push(this_date[0]);
   });
   // console.log("this_data",dates);
-  return dates;
+  let count = new Date(dates[idx]).getTime();
+  return count;
 }
 const gina = setInterval(function() {
 
