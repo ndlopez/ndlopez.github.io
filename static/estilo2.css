@@ -242,7 +242,7 @@ button{
   background-color: black;
   opacity: 55%;
   color: var(--light-sky);
-  border-radius: 8px;
+  /*border-radius: 8px;*/
 }
 .no-desktop{display: none;}
 /*Responsive layout to stack cols on top of each other

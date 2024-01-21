@@ -27,9 +27,9 @@ svg {
   --start-hours: 11;
 }
 .inner_dial{
-  fill: #bed2e0;
-  stroke: #2e4054;
-  stroke-width: 0.3;
+  fill: var(--smoke);
+  stroke: var(--smoke);
+  stroke-width: 0;
 }
 .marks {
   transform: translate(var(--x0y0), var(--x0y0));
@@ -114,7 +114,7 @@ svg {
   transform: translate(19px,28px) rotate(90deg);
 }
 .dials{
-  fill:var(--smoke);
+  fill:var(--light-sky);
   font-size: 3px;
 }
 /*.text12{ transform: translate(32px,18px) rotate(90deg);}
