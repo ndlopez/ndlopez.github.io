@@ -18,7 +18,7 @@ html {
 svg {
   width: 200px;
   fill: var(--light-sky);
-  stroke: black;
+  stroke: var(--smoke);
   stroke-width: 1;
   stroke-linecap: round;
   transform: rotate(-90deg);
@@ -26,7 +26,7 @@ svg {
   --start-minutes: 45;
   --start-hours: 11;
 }
-.inner_dial{
+.inner_dial,.inner_dial2{
   fill: var(--smoke);
   stroke: var(--smoke);
   stroke-width: 0;
@@ -42,21 +42,22 @@ svg {
 .marks > line:nth-child(2) {
   transform: rotate(calc(2 * var(--angle) *1deg));
 }
-/*.marks > line:nth-child(3) {
- transform: rotate(calc(3 * var(--angle)*1deg));
- stroke-width: 0.5;
-}*/
+.marks > line:nth-child(3) {
+  transform: rotate(calc(3 * var(--angle)*1deg));
+  stroke-width: 0.5;
+}
+.marks > line:nth-child(6) {
+  transform: rotate(calc(6 * var(--angle) *1deg));
+  stroke-width: 0.5;
+}
+/* commented to allow 3rd dial
 .marks > line:nth-child(4) {
   transform: rotate(calc(4 * var(--angle) *1deg));
 }
 .marks > line:nth-child(5) {
   transform: rotate(calc(5 * var(--angle) *1deg));
 }
-.marks > line:nth-child(6) {
-  transform: rotate(calc(6 * var(--angle) *1deg));
-  stroke-width: 0.5;
-}
-/* commented to allow 2nd dial
+// commented to allow 2nd dial
 .marks > line:nth-child(7) {
   transform: rotate(calc(7 * var(--angle) *1deg));
 }
@@ -99,10 +100,13 @@ svg {
   animation: rotHourHand calc(12*60*60s) linear infinite;
   animation-delay: calc(calc(var(--start-minutes) * -60 *1s) + calc(var(--start-seconds) * -1 *1s));
 }
+.hour,.minute{
+  stroke:var(--wine);
+}
 .pin {
-  stroke: var(--wine);
+  stroke: var(--smoke);
   stroke-width: 0.2;
-  fill: var(--wine);
+  fill: var(--smoke);
 }
 .texty{
   font-family: sans-serif;
@@ -110,8 +114,9 @@ svg {
 }
 .dateText{
   font-size:4px;
-  fill: var(--wine);
-  transform: translate(19px,28px) rotate(90deg);
+  fill: var(--light-sky);
+  /*@3tick: transform: translate(19px,28px) rotate(90deg);*/
+  transform: translate(11px,23px) rotate(90deg);
 }
 .dials{
   fill:var(--light-sky);
