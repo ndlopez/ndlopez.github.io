@@ -1,6 +1,6 @@
-.top-nav{
-  background: var(--dark-smoke);/*linear-gradient(to left, var(--wine), var(--dark-smoke));*/
-}
+/*.top-nav{
+  background: var(--dark-smoke);//linear-gradient(to left, var(--wine), var(--dark-smoke));
+}*/
 /*.pwd_type{
   display: none;
 }*/
@@ -10,20 +10,21 @@
     /*letter-spacing: 0.1em;*/
     margin: 2px;
     padding: 10px;
-    background-color: var(--darkish-sky);
     height: 50px;
   }
   p{margin: 0px;}
   button{
-    padding: 10px;
-    width: 100%;
+    padding: 7px;
+    width: 48%;
     font-size: larger;
     border-radius: 5px;
     margin-top: 13px;
+    background-color:var(--darkish-sky);
+    color: white;
   }
   #gen_btn{
     background-color: var(--wine);
-    color: white;
+    margin-right:8px;
   }
   section{
     width: 100%;
