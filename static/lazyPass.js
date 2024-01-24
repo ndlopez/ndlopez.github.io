@@ -1,7 +1,7 @@
 const default_length = 10;
 const words = "https://raw.githubusercontent.com/ndlopez/scrapped/main/data/book_words.txt";
 const abc = "qwertyuiopzxcvbnmasdfghjkl";
-let num, sym;
+let num="98745632", sym="!#$%&-_@";
 
 let inp = document.getElementById('passLen');
 let outp = document.querySelector('output');
@@ -86,13 +86,13 @@ function copy_to_clipboard(){
 
 const rand_idx = (abi) => Math.floor(Math.random()*abi.length); 
 async function disp_words(){
-    // max num words: 4
+    let maxim = 3; // max num words
     const myWords = await get_url_data(words);
-    let text = "";
-    for (let idx=0; idx < 4; idx++){
-        text += myWords[rand_idx(myWords)] + " "
+    let text = "", mystr=num + sym;
+    for (let idx=0; idx < maxim; idx++){
+        text += myWords[rand_idx(myWords)] + mystr.charAt(rand_idx(mystr));
     }
-    // console.log(text,text.length);
+    console.log("phrase:",text.length);
     return text;
 }
 
