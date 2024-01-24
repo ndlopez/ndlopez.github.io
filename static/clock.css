@@ -50,13 +50,14 @@ svg {
   transform: rotate(calc(6 * var(--angle) *1deg));
   stroke-width: 0.5;
 }
-/* commented to allow 3rd dial
+ 
 .marks > line:nth-child(4) {
   transform: rotate(calc(4 * var(--angle) *1deg));
 }
 .marks > line:nth-child(5) {
   transform: rotate(calc(5 * var(--angle) *1deg));
 }
+/*commented to allow 3rd dial
 // commented to allow 2nd dial
 .marks > line:nth-child(7) {
   transform: rotate(calc(7 * var(--angle) *1deg));
@@ -114,9 +115,9 @@ svg {
 }
 .dateText{
   font-size:4px;
-  fill: var(--light-sky);
-  /*@3tick: transform: translate(19px,28px) rotate(90deg);*/
-  transform: translate(11px,23px) rotate(90deg);
+  fill: var(--smoke);
+  transform: translate(19px,24px) rotate(90deg);
+  /*transform: translate(11px,23px) rotate(90deg);*/
 }
 .dials{
   fill:var(--light-sky);
