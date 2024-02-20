@@ -3,7 +3,7 @@ https://www.w3schools.com/howto/howto_js_todolist.asp
 I implemented more features
 Better to feed an array with tasks and update it.
 */
-const initData = [
+let todo_arr = [
     {
         id:1,activity:"Learn Geant4 and C++",
     },{
@@ -16,6 +16,7 @@ const initData = [
         id:5,activity:"Read a book"
     },
 ];
+let doing_arr = [];
 const days =["日","月","火","水","木","金","土"];
 //const monty = ["Jan","Feb",Mar,Apr,"May","Jun","Jul"];
 let temp_data;
@@ -41,7 +42,7 @@ ulList.id = "todoList";
 const doingUL = document.createElement("UL");
 doingUL.setAttribute("id","doingList");
 
-for(let item in initData){
+for(let item in todo_arr){
     const liElm = document.createElement("LI");
     liElm.innerText = initData[item].activity;
     ulList.appendChild(liElm);
@@ -68,7 +69,11 @@ function deleteElm(){
     for (let i = 0; i < close.length; i++) {
         close[i].onclick = function() {
             const thisTask = this.parentElement;
-            thisTask.remove();
+            // thisTask.remove();
+            delete todo_arr[idx];
+            todo_arr.filter(Boolean);
+            console.log("task",thisTask.firstChild.nodeValue,todo_arr);
+            this.parentElement.remove();
             // thisTask.style.display = "none";
         }
     }
@@ -108,6 +113,7 @@ inputTag.addEventListener('keyup',function(e){
 // Create a new list item when clicking on the "Add" button
 function newTask() {
     const li = document.createElement("li");
+    let curr_date = new Date();
     let inputValue = inputTag.value;
     const addNode = document.createTextNode(inputValue);
     li.appendChild(addNode);
@@ -116,6 +122,9 @@ function newTask() {
         alert("You must write something!");
     }else {
         document.getElementById("todoList").appendChild(li);
+        let zoey = {id:todo_arr.length,activity:inputValue,start_time:`${curr_date.getHours()}:${curr_date.getMinutes()}`};
+        todo_arr.push(zoey);
+        console.log("todoList",todo_arr)
     }
     inputTag.value = "";
   
@@ -134,7 +143,9 @@ function doingTask(idx){
     /* Fetched all checked li from todoList */
     const todoli = document.getElementsByClassName("checked");
     const doingLI = document.createElement("LI");
+    
     if (typeof doingLI !== "undefined"){
+        let curr_date = new Date();
         // doingLI.innerText = todoli[idx].innerText.replace('\n','').slice(0,-1);
         doingLI.innerText = todoli[idx].firstChild.nodeValue;
         //"remove" todo item
@@ -148,6 +159,9 @@ function doingTask(idx){
 
         doingLI.appendChild(span);
         doingUL.appendChild(doingLI);
+        let zoey = {id:idx,activity:todo_arr[idx].activity, start_time:`${curr_date.getHours()}:${curr_date.getMinutes()}`};
+        doing_arr.push(zoey);
+        console.log("doing",doing_arr);
         temp_data = update_out();
         export_to_file(temp_data);
     }    
