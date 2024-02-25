@@ -1,21 +1,8 @@
 /* Parts of the following code are from 
 https://www.w3schools.com/howto/howto_js_todolist.asp 
 I implemented more features
-Better to feed an array with tasks and update it.
 */
-let todo_arr = [
-    {
-        id:1,activity:"Learn Geant4 and C++",
-    },{
-        id:2,activity:"Move data analysis scripts to R",
-    },{
-        id:3,activity:"Vacuum clean apartment",
-    },{
-        id:4,activity:"Cook dinner",
-    },{
-        id:5,activity:"Read a book"
-    },
-];
+let todo_arr = [];
 let doing_arr = [];
 const days =["日","月","火","水","木","金","土"];
 //const monty = ["Jan","Feb",Mar,Apr,"May","Jun","Jul"];
@@ -70,10 +57,11 @@ function deleteElm(){
         close[i].onclick = function() {
             const thisTask = this.parentElement;
             // thisTask.remove();
-            delete todo_arr[idx];
-            todo_arr.filter(Boolean);
-            console.log("task",thisTask.firstChild.nodeValue,todo_arr);
-            this.parentElement.remove();
+            // delete todo_arr[idx];//prod empty slot
+            // todo_arr.filter(Boolean);
+           this.parentElement.remove();
+           todo_arr.splice(idx,1);
+           console.log("task",thisTask.firstChild.nodeValue,todo_arr);
             // thisTask.style.display = "none";
         }
     }
@@ -110,6 +98,11 @@ inputTag.addEventListener('keyup',function(e){
         document.getElementById("addBtn").click();
     }
 });
+
+function zeroPad(amy){
+    /* Append to int char -> 0 pad start */
+    return String(amy).padStart(2,'0');
+}
 // Create a new list item when clicking on the "Add" button
 function newTask() {
     const li = document.createElement("li");
@@ -118,7 +111,7 @@ function newTask() {
     const addNode = document.createTextNode(inputValue);
     li.appendChild(addNode);
 
-    if (inputValue === ''){
+    if (inputValue === ""){
         alert("You must write something!");
     }else {
         document.getElementById("todoList").appendChild(li);
@@ -159,7 +152,7 @@ function doingTask(idx){
 
         doingLI.appendChild(span);
         doingUL.appendChild(doingLI);
-        let zoey = {id:idx,activity:todo_arr[idx].activity, start_time:`${curr_date.getHours()}:${curr_date.getMinutes()}`};
+        let zoey = {id:idx,activity:todo_arr[idx].activity, start_time:`${zeroPad(curr_date.getHours())}:${zeroPad(curr_date.getMinutes())}`};
         doing_arr.push(zoey);
         console.log("doing",doing_arr);
         temp_data = update_out();
@@ -174,14 +167,11 @@ doingUL.addEventListener('click', function(ev) {
     if (ev.target.tagName === 'LI') {
         ev.target.classList.toggle('checked');
         // doingTask(clickCount);//Sends info to doing List
-        console.log("clicks",clicks);
+        console.log("doing clicks",clicks);
         clicks ++;
     }
 }, false);
 
-const newDate = new Date();
-const myDate = newDate.getFullYear() +"年"+ (newDate.getMonth()+1) + "月" + 
-newDate.getDate() + "日 ("+ days[newDate.getDay()] + ")";
 doingTitle = document.createElement("div");
 doingTitle.innerHTML = "<h2>Doing List<br>" + myDate + "</h2>";
 doingTitle.className = "header";
@@ -217,10 +207,11 @@ function update_out(){
         temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":check_value};
         doing.push(temp_data);
     }
-    return {"date":myDate,"todo":todo,"doing":doing};
+    return {"date":myDate,"todo":todo_arr,"doing":doing_arr};
 }
 // onload
 temp_data = update_out();
 export_to_file(temp_data);
 const dLink = document.getElementById("downLink");
 dLink.innerHTML = "<img src='../assets/download.svg' width='20'/>";
+
