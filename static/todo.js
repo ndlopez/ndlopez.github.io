@@ -4,10 +4,13 @@ I implemented more features
 */
 let todo_arr = [];
 let doing_arr = [];
-const days =["日","月","火","水","木","金","土"];
-//const monty = ["Jan","Feb",Mar,Apr,"May","Jun","Jul"];
+// const days =["日","月","火","水","木","金","土"];
+// const monty = ["Jan","Feb",Mar,Apr,"May","Jun","Jul"];
 let temp_data;
 
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const newDate = new Date();
+const myDate = newDate.toLocaleDateString("en-US",options);
 /* Create the main container and the unordered todo list */
 const mainDiv = document.getElementById("lists");
 const todoDiv = document.createElement("div");
@@ -57,6 +60,7 @@ function deleteElm(){
         close[i].onclick = function() {
             const thisTask = this.parentElement;
             // thisTask.remove();
+            console.log("delThis",todo_arr[idx],idx);
             // delete todo_arr[idx];//prod empty slot
             // todo_arr.filter(Boolean);
            this.parentElement.remove();
@@ -115,7 +119,7 @@ function newTask() {
         alert("You must write something!");
     }else {
         document.getElementById("todoList").appendChild(li);
-        let zoey = {id:todo_arr.length,activity:inputValue,start_time:`${curr_date.getHours()}:${curr_date.getMinutes()}`};
+        let zoey = {id:todo_arr.length,activity:inputValue,start_time:`${zeroPad(curr_date.getHours())}:${zeroPad(curr_date.getMinutes())}`};
         todo_arr.push(zoey);
         console.log("todoList",todo_arr)
     }
@@ -152,7 +156,8 @@ function doingTask(idx){
 
         doingLI.appendChild(span);
         doingUL.appendChild(doingLI);
-        let zoey = {id:idx,activity:todo_arr[idx].activity, start_time:`${zeroPad(curr_date.getHours())}:${zeroPad(curr_date.getMinutes())}`};
+        let zoey = {id:idx, activity:todo_arr[idx].activity,
+	 start_time:`${zeroPad(curr_date.getHours())}:${zeroPad(curr_date.getMinutes())}`,end_time:""};
         doing_arr.push(zoey);
         console.log("doing",doing_arr);
         temp_data = update_out();
@@ -166,6 +171,8 @@ let clicks = 0;
 doingUL.addEventListener('click', function(ev) {
     if (ev.target.tagName === 'LI') {
         ev.target.classList.toggle('checked');
+        let curr_date = new Date();
+        doing_arr[clicks]["end_time"] = `${zeroPad(curr_date.getHours())}:${zeroPad(curr_date.getMinutes())}`;
         // doingTask(clickCount);//Sends info to doing List
         console.log("doing clicks",clicks);
         clicks ++;
@@ -192,9 +199,7 @@ function update_out(){
         //.firstChild.data
         if (items.childNodes[idx].classList.value == "checked"){
             check_value = true;
-        }else{ check_value = false;} 
-        temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":check_value};
-        todo.push(temp_data);
+        }else{ check_value = false;}
     }
     
     doingList.appendChild(doingUL);
@@ -204,8 +209,6 @@ function update_out(){
         if (items.childNodes[idx].classList.value == "checked"){
             check_value = true;
         }else{ check_value = false;} 
-        temp_data = {"task":items.childNodes[idx].firstChild.nodeValue,"checked":check_value};
-        doing.push(temp_data);
     }
     return {"date":myDate,"todo":todo_arr,"doing":doing_arr};
 }
