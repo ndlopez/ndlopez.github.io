@@ -2,7 +2,7 @@ const default_length = 10;
 const words = "https://raw.githubusercontent.com/ndlopez/scrapped/main/data/book_words.txt";
 const abc = "qwertyuiopzxcvbnmasdfghjkl";
 let num="98745632", sym="!#$%&-_@";
-
+let fiveChars = [];
 let inp = document.getElementById('passLen');
 let outp = document.querySelector('output');
 outp.innerHTML = inp.value;
@@ -27,7 +27,8 @@ radBtns.forEach(button =>{
     }
 });
 
-get_option();
+got_option();
+let valPhrase = disp_words();
 
 async function get_option(){
     const genBtn = document.getElementById("gen_btn");
@@ -39,18 +40,30 @@ async function get_option(){
             // console.log("Button clicked",valPhrase);
         }else{
             pswdgen();
-        }        
+        }
     });
 }
 
+function got_option(){
+    const genBtn = document.getElementById("gen_btn");
+    genBtn.addEventListener("click",()=>{
+        if (sw_pass){
+            get_option(); // callback
+            document.getElementById("pass").innerHTML = valPhrase;
+            // console.log("Button clicked",valPhrase);
+        }else{
+            pswdgen();
+        }        
+    });
+}
 function pswdgen(){
     let mystr = "",auxStr="";
     num= ""; sym = "";
     // const thisLen = document.getElementById("gotLen");
     let lenValue = document.getElementById("passLen").value;
     let smallCaps = document.querySelector("#lowers");
-    let addNumbers = document.querySelector("#numbers");
-    let addSymbols = document.querySelector("#symbols");
+    // let addNumbers = document.querySelector("#numbers");
+    // let addSymbols = document.querySelector("#symbols");
     const nump = (lenValue)?(lenValue):(default_length);
     // thisLen.innerText = nump;
     // console.log(lenValue,smallCaps.checked,addNumbers.checked,addSymbols.checked);
