@@ -4,24 +4,70 @@
 /*.pwd_type{
   display: none;
 }*/
+body{
+  background-color:#20201F;
+  height: fit-content;
+  background-position: 50%;
+  background-size: cover;
+  color: antiquewhite;
+}
+
+main{
+  background-color: #2e4054;
+  border-radius: 15px;
+  margin:auto;
+  position: relative;
+  top: 50%;
+  width: 45vw;
+  padding: 10px;
+}
+button{
+  padding: 7px;
+  width: 48%;
+  font-size: larger;
+  border-radius: 5px;
+  margin-top: 13px;
+  background-color:var(--darkish-sky);
+  color: white;
+}
+
+h1{
+  font-family: Georgia;
+  /*letter-spacing: 0.1em;*/
+  margin: 2px;
+  padding: 10px;
+  height: 50px;
+}
+input[type="range"]{
+  width: 40vw;
+  margin-top: 10px;
+}
+input[type='checkbox'] {
+  /*-webkit-appearance:none;*/
+  width:25px;
+  height:25px;
+  background: var(--light-sky);
+  border-radius:5px;
+  border:2px solid var(--smoke);
+  position: absolute;
+}
+input[type='checkbox']:checked {
+  background: var(--wine);
+}
+input[type="radio"]{
+  width: 25px;
+  height: 25px;
+}
+.checkbox_label{
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 35px;
+  position: relative;
+  padding-left: 38px;
+}
 @media (max-width: 700px){
-  h1{
-    font-family: Georgia;
-    /*letter-spacing: 0.1em;*/
-    margin: 2px;
-    padding: 10px 5px;
-    height: 50px;
-  }
   p{margin: 0px;}
-  button{
-    padding: 7px;
-    width: 48%;
-    font-size: larger;
-    border-radius: 5px;
-    margin-top: 13px;
-    background-color:var(--darkish-sky);
-    color: white;
-  }
+  
   #gen_btn{
     background-color: var(--wine);
     margin-right:8px;
@@ -43,16 +89,6 @@
     border:2px solid var(--smoke);
     position: absolute;
   }
-  input[type='checkbox']:checked {
-    background: var(--wine);
-  }
-  .checkbox_label{
-    display: inline-block;
-    font-size: 1rem;
-    line-height: 35px;
-    position: relative;
-    padding-left: 38px;
-  }
   .bkg_darkish{
     background-color: var(--darkish-sky);
     border-radius: 5px;
@@ -60,7 +96,6 @@
   input[type="range"]{
     /*height: 35px;*/
     width: 75vw;
-    margin-top: 10px;
   }
   input[type="radio"]{
     width: 25px;
