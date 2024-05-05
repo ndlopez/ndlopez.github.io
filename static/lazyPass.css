@@ -18,7 +18,7 @@ main{
   margin:auto;
   position: relative;
   top: 50%;
-  width: 45vw;
+  width: 55vw;
   padding: 10px;
 }
 button{
@@ -31,11 +31,11 @@ button{
   color: white;
 }
 
-h1{
+h2{
   font-family: Georgia;
   /*letter-spacing: 0.1em;*/
   margin: 2px;
-  padding: 10px;
+  padding: 10px 0px;
   height: 50px;
 }
 input[type="range"]{

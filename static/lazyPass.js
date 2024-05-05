@@ -99,14 +99,14 @@ function copy_to_clipboard(){
 
 const rand_idx = (abi) => Math.floor(Math.random()*abi.length); 
 async function disp_words(){
-    let maxim = 3; // max num words
+    let maxim = 4; // max num words
     const myWords = await get_url_data(words);
-    let text = "", mystr=num + sym;
+    let text = "", mystr = num + sym;
     for (let idx=0; idx < maxim; idx++){
         text += myWords[rand_idx(myWords)] + mystr.charAt(rand_idx(mystr));
     }
     console.log("phrase:",text.length);
-    return text;
+    return text.slice(0,-1);
 }
 
 async function get_url_data(url){
