@@ -27,10 +27,26 @@ radBtns.forEach(button =>{
     }
 });
 
-got_option();
-let valPhrase = disp_words();
+let valPhrase = ""; //disp_words();
 
-async function get_option(){
+/* immediately invoke result*/
+(async function (){
+try{
+const resp = await fetch(words);
+const data = await resp.text();
+const rows = data.split('\n');
+    rows.forEach(row=>{
+        if(row.length < 5){
+            fiveChars.push(row);
+        }
+    });
+    return fiveChars;
+
+}catch(err){console.log("got this:",err);}
+})();
+
+get_option();
+/*async function get_option(){
     const genBtn = document.getElementById("gen_btn");
     let valPhrase = await disp_words();
     genBtn.addEventListener("click",()=>{
@@ -42,9 +58,34 @@ async function get_option(){
             pswdgen();
         }
     });
+}*/
+
+function get_option(){
+    const genBtn = document.getElementById("gen_btn");
+    let maxim = 4; // max num words
+    const rand_idx = (abi) => Math.floor(Math.random()*abi.length);
+    let text = "", mystr = num + sym, amy = "";
+    for (let idx=0; idx < maxim; idx++){
+        // text += myWords[rand_idx(myWords)] + mystr.charAt(rand_idx(mystr));
+        // amy = amy.charAt(0).toUpperCase()
+        text += fiveChars[rand_idx(fiveChars)] + mystr.charAt(rand_idx(mystr));
+    }
+
+    genBtn.addEventListener("click",function got_option(){
+        if (sw_pass){
+            get_option(); // callback
+            if ( text.includes(undefined) ){ text = "fly-bacon-will-pay2";}
+            document.getElementById("pass").innerHTML = text.slice(0,-1);
+            genBtn.removeEventListener("click",got_option);
+            console.log("Button clicked",text,fiveChars);
+        }else{
+            pswdgen();
+            // genBtn.removeEventListener("click",get_option);
+        }
+    });    
 }
 
-function got_option(){
+/*function got_option(){
     const genBtn = document.getElementById("gen_btn");
     genBtn.addEventListener("click",()=>{
         if (sw_pass){
@@ -55,7 +96,7 @@ function got_option(){
             pswdgen();
         }        
     });
-}
+}*/
 function pswdgen(){
     let mystr = "",auxStr="";
     num= ""; sym = "";
