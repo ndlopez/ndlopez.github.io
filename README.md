@@ -30,10 +30,12 @@ On a single page I also summarize some of the research I worked on as a grad stu
 
 - Sun and Moon rise/set times are from [dayspedia](https://dayspedia.com/)and [timeanddate.com](https://www.timeanddate.com) respectively.
 
+- Solar zenith data are courtesy of [Robert Larsson’s homepage](https://rl.se/sub-solar-point)
+
 ## Features
 - Fully responsive design
 
-## Running Environment
+## Developing Environment
 
 Browser: Firefox, obviously.
 
