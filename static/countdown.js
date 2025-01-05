@@ -11,8 +11,8 @@
 */
 let idx = 0;
 const csv_url = "https://raw.githubusercontent.com/ndlopez/scrapped/main/data/solar_zenith.csv";
-const z_url = "https://rl.se/com/zenit.py?what=upcoming&lat=-16.491223&lon=-68.149538"
-
+const z_url = "https://rl.se/com/zenit.py?what=upcoming&lat=-16.513492&lon=-68.190284";
+// "https://rl.se/com/zenit.py?what=upcoming&lat=-16.491223&lon=-68.149538"
 // const allDates=["Feb 3, 2024 01:46:08", "Nov 8, 2023 01:16:13", "Nov 9, 2023 01:16:17", "Nov 10, 2023 01:16:22"];
 let allDates = [];
 let countDownDate = "";
